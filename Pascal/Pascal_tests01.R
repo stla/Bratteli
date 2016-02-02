@@ -1,1 +1,0 @@
-setwd("~/Work/Filtrations/Bratteli/Pascal")
