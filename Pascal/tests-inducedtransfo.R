@@ -13,6 +13,7 @@ returntime <- function(u, inP){
   return(k)
 }
 
+### 1er cuting-stacking ###
 inP <- function(u){
   (u < 1/4) || (u>=1/2)
 }
@@ -33,3 +34,19 @@ IPu <- sapply(u, inducedP)
 plot(u, IPu)
 abline(v=1/4, col="red"); abline(v=1/2, col="red")
 abline(h=1/4, col="red"); abline(h=1/2, col="red")
+
+### 2ème cutting-stacking ###
+inP <- function(u){
+  (u < 1/8) || (u >= 1/2 && u < 5/8) || (u >= 3/4)
+}
+
+u <- seq(1/2^10, 1-1/2^10, by=1/2^10)
+i <- sapply(seq_along(u), function(i) inP(u[i]))
+u <- u[which(i)]
+Ru <- numeric(length(u))
+for(i in 1:length(u)){
+  Ru[i] <- u[i] %>% returntime(inP)
+}
+plot(u, Ru)
+abline(v=1/2, col="red"); abline(v=5/8, col="red")
+abline(v=3/4, col="red"); abline(v=7/8, col="red")
