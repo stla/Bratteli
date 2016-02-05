@@ -2,3 +2,5 @@
 !/.gitignore
 !*.R
 !*.Rmd
+!*.tex
+.Rproj.user
