@@ -1,0 +1,160 @@
+---
+title: "Lois conditionnelles"
+author: "Stéphane Laurent"
+date: "5 février 2016"
+output: html_document
+---
+
+```{r setup0, include=FALSE}
+library(knitr)
+opts_chunk$set(collapse=TRUE, message=FALSE)
+```
+
+On va calculer les lois conditionnelles $(Z_m \mid Z_3=v_3)$, $m = 2, 1, 0$. 
+
+![pascalwalk](figures/PascalWalk_Z3_v3.png)
+
+La fonction `Bwalk` retourne les matrices d'incidence de ce graphe. 
+Aves les noms des dimensions, on a facilement les probabilités :
+
+```{r}
+Pascal_Mn <- function(n){
+  M <- matrix(0, nrow=n+1, ncol=n+2)
+  for(i in 1:(n+1)){
+    M[i, ][c(i, i+1)] <- 1
+  }
+  return(M)
+}
+N <- 3; v <- 3 # choix de N et du vertex 
+( Qn <- myutils::Bwalk(Pascal_Mn, N, v) )
+library(gmp) 
+Pn <- lapply(Qn, function(P){
+  Pcopy <- as.bigq(matrix(0, nrow=nrow(P), ncol=ncol(P)))
+  for(i in 1:nrow(P)){
+    j <- which(P[i,]!=0)
+    Pcopy[i,j] <- as.bigq(nchar(colnames(P)[j]), nchar(rownames(P)[i]))
+  }
+  return(Pcopy)
+})
+Pn
+```
+
+Maintenant on remplace les noms des colonnes de `Qn` par l'exposant $k$ tel que $Z_{n-1}= T^kZ_n$ (ou l'indice de la 1ère lettre de `abcdef` du point de vue des mots découpés) :
+
+```{r}
+for(i in 1:N){ # remplace les noms des Qn par les puissances de T
+  M <- Qn[[i]]
+  for(j in 1:ncol(M)){
+    k <- which(letters==stringr::str_sub(colnames(M)[j], 1, 1)) - 1L
+    colnames(M)[j] <- k 
+  }
+  Qn[[i]] <- M
+}
+Qn
+```
+
+Puis on fait le produit pour avoir les probabilités :
+
+```{r}
+Zm_given_ZN <- vector("list", N)
+Zm_given_ZN[[1]] <- Pn[[1]]
+for(i in 2:N){
+  Zm_given_ZN[[i]] <- Zm_given_ZN[[i-1]] %*% Pn[[i]]  
+}
+Zm_given_ZN <- lapply(Zm_given_ZN, as.character)
+for(i in 1:N){
+  rownames(Zm_given_ZN[[i]]) <- rownames(Qn[[1]])
+  colnames(Zm_given_ZN[[i]]) <- colnames(Qn[[i]])
+}
+Zm_given_ZN 
+```
+
+On ajoute les probabilités nulles :
+
+```{r}
+# ajout des zéros 
+kmax <- nchar(rownames(Qn[[1]])) - 1L
+Zm_given_ZN_zeros <- lapply(1:N, function(i) setNames(rep("0", kmax+1L), 0:kmax))
+for(i in 1:N){
+  Zm_given_ZN_zeros[[i]][colnames(Zm_given_ZN[[i]])] <- Zm_given_ZN[[i]]
+}
+Zm_given_ZN_zeros
+```
+
+Puisque la longueur, ici $6$, est le dénominateur commun, on peut le supprimer pour plus de clarté. On va aussi stocker `Zm_given_ZN_zeros` dans un tableau plutôt qu'une liste, et renverser le sens des lignes.
+
+```{r}
+ConditionalLaws <- function(N, v){
+  Qn <- myutils::Bwalk(Pascal_Mn, N, v) 
+  Pn <- lapply(Qn, function(P){
+    Pcopy <- as.bigq(matrix(0, nrow=nrow(P), ncol=ncol(P)))
+    for(i in 1:nrow(P)){
+      j <- which(P[i,]!=0)
+      Pcopy[i,j] <- as.bigq(nchar(colnames(P)[j]), nchar(rownames(P)[i]))
+    }
+    return(Pcopy)
+  })
+  for(i in 1:N){ # remplace les noms des Qn par les puissances de T
+    M <- Qn[[i]]
+    for(j in 1:ncol(M)){
+      k <- which(letters==stringr::str_sub(colnames(M)[j], 1, 1)) - 1L
+      colnames(M)[j] <- k 
+    }
+    Qn[[i]] <- M
+  }
+  kmax <- nchar(rownames(Qn[[1]])) - 1L
+  Zm_given_ZN <- vector("list", N)
+  Zm_given_ZN[[1]] <- Pn[[1]] 
+  for(i in 2:N){
+    Zm_given_ZN[[i]] <- Zm_given_ZN[[i-1]] %*% Pn[[i]] 
+  }
+  Zm_given_ZN <- lapply(Zm_given_ZN, function(x) x* (kmax+1L))
+  Zm_given_ZN <- lapply(Zm_given_ZN, as.character)
+  for(i in 1:N){
+    rownames(Zm_given_ZN[[i]]) <- rownames(Qn[[1]])
+    colnames(Zm_given_ZN[[i]]) <- colnames(Qn[[i]])
+  }
+  # ajout des zéros 
+  Zm_given_ZN_zeros <- matrix("0", nrow=N, ncol=kmax+1L)
+  colnames(Zm_given_ZN_zeros) <- 0:kmax
+  rownames(Zm_given_ZN_zeros) <- paste0("m=", (N-1):0)
+  for(i in 1:N){
+    Zm_given_ZN_zeros[i,][colnames(Zm_given_ZN[[i]])] <- Zm_given_ZN[[i]]
+  }
+  attr(Zm_given_ZN_zeros, "word") <- rownames(Qn[[1]])
+  return(Zm_given_ZN_zeros[N:1,])
+}
+ConditionalLaws(N=3, v=3)
+```
+
+Qu'est-ce que ça donne pour un grand $N$ ? 
+
+
+```{r}
+ConditionalLaws(N=5, v=3)
+```
+
+Normalement ces suites vérifient Hanson-Pledger. 
+
+```{r}
+dput(as.numeric(ConditionalLaws(N=5, v=3)[2,]))
+```
+
+Pas trouvée dans OEIS... 
+
+Imaginons que les 1 sont des 0 remplacés, et les 20 des 1 remplacés :
+```{r}
+# 0, 0, 0, 1, 0, 0, 1, 0, 1, 1, 0 
+```
+
+colle avec https://oeis.org/A234577
+
+```{r}
+dput(as.numeric(ConditionalLaws(N=6, v=3)[2,]))
+# 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1, 0, 1, 1, 0
+## c'est plutôt v=4
+## pour N=6 v=4 je dépasse z dans l'alplhabet, merde ! 
+#dput(as.numeric(ConditionalLaws(N=6, v=4)[2,]))
+dput(as.numeric(ConditionalLaws(N=4, v=2)[2,]))
+```
+
