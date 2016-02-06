@@ -26,29 +26,36 @@ Pascal_Mn <- function(n){
   return(M)
 }
 N <- 3; v <- 3 # choix de N et du vertex 
-( X <- myutils::Bwalk_powers(Pascal_Mn, N, v) )
+( Qn <- myutils::Bwalk(Pascal_Mn, N, v) )
+library(gmp) 
+Pn <- lapply(Qn, function(P){
+  Pcopy <- as.bigq(matrix(0, nrow=nrow(P), ncol=ncol(P)))
+  for(i in 1:nrow(P)){
+    j <- which(P[i,]!=0)
+    Pcopy[i,j] <- as.bigq(nchar(colnames(P)[j]), nchar(rownames(P)[i]))
+  }
+  return(Pcopy)
+})
+Pn
 ```
 
-Par exemple les noms des lignes de la 2ème matrice :
+Maintenant on remplace les noms des colonnes de `Qn` par l'exposant $k$ tel que $Z_{n-1}= T^kZ_n$ (ou l'indice de la 1ère lettre de `abcdef` du point de vue des mots découpés) :
+
 ```{r}
-X$Mn[[2]]
+for(i in 1:N){ # remplace les noms des Qn par les puissances de T
+  M <- Qn[[i]]
+  for(j in 1:ncol(M)){
+    k <- which(letters==stringr::str_sub(colnames(M)[j], 1, 1)) - 1L
+    colnames(M)[j] <- k 
+  }
+  Qn[[i]] <- M
+}
+Qn
 ```
-
-signifient que $(Z_2 \mid Z_3=z)$ prend les valeurs $T^0z$ ou $T^3z$. 
-Les noms des colonnes signifient que $(Z_1 \mid Z_2=T^0z)$ prend les valeurs $T^0z$ ou $T^1z$ et que $(Z_1 \mid Z_2=T^3z)$ prend les valeurs $T^3z$ ou $T^5z$. 
-Les attributs donnent les dimensions des sommets. Les probabilités de transition sont données dans `X$Pn`. 
-
-
-```{r}
-Qn <- X$Mn
-Pn <- X$Pn
-```
-
 
 Puis on fait le produit pour avoir les probabilités :
 
 ```{r}
-library(gmp)
 Zm_given_ZN <- vector("list", N)
 Zm_given_ZN[[1]] <- Pn[[1]]
 for(i in 2:N){
@@ -66,7 +73,7 @@ On ajoute les probabilités nulles :
 
 ```{r}
 # ajout des zéros 
-kmax <- attr(Qn[[1]], "dims")$rows - 1L
+kmax <- nchar(rownames(Qn[[1]])) - 1L
 Zm_given_ZN_zeros <- lapply(1:N, function(i) setNames(rep("0", kmax+1L), 0:kmax))
 for(i in 1:N){
   Zm_given_ZN_zeros[[i]][colnames(Zm_given_ZN[[i]])] <- Zm_given_ZN[[i]]
@@ -78,10 +85,24 @@ Puisque la longueur, ici $6$, est le dénominateur commun, on peut le supprimer 
 
 ```{r}
 ConditionalLaws <- function(N, v){
-  X <- myutils::Bwalk_powers(Pascal_Mn, N, v) 
-  Qn <- X$Mn
-  Pn <- X$Pn
-  kmax <- attr(Qn[[1]], "dims")$rows - 1L
+  Qn <- myutils::Bwalk(Pascal_Mn, N, v) 
+  Pn <- lapply(Qn, function(P){
+    Pcopy <- as.bigq(matrix(0, nrow=nrow(P), ncol=ncol(P)))
+    for(i in 1:nrow(P)){
+      j <- which(P[i,]!=0)
+      Pcopy[i,j] <- as.bigq(nchar(colnames(P)[j]), nchar(rownames(P)[i]))
+    }
+    return(Pcopy)
+  })
+  for(i in 1:N){ # remplace les noms des Qn par les puissances de T
+    M <- Qn[[i]]
+    for(j in 1:ncol(M)){
+      k <- which(letters==stringr::str_sub(colnames(M)[j], 1, 1)) - 1L
+      colnames(M)[j] <- k 
+    }
+    Qn[[i]] <- M
+  }
+  kmax <- nchar(rownames(Qn[[1]])) - 1L
   Zm_given_ZN <- vector("list", N)
   Zm_given_ZN[[1]] <- Pn[[1]] 
   for(i in 2:N){
@@ -101,7 +122,7 @@ ConditionalLaws <- function(N, v){
     Zm_given_ZN_zeros[i,][colnames(Zm_given_ZN[[i]])] <- Zm_given_ZN[[i]]
   }
   out <- Zm_given_ZN_zeros[N:1,]
-  attr(out, "denominator") <- kmax+1L
+  attr(out, "word") <- rownames(Qn[[1]])
   return(out)
 }
 ConditionalLaws(N=3, v=3)
@@ -132,9 +153,10 @@ elle colle avec https://oeis.org/A234577 : tu peux la programmer
 ```{r}
 dput(as.numeric(ConditionalLaws(N=6, v=3)[2,]))
 # 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1, 0, 1, 1, 0
-# c'est plutôt v=4 :  
-dput(as.numeric(ConditionalLaws(N=6, v=4)[2,]))
-# au coup d'avant ça colle aussi : 
+## c'est plutôt v=4, mais 
+## pour N=6 v=4 je dépasse z dans l'alplhabet, merde ! :
+#dput(as.numeric(ConditionalLaws(N=6, v=4)[2,]))
+# au coup d'avant ça colle : 
 dput(as.numeric(ConditionalLaws(N=4, v=2)[2,]))
 ```
 
@@ -151,12 +173,3 @@ a priori l'ergodicité avec ces poids devrait marcher pour Pascal, bien que ce s
 la suite `0, 0, 0, 1, 0, 0, 1, 0, 1, 1, 0` je ne vois pas à quel loi conditionnelle elle correspond... SI, elle correspond à $Z_0=T^kx, Z_1=T^{k-1}x$ quand on part du vertex $T^5x$ là :
 
 ![](figures/PascalZn_Z5.png)
-
-
-```{r}
-S <- c(0L, 0L)
-for(i in 1:20){
-  S <- c(S,  c(0L, rev(myutils::int2binary(i))))
-}
-```
-
