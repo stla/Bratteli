@@ -22,5 +22,11 @@ fedgelabels <- Vectorize(function(n, from, to){
   }
 })
 
-BgraphTikZ("GoldenGraph_R.tex", Golden_Mn, N=5, fedgelabels = fedgelabels)
+fvertexlabels <- function(n){
+  if(n%%2==1) c("{\\boldsymbol 0}", "{\\boldsymbol 1}") else c("{\\boldsymbol 1}", "{\\boldsymbol 0}")
+}
+
+BgraphTikZ("GoldenGraph_R.tex", Golden_Mn, N=5, 
+           fedgelabels = fedgelabels,
+           fvertexlabels = fvertexlabels)
 

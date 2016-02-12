@@ -27,7 +27,7 @@
   \tikzset{EdgeStyle/.style = {
     draw            = black, 
     thick,
-    double          = orange,
+    double          = black,
     double distance = 1pt
     }
   }
@@ -55,20 +55,20 @@
 	\node[VertexStyle](E2) at (37.5, 12.5) {${\boldsymbol 0}$};
 	\node[VertexStyle](F1) at (12.5, 4.16666666666667) {${\boldsymbol 0}$};
 	\node[VertexStyle](F2) at (37.5, 4.16666666666667) {${\boldsymbol 1}$};
-	\draw[EdgeStyle](A1) to node[EdgeLabelStyle]{$$} (B1);
-	\draw[EdgeStyle](A1) to node[EdgeLabelStyle]{$$} (B1);
-	\draw[EdgeStyle](A1) to node[EdgeLabelStyle]{$1$} (B1);
-	\draw[EdgeStyle](A1) to node[EdgeLabelStyle]{$0$} (B1);
-	\draw[EdgeStyle](A1) to node[EdgeLabelStyle]{$0$} (B1);
-	\draw[EdgeStyle](A1) to node[EdgeLabelStyle]{$0$} (B1);
-	\draw[EdgeStyle](A1) to node[EdgeLabelStyle]{$0$} (B1);
-	\draw[EdgeStyle](A1) to node[EdgeLabelStyle]{$1$} (B1);
-	\draw[EdgeStyle](A1) to node[EdgeLabelStyle]{$1$} (B1);
-	\draw[EdgeStyle](A1) to node[EdgeLabelStyle]{$0$} (B1);
-	\draw[EdgeStyle](A1) to node[EdgeLabelStyle]{$0$} (B1);
-	\draw[EdgeStyle](A1) to node[EdgeLabelStyle]{$0$} (B1);
-	\draw[EdgeStyle](A1) to node[EdgeLabelStyle]{$0$} (B1);
-	\draw[EdgeStyle](A1) to node[EdgeLabelStyle]{$1$} (B1);
+	\draw[EdgeStyle](A1) to (B1);
+	\draw[EdgeStyle](A1) to(B2);
+	\draw[EdgeStyle](B1) to node[EdgeLabelStyle]{$1$} (C1);
+	\draw[EdgeStyle](B2) to node[EdgeLabelStyle]{$0$} (C1);
+	\draw[EdgeStyle](B2) to node[EdgeLabelStyle]{$0$} (C2);
+	\draw[EdgeStyle](C1) to node[EdgeLabelStyle]{$0$} (D1);
+	\draw[EdgeStyle](C1) to node[EdgeLabelStyle]{$0$} (D2);
+	\draw[EdgeStyle](C2) to node[EdgeLabelStyle]{$1$} (D2);
+	\draw[EdgeStyle](D1) to node[EdgeLabelStyle]{$1$} (E1);
+	\draw[EdgeStyle](D2) to node[EdgeLabelStyle]{$0$} (E1);
+	\draw[EdgeStyle](D2) to node[EdgeLabelStyle]{$0$} (E2);
+	\draw[EdgeStyle](E1) to node[EdgeLabelStyle]{$0$} (F1);
+	\draw[EdgeStyle](E1) to node[EdgeLabelStyle]{$0$} (F2);
+	\draw[EdgeStyle](E2) to node[EdgeLabelStyle]{$1$} (F2);
 
   \end{tikzpicture}
 

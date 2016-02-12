@@ -1,0 +1,31 @@
+---
+title: "Golden - Vershik"
+author: "Stéphane Laurent"
+date: "8 février 2016"
+output: html_document
+---
+
+\newcommand{\LL}{\mathcal{L}}
+\newcommand{\XX}{\mathcal{X}}
+\newcommand{\given}{\mid}
+
+On utilise la paramètrisation suivante du graphe de Bratteli:
+
+![goldengraph](figures/GoldenGraph_alternatevertex.png)
+
+On a une transformation $T$ sur un espace $(\XX, \nu)$. Nous regardons le critère de Vershik pour $Z_0 \sim \nu$. 
+
+On a une distance $\rho_0$ sur $[0,1]$ et on prend $f \colon \XX \to [0,1]$. 
+
+La gueule de la distance de Kantorovich au niveau $n=1$ dépend des sommets $v_1$ et $v'_1$ au niveau $1$. On la note $\rho^1_{v_1, v'_1}$. 
+
+- Si $v_1=v'_1=0$, alors $\LL(Z_0 \given Z_1=x_1, V_1=v_1) = \delta_{x_1}$  et $\LL(Z_0 \given Z_1=x'_1, V_1=v'_1) = \delta_{x'_1}$ ; on a  $\rho^1_{v_1, v'_1}(x_1, x'_1)=\rho_0(x_1, x'_1)$.
+
+- Si $v_1=1$ et $v'_1=0$, alors $\LL(Z_0 \given Z_1=x_1, V_1=v_1) = \frac12\delta_{x_1}+\frac12\delta_{Tx_1}$  et $\LL(Z_0 \given Z_1=x'_1, V_1=v'_1) = \delta_{x'_1}$ ; on a  $\rho^1_{v_1, v'_1}(x_1, x'_1)=\frac12\rho_0(x_1, x'_1)+\frac12\rho_0(Tx_1, x'_1)$.
+
+- Si $v_1=0$ et $v'_1=1$, on a le truc symétrique.
+
+- Si $v_1=1$ et $v'_1=1$, il y a deux couplages extrémaux ... 
+$$
+\rho^1_{v_1, v'_1}(x_1, x'_1) = \left( ... \right)
+$$
