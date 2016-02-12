@@ -1,0 +1,19 @@
+---
+title: "Chacon-adic filtrations of splitted words"
+author: "Stéphane Laurent"
+date: "12 février 2016"
+output: html_document
+---
+
+***Contents*** 
+
+- Déf de la filtration de base 
+
+- Couplage du processus $(V_n, \eta_n)$ avec $(0, \epsilon_n)$ triadique
+
+- 4 preuves possibles de la standardité : paramétrisation génératrice à la main, monotone, Vershik, confort
+
+- Théorème : si couplage alors confort équivalent
+
+## The elementary Chacon adic filtration 
+

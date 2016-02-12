@@ -1,0 +1,165 @@
+\documentclass[12pt,border=0pt]{standalone}
+
+\usepackage[utf8]{inputenc} 
+\usepackage{amssymb,amsmath}
+\usepackage{tikz}
+
+
+
+\thispagestyle{empty}
+
+\begin{document}
+
+\begin{tikzpicture}[x=10pt,y=6pt]
+  \centering
+  \tikzset{VertexStyle/.style = {
+    shape         = rectangle,
+    draw          = blue, 
+    fill          = white, 
+  	line width    = 1pt, 
+    text          = black,
+    inner sep     = 1pt,
+    outer sep     = 0pt,
+    minimum size  = 14 pt,
+    scale         = 1
+    }
+  }
+  \tikzset{EdgeStyle/.style = {
+    draw            = black, 
+    thick,
+    double          = orange,
+    double distance = 1pt
+    }
+  }
+  \tikzset{EdgeLabelStyle/.style = {
+    draw          = black,
+  	shape         = circle, 
+  	line width    = 1pt, 
+  	minimum size  = 10pt, 
+    inner sep     = 1pt,
+    outer sep     = 0pt,
+    fill          = yellow,
+    text          = black,
+    scale         = 1
+    }
+  }
+
+	\node[VertexStyle](A1) at (25, 0) {$\varnothing$};
+	\node[VertexStyle](B1) at (6.25, 12.5) {$0$};
+	\node[VertexStyle](B2) at (18.75, 12.5) {$13$};
+	\node[VertexStyle](B3) at (31.25, 12.5) {$26$};
+	\node[VertexStyle](B4) at (43.75, 12.5) {$27$};
+	\node[VertexStyle](C01) at (1.92307692307692, 25) {$0$};
+	\node[VertexStyle](C02) at (5.76923076923077, 25) {$4$};
+	\node[VertexStyle](C03) at (9.61538461538462, 25) {$8$};
+	\node[VertexStyle](C04) at (13.4615384615385, 25) {$9$};
+	\node[VertexStyle](C05) at (17.3076923076923, 25) {$13$};
+	\node[VertexStyle](C06) at (21.1538461538462, 25) {$17$};
+	\node[VertexStyle](C07) at (25, 25) {$21$};
+	\node[VertexStyle](C08) at (28.8461538461539, 25) {$22$};
+	\node[VertexStyle](C09) at (32.6923076923077, 25) {$26$};
+	\node[VertexStyle](C10) at (36.5384615384615, 25) {$27$};
+	\node[VertexStyle](C11) at (40.3846153846154, 25) {$31$};
+	\node[VertexStyle](C12) at (44.2307692307692, 25) {$35$};
+	\node[VertexStyle](C13) at (48.0769230769231, 25) {$36$};
+	\node[VertexStyle](D01) at (0.625, 37.5) {$0$};
+	\node[VertexStyle](D02) at (1.875, 37.5) {$1$};
+	\node[VertexStyle](D03) at (3.125, 37.5) {$2$};
+	\node[VertexStyle](D04) at (4.375, 37.5) {$3$};
+	\node[VertexStyle](D05) at (5.625, 37.5) {$4$};
+	\node[VertexStyle](D06) at (6.875, 37.5) {$5$};
+	\node[VertexStyle](D07) at (8.125, 37.5) {$6$};
+	\node[VertexStyle](D08) at (9.375, 37.5) {$7$};
+	\node[VertexStyle](D09) at (10.625, 37.5) {$8$};
+	\node[VertexStyle](D10) at (11.875, 37.5) {$9$};
+	\node[VertexStyle](D11) at (13.125, 37.5) {$10$};
+	\node[VertexStyle](D12) at (14.375, 37.5) {$11$};
+	\node[VertexStyle](D13) at (15.625, 37.5) {$12$};
+	\node[VertexStyle](D14) at (16.875, 37.5) {$13$};
+	\node[VertexStyle](D15) at (18.125, 37.5) {$14$};
+	\node[VertexStyle](D16) at (19.375, 37.5) {$15$};
+	\node[VertexStyle](D17) at (20.625, 37.5) {$16$};
+	\node[VertexStyle](D18) at (21.875, 37.5) {$17$};
+	\node[VertexStyle](D19) at (23.125, 37.5) {$18$};
+	\node[VertexStyle](D20) at (24.375, 37.5) {$19$};
+	\node[VertexStyle](D21) at (25.625, 37.5) {$20$};
+	\node[VertexStyle](D22) at (26.875, 37.5) {$21$};
+	\node[VertexStyle](D23) at (28.125, 37.5) {$22$};
+	\node[VertexStyle](D24) at (29.375, 37.5) {$23$};
+	\node[VertexStyle](D25) at (30.625, 37.5) {$24$};
+	\node[VertexStyle](D26) at (31.875, 37.5) {$25$};
+	\node[VertexStyle](D27) at (33.125, 37.5) {$26$};
+	\node[VertexStyle](D28) at (34.375, 37.5) {$27$};
+	\node[VertexStyle](D29) at (35.625, 37.5) {$28$};
+	\node[VertexStyle](D30) at (36.875, 37.5) {$29$};
+	\node[VertexStyle](D31) at (38.125, 37.5) {$30$};
+	\node[VertexStyle](D32) at (39.375, 37.5) {$31$};
+	\node[VertexStyle](D33) at (40.625, 37.5) {$32$};
+	\node[VertexStyle](D34) at (41.875, 37.5) {$33$};
+	\node[VertexStyle](D35) at (43.125, 37.5) {$34$};
+	\node[VertexStyle](D36) at (44.375, 37.5) {$35$};
+	\node[VertexStyle](D37) at (45.625, 37.5) {$36$};
+	\node[VertexStyle](D38) at (46.875, 37.5) {$37$};
+	\node[VertexStyle](D39) at (48.125, 37.5) {$38$};
+	\node[VertexStyle](D40) at (49.375, 37.5) {$39$};
+	\draw[EdgeStyle](A1) to node[EdgeLabelStyle]{$0$} (B1);
+	\draw[EdgeStyle](A1) to node[EdgeLabelStyle]{$1$} (B2);
+	\draw[EdgeStyle](A1) to node[EdgeLabelStyle]{$2$} (B3);
+	\draw[EdgeStyle](A1) to node[EdgeLabelStyle]{$3$} (B4);
+	\draw[EdgeStyle](B1) to node[EdgeLabelStyle]{$0$} (C01);
+	\draw[EdgeStyle](B1) to node[EdgeLabelStyle]{$1$} (C02);
+	\draw[EdgeStyle](B1) to node[EdgeLabelStyle]{$2$} (C03);
+	\draw[EdgeStyle](B1) to node[EdgeLabelStyle]{$3$} (C04);
+	\draw[EdgeStyle](B2) to node[EdgeLabelStyle]{$0$} (C05);
+	\draw[EdgeStyle](B2) to node[EdgeLabelStyle]{$1$} (C06);
+	\draw[EdgeStyle](B2) to node[EdgeLabelStyle]{$2$} (C07);
+	\draw[EdgeStyle](B2) to node[EdgeLabelStyle]{$3$} (C08);
+	\draw[EdgeStyle](B3) to node[EdgeLabelStyle]{$0$} (C09);
+	\draw[EdgeStyle](B4) to node[EdgeLabelStyle]{$0$} (C10);
+	\draw[EdgeStyle](B4) to node[EdgeLabelStyle]{$1$} (C11);
+	\draw[EdgeStyle](B4) to node[EdgeLabelStyle]{$2$} (C12);
+	\draw[EdgeStyle](B4) to node[EdgeLabelStyle]{$3$} (C13);
+	\draw[EdgeStyle](C01) to node[EdgeLabelStyle]{$0$} (D01);
+	\draw[EdgeStyle](C01) to node[EdgeLabelStyle]{$1$} (D02);
+	\draw[EdgeStyle](C01) to node[EdgeLabelStyle]{$2$} (D03);
+	\draw[EdgeStyle](C01) to node[EdgeLabelStyle]{$3$} (D04);
+	\draw[EdgeStyle](C02) to node[EdgeLabelStyle]{$0$} (D05);
+	\draw[EdgeStyle](C02) to node[EdgeLabelStyle]{$1$} (D06);
+	\draw[EdgeStyle](C02) to node[EdgeLabelStyle]{$2$} (D07);
+	\draw[EdgeStyle](C02) to node[EdgeLabelStyle]{$3$} (D08);
+	\draw[EdgeStyle](C03) to node[EdgeLabelStyle]{$0$} (D09);
+	\draw[EdgeStyle](C04) to node[EdgeLabelStyle]{$0$} (D10);
+	\draw[EdgeStyle](C04) to node[EdgeLabelStyle]{$1$} (D11);
+	\draw[EdgeStyle](C04) to node[EdgeLabelStyle]{$2$} (D12);
+	\draw[EdgeStyle](C04) to node[EdgeLabelStyle]{$3$} (D13);
+	\draw[EdgeStyle](C05) to node[EdgeLabelStyle]{$0$} (D14);
+	\draw[EdgeStyle](C05) to node[EdgeLabelStyle]{$1$} (D15);
+	\draw[EdgeStyle](C05) to node[EdgeLabelStyle]{$2$} (D16);
+	\draw[EdgeStyle](C05) to node[EdgeLabelStyle]{$3$} (D17);
+	\draw[EdgeStyle](C06) to node[EdgeLabelStyle]{$0$} (D18);
+	\draw[EdgeStyle](C06) to node[EdgeLabelStyle]{$1$} (D19);
+	\draw[EdgeStyle](C06) to node[EdgeLabelStyle]{$2$} (D20);
+	\draw[EdgeStyle](C06) to node[EdgeLabelStyle]{$3$} (D21);
+	\draw[EdgeStyle](C07) to node[EdgeLabelStyle]{$0$} (D22);
+	\draw[EdgeStyle](C08) to node[EdgeLabelStyle]{$0$} (D23);
+	\draw[EdgeStyle](C08) to node[EdgeLabelStyle]{$1$} (D24);
+	\draw[EdgeStyle](C08) to node[EdgeLabelStyle]{$2$} (D25);
+	\draw[EdgeStyle](C08) to node[EdgeLabelStyle]{$3$} (D26);
+	\draw[EdgeStyle](C09) to node[EdgeLabelStyle]{$0$} (D27);
+	\draw[EdgeStyle](C10) to node[EdgeLabelStyle]{$0$} (D28);
+	\draw[EdgeStyle](C10) to node[EdgeLabelStyle]{$1$} (D29);
+	\draw[EdgeStyle](C10) to node[EdgeLabelStyle]{$2$} (D30);
+	\draw[EdgeStyle](C10) to node[EdgeLabelStyle]{$3$} (D31);
+	\draw[EdgeStyle](C11) to node[EdgeLabelStyle]{$0$} (D32);
+	\draw[EdgeStyle](C11) to node[EdgeLabelStyle]{$1$} (D33);
+	\draw[EdgeStyle](C11) to node[EdgeLabelStyle]{$2$} (D34);
+	\draw[EdgeStyle](C11) to node[EdgeLabelStyle]{$3$} (D35);
+	\draw[EdgeStyle](C12) to node[EdgeLabelStyle]{$0$} (D36);
+	\draw[EdgeStyle](C13) to node[EdgeLabelStyle]{$0$} (D37);
+	\draw[EdgeStyle](C13) to node[EdgeLabelStyle]{$1$} (D38);
+	\draw[EdgeStyle](C13) to node[EdgeLabelStyle]{$2$} (D39);
+	\draw[EdgeStyle](C13) to node[EdgeLabelStyle]{$3$} (D40);
+
+  \end{tikzpicture}
+
+\end{document}
