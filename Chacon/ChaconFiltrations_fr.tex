@@ -246,18 +246,22 @@ et $k = 2 d_{n+1} + 1$ si $\epsilon_{n+1}=3$.
 Ainsi la filtration $\GG$ est localement isomorphe à $\FF$. 
 Sa tribu germe $\GG_{-\infty}$ est donnée par mes réflexions 
 sur la généralisation de l'échelle d'un automorphisme. 
-On a la proposition suivante : 
+On a la proposition suivante qui est une application d'un fait général : 
 
 \begin{ppsition}
 La tribu germe $\GG_{-\infty}$ est triviale si et seulement si $T\times S$ est ergodique, 
 où $S$ est la transformation de Chacon. 
 \end{ppsition}
 
-D'après les ergodiciens,  $T\times S$ est ergodique si et seulement si 
-$T$ est ergodique et si $T$ et $S$ n'ont pas de valeur propre commune. 
-La transformation de Chacon est connue pour être faiblement mélangeante 
-et elle n'a pas de valeur propre. Donc $T\times S$ est ergodique si 
-et seulement si $T$ est ergodique. 
+%D'après les ergodiciens,  $T\times S$ est ergodique si et seulement si 
+%$T$ est ergodique et si $T$ et $S$ n'ont pas de valeur propre commune. 
+%La transformation de Chacon est connue pour être faiblement mélangeante 
+%et elle donc pas de valeur propre n'a pas de valeur propre. Donc $T\times S$ est ergodique si 
+%et seulement si $T$ est ergodique. 
+La transformation de Chacon est connue pour être faiblement mélangeante,  
+et il y a équivalence entre \og $S$ faiblement mélangeante \fg{} et 
+\og $T\times S$ egodique pour toute $T$ ergodique \fg. 
+Donc $\GG$ est kolmogorovienne pour toute transformation ergodique $T$. 
 
 {\scriptsize %%%%%%
 Il est donc temps d'introduire la transformation de Chacon. 
@@ -313,7 +317,7 @@ le point $x$ tiré au hasard.
 
 Prenons une partition finie de $X$, étiquetée par des lettres $a$, $b$, $\ldots$.  
 On note $W_n(i)$ l'étiquette du point $T^iZ_n$, pour $i$ allant de 
-$1$ à $d_n$ si $V_n=1$, sinon juste pour $i=0$. 
+$0$ à $d_n-1$ si $V_n=1$, sinon juste pour $i=0$. 
 On crée ainsi un processus de mots découpés ${(W_n, \epsilon_n)}_{n \leq 0}$. 
 
 \begin{figure}[!h]
@@ -362,14 +366,14 @@ vérifient les hypothèses du théorème~\ref{thm:joining}.
 \end{lemme}
 
 \begin{lemme}
-Soit $X_n$ le mot $\widetilde{W}_n$ privé de ses lettres en couleur $(X_0=\widetilde{W}_0)$. 
-Alors le processus $(X_n, \widetilde{\epsilon}_n)$ est un mots-découpés triadique, 
+Soit $\widetilde{X}_n$ le mot $\widetilde{W}_n$ privé de ses lettres en couleur $(\widetilde{X}_0=\widetilde{W}_0)$. 
+Alors le processus $(\widetilde{X}_n, \widetilde{\epsilon}_n)$ est un mots-découpés triadique, 
 et la filtration qu'il engendre est immergée dans $\widetilde{\GG}$.
 \end{lemme}
 
 Quand $T$ est le décalage de Bernoulli et $W_n$ est obtenu avec la partition 
 selon la coordonnée centrale, les lettres de $W_n$ sont \emph{i.i.d.} sur un alphabet 
-fini. Il en est de même des lettres de $X_n$. 
+fini. Il en est de même des lettres de $\widetilde{X}_n$. 
 Dans ce cas, on déduit des deux lemmes précédents, du théorème~\ref{thm:joining}, 
 et de notre connaissance sur le cas triadique, que $\GG$ n'est pas standard. 
 
@@ -379,15 +383,18 @@ et de notre connaissance sur le cas triadique, que $\GG$ n'est pas standard.
 
 \begin{enumerate}
 \item \`A part le cas du décalage de Bernoulli, on ne trouve pas des lettres 
-stationnaires pour $X_n$. 
+stationnaires pour $\widetilde{X}_n$. 
 
-\item Si mon idée de la définition généralisée de l'échelle est bonne, 
+\item Si l'entropie de $T$ n'est pas nulle, alors $T$ admet un facteur 
+de Bernoulli d'après le théoème de Sinai, donc $\GG$ n'est pas standard. 
+
+\item Si l'entropie de $T$ est nulle alors l'entropie exponentielle de la 
+filtration de $(\widetilde{X}_n, \widetilde{\epsilon}_n)$ est nulle aussi. 
+En effet $\frac{H(\widetilde{X}_n)}{3^n} \leq \frac{H(\widetilde{W}_n)}{3^n} = \frac{d_n}{3^n}\frac{H(\widetilde{W}_n)}{d_n} \sim 3h(T)$.
+
+\item Si mes idées à propos de la définition généralisée de l'échelle sont correctes, 
 on devrait trouver que $\GG$ est standard lorsque $T$ est elle-même la transformation de 
 Chacon, puisque $\FF$ est standard. 
-Si on prend la partition $\bigl\{[0,2/3[, [2/3,1[\big\}$, le mot $X_n$ est déterministe,  
-et les "lettres en couleur" sont toujours la même lettre. Donc c'est bien le cas... 
-non elle est pas dégénérée. 
-NON seulement si $Z_0 \in [0,2/3[$ c'est déterministe... RIGOLO - À PROGRAMMER !! 
 
 \item $\GG$ est-elle isomorphe à $\FF$ lorsqu'elle est standard ? 
 \end{enumerate}
