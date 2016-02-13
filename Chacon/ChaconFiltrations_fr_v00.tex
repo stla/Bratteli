@@ -62,7 +62,7 @@ En termes savants (que seuls moi et Vershik utilisons) : le graphe de
 Chacon n'est pas dans l'échelle des automorphismes de Bernoulli. 
 
 L'intérêt de ce travail réside dans l'utilisation du théorème~\ref{thm:joining}, 
-qui est nouveau mais pas difficile. 
+qui n'est pas difficile mais qui est nouveau.  
 La filtration des mots découpés à la Chacon est asymptotiquement triadique. 
 Grâce à ce théorème, je vais déduire la non-standardité de cette filtration 
 de la non-standardité de la filtration triadique des mots découpés. 
@@ -85,7 +85,7 @@ est l'arc qui connecte $V_{n-1}$ et $V_n$.
    \begin{subfigure}[t]{0.47\textwidth}
    \centering
    	\includegraphics[scale=0.6]{figures/Chacon_Labels_hand}
- 		\caption{\footnotesize Graphe de chacon}\label{fig:ChaconLabels}
+ 		\caption{\footnotesize Graphe de Chacon}\label{fig:ChaconLabels}
     \end{subfigure}              
    \quad
     \begin{subfigure}[t]{0.47\textwidth}
@@ -118,6 +118,7 @@ valeur $2$ avec probabilité $1/d_{n}$, et prend une valeur dans
 $\{0,1,3\}$ avec probabilité $d_{n+1}/d_n$. 
 \end{itemize}
 
+Le choix des étiquettes sur les arcs sera justifié plus tard.
 
 Nous notons $\FF$ la filtration engendrée par ${(V_n, \epsilon_n)}_{n \leq 0}$. 
 C'est une filtration "conditionnellement poly-adique" :  
@@ -170,13 +171,13 @@ et uniformes sur $\{0,1,3\}$. Notons aussi $\widetilde{V}_n$ une v.a. égale à 
 presque sûrement. 
 
 Il est possible de coupler ${(\widetilde{V}_n, \widetilde{\epsilon}_n)}_{n \leq 0}$ 
-avec ${(V_n \epsilon_n)}_{n \leq 0}$ de façon coïmmergée sorte que : 
+avec ${(V_n, \epsilon_n)}_{n \leq 0}$ de façon coïmmergée et de sorte que : 
 {\it Pour tout $\delta >0$, il existe $N \leq 0$ tel que pour tout $n_0 \leq N$,}
 $$
 \Pr\bigl((V_{n_0}, \epsilon_{n_0})=(\widetilde{V}_{n_0}, \widetilde{\epsilon}_{n_0}), (V_{n_0+1}, \epsilon_{n_0+1})=(\widetilde{V}_{n_0+1},\widetilde{\epsilon}_{n_0+1}), \ldots, (V_N, \epsilon_{N})=(\widetilde{V}_{N},\widetilde{\epsilon}_{N})\bigr) > 1-\delta. 
 $$ 
 
-Je préciserai plus tard les hypothèses générales du théorème ci-dessous. 
+Je préciserai les hypothèses générales du théorème ci-dessous dans une version ultérieure. 
 
 \begin{thm}\label{thm:joining}
 Si on a deux processus ${(V_n, \epsilon_n)}_{n \leq 0}$ et ${(\widetilde{V}_n, \widetilde{\epsilon}_n)}_{n \leq 0}$ qui vérifient la propriété ci-dessus, 
@@ -188,7 +189,7 @@ la filtration de l'autre est I-confortable.
 je ne sais pas démontrer ça avec le critère de Vershik à la place du I-confort. 
 
 Je parierais que sous les hypothèses de ce théorème, les entropies des deux 
-filtrations sont les mêmes, mais qu'il faudrait pour cela formuler l'entropie en 
+filtrations sont les mêmes, mais que pour démontrer cela il faudrait formuler l'entropie en 
 termes de couplages. Ceci montre l'intérêt de développer cette formulation 
 de l'entropie même si elle ne permettrait pas de calculer l'entropie sur des exemples.
 
@@ -302,9 +303,7 @@ branche suivante.
 \end{enumerate}
 
 Voilà alors d'où sort l'entier aléatoire 
-$$
-K_n=\sum_{k=0}^{n+1}f_k(\epsilon_k).
-$$
+$K_n=\sum_{k=0}^{n+1}f_k(\epsilon_k)$ : 
 Cet entier indique dans quel étage de la tour au niveau $n$ se situe 
 le point $x$ tiré au hasard. 
 }
@@ -318,7 +317,8 @@ le point $x$ tiré au hasard.
 Prenons une partition finie de $X$, étiquetée par des lettres $a$, $b$, $\ldots$.  
 On note $W_n(i)$ l'étiquette du point $T^iZ_n$, pour $i$ allant de 
 $0$ à $d_n-1$ si $V_n=1$, sinon juste pour $i=0$. 
-On crée ainsi un processus de mots découpés ${(W_n, \epsilon_n)}_{n \leq 0}$. 
+On crée ainsi un processus de mots découpés ${(W_n, \epsilon_n)}_{n \leq 0}$, 
+que la figure suivante permet de visualiser :
 
 \begin{figure}[!h]
 \centering
@@ -420,25 +420,12 @@ La figure ci-dessous est issue de \href{https://cdr.lib.unc.edu/indexablecontent
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{thebibliography}{99.}
 
-\bibitem{ES}
- \'{E}mery, M.,  Schachermayer, W.: 
-On Vershik's standardness criterion and Tsirelson's  notion of cosiness. 
- S\'eminaire de Probabilit\'es XXXV,  
-Springer Lectures Notes in Math. 1755 (2001), 
-265--305.
-
 \bibitem{JLR} 
 \'E.~Janvresse, S.~Laurent, T.~de la Rue: 
 Standardness of monotonic Markov filtrations. 
 	arXiv:1501.02166 (2015). 
 To appear in: Markov Processes and Related Fields. 
 
-
-\bibitem{LauXLIII}
- Laurent, S.: 
-On standardness and I-cosiness. S\'eminaire de Probabilit\'es XLIII, 
-Springer Lecture Notes in Mathematics 2006, 
-127--186 (2010).
 
 \bibitem{LauTeoriya}  
  Laurent, S.: 
