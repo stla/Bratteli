@@ -46,9 +46,9 @@
 \maketitle 
 
 
-{\scriptsize 
 \tableofcontents
-}
+
+\newpage
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -192,6 +192,9 @@ filtrations sont les mêmes, mais qu'il faudrait pour cela formuler l'entropie e
 termes de couplages. Ceci montre l'intérêt de développer cette formulation 
 de l'entropie même si elle ne permettrait pas de calculer l'entropie sur des exemples.
 
+Aussi : sous les conditions du théorème, une filtration est kolmogorovienne si et seulement 
+si l'autre l'est. 
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -250,12 +253,19 @@ La tribu germe $\GG_{-\infty}$ est triviale si et seulement si $T\times S$ est e
 où $S$ est la transformation de Chacon. 
 \end{ppsition}
 
+D'après les ergodiciens,  $T\times S$ est ergodique si et seulement si 
+$T$ est ergodique et si $T$ et $S$ n'ont pas de valeur propre commune. 
+La transformation de Chacon est connue pour être faiblement mélangeante 
+et elle n'a pas de valeur propre. Donc $T\times S$ est ergodique si 
+et seulement si $T$ est ergodique. 
+
+{\scriptsize %%%%%%
 Il est donc temps d'introduire la transformation de Chacon. 
 Cela expliquera d'où vient cette définition de $Z_n$, ainsi que le choix 
 des étiquettes sur les arcs du graphe. 
 
-Le graphe de la figure~ref{fig:ChaconLabels} correspond à un découpage-empilage. 
-La première étape est représentée sur la figure ci-dessous.
+Le graphe de la figure~\ref{fig:ChaconLabels} correspond à un découpage-empilage. 
+La première étape est représentée sur la figure \ref{fig:scan} ci-dessous.
 Il y a plus de détails sur le découpage-empilage dans l'appendice~\ref{app:transfoChacon} et 
 le document auquel cette appendice fait référence.
 
@@ -280,7 +290,7 @@ Il y a deux versions de la transformation de Chacon $S$ :
 Si $x$ est dans l'étage du haut, il faut aller regarder dans une tour plus grande 
 pour déterminer $Sx$. 
 
-\item Sur le graphe de la  figure~ref{fig:ChaconLabels}, c'est la transformation adique. 
+\item Sur le graphe de la  figure~\ref{fig:ChaconLabels}, c'est la transformation adique. 
 On la visualise facilement sur la figure~\ref{fig:Zn} : elle envoie une branche 
 de l'arbre à la branche juste à côté à droite. Si on est à la dernière branche, 
 il faut dessiner l'arbre à partir du niveau $n$ précédent pour déterminer la 
@@ -293,6 +303,9 @@ K_n=\sum_{k=0}^{n+1}f_k(\epsilon_k).
 $$
 Cet entier indique dans quel étage de la tour au niveau $n$ se situe 
 le point $x$ tiré au hasard. 
+}
+
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -333,7 +346,7 @@ $\widetilde{\epsilon}_n$.
 
 Autrement dit, ce processus se visualise aussi sur la figure~\ref{fig:Wn}, 
 la différence étant qu'on ne sélectionne jamais une case rouge. 
-Utiisons deux couleurs pour être plus clair:
+Sur la figure~\ref{fig:tildeWn}, nous utiisons deux couleurs pour être plus clair.
 
 
 \begin{figure}[!h]
@@ -357,15 +370,26 @@ et la filtration qu'il engendre est immergée dans $\widetilde{\GG}$.
 Quand $T$ est le décalage de Bernoulli et $W_n$ est obtenu avec la partition 
 selon la coordonnée centrale, les lettres de $W_n$ sont \emph{i.i.d.} sur un alphabet 
 fini. Il en est de même des lettres de $X_n$. 
-Dans ce cas, on déduit des deux lemmes précédents et du théorème~\ref{thm:joining}, 
+Dans ce cas, on déduit des deux lemmes précédents, du théorème~\ref{thm:joining}, 
 et de notre connaissance sur le cas triadique, que $\GG$ n'est pas standard. 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Questions} 
+\section{Questions et remarques} 
 
 \begin{enumerate}
-\item 
+\item \`A part le cas du décalage de Bernoulli, on ne trouve pas des lettres 
+stationnaires pour $X_n$. 
+
+\item Si mon idée de la définition généralisée de l'échelle est bonne, 
+on devrait trouver que $\GG$ est standard lorsque $T$ est elle-même la transformation de 
+Chacon, puisque $\FF$ est standard. 
+Si on prend la partition $\bigl\{[0,2/3[, [2/3,1[\big\}$, le mot $X_n$ est déterministe,  
+et les "lettres en couleur" sont toujours la même lettre. Donc c'est bien le cas... 
+non elle est pas dégénérée. 
+NON seulement si $Z_0 \in [0,2/3[$ c'est déterministe... RIGOLO - À PROGRAMMER !! 
+
+\item $\GG$ est-elle isomorphe à $\FF$ lorsqu'elle est standard ? 
 \end{enumerate}
 
 \newpage 
