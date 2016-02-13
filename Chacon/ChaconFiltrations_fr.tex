@@ -1,0 +1,445 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[francais]{babel}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath, amsthm}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{lmodern}
+\usepackage[left=2cm,right=2cm,top=2cm,bottom=2cm]{geometry}
+
+\usepackage{subcaption}
+\usepackage{euscript}
+\usepackage[toc,page]{appendix}
+\usepackage{hyperref}
+\usepackage{color}
+
+
+\author{Stéphane Laurent}
+\title{Mots découpés à la Chacon}
+
+\begin{document}
+
+\newcommand{\DD}{\EuScript{D}}
+\newcommand{\FF}{\EuScript{F}}
+\newcommand{\GG}{\EuScript{G}}
+\renewcommand{\SS}{\EuScript{S}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\EE}{\mathbb{E}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\PP}{\mathbb{P}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\given}{\mid}
+\newcommand{\indic}{\boldsymbol 1}
+
+\newtheoremstyle{thmstyle}{3pt}{3pt}{\itshape}{}{\bf}{.}{.5em}{}      
+\newtheoremstyle{defstyle}{3pt}{3pt}{\sffamily}{}{\bf}{.}{.5em}{}       
+\theoremstyle{thmstyle}
+\newtheorem{thm}{Th\'eor\`eme}
+\newtheorem{lemme}{Lemme}
+\newtheorem{ppsition}{Proposition}
+\theoremstyle{defstyle}
+\newtheorem{definition}{D\'efinition}
+
+\maketitle 
+
+
+{\scriptsize 
+\tableofcontents
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Introduction} 
+
+Je vais démontrer que la filtration des mots découpés à la Chacon 
+n'est pas standard lorsque les lettres des mots sont \emph{i.i.d.}. 
+En termes savants (que seuls moi et Vershik utilisons) : le graphe de 
+Chacon n'est pas dans l'échelle des automorphismes de Bernoulli. 
+
+L'intérêt de ce travail réside dans l'utilisation du théorème~\ref{thm:joining}, 
+qui est nouveau mais pas difficile. 
+La filtration des mots découpés à la Chacon est asymptotiquement triadique. 
+Grâce à ce théorème, je vais déduire la non-standardité de cette filtration 
+de la non-standardité de la filtration triadique des mots découpés. 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{La filtration Chacon-adique élémentaire}
+
+La figure de gauche ci-dessous permet de visualiser 
+les trajectoires du processus de Chacon 
+${(V_n, \epsilon_n)}_{n \leq 0}$.   
+À chaque instant $n$, la variable aléatoire $V_n \in \{1,2\}$ est un sommet 
+du graphe au niveau $n$, et la variable aléatoire $\epsilon_n \in \{0, 1, 2, 3\}$ 
+est l'arc qui connecte $V_{n-1}$ et $V_n$. 
+
+\begin{figure}[!h]
+   \centering
+   \begin{subfigure}[t]{0.47\textwidth}
+   \centering
+   	\includegraphics[scale=0.6]{figures/Chacon_Labels_hand}
+ 		\caption{\footnotesize Graphe de chacon}\label{fig:ChaconLabels}
+    \end{subfigure}              
+   \quad
+    \begin{subfigure}[t]{0.47\textwidth}
+    \centering
+   	\includegraphics[scale=0.6]{figures/Chacon_DimsProbs_hand}
+ 		\caption{\footnotesize Dimensions et probabilités de transitions}\label{fig:ChaconDimsProbs}
+ 	\end{subfigure}      
+
+   \caption{Filtration de Chacon}\label{fig:ChaconGraph}
+   \label{fig:ostro}
+ \end{figure}
+
+Sur la figure de droite, la \emph{dimension} de chaque sommet est indiquée à la place 
+du sommet correspondant. C'est le nombre de chemins qui relient ce sommet à la racine 
+de l'arbre. Elle est toujours égale à $1$ pour les sommets situés à droite. 
+Notons $d_n$ la dimension du sommet situé à gauche au niveau $n$. 
+Elle est donnée récursivement par $d_0=4$ et $d_{n-1} = 3 \times d_n+1$. 
+On a alors $d_n=\frac{3^{-n+2}-1}{2}$. Cette formule est encore 
+valable au niveau de la racine si on considère que c'est le niveau $n=1$. 
+
+La loi du processus ${(V_n, \epsilon_n)}_{n \leq 0}$ est définie par :
+
+\begin{itemize}
+\item[$\bullet$] $V_n = 2$ avec probabilité $1/3^{|n|+1}$ ;
+
+\item[$\bullet$] $\epsilon_n=0$ et $V_n=2$ si $V_{n-1}=2$ ;
+
+\item[$\bullet$] conditionnellement à $V_{n-1}=2$, l'arc $\epsilon_n$ prend la 
+valeur $2$ avec probabilité $1/d_{n}$, et prend une valeur dans 
+$\{0,1,3\}$ avec probabilité $d_{n+1}/d_n$. 
+\end{itemize}
+
+
+Nous notons $\FF$ la filtration engendrée par ${(V_n, \epsilon_n)}_{n \leq 0}$. 
+C'est une filtration "conditionnellement poly-adique" :  
+conditionnellement à $\FF_n$, le chemin $(\epsilon_{n+1}, \ldots, \epsilon_0)$ 
+est uniforme sur les $\dim(V_n)$ chemins possibles. 
+En d'autres termes, le chemin infini correspondant à la trajectoire 
+de ${(V_n, \epsilon_n)}_{n \leq 0}$ est pioché au hasard selon une \emph{mesure centrale}. 
+
+Il y a maintes façons de démontrer que $\FF$ est standard :
+
+\begin{enumerate}
+\item Suivant une remarque dans \cite{JLR}, la standardité de $\FF$ est équivalente 
+à celle du processus ${(V_n)}_{n \leq 0}$. C'est une chaîne de Markov monotone, 
+ et sa filtration est standard d'après un théorème de \cite{JLR}. 
+ Plus précisément, on obtient l'existence d'une paramétrisation 
+ génératrice de $\FF$ en utilisant les résultats de \cite{JLR}.
+ 
+\item Il est plus simple de construire une paramétrisation génératrice à la main. 
+En fait, toute paramétrisation est génératrice. 
+Naturellement, on prend $U_n$ indépendante de $\FF_{n-1}$, uniforme sur 
+$d_n = 3d_{n+1} +1$ valeurs,  
+on partitionne ces $d_n$ valeurs en trois blocs $B_0$, $B_1$ et $B_3$ de $d_{n+1}$ valeurs 
+et un bloc $B_2$ de une valeur, puis on définit $\epsilon_n$ quand $V_{n-1}=1$ 
+comme étant l'indice $i$ du bloc $B_i$ dans lequel est $U_n$. 
+L'événement $\{V_{n_0}=1\}$ a une probabilité aussi proche de $1$ qu'on le souhaite quand 
+${n_0} \to -\infty$, et sur cet événement, $(V_{n_0+1}, \ldots, V_0)$ est 
+déterminé par les $U_n$. 
+ 
+\item Le $I$-confort de $\FF$ s'établit facilement du fait que 
+l'événement $\{V_{n_0}=1\}$ a une probabilité aussi proche de $1$ qu'on le souhaite quand 
+${n_0} \to -\infty$. 
+
+\item Enfin, on peut s'amuser à utiliser le critère de Vershik. 
+Suivant la remarque de \cite{JLR}, la standardité de $\FF$ est équivalente 
+à celle du processus ${(V_n)}_{n \leq 0}$. La variable aléatoire $\pi_n V_0$ 
+engendre la même tribu que $V_n$, et il suffit alors de vérifier le critère 
+de Vershik pour $V_0$. Il n'est même pas nécessaire de calculer 
+les distances de Kantorovich, puisque $V_n=1$ avec probabilité qui tend vers 
+$1$, donc la dispersion de $V_n$ tend évidemment vers $0$. 
+Pour information, on obtient la distance de Kantorovich 
+$\rho_n(1,2)=3^{|n|}/d_n \to 2/3$. 
+\end{enumerate}
+
+Donnons une autre méthode. Ce n'est pas pour s'amuser : elle sera utilisée plus tard. 
+Il s'agit de formaliser et d'utiliser le fait que $\FF$ est asymptotiquement 
+triadique. 
+
+Soit ${(\widetilde{\epsilon}_n)}_{n \leq 0}$ une suite de v.a. indépendantes 
+et uniformes sur $\{0,1,3\}$. Notons aussi $\widetilde{V}_n$ une v.a. égale à $1$ 
+presque sûrement. 
+
+Il est possible de coupler ${(\widetilde{V}_n, \widetilde{\epsilon}_n)}_{n \leq 0}$ 
+avec ${(V_n \epsilon_n)}_{n \leq 0}$ de façon coïmmergée sorte que : 
+{\it Pour tout $\delta >0$, il existe $N \leq 0$ tel que pour tout $n_0 \leq N$,}
+$$
+\Pr\bigl((V_{n_0}, \epsilon_{n_0})=(\widetilde{V}_{n_0}, \widetilde{\epsilon}_{n_0}), (V_{n_0+1}, \epsilon_{n_0+1})=(\widetilde{V}_{n_0+1},\widetilde{\epsilon}_{n_0+1}), \ldots, (V_N, \epsilon_{N})=(\widetilde{V}_{N},\widetilde{\epsilon}_{N})\bigr) > 1-\delta. 
+$$ 
+
+Je préciserai plus tard les hypothèses générales du théorème ci-dessous. 
+
+\begin{thm}\label{thm:joining}
+Si on a deux processus ${(V_n, \epsilon_n)}_{n \leq 0}$ et ${(\widetilde{V}_n, \widetilde{\epsilon}_n)}_{n \leq 0}$ qui vérifient la propriété ci-dessus, 
+alors la filtration de l'un est I-confortable si et seulement si 
+la filtration de l'autre est I-confortable.
+\end{thm} 
+
+À noter cet aspect intéressant du I-confort : 
+je ne sais pas démontrer ça avec le critère de Vershik à la place du I-confort. 
+
+Je parierais que sous les hypothèses de ce théorème, les entropies des deux 
+filtrations sont les mêmes, mais qu'il faudrait pour cela formuler l'entropie en 
+termes de couplages. Ceci montre l'intérêt de développer cette formulation 
+de l'entropie même si elle ne permettrait pas de calculer l'entropie sur des exemples.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Filtration Chacon-adique de mots découpés}
+
+Soit $T$ une transformation inversible d'un espace de Lebesgue $(X,\nu)$, 
+préservant la mesure de probabilité $\nu$. 
+
+\subsection{Le processus $(Z_n,\epsilon_n)$}
+
+Prenons une variable aléatoire $Z_0 \sim \nu$ indépendante de $\FF_0$. 
+On pose 
+$$
+Z_n = T^{-K_n}Z_0
+$$
+où $K_n=\sum_{k=0}^{n+1}f_k(\epsilon_k)$, la fonction $f_n$ étant définie par 
+$$
+\begin{cases}
+f_n(0) = 0 \\ 
+f_n(1) = d_{n+1} \\ 
+f_n(2) = d_{n+1}+1 \\
+f_n(3) = 2 d_{n+1} + 1
+\end{cases}.
+$$
+En particulier, $f_0(j)=j$ (rappelons qu'on pose $d_1=1$). 
+
+La figure ci-dessous montre la structure du processus ${(Z_n, \epsilon_n)}_{n \leq 0}$. 
+Une case rouge indique $V_n=2$. 
+On note $\GG$ la filtration de ce processus. La filtration $\FF$ est immergée dans $\GG$. 
+
+La loi de ${(Z_n, \epsilon_n)}_{n \leq 0}$ est définie par : 
+\begin{itemize}
+\item[$\bullet$] $Z_n \sim \nu$ est indépendante de $\epsilon_n$ ;
+
+\item[$\bullet$] si $V_n=2$, $Z_{n+1} = Z_n$ 
+
+\item[$\bullet$] conditionnellement à $\GG_n$, sur l'événement $\{V_n=1\}$, 
+on a $Z_{n+1} = T^k Z_n$ où $k=\epsilon_{n+1} d_{n+1}$ si $\epsilon_{n+1} \in \{0, 1, 2\}$, 
+et $k = 2 d_{n+1} + 1$ si $\epsilon_{n+1}=3$. 
+\end{itemize}
+
+\begin{figure}[!h]
+\centering
+	\includegraphics[scale=0.8]{figures/ChaconWalk_powers_N2_hand}
+\caption{Le processus $(Z_n, \epsilon_n)$}\label{fig:Zn}
+\end{figure}
+
+Ainsi la filtration $\GG$ est localement isomorphe à $\FF$. 
+Sa tribu germe $\GG_{-\infty}$ est donnée par mes réflexions 
+sur la généralisation de l'échelle d'un automorphisme. 
+On a la proposition suivante : 
+
+\begin{ppsition}
+La tribu germe $\GG_{-\infty}$ est triviale si et seulement si $T\times S$ est ergodique, 
+où $S$ est la transformation de Chacon. 
+\end{ppsition}
+
+Il est donc temps d'introduire la transformation de Chacon. 
+Cela expliquera d'où vient cette définition de $Z_n$, ainsi que le choix 
+des étiquettes sur les arcs du graphe. 
+
+Le graphe de la figure~ref{fig:ChaconLabels} correspond à un découpage-empilage. 
+La première étape est représentée sur la figure ci-dessous.
+Il y a plus de détails sur le découpage-empilage dans l'appendice~\ref{app:transfoChacon} et 
+le document auquel cette appendice fait référence.
+
+\begin{figure}[!h]
+\centering
+	\includegraphics[scale=0.1]{figures/Chacon_CutAndStack_scan.png}
+\caption{Le premier découpage-empilage}\label{fig:scan}
+\end{figure}
+
+Ce découpage-empilage définit la suite décroissante de partitions mesurables 
+correspondant à la filtration $\FF$. 
+À l'étape $n=0$, un point $x \in (0,1)$ est tiré au hasard, selon une loi uniforme. 
+La partition mesurable $\xi_0$ est l'ensemble des singletons de $(0,1)$. 
+À l'étape $n=-1$, le point $x$ se retrouve dans l'un des étages de la tour. 
+S'il est dans la tour de gauche, on ne le voit plus : on voit 
+seulement les $4$ points comme sur la figure. Ces $4$ points sont la classe 
+d'équivalence-$\xi_{-1}$ de $x$.  
+
+Il y a deux versions de la transformation de Chacon $S$ :
+\begin{enumerate}
+\item Sur $(0,1)$, elle envoie un point $x$ sur le point à l'étage au-dessus. 
+Si $x$ est dans l'étage du haut, il faut aller regarder dans une tour plus grande 
+pour déterminer $Sx$. 
+
+\item Sur le graphe de la  figure~ref{fig:ChaconLabels}, c'est la transformation adique. 
+On la visualise facilement sur la figure~\ref{fig:Zn} : elle envoie une branche 
+de l'arbre à la branche juste à côté à droite. Si on est à la dernière branche, 
+il faut dessiner l'arbre à partir du niveau $n$ précédent pour déterminer la 
+branche suivante. 
+\end{enumerate}
+
+Voilà alors d'où sort l'entier aléatoire 
+$$
+K_n=\sum_{k=0}^{n+1}f_k(\epsilon_k).
+$$
+Cet entier indique dans quel étage de la tour au niveau $n$ se situe 
+le point $x$ tiré au hasard. 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Mots découpés chacon-adiques}
+
+Prenons une partition finie de $X$, étiquetée par des lettres $a$, $b$, $\ldots$.  
+On note $W_n(i)$ l'étiquette du point $T^iZ_n$, pour $i$ allant de 
+$1$ à $d_n$ si $V_n=1$, sinon juste pour $i=0$. 
+On crée ainsi un processus de mots découpés ${(W_n, \epsilon_n)}_{n \leq 0}$. 
+
+\begin{figure}[!h]
+\centering
+	\includegraphics[scale=0.8]{figures/ChaconWalk_words_hand}
+\caption{Le processus $(W_n, \epsilon_n)$}\label{fig:Wn}
+\end{figure}
+
+La filtration engendrée par le processus $(W_n, \epsilon_n)$ est immergée dans 
+$\GG$. 
+Si $P$ est une partition génératrice de $T$, cette filtration est 
+ $\GG$.  
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{I-confort de $\GG$}
+
+
+Nous allons utiliser le théorème~\ref{thm:joining}. 
+Définissons le processus  ${(\widetilde{W}_n, \widetilde{\epsilon}_n)}_{n \leq 0}$ suivant. 
+Le processus ${(\widetilde{\epsilon}_n)}_{n \leq 0}$ est celui introduit 
+avant le théorème~\ref{thm:joining}. 
+Le processus  ${(\widetilde{W}_n, \widetilde{\epsilon}_n)}_{n \leq 0}$ 
+est alors défini de façon analogue à ${(W_n, \epsilon_n)}_{n \leq 0}$ 
+en remplaçant $\epsilon_n$ par $\widetilde{\epsilon}_n$ : 
+$\widetilde{W}_n$ a même loi que $W_n$, et $\widetilde{W}_{n+1}$ est un 
+des trois sous-mots de longueur $d_{n+1}$ de $\widetilde{W}_n$, sélectionné par 
+$\widetilde{\epsilon}_n$. 
+
+Autrement dit, ce processus se visualise aussi sur la figure~\ref{fig:Wn}, 
+la différence étant qu'on ne sélectionne jamais une case rouge. 
+Utiisons deux couleurs pour être plus clair:
+
+
+\begin{figure}[!h]
+\centering
+	\includegraphics[scale=0.8]{figures/ChaconWalk_words_tilde}
+\caption{Le processus $(\widetilde{W}_n, \widetilde{\epsilon}_n)$}\label{fig:tildeWn}
+\end{figure}
+
+\begin{lemme}
+Les processus ${(W_n, \epsilon_n)}_{n \leq 0}$ et 
+${(\widetilde{W}_n, \widetilde{\epsilon}_n)}_{n \leq 0}$ 
+vérifient les hypothèses du théorème~\ref{thm:joining}. 
+\end{lemme}
+
+\begin{lemme}
+Soit $X_n$ le mot $\widetilde{W}_n$ privé de ses lettres en couleur $(X_0=\widetilde{W}_0)$. 
+Alors le processus $(X_n, \widetilde{\epsilon}_n)$ est un mots-découpés triadique, 
+et la filtration qu'il engendre est immergée dans $\widetilde{\GG}$.
+\end{lemme}
+
+Quand $T$ est le décalage de Bernoulli et $W_n$ est obtenu avec la partition 
+selon la coordonnée centrale, les lettres de $W_n$ sont \emph{i.i.d.} sur un alphabet 
+fini. Il en est de même des lettres de $X_n$. 
+Dans ce cas, on déduit des deux lemmes précédents et du théorème~\ref{thm:joining}, 
+et de notre connaissance sur le cas triadique, que $\GG$ n'est pas standard. 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Questions} 
+
+\begin{enumerate}
+\item 
+\end{enumerate}
+
+\newpage 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{appendices}
+
+\section{Transformation de Chacon}\label{app:transfoChacon}
+
+La figure ci-dessous est issue de \href{https://cdr.lib.unc.edu/indexablecontent/uuid:bfc41b0c-b048-440f-9a57-533e02ea4f76}{ce document}.  
+
+\begin{figure}[!h]
+\includegraphics[scale=1]{figures/Chacon_CutAndStack_screenshot.png} 
+\caption{Découpage-empilage à la 1ère étape}
+\end{figure}
+
+\end{appendices}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{thebibliography}{99.}
+
+\bibitem{ES}
+ \'{E}mery, M.,  Schachermayer, W.: 
+On Vershik's standardness criterion and Tsirelson's  notion of cosiness. 
+ S\'eminaire de Probabilit\'es XXXV,  
+Springer Lectures Notes in Math. 1755 (2001), 
+265--305.
+
+\bibitem{JLR} 
+\'E.~Janvresse, S.~Laurent, T.~de la Rue: 
+Standardness of monotonic Markov filtrations. 
+	arXiv:1501.02166 (2015). 
+To appear in: Markov Processes and Related Fields. 
+
+
+\bibitem{LauXLIII}
+ Laurent, S.: 
+On standardness and I-cosiness. S\'eminaire de Probabilit\'es XLIII, 
+Springer Lecture Notes in Mathematics 2006, 
+127--186 (2010).
+
+\bibitem{LauTeoriya}  
+ Laurent, S.: 
+On Vershikian and I-cosy random variables and filtrations.
+Teoriya Veroyatnostei i ee Primeneniya 55 (2010), 104--132. 
+Also published in: Theory Probab. Appl. 55 (2011), 54--76.
+
+
+\bibitem{LauXLV}
+Laurent, S.: 
+Vershik's Intermediate Level Standardness Criterion and the Scale of an Automorphism. 
+S\'eminaire de Probabilit\'es XLV,
+Springer Lecture Notes in Mathematics 2078,
+123--139 (2013).
+
+\bibitem{LauEntropy}
+Laurent, S.: 
+Uniform entropy scalings of filtrations. \\
+\verb+https://hal.archives-ouvertes.fr/hal-01006337+ 
+
+
+\bibitem{thescale} 
+Vershik, A.M.: 
+Four definitions of the scale of an automorphism. 
+Funktsional'nyi Analiz i Ego Prilozheniya, 7:3, 
+1--17 (1973). 
+English translation:    
+Functional Analysis and Its Applications, 7:3, 169--181 (1973)
+
+
+
+\end{thebibliography}
+
+
+\end{document}

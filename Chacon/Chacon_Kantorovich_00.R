@@ -67,7 +67,7 @@ library(kantorovich)
 RHO <- lapply(ckernels, function(kernel) matrix("", nrow=nrow(kernel), ncol=nrow(kernel)))  
 RHO[[1]] <- (diag(nrow(ckernels[[1]])) + 1) %% 2
 n <- length(ckernels)-1
-for(k in 1:1){
+for(k in 1:n){
   diag(RHO[[k+1]]) <- "0"
   K <- nrow(RHO[[k+1]])
   kernel <- ckernels[[k+1]]
