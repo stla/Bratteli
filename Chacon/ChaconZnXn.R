@@ -40,6 +40,9 @@ for(i in 1:nsims){
 }
 length(unique(Wn)) # 7 pour n=2, 25 pour n=3, 79 pour n=4 : on trouve 3^n-2
 
+probs <- table(Wn)/nsims
+-sum(probs*log(probs))
+
 n <- 4
 nsims <- 1500
 Xn <- character(nsims)

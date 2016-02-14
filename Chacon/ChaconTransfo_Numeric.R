@@ -16,10 +16,25 @@ Chacon_num <- function(x){
   return(as.numeric(A[j+1])+dists[j]) # c'est l'image de x par Chacon 
 }
 
-u <- seq(0, 0.99, by=.01) 
+u <- seq(0, 0.995, by=.005) 
 Cu <- numeric(length(u))
 for(i in seq_along(u)){
   Cu[i] <- Chacon_num(u[i])
 }
+plot(u,Cu, pch=19, cex=0.5, asp=1)
 
-plot(u,Cu, pch=19, cex=0.5)
+u <- seq(0.55, 0.58, length.out = 50) 
+Cu <- numeric(length(u))
+for(i in seq_along(u)){
+  Cu[i] <- Chacon_num(u[i])
+}
+plot(u,Cu, pch=19, cex=0.5, asp=1)
+
+set.seed(666)
+u <- runif(1)
+Cu <- u
+for(i in 1:50){
+  u <- Chacon_num(u)
+  Cu <- c(Cu,u)
+}
+plot(Cu, type="l")

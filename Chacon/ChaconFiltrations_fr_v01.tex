@@ -15,6 +15,7 @@
 \usepackage{hyperref}
 \usepackage{color}
 
+\usepackage[all]{xy}
 
 \author{Stéphane Laurent}
 \title{Mots découpés à la Chacon}
@@ -33,6 +34,11 @@
 \newcommand{\Z}{\mathbb{Z}}
 \newcommand{\given}{\mid}
 \newcommand{\indic}{\boldsymbol 1}
+\newcommand{\tildepsilon}{\widetilde{\epsilon}}
+\newcommand{\tildV}{\widetilde{V}}
+\newcommand{\tildW}{\widetilde{W}}
+
+\newcommand{\indep}{\mathrel{\text{\scalebox{1.07}{$\perp\mkern-10mu\perp$}}}}
 
 \newtheoremstyle{thmstyle}{3pt}{3pt}{\itshape}{}{\bf}{.}{.5em}{}      
 \newtheoremstyle{defstyle}{3pt}{3pt}{\sffamily}{}{\bf}{.}{.5em}{}       
@@ -113,7 +119,7 @@ La loi du processus ${(V_n, \epsilon_n)}_{n \leq 0}$ est définie par :
 
 \item[$\bullet$] $\epsilon_n=0$ et $V_n=2$ si $V_{n-1}=2$ ;
 
-\item[$\bullet$] conditionnellement à $V_{n-1}=2$, l'arc $\epsilon_n$ prend la 
+\item[$\bullet$] conditionnellement à $V_{n-1}=1$, l'arc $\epsilon_n$ prend la 
 valeur $2$ avec probabilité $1/d_{n}$, et prend une valeur dans 
 $\{0,1,3\}$ avec probabilité $d_{n+1}/d_n$. 
 \end{itemize}
@@ -163,26 +169,110 @@ $\rho_n(1,2)=3^{|n|}/d_n \to 2/3$.
 \end{enumerate}
 
 
-Donnons une autre méthode. Ce n'est pas pour s'amuser : elle sera utilisée plus tard. 
-Il s'agit de formaliser et d'utiliser le fait que $\FF$ est asymptotiquement 
-triadique. 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Couplage de $(V_n,\epsilon_n)$ et $(\tildV_n, \widetilde{\epsilon}_n)$}
 
 Soit ${(\widetilde{\epsilon}_n)}_{n \leq 0}$ une suite de v.a. indépendantes 
-et uniformes sur $\{0,1,3\}$. Notons aussi $\widetilde{V}_n$ une v.a. égale à $1$ 
-presque sûrement. 
+et uniformes sur $\{0,1,3\}$. 
+ Prenons aussi une variable aléatoire $\widetilde{V}_n$ égale à $1$ 
+presque sûrement pour tout $n \leq 0$. 
 
-Il est possible de coupler ${(\widetilde{V}_n, \widetilde{\epsilon}_n)}_{n \leq 0}$ 
-avec ${(V_n, \epsilon_n)}_{n \leq 0}$ de façon coïmmergée et de sorte que : 
-{\it Pour tout $\delta >0$, il existe $N \leq 0$ tel que pour tout $n_0 \leq N$,}
+\begin{lemme}\label{lemme:joining_epsilon}
+Pour tout $n_0 \leq 0$, il existe un couplage de 
+${(V_n, \epsilon_n)}_{n_0 \leq n \leq 0}$ et 
+ ${(\tildV_n, \widetilde{\epsilon}_n)}_{n_0 \leq  n \leq 0}$ tel que :
+\begin{enumerate}
+\item ${(V_n, \epsilon_n)}_{n_0 \leq n \leq 0}$ et 
+ ${(\tildV_n, \widetilde{\epsilon}_n)}_{n_0 \leq  n \leq 0}$ sont coïmmergés 
+ 
+\item pour tout $\delta >0$, il existe $N \leq 0$ tel que   
 $$
-\Pr\bigl((V_{n_0}, \epsilon_{n_0})=(\widetilde{V}_{n_0}, \widetilde{\epsilon}_{n_0}), (V_{n_0+1}, \epsilon_{n_0+1})=(\widetilde{V}_{n_0+1},\widetilde{\epsilon}_{n_0+1}), \ldots, (V_N, \epsilon_{N})=(\widetilde{V}_{N},\widetilde{\epsilon}_{N})\bigr) > 1-\delta. 
-$$ 
+\Pr\bigl((V_{n_0}, \epsilon_{n_0})=(\widetilde{V}_{n_0}, \widetilde{\epsilon}_{n_0}), 
+\ldots, (V_N, \epsilon_{N})=(\widetilde{V}_{N},\widetilde{\epsilon}_{N})\bigr) \to 1-\delta 
+$$  
+quand $n_0 \to -\infty$. 
+\end{enumerate}
+\end{lemme}
 
-Je préciserai les hypothèses générales du théorème ci-dessous dans une version ultérieure. 
+\begin{proof}
+Pour $i \in \{0,1,3\}$, 
+$$
+\Pr(V_n=1, \epsilon_n=i) = \frac{3^{|n|+1}-1}{3^{|n|+2}} < \frac{1}{3}.
+$$
+On peut alors construire un couplage de 
+$(V_{n_0}, \epsilon_{n_0})$ et $(\tildV_{n_0},\tildepsilon_{n_0})$ telle que 
+$$
+\{V_{n_0}=1, \epsilon_{n_0}=i\} \subset \{\tildV_{n_0}=1,\tildepsilon_{n_0} = i\} 
+$$
+pour $i \in \{0,1,3\}$. 
+
+On construit ${(V_n, \epsilon_n)}_{n_0 \leq n \leq 0}$ récursivement. 
+Quand la construction est faite jusqu'au temps $n$, 
+on pose $\epsilon_{n+1} = f_n(V_n, U_{n+1})$ où 
+$U_{n+1}$ est une v.a.\ uniforme sur $[0,1]$ indépendante du processus jusqu'à 
+l'instant $n$. Pour $i \in \{0,1,3\}$, la fonction $f_n$ est telle que 
+$f_n(1, u) = i$ lorsque $u \in J_i$ où  $|J_i| = \frac{d_{n+2}}{d_{n+1}} < \frac{1}{3}$. 
+On peut alors construire $J'_i \supset J_i$ tel que $|J'_i|=\frac{1}{3}$ et 
+poser $\tildepsilon_{n+1}=i$ lorsque $u \in J'_i$. 
+Ainsi, sur l'événement $\{V_n=1\}$ on a $\tildepsilon_{n+1}=i$ si $\epsilon_{n+1}=i$. 
+
+Avec cette construction on a alors 
+$$
+\Pr\bigl((V_{n_0+1}, \epsilon_{n_0+1})=(\widetilde{V}_{n_0+1}, \widetilde{\epsilon}_{n_0+1}), 
+\ldots, (V_N, \epsilon_{N})=(\widetilde{V}_{N},\widetilde{\epsilon}_{N}) 
+\given V_{n_0}=1 \bigr) \geq \prod_{n=n_0+1}^N \frac{d_{n+1}}{d_{n}}.  
+$$
+Le produit $\prod_{n=n_0+1}^N \frac{d_{n+1}}{d_{n}}$ diverge lorsque $n_0 \to -\infty$, 
+et $\Pr(V_{n_0}=1) \to 1$. 
+%La loi de $\epsilon_n$ conditionnelle à $V_{n-1}=1$ est distribuée sur $\{0, 1, 2, 3\}$ 
+%selon le vecteur de probabilité
+%$$
+%\left(\frac{d_{n+1}}{d_n}, \frac{d_{n+1}}{d_n}, \frac{1}{d_n}, \frac{d_{n+1}}{d_n} \right)
+%$$
+\end{proof}
+
+
+%%%%%%%%%%%%%%%
+
+%Donnons une autre méthode. Ce n'est pas pour s'amuser : elle sera utilisée plus tard. 
+%Il s'agit de formaliser et d'utiliser le fait que $\FF$ est asymptotiquement 
+%triadique. 
+%
+%Soit ${(\widetilde{\epsilon}_n)}_{n \leq 0}$ une suite de v.a. indépendantes 
+%et uniformes sur $\{0,1,3\}$. Notons aussi $\widetilde{V}_n$ une v.a. égale à $1$ 
+%presque sûrement. 
+%
+%Il est possible de coupler ${(\widetilde{V}_n, \widetilde{\epsilon}_n)}_{n \leq 0}$ 
+%avec ${(V_n, \epsilon_n)}_{n \leq 0}$ de façon coïmmergée et de sorte que : 
+%{\it Pour tout $\delta >0$, il existe $N \leq 0$ tel que pour tout $n_0 \leq N$,}
+%$$
+%\Pr\bigl((V_{n_0}, \epsilon_{n_0})=(\widetilde{V}_{n_0}, \widetilde{\epsilon}_{n_0}), (V_{n_0+1}, \epsilon_{n_0+1})=(\widetilde{V}_{n_0+1},\widetilde{\epsilon}_{n_0+1}), \ldots, (V_N, \epsilon_{N})=(\widetilde{V}_{N},\widetilde{\epsilon}_{N})\bigr) > 1-\delta. 
+%$$ 
+%
+%Je préciserai les hypothèses générales du théorème ci-dessous dans une version ultérieure. 
+
+\begin{definition}
+Deux processus  ${(X_n)}_{n \leq 0}$ et ${(Y_n)}_{n \leq 0}$ sont couplables 
+si pour tout $n_0 \leq 0$ il existe un couplage de 
+${(X_n)}_{n_0 \leq n \leq 0}$ et ${(Y_n)}_{n_0 \leq n \leq 0}$ tel que :
+\begin{enumerate}
+\item ${(X_n)}_{n_0 \leq n \leq 0}$ et ${(Y_n)}_{n_0 \leq n \leq 0}$ 
+sont co\"immergés ; 
+
+\item  pour tout $\delta >0$, il existe $N \leq 0$ tel que   
+$$
+\Pr(X_{n_0}=Y_{n_0}, \ldots, X_N=Y_N) > 1-\delta 
+$$
+quand $n_0$ est suffisamment plus petit que $N$.
+\end{enumerate} 
+\end{definition}
+
 
 \begin{thm}\label{thm:joining}
-Si on a deux processus ${(V_n, \epsilon_n)}_{n \leq 0}$ et ${(\widetilde{V}_n, \widetilde{\epsilon}_n)}_{n \leq 0}$ qui vérifient la propriété ci-dessus, 
-alors la filtration de l'un est I-confortable si et seulement si 
+Soient ${(X_n)}_{n \leq 0}$ et ${(Y_n)}_{n \leq 0}$ deux processus 
+telles que les v.a.\ $X_n$ et $Y_n$ prennent un nombre fini de valeurs. 
+Alors la filtration de l'un est I-confortable si et seulement si 
 la filtration de l'autre est I-confortable.
 \end{thm} 
 
@@ -197,6 +287,41 @@ de l'entropie même si elle ne permettrait pas de calculer l'entropie sur des ex
 Aussi : sous les conditions du théorème, une filtration est kolmogorovienne si et seulement 
 si l'autre l'est. 
 
+Passons à la preuve du théorème.
+
+%\begin{lemme}
+%Soit ${(W_n, \epsilon_n)}_{n \leq 0}$ un processus. 
+%On note $GG$ sa filtration. 
+%On suppose que $\GG_{n+1} = \GG_n \vee \sigma(\epsilon_{n+1})$ 
+%et que $\epsilon_{n+1}$ est conditionnellement indépendante de 
+%$\GG_n$ sachant $\epsilon_n$. 
+%Alors il existe une paramétrisation de 
+% ça chie pour Pascal
+%\end{lemme}
+
+
+\begin{proof}[Preuve du théorème~\ref{thm:joining}]
+Notons $\FF$ la filtration de  ${(X_n)}_{n \leq 0}$ et 
+$\GG$ celle de ${(Y_n)}_{n \leq 0}$
+Supposons que $\FF$ est I-confortable.
+Nous prenons un entier $N \leq 0$ et démontrons le I-confort de 
+$(Y_N, \ldots, Y_0)$.  
+Soient $\delta >0$ et $N_\delta$ l'entier donné par les hypothèse. 
+On peut supposer $N_\delta \leq N$. 
+
+La variable aléatoire $X_{N_\delta}$ satisfait le critère de I-confort. 
+On a donc deux copies ${(X'_n)}_{n \leq N_\delta}$ et ${(X''_n)}_{n \leq N_\delta}$ 
+indépendantes jusqu'à $n_0$ et telles que $\Pr(X'_{N_\delta} \neq X''_{N_\delta}) < \delta$. 
+Par le lemme~\ref{lemme:coimmersion}, on peut étendre ceci 
+en deux copies  ${(X'_n, Y'_n)}_{n \leq N_\delta}$ et ${(X''_n, Y''_n)}_{n \leq N_\delta}$ 
+du couplage donné par les hypothèses. 
+On a donc  deux copies ${(Y'_n)}_{n \leq N_\delta}$ et ${(Y''_n)}_{n \leq N_\delta}$ 
+de ${(Y_n)}_{n \leq N_\delta}$ coïmmergées et indépendantes jusqu'à $n_0$, 
+et on a $\Pr(Y'_{N_\delta} \neq Y''_{N_\delta}) < 3\delta$ 
+quand $n_0$ est suffisamment plus petit que $N_\delta$. 
+Pour finir, on prolonge ce couplage de sorte que 
+$\{Y'_n = Y''_n\} \subset \{Y'_{n+1} = Y''_{n+1}\}$.
+\end{proof}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -366,6 +491,15 @@ ${(\widetilde{W}_n, \widetilde{\epsilon}_n)}_{n \leq 0}$
 vérifient les hypothèses du théorème~\ref{thm:joining}. 
 \end{lemme}
 
+\begin{proof}
+On utilise le couplage du lemme~\ref{lemme:joining_epsilon}. 
+Pour construire le couplage désiré, on commence par construire $W_{n_0} = f(V_{n_0}, U)$ 
+où $U$ est une v.a.\ indépendante de $W_{n_0}$. 
+Puis on construit $W_n$ sur $n_0 < n \leq 0$ avec les $\epsilon_n$. 
+On pose $\tildW_{n_0} = f(\tildV_{n_0}, U)$ et, de même, on 
+ construit $\tildW_n$ sur $n_0 < n \leq 0$ avec les $\tildepsilon_n$. 
+\end{proof}
+
 \begin{lemme}
 Soit $\widetilde{X}_n$ le mot $\widetilde{W}_n$ privé de ses lettres en couleur $(\widetilde{X}_0=\widetilde{W}_0)$. 
 Alors le processus $(\widetilde{X}_n, \widetilde{\epsilon}_n)$ est un mots-découpés triadique, 
@@ -405,6 +539,7 @@ Chacon, puisque $\FF$ est standard. Je ne sais pas le démontrer.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{appendices}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Transformation de Chacon}\label{app:transfoChacon}
 
 La figure ci-dessous est issue de \href{https://cdr.lib.unc.edu/indexablecontent/uuid:bfc41b0c-b048-440f-9a57-533e02ea4f76}{ce document}.  
@@ -414,8 +549,45 @@ La figure ci-dessous est issue de \href{https://cdr.lib.unc.edu/indexablecontent
 \caption{Découpage-empilage à la 1ère étape}
 \end{figure}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Prolongement de co\"immersions}
+
+\begin{lemme}\label{lemme:coimmersion}
+Soit ${(X_n, Y_n)}_{n_0 \leq n \leq 0}$. 
+On a deux copies ${(X'_n)}_{n_0 \leq n \leq 0}$ et ${(X''_n)}_{n_0 \leq n \leq 0}$ 
+coïmmergées de ${(X_n)}_{n_0 \leq n \leq 0}$. 
+
+Alors on peut les prolonger en deux copies  ${(X'_n, Y'_n)}_{n_0 \leq n \leq 0}$ et 
+${(X''_n, Y''_n)}_{n_0 \leq n \leq 0}$ 
+coïmmergées de ${(X_n, Y_n)}_{n_0 \leq n \leq 0}$. 
+\end{lemme}
+
+\begin{proof}
+On peut écrire $Y_{n_0} = f(X_{n_0}, V_{n_0})$ où $V_{n_0} \indep X_{n_0}$. 
+Puis on peut écrire $Y_{n_0+1} = f\bigl((X_{n_0}, Y_{n_0}, X_{n_0+1}), V_{n_0+1}\bigr)$ où 
+$V_{n_0+1} \indep (X_{n_0}, V_{n_0}, X_{n_0+1})$, etc. 
+
+On prend alors $V'_{n_0} \indep (X'_{n_0}, \FF''_0)$ et on pose 
+ $Y'_{n_0} = f(X'_{n_0}, V'_{n_0})$. 
+ 
+ Puis on prend $V'_{n_0+1} \indep (X'_{n_0}, V'_{n_0}, X'_{n_0+1}, \FF''_0)$ 
+ puis on pose $Y'_{n_0+1} = f\bigl((X'_{n_0}, Y'_{n_0}, X'_{n_0+1}), V'_{n_0+1}\bigr)$. 
+
+
+\begin{displaymath}
+\xymatrix{
+Y'_{n_0} & Y'_{n_0+1} \\
+X'_{n_0} \ar[u]_{V'_{n_0}} & X'_{n_0+1} \ar[u]_{V'_{n_0+1}}  \\
+X''_{n_0} \ar[d]^{V''_{n_0}} & X''_{n_0+1} \ar[d]^{V''_{n_0+1}} \\
+Y''_{n_0} & Y''_{n_0+1}
+}
+\end{displaymath}
+
+\end{proof}
+
 \end{appendices}
 
+\newpage
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
