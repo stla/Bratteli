@@ -52,6 +52,7 @@
 \newtheorem{ppsition}{Proposition}
 \theoremstyle{defstyle}
 \newtheorem{definition}{D\'efinition}
+\newtheorem{remarque}{Remarque}
 
 \maketitle 
 
@@ -177,26 +178,48 @@ $\rho_n(1,2)=3^{|n|}/d_n \to 2/3$.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Couplage de $(V_n,\epsilon_n)$ et $(\tildV_n, \widetilde{\epsilon}_n)$}
 
+Nous donnons ici une autre preuve de la standardité de $\FF$. 
+Mais ce n'est pas le but de cette section : 
+les outils introduits ici seront utilisés plus tard.  
+Il s'agit de formaliser et d'utiliser le fait que $\FF$ est asymptotiquement 
+triadique. 
+Nous allons d'abord montrer que le processus ${(V_n, \epsilon_n)}_{n \leq 0}$ 
+est \emph{bien couplable}\footnote{devrais-je dire \emph{asymptotiquement bien couplable ?}} 
+avec un processus engendrant une filtration triadique, 
+au sens suivant.
+
+\begin{definition}
+Deux processus  ${(X_n)}_{n \leq 0}$ et ${(Y_n)}_{n \leq 0}$ sont \emph{bien couplables}  
+si pour tout $n_0 \leq 0$ il existe un couplage de 
+${(X_n)}_{n_0 \leq n \leq 0}$ et ${(Y_n)}_{n_0 \leq n \leq 0}$ tel que :
+\begin{enumerate}
+\item ${(X_n)}_{n_0 \leq n \leq 0}$ et ${(Y_n)}_{n_0 \leq n \leq 0}$ 
+sont co\"immergés ; 
+
+\item  pour tout $\delta >0$, il existe $N_\delta \leq 0$ tel que   
+$$
+\Pr(X_{n_0}=Y_{n_0}, \ldots, X_{N_\delta}=Y_{N_\delta}) > 1-\delta 
+$$
+quand $n_0$ est suffisamment plus petit que $N_\delta$.
+\end{enumerate} 
+\end{definition}
+
+\begin{remarque}
+Je me restreins à la distance discrète ($X_n=Y_n$) pour une raison qui sera 
+dite un peu plus tard. À ce détail près, le I-confort de la filtration 
+d'un processus est que ce processus est \og bien couplable avec lui-même \fg.
+\end{remarque}
+
 Soit ${(\widetilde{\epsilon}_n)}_{n \leq 0}$ une suite de v.a. indépendantes 
 et uniformes sur $\{0,1,3\}$. 
  Prenons aussi une variable aléatoire $\widetilde{V}_n$ égale à $1$ 
-presque sûrement pour tout $n \leq 0$. 
+presque sûrement pour tout $n \leq 0$. Ça peut sembler inutile mais 
+cela rendra les notations plus propres. 
 
 \begin{lemme}\label{lemme:joining_epsilon}
-Pour tout $n_0 \leq 0$, il existe un couplage de 
-${(V_n, \epsilon_n)}_{n_0 \leq n \leq 0}$ et 
- ${(\tildV_n, \widetilde{\epsilon}_n)}_{n_0 \leq  n \leq 0}$ tel que :
-\begin{enumerate}
-\item ${(V_n, \epsilon_n)}_{n_0 \leq n \leq 0}$ et 
- ${(\tildV_n, \widetilde{\epsilon}_n)}_{n_0 \leq  n \leq 0}$ sont coïmmergés 
- 
-\item pour tout $\delta >0$, il existe $N \leq 0$ tel que   
-$$
-\Pr\bigl((V_{n_0}, \epsilon_{n_0})=(\widetilde{V}_{n_0}, \widetilde{\epsilon}_{n_0}), 
-\ldots, (V_N, \epsilon_{N})=(\widetilde{V}_{N},\widetilde{\epsilon}_{N})\bigr) \to 1-\delta 
-$$  
-quand $n_0 \to -\infty$. 
-\end{enumerate}
+Les processus 
+${(V_n, \epsilon_n)}_{n \leq 0}$ et 
+ ${(\tildV_n, \widetilde{\epsilon}_n)}_{n \leq 0}$ sont bien couplables. 
 \end{lemme}
 
 \begin{proof}
@@ -227,7 +250,7 @@ $$
 \ldots, (V_N, \epsilon_{N})=(\widetilde{V}_{N},\widetilde{\epsilon}_{N}) 
 \given V_{n_0}=1 \bigr) \geq \prod_{n=n_0+1}^N \frac{d_{n+1}}{d_{n}}.  
 $$
-Le produit $\prod_{n=n_0+1}^N \frac{d_{n+1}}{d_{n}}$ diverge lorsque $n_0 \to -\infty$, 
+Le lemme s'ensuit du fait que le  produit $\prod_{n=n_0+1}^N \frac{d_{n+1}}{d_{n}}$ diverge lorsque $n_0 \to -\infty$, 
 et $\Pr(V_{n_0}=1) \to 1$. 
 %La loi de $\epsilon_n$ conditionnelle à $V_{n-1}=1$ est distribuée sur $\{0, 1, 2, 3\}$ 
 %selon le vecteur de probabilité
@@ -256,25 +279,8 @@ et $\Pr(V_{n_0}=1) \to 1$.
 %
 %Je préciserai les hypothèses générales du théorème ci-dessous dans une version ultérieure. 
 
-\begin{definition}
-Deux processus  ${(X_n)}_{n \leq 0}$ et ${(Y_n)}_{n \leq 0}$ sont couplables 
-si pour tout $n_0 \leq 0$ il existe un couplage de 
-${(X_n)}_{n_0 \leq n \leq 0}$ et ${(Y_n)}_{n_0 \leq n \leq 0}$ tel que :
-\begin{enumerate}
-\item ${(X_n)}_{n_0 \leq n \leq 0}$ et ${(Y_n)}_{n_0 \leq n \leq 0}$ 
-sont co\"immergés ; 
-
-\item  pour tout $\delta >0$, il existe $N \leq 0$ tel que   
-$$
-\Pr(X_{n_0}=Y_{n_0}, \ldots, X_N=Y_N) > 1-\delta 
-$$
-quand $n_0$ est suffisamment plus petit que $N$.
-\end{enumerate} 
-\end{definition}
-
-
 \begin{thm}\label{thm:joining}
-Soient ${(X_n)}_{n \leq 0}$ et ${(Y_n)}_{n \leq 0}$ deux processus 
+Soient ${(X_n)}_{n \leq 0}$ et ${(Y_n)}_{n \leq 0}$ deux processus couplables 
 telles que les v.a.\ $X_n$ et $Y_n$ prennent un nombre fini de valeurs. 
 Alors la filtration de l'un est I-confortable si et seulement si 
 la filtration de l'autre est I-confortable.
@@ -316,7 +322,7 @@ On peut supposer $N_\delta \leq N$.
 La variable aléatoire $X_{N_\delta}$ satisfait le critère de I-confort. 
 On a donc deux copies ${(X'_n)}_{n \leq N_\delta}$ et ${(X''_n)}_{n \leq N_\delta}$ 
 indépendantes jusqu'à $n_0$ et telles que $\Pr(X'_{N_\delta} \neq X''_{N_\delta}) < \delta$. 
-Par le lemme~\ref{lemme:coimmersion}, on peut étendre ceci 
+Par le lemme~\ref{lemme:quadricoimm}, on peut étendre ceci 
 en deux copies  ${(X'_n, Y'_n)}_{n \leq N_\delta}$ et ${(X''_n, Y''_n)}_{n \leq N_\delta}$ 
 du couplage donné par les hypothèses. 
 On a donc  deux copies ${(Y'_n)}_{n \leq N_\delta}$ et ${(Y''_n)}_{n \leq N_\delta}$ 
@@ -326,6 +332,14 @@ quand $n_0$ est suffisamment plus petit que $N_\delta$.
 Pour finir, on prolonge ce couplage de sorte que 
 $\{Y'_n = Y''_n\} \subset \{Y'_{n+1} = Y''_{n+1}\}$.
 \end{proof}
+
+\begin{remarque}
+Voilà la raison pour laquelle j'ai supposé que $Y_n$ ne prend qu'un nombre fini de 
+valeurs. Cela permet, lorsqu'on a un couplage jusque $n=N_\delta$ tel que 
+$\Pr(Y'_{N_\delta} \neq Y''_{N_\delta}) < 3\delta$, de le prolonger jusqu'à 
+$n=0$ en conservant cette prochitude. Il faudrait \^etre un peu plus technique 
+si on veut ce théorème pour des v.a.\ dans un espace métrique. 
+\end{remarque}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -393,6 +407,8 @@ La transformation de Chacon est connue pour être faiblement mélangeante,
 et il y a équivalence entre \og $S$ faiblement mélangeante \fg{} et 
 \og $T\times S$ egodique pour toute $T$ ergodique \fg. 
 Donc $\GG$ est kolmogorovienne pour toute transformation ergodique $T$. 
+
+\medskip 
 
 {\scriptsize %%%%%%
 Il est donc temps d'introduire la transformation de Chacon. 
@@ -554,137 +570,137 @@ La figure ci-dessous est issue de \href{https://cdr.lib.unc.edu/indexablecontent
 \end{figure}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Prolongement de co\"immersions}
-
-\begin{lemme}\label{lemme:coimmersion}
-Soit ${(X_n, Y_n)}_{n_0 \leq n \leq 0}$. 
-On a deux copies ${(X'_n)}_{n_0 \leq n \leq 0}$ et ${(X''_n)}_{n_0 \leq n \leq 0}$ 
-coïmmergées de ${(X_n)}_{n_0 \leq n \leq 0}$. 
-
-Alors on peut les prolonger en deux copies  ${(X'_n, Y'_n)}_{n_0 \leq n \leq 0}$ et 
-${(X''_n, Y''_n)}_{n_0 \leq n \leq 0}$ 
-coïmmergées de ${(X_n, Y_n)}_{n_0 \leq n \leq 0}$. 
-\end{lemme}
-
-\begin{proof}
-On peut écrire $Y_{n_0} = f(X_{n_0}, V_{n_0})$ où $V_{n_0} \indep X_{n_0}$. 
-Puis on peut écrire $Y_{n_0+1} = f\bigl((X_{n_0}, Y_{n_0}, X_{n_0+1}), V_{n_0+1}\bigr)$ où 
-$V_{n_0+1} \indep (X_{n_0}, V_{n_0}, X_{n_0+1})$, etc. 
-
-On prend alors $V'_{n_0} \indep (X'_{n_0}, \FF''_0)$ et on pose 
- $Y'_{n_0} = f(X'_{n_0}, V'_{n_0})$. 
- 
- Puis on prend $V'_{n_0+1} \indep (X'_{n_0}, V'_{n_0}, X'_{n_0+1}, \FF''_0)$ 
- puis on pose $Y'_{n_0+1} = f\bigl((X'_{n_0}, Y'_{n_0}, X'_{n_0+1}), V'_{n_0+1}\bigr)$. 
-
-
-\begin{displaymath}
-\xymatrix{
-Y'_{n_0} & Y'_{n_0+1} \\
-X'_{n_0} \ar[u]_{V'_{n_0}} & X'_{n_0+1} \ar[u]_{V'_{n_0+1}}  \\
-X''_{n_0} \ar[d]^{V''_{n_0}} & X''_{n_0+1} \ar[d]^{V''_{n_0+1}} \\
-Y''_{n_0} & Y''_{n_0+1}
-}
-\end{displaymath}
-
-\end{proof}
-
-\newpage 
-
-J'ai : 
-
-\begin{itemize}
-\item une coïmmersion de $(\epsilon_0, \epsilon_1)$ et $(\eta_0, \eta_1)$ :
+\section{Assemblage de co\"immersions}
+%
+%\begin{lemme}\label{lemme:coimmersion}
+%Soit ${(X_n, Y_n)}_{n_0 \leq n \leq 0}$. 
+%On a deux copies ${(X'_n)}_{n_0 \leq n \leq 0}$ et ${(X''_n)}_{n_0 \leq n \leq 0}$ 
+%coïmmergées de ${(X_n)}_{n_0 \leq n \leq 0}$. 
+%
+%Alors on peut les prolonger en deux copies  ${(X'_n, Y'_n)}_{n_0 \leq n \leq 0}$ et 
+%${(X''_n, Y''_n)}_{n_0 \leq n \leq 0}$ 
+%coïmmergées de ${(X_n, Y_n)}_{n_0 \leq n \leq 0}$. 
+%\end{lemme}
+%
+%\begin{proof}
+%On peut écrire $Y_{n_0} = f(X_{n_0}, V_{n_0})$ où $V_{n_0} \indep X_{n_0}$. 
+%Puis on peut écrire $Y_{n_0+1} = f\bigl((X_{n_0}, Y_{n_0}, X_{n_0+1}), V_{n_0+1}\bigr)$ où 
+%$V_{n_0+1} \indep (X_{n_0}, V_{n_0}, X_{n_0+1})$, etc. 
+%
+%On prend alors $V'_{n_0} \indep (X'_{n_0}, \FF''_0)$ et on pose 
+% $Y'_{n_0} = f(X'_{n_0}, V'_{n_0})$. 
+% 
+% Puis on prend $V'_{n_0+1} \indep (X'_{n_0}, V'_{n_0}, X'_{n_0+1}, \FF''_0)$ 
+% puis on pose $Y'_{n_0+1} = f\bigl((X'_{n_0}, Y'_{n_0}, X'_{n_0+1}), V'_{n_0+1}\bigr)$. 
+%
+%
+%\begin{displaymath}
+%\xymatrix{
+%Y'_{n_0} & Y'_{n_0+1} \\
+%X'_{n_0} \ar[u]_{V'_{n_0}} & X'_{n_0+1} \ar[u]_{V'_{n_0+1}}  \\
+%X''_{n_0} \ar[d]^{V''_{n_0}} & X''_{n_0+1} \ar[d]^{V''_{n_0+1}} \\
+%Y''_{n_0} & Y''_{n_0+1}
+%}
+%\end{displaymath}
+%
+%\end{proof}
+%
+%\newpage 
+%
+%J'ai : 
+%
+%\begin{itemize}
+%\item une coïmmersion de $(\epsilon_0, \epsilon_1)$ et $(\eta_0, \eta_1)$ :
+%%$$
+%%\begin{matrix}
+%%\eta_0 & \eta_1 \\
+%%\epsilon_0 & \epsilon_1
+%%\end{matrix}
+%%$$
+%%$$
+%%\begin{pmatrix}
+%%\eta_0 \\
+%%\epsilon_0
+%%\end{pmatrix},
+%%\begin{pmatrix}
+%%\eta_1 \\
+%%\epsilon_1
+%%\end{pmatrix}
+%%$$
 %$$
 %\begin{matrix}
-%\eta_0 & \eta_1 \\
-%\epsilon_0 & \epsilon_1
+%(\eta_0, \eta_1) \\
+%(\epsilon_0,  \epsilon_1)
 %\end{matrix}
 %$$
+%
+%\item une coïmmersion de $(\epsilon'_0, \epsilon'_1)$ et $(\epsilon''_0, \epsilon''_1)$ :
 %$$
-%\begin{pmatrix}
-%\eta_0 \\
-%\epsilon_0
-%\end{pmatrix},
-%\begin{pmatrix}
-%\eta_1 \\
-%\epsilon_1
-%\end{pmatrix}
+%\begin{matrix}
+%(\epsilon'_0, \epsilon'_1) \\
+%(\epsilon''_0,  \epsilon''_1)
+%\end{matrix}
 %$$
-$$
-\begin{matrix}
-(\eta_0, \eta_1) \\
-(\epsilon_0,  \epsilon_1)
-\end{matrix}
-$$
-
-\item une coïmmersion de $(\epsilon'_0, \epsilon'_1)$ et $(\epsilon''_0, \epsilon''_1)$ :
-$$
-\begin{matrix}
-(\epsilon'_0, \epsilon'_1) \\
-(\epsilon''_0,  \epsilon''_1)
-\end{matrix}
-$$
-\item Il faut construire
-$$
-\begin{matrix}
-\eta'_0 & \eta'_1 \\
-\epsilon'_0 & \epsilon'_1 \\
-\epsilon''_0 &  \epsilon''_1 \\
-\eta''_0 & \eta''_1
-\end{matrix}.
-$$
-\end{itemize}
-
-On part du 2ème couplage et on va le grossir. 
-
-Il n'est pas difficile de construire la première colonne :
-\begin{displaymath}
-\xymatrix @R=.5pc{
-\eta'_0  \\ \\
-\epsilon'_0  \ar@/^.6pc/[uu]^{U'_0}   \\
-\epsilon''_0  \ar@/^-.6pc/[dd]_{U''_0}\\ \\
-\eta''_0
-}
-\end{displaymath}
-Ce dessin signifie qu'on prend une v.a.\ $U_0$ telle que $\eta_0=f(\epsilon_0,U_0)$, on prend deux copies indépendantes $U'_0$ et $U''_0$ et on pose $\eta'_0=f(\epsilon'_0,U'_0)$ 
-et $\eta''_0=f(\epsilon''_0,U''_0)$.
-
-Ensuite j'ai envie de faire ça :
-\begin{displaymath}
-\xymatrix @R=.5pc{
-\eta'_0  & \eta'_1 \\ \\
-\epsilon'_0  \ar@/^.6pc/[uu]^{U'_0} & \epsilon'_1  \ar@/^.6pc/[uu]^{U'_1}  \\
-\epsilon''_0  \ar@/^-.6pc/[dd]_{U''_0} & \epsilon''_1  \ar@/^-.6pc/[dd]_{U''_1}  \\ \\
-\eta''_0 & \eta''_1
-}
-\end{displaymath}
-Ici on a pris $U_1$ telle que $\eta_1 = f(\epsilon_0, \eta_0, \epsilon_1,U_1)$. 
-Il est clair que comme ça on respecte la loi du premier couplage. 
-
-Mais il reste à voir que les copies de $(\eta_0, \eta_1)$ sont co\"immergées. 
-C'est OK si :
-$$
-\Pr(\eta'_1 \in \cdot \given \text{1ère colonne}) \overset{\boldsymbol ?}{=} \Pr(\eta'_1 \in \cdot \given \epsilon'_0, \eta'_0)
-$$
-On a 
-$$ 
-\Pr(\eta'_1 \in \cdot \given \text{1ère colonne}, \epsilon'_1) =  
-\Pr\bigl(\eta'_1 \in \cdot \given (\epsilon'_0, \eta'_0), \epsilon'_1\bigr),
-$$
-et on a alors 
-$$ 
-\Pr(\eta'_1 \in \cdot \given \text{1ère colonne}) =  
-\Pr\bigl(\eta'_1 \in \cdot \given (\epsilon'_0, \eta'_0)\bigr)
-$$
-à condition que 
-${\cal L}(\epsilon'_1 \given \text{1ère colonne}) = 
- {\cal L}(\epsilon'_1 \given \epsilon'_0)$, et ceci m'a l'air bon 
- car on a pris $U'_0$ et $U''_0$ indépendantes du 2ème couplage. 
-
-
-%%%%%%%
-\newpage 
+%\item Il faut construire
+%$$
+%\begin{matrix}
+%\eta'_0 & \eta'_1 \\
+%\epsilon'_0 & \epsilon'_1 \\
+%\epsilon''_0 &  \epsilon''_1 \\
+%\eta''_0 & \eta''_1
+%\end{matrix}.
+%$$
+%\end{itemize}
+%
+%On part du 2ème couplage et on va le grossir. 
+%
+%Il n'est pas difficile de construire la première colonne :
+%\begin{displaymath}
+%\xymatrix @R=.5pc{
+%\eta'_0  \\ \\
+%\epsilon'_0  \ar@/^.6pc/[uu]^{U'_0}   \\
+%\epsilon''_0  \ar@/^-.6pc/[dd]_{U''_0}\\ \\
+%\eta''_0
+%}
+%\end{displaymath}
+%Ce dessin signifie qu'on prend une v.a.\ $U_0$ telle que $\eta_0=f(\epsilon_0,U_0)$, on prend deux copies indépendantes $U'_0$ et $U''_0$ et on pose $\eta'_0=f(\epsilon'_0,U'_0)$ 
+%et $\eta''_0=f(\epsilon''_0,U''_0)$.
+%
+%Ensuite j'ai envie de faire ça :
+%\begin{displaymath}
+%\xymatrix @R=.5pc{
+%\eta'_0  & \eta'_1 \\ \\
+%\epsilon'_0  \ar@/^.6pc/[uu]^{U'_0} & \epsilon'_1  \ar@/^.6pc/[uu]^{U'_1}  \\
+%\epsilon''_0  \ar@/^-.6pc/[dd]_{U''_0} & \epsilon''_1  \ar@/^-.6pc/[dd]_{U''_1}  \\ \\
+%\eta''_0 & \eta''_1
+%}
+%\end{displaymath}
+%Ici on a pris $U_1$ telle que $\eta_1 = f(\epsilon_0, \eta_0, \epsilon_1,U_1)$. 
+%Il est clair que comme ça on respecte la loi du premier couplage. 
+%
+%Mais il reste à voir que les copies de $(\eta_0, \eta_1)$ sont co\"immergées. 
+%C'est OK si :
+%$$
+%\Pr(\eta'_1 \in \cdot \given \text{1ère colonne}) \overset{\boldsymbol ?}{=} \Pr(\eta'_1 \in \cdot \given \epsilon'_0, \eta'_0)
+%$$
+%On a 
+%$$ 
+%\Pr(\eta'_1 \in \cdot \given \text{1ère colonne}, \epsilon'_1) =  
+%\Pr\bigl(\eta'_1 \in \cdot \given (\epsilon'_0, \eta'_0), \epsilon'_1\bigr),
+%$$
+%et on a alors 
+%$$ 
+%\Pr(\eta'_1 \in \cdot \given \text{1ère colonne}) =  
+%\Pr\bigl(\eta'_1 \in \cdot \given (\epsilon'_0, \eta'_0)\bigr)
+%$$
+%à condition que 
+%${\cal L}(\epsilon'_1 \given \text{1ère colonne}) = 
+% {\cal L}(\epsilon'_1 \given \epsilon'_0)$, et ceci m'a l'air bon 
+% car on a pris $U'_0$ et $U''_0$ indépendantes du 2ème couplage. 
+%
+%
+%%%%%%%%
+%\newpage 
 
 %\begin{lemme}
 %Soient ${(X_n)}_{0 \leq n \leq n_0}$ et ${(Y_n)}_{0 \leq n \leq n_0}$ 
@@ -702,6 +718,26 @@ ${\cal L}(\epsilon'_1 \given \text{1ère colonne}) =
 %sont deux copies de $\bigl\{{(X_n)}_{0 \leq n \leq n_0}, {(Y_n)}_{0 \leq n \leq n_0}\bigr\}$.
 %\end{lemme}
 
+Lorsque deux  vecteurs aléatoires ${(X_n)}_{0 \leq n \leq n_0}$ et ${(Y_n)}_{0 \leq n \leq n_0}$ 
+engendrent des filtrations co\"immergées, j'écris ici que 
+$\left\{\begin{smallmatrix} {(X_n)}_{0 \leq n \leq n_0} \\ 
+{(Y_n)}_{0 \leq n \leq n_0}
+\end{smallmatrix}\right.$  
+est un \emph{couplage synchrone} de 
+${(X_n)}_{0 \leq n \leq n_0}$ et ${(Y_n)}_{0 \leq n \leq n_0}$. 
+La notation verticale permet d'alléger le texte. 
+
+J'écris plusieurs fois \og{\it on a clairement}\fg{} dans la preuve du lemme ci-dessous. 
+En fait, quand je dis ça, j'utilise à chaque fois un des deux faits suivants :
+\begin{itemize}
+\item si $U \indep {\cal B} \subset {\cal A}$, 
+alors une v.a.\ $X$ mesurable pour $\sigma({\cal B}, U)$ est conditionnellement 
+indépendante de ${\cal A}$ sachant ${\cal B}$ ;
+
+\item si $U \indep \sigma({\cal B}, X)$ alors $X$ est  conditionnellement 
+indépendante de $\sigma({\cal B}, U)$ sachant ${\cal B}$.  
+\end{itemize}
+
 \begin{lemme}\label{lemme:quadricoimm}
 Soient 
 $\left\{\begin{smallmatrix} {(X_n)}_{0 \leq n \leq n_0} \\ 
@@ -709,7 +745,7 @@ $\left\{\begin{smallmatrix} {(X_n)}_{0 \leq n \leq n_0} \\
 \end{smallmatrix}\right.$  
 un couplage synchrone de 
 deux vecteurs aléatoires ${(X_n)}_{0 \leq n \leq n_0}$ et ${(Y_n)}_{0 \leq n \leq n_0}$. 
-Sur un autre espace probabilisé, soient 
+Sur un autre espace probabilisé, soit 
 $\left\{\begin{smallmatrix} {(X'_n)}_{0 \leq n \leq n_0} \\ 
 {(X''_n)}_{0 \leq n \leq n_0}
 \end{smallmatrix}\right.$
@@ -763,7 +799,7 @@ X'_0 \\ Y'_0 \end{smallmatrix}\right)$ et
 $\left(\begin{smallmatrix}
 X''_0 \\ Y''_0 \end{smallmatrix}\right)$ sont deux copies de 
 $\left(\begin{smallmatrix}
-X_0 \\ Y_0 \end{smallmatrix}\right)$ et que 
+X_0 \\ Y_0 \end{smallmatrix}\right)$ et on a clairement 
 \begin{equation}\label{eq:quadricoimm1}
 \LL(X'_1 \given \HH_0) = \LL(X'_1 \given X'_0, X''_0) = \LL(X'_1 \given X'_0)
 \end{equation}
@@ -778,7 +814,7 @@ $\left(\begin{smallmatrix}
 X''_0, X''_1 \\ Y''_0, Y''_1 \end{smallmatrix}\right)$ sont deux copies de 
 $\left(\begin{smallmatrix}
 X_0, X_1 \\ Y_0, Y_1 \end{smallmatrix}\right)$. 
-Vérifions la propriété de synchronisation à $n=1$. On a 
+Vérifions la propriété de synchronisation à $n=1$. On a clairement 
 $$
 \LL(Y'_1 \given \HH_0, X'_1) = \LL(Y'_1 \given X'_0, Y'_0, X'_1) 
 $$
@@ -801,7 +837,7 @@ $\left(\begin{smallmatrix}
 X''_0, X''_1, X''_2 \\ Y''_0, Y''_1,Y''_2 \end{smallmatrix}\right)$ sont deux copies de 
 $\left(\begin{smallmatrix}
 X_0, X_1, X_2 \\ Y_0, Y_1, Y_2 \end{smallmatrix}\right)$. 
-Vérifions la propriété de synchronisation à $n=1$. On a 
+Vérifions la propriété de synchronisation à $n=1$. On a clairement 
 $$
 \LL(Y'_2 \given \HH_1, X'_2) = \LL(Y'_1 \given \FF'_1, Y'_0, Y'_1, X'_2) 
 $$
@@ -812,7 +848,7 @@ $$
 \end{proof}
 \end{appendices}
 
-\newpage
+%\newpage
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
