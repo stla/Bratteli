@@ -585,6 +585,99 @@ Y''_{n_0} & Y''_{n_0+1}
 
 \end{proof}
 
+\newpage 
+
+J'ai : 
+
+\begin{itemize}
+\item une coïmmersion de $(\epsilon_0, \epsilon_1)$ et $(\eta_0, \eta_1)$ :
+%$$
+%\begin{matrix}
+%\eta_0 & \eta_1 \\
+%\epsilon_0 & \epsilon_1
+%\end{matrix}
+%$$
+%$$
+%\begin{pmatrix}
+%\eta_0 \\
+%\epsilon_0
+%\end{pmatrix},
+%\begin{pmatrix}
+%\eta_1 \\
+%\epsilon_1
+%\end{pmatrix}
+%$$
+$$
+\begin{matrix}
+(\eta_0, \eta_1) \\
+(\epsilon_0,  \epsilon_1)
+\end{matrix}
+$$
+
+\item une coïmmersion de $(\epsilon'_0, \epsilon'_1)$ et $(\epsilon''_0, \epsilon''_1)$ :
+$$
+\begin{matrix}
+(\epsilon'_0, \epsilon'_1) \\
+(\epsilon''_0,  \epsilon''_1)
+\end{matrix}
+$$
+\item Il faut construire
+$$
+\begin{matrix}
+\eta'_0 & \eta'_1 \\
+\epsilon'_0 & \epsilon'_1 \\
+\epsilon''_0 &  \epsilon''_1 \\
+\eta''_0 & \eta''_1
+\end{matrix}.
+$$
+\end{itemize}
+
+On part du 2ème couplage et on va le grossir. 
+
+Il n'est pas difficile de construire la première colonne :
+\begin{displaymath}
+\xymatrix @R=.5pc{
+\eta'_0  \\ \\
+\epsilon'_0  \ar@/^.6pc/[uu]^{U'_0}   \\
+\epsilon''_0  \ar@/^-.6pc/[dd]_{U''_0}\\ \\
+\eta''_0
+}
+\end{displaymath}
+Ce dessin signifie qu'on prend une v.a.\ $U_0$ telle que $\eta_0=f(\epsilon_0,U_0)$, on prend deux copies indépendantes $U'_0$ et $U''_0$ et on pose $\eta'_0=f(\epsilon'_0,U'_0)$ 
+et $\eta''_0=f(\epsilon''_0,U''_0)$.
+
+Ensuite j'ai envie de faire ça :
+\begin{displaymath}
+\xymatrix @R=.5pc{
+\eta'_0  & \eta'_1 \\ \\
+\epsilon'_0  \ar@/^.6pc/[uu]^{U'_0} & \epsilon'_1  \ar@/^.6pc/[uu]^{U'_1}  \\
+\epsilon''_0  \ar@/^-.6pc/[dd]_{U''_0} & \epsilon''_1  \ar@/^-.6pc/[dd]_{U''_1}  \\ \\
+\eta''_0 & \eta''_1
+}
+\end{displaymath}
+Ici on a pris $U_1$ telle que $\eta_1 = f(\epsilon_0, \eta_0, \epsilon_1,U_1)$. 
+Il est clair que comme ça on respecte la loi du premier couplage. 
+
+Mais il reste à voir que les copies de $(\eta_0, \eta_1)$ sont co\"immergées. 
+C'est OK si :
+$$
+\Pr(\eta'_1 \in \cdot \given \text{1ère colonne}) \overset{\boldsymbol ?}{=} \Pr(\eta'_1 \in \cdot \given \epsilon'_0, \eta'_0)
+$$
+On a 
+$$ 
+\Pr(\eta'_1 \in \cdot \given \text{1ère colonne}, \epsilon'_1) =  
+\Pr\bigl(\eta'_1 \in \cdot \given (\epsilon'_0, \eta'_0), \epsilon'_1\bigr),
+$$
+et on a alors 
+$$ 
+\Pr(\eta'_1 \in \cdot \given \text{1ère colonne}) =  
+\Pr\bigl(\eta'_1 \in \cdot \given (\epsilon'_0, \eta'_0)\bigr)
+$$
+à condition que 
+${\cal L}(\epsilon'_1 \given \text{1ère colonne}) = 
+ {\cal L}(\epsilon'_1 \given \epsilon'_0)$, et ceci m'a l'air bon 
+ car on a pris $U'_0$ et $U''_0$ indépendantes du 2ème couplage. 
+
 \end{appendices}
 
 \newpage

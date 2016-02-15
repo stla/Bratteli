@@ -24,7 +24,7 @@ Kn(c(2L,3L),2)
 Kn(c(4L,2L),2)
 ## -> ça colle 
 
-# loi de Kn 
+# loi de Kn conditionnelle
 nsims <- 5000
 sims <- NULL
 for(i in 1:nsims){
@@ -33,15 +33,27 @@ for(i in 1:nsims){
 }
 barplot(table(sims))
 
-# loi de Kn 
+# loi de Kn conditionnelle
 nsims <- 10000
 sims <- integer(nsims)
 for(i in 1:nsims){
   eps <- reps(2L)
-  while(eps[2]==4L || eps[2]==2L){
+  while(eps[2]==4L){ 
     eps <- reps(2L)
   }
   sims[i] <- Kn(eps,2)
+}
+barplot(table(sims))
+
+# loi de Kn conditionnelle
+nsims <- 20000
+sims <- integer(nsims)
+for(i in 1:nsims){
+  eps <- reps(3L)
+  while(eps[3]==4L){ 
+    eps <- reps(3L)
+  }
+  sims[i] <- Kn(eps,3)
 }
 barplot(table(sims))
 
