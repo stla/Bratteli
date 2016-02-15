@@ -38,10 +38,10 @@ T <- function(eps){ # prendre eps assez long
   }
 }
 
-reps <- function(){ # Normalement le eps=0 de droite faudrait mettre 4
-  out <- integer(20L)
+reps <- function(length=20L){ # Normalement le eps=0 de droite faudrait mettre 4
+  out <- integer(length)
   eps <- out[1] <- sample(0:4, 1, prob=c(2,2,2,2,1)/9)
-  for(i in 1:length(out)){
+  for(i in 2:length(out)){
     if(eps != 4L){
       eps <- sample(c(0L,1L,3L), 1, prob = c(1,1,1)/3)
     }else{
