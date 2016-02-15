@@ -22,9 +22,12 @@
 
 \begin{document}
 
+\newcommand{\BB}{\EuScript{B}}
 \newcommand{\DD}{\EuScript{D}}
 \newcommand{\FF}{\EuScript{F}}
 \newcommand{\GG}{\EuScript{G}}
+\newcommand{\HH}{\EuScript{H}}
+\newcommand{\LL}{\EuScript{L}}
 \renewcommand{\SS}{\EuScript{S}}
 \newcommand{\C}{\mathbb{C}}
 \newcommand{\EE}{\mathbb{E}}
@@ -34,6 +37,7 @@
 \newcommand{\Z}{\mathbb{Z}}
 \newcommand{\given}{\mid}
 \newcommand{\indic}{\boldsymbol 1}
+\newcommand{\indvee}{\dot{\vee}}
 \newcommand{\tildepsilon}{\widetilde{\epsilon}}
 \newcommand{\tildV}{\widetilde{V}}
 \newcommand{\tildW}{\widetilde{W}}
@@ -678,6 +682,134 @@ ${\cal L}(\epsilon'_1 \given \text{1ère colonne}) =
  {\cal L}(\epsilon'_1 \given \epsilon'_0)$, et ceci m'a l'air bon 
  car on a pris $U'_0$ et $U''_0$ indépendantes du 2ème couplage. 
 
+
+%%%%%%%
+\newpage 
+
+%\begin{lemme}
+%Soient ${(X_n)}_{0 \leq n \leq n_0}$ et ${(Y_n)}_{0 \leq n \leq n_0}$ 
+%deux vecteurs aléatoires synchroniquement couplés. 
+%Sur un autre espace probabilisé, soient ${(X'_n)}_{0 \leq n \leq n_0}$ 
+%et ${(X''_n)}_{0 \leq n \leq n_0}$ deux copies synchroniquement couplées 
+%de ${(X_n)}_{0 \leq n \leq n_0}$. 
+%Alors, sur cet espace probabilisé éventuellement grossi, il 
+%existe deux copies  ${(Y'_n)}_{0 \leq n \leq n_0}$  et 
+%${(Y''_n)}_{0 \leq n \leq n_0}$ de ${(Y_n)}_{0 \leq n \leq n_0}$ 
+%de ${(Y_n)}_{0 \leq n \leq n_0}$ 
+%synchroniquement couplées et 
+%telles que $\bigl\{{(X'_n)}_{0 \leq n \leq n_0}, {(Y'_n)}_{0 \leq n \leq n_0}\bigr\}$ 
+%et $\bigl\{{(X''_n)}_{0 \leq n \leq n_0}, {(Y''_n)}_{0 \leq n \leq n_0}\bigr\}$ 
+%sont deux copies de $\bigl\{{(X_n)}_{0 \leq n \leq n_0}, {(Y_n)}_{0 \leq n \leq n_0}\bigr\}$.
+%\end{lemme}
+
+\begin{lemme}\label{lemme:quadricoimm}
+Soient 
+$\left\{\begin{smallmatrix} {(X_n)}_{0 \leq n \leq n_0} \\ 
+{(Y_n)}_{0 \leq n \leq n_0}
+\end{smallmatrix}\right.$  
+un couplage synchrone de 
+deux vecteurs aléatoires ${(X_n)}_{0 \leq n \leq n_0}$ et ${(Y_n)}_{0 \leq n \leq n_0}$. 
+Sur un autre espace probabilisé, soient 
+$\left\{\begin{smallmatrix} {(X'_n)}_{0 \leq n \leq n_0} \\ 
+{(X''_n)}_{0 \leq n \leq n_0}
+\end{smallmatrix}\right.$
+un couplage synchrone de deux copies 
+de ${(X_n)}_{0 \leq n \leq n_0}$. 
+Alors, sur cet espace probabilisé éventuellement grossi, il 
+existe un couplage synchrone 
+$\left\{\begin{smallmatrix} {(Y'_n)}_{0 \leq n \leq n_0} \\ 
+{(Y''_n)}_{0 \leq n \leq n_0}
+\end{smallmatrix}\right.$
+de deux copies de ${(Y_n)}_{0 \leq n \leq n_0}$ 
+ tel que 
+$\left\{\begin{smallmatrix} {(X'_n)}_{0 \leq n \leq n_0} \\ 
+{(Y'_n)}_{0 \leq n \leq n_0}
+\end{smallmatrix}\right.$ et
+$\left\{\begin{smallmatrix} {(X''_n)}_{0 \leq n \leq n_0} \\ 
+{(Y''_n)}_{0 \leq n \leq n_0}
+\end{smallmatrix}\right.$
+sont deux copies de 
+$\left\{\begin{smallmatrix} {(X_n)}_{0 \leq n \leq n_0} \\ 
+{(Y_n)}_{0 \leq n \leq n_0}
+\end{smallmatrix}\right.$.
+\end{lemme}
+
+\begin{proof}
+Pour éviter des notations trop lourdes, nous écrivons la preuve pour $n_0=2$. 
+Nous notons $(\FF'_0, \FF'_1, \FF'_2)$ la filtration engendrée par $(X'_0, X'_1, X'_2)$, 
+et $(\FF''_0, \FF''_1, \FF''_2)$ la filtration engendrée par $(X''_0, X''_1, X''_2)$.
+
+Sans restreindre la situation, on peut supposer que sur l'espace probabilisé de 
+$\left\{\begin{smallmatrix} (X_0, X_1, X_2) \\ 
+(Y_0, Y_1, Y_2)
+\end{smallmatrix}\right.$, on a :
+\begin{itemize}
+\item $Y_0 = f_0(X_0, U_0)$, $U_0 \indep X_0$,
+\item $Y_1 = f_1\bigl((X_0, Y_0, X_1), U_1\bigr)$, $U_1 \indep (X_0, U_0, X_1)$
+\item $Y_2 = f_2\bigl((X_0, Y_0, X_1, Y_1, X_2), U_2\bigr)$, $U_2 \indep (X_0, U_0, X_1, U_1, X_2)$
+\end{itemize} 
+
+Après un grossissement éventuel, on peut supposer qu'on a, pour chaque $i\in\{0,1,2\}$, 
+deux copies $U'_i$, $U''_i$  
+de $U_i$ indépendantes de $\FF'_2\vee \FF''_2$, les $U'_i$ et $U''_j$ indépendantes entre elles. 
+On pose :
+\begin{itemize}
+\item $Y'_0 = f_0(X'_0, U'_0)$,
+\item $Y''_0 = f_0(X''_0, U''_0)$, 
+\end{itemize}
+et  $\HH_0 = \sigma(X'_0, X''_0) \indvee \sigma(U'_0, U''_0) \supset \sigma(X'_0, Y'_0, X''_0, Y''_0)$. 
+Il est ainsi clair que $\left(\begin{smallmatrix}
+X'_0 \\ Y'_0 \end{smallmatrix}\right)$ et 
+$\left(\begin{smallmatrix}
+X''_0 \\ Y''_0 \end{smallmatrix}\right)$ sont deux copies de 
+$\left(\begin{smallmatrix}
+X_0 \\ Y_0 \end{smallmatrix}\right)$ et que 
+\begin{equation}\label{eq:quadricoimm1}
+\LL(X'_1 \given \HH_0) = \LL(X'_1 \given X'_0, X''_0) = \LL(X'_1 \given X'_0)
+\end{equation}
+Posons maintenant :
+\begin{itemize}
+\item $Y'_1= f_1\bigl((X'_0, Y'_0, X'_1), U'_1\bigr)$,
+\item $Y''_1 = f_1\bigl((X''_0, Y''_0, X''_1), U''_1\bigr)$.
+\end{itemize}
+Il est ainsi clair que $\left(\begin{smallmatrix}
+X'_0, X'_1 \\ Y'_0, Y'_1 \end{smallmatrix}\right)$ et 
+$\left(\begin{smallmatrix}
+X''_0, X''_1 \\ Y''_0, Y''_1 \end{smallmatrix}\right)$ sont deux copies de 
+$\left(\begin{smallmatrix}
+X_0, X_1 \\ Y_0, Y_1 \end{smallmatrix}\right)$. 
+Vérifions la propriété de synchronisation à $n=1$. On a 
+$$
+\LL(Y'_1 \given \HH_0, X'_1) = \LL(Y'_1 \given X'_0, Y'_0, X'_1) 
+$$
+et grâce à~\eqref{eq:quadricoimm1} on obtient 
+$$
+\LL(Y'_1 \given \HH_0) = \LL(Y'_1 \given X'_0, Y'_0).  
+$$
+Notons $\HH_1 = \HH_0 \indvee \sigma(U'_1, U''_1)$. On a clairement 
+\begin{equation}\label{eq:quadricoimm2}
+\LL(X'_2 \given \HH_1) = \LL(X'_2 \given \FF'_1\vee\FF''_1) = \LL(X'_2 \given \FF'_1)
+\end{equation}
+On pose enfin 
+\begin{itemize}
+\item $Y'_2 = f_2\bigl((X'_0, Y'_0, X'_1, Y'_1, X'_2), U'_2\bigr)$,
+\item $Y''_2 = f_2\bigl((X''_0, Y''_0, X''_1, Y''_1, X''_2), U''_2\bigr)$.
+\end{itemize} 
+Il est ainsi clair que $\left(\begin{smallmatrix}
+X'_0, X'_1, X'_2 \\ Y'_0, Y'_1, Y'_2 \end{smallmatrix}\right)$ et 
+$\left(\begin{smallmatrix}
+X''_0, X''_1, X''_2 \\ Y''_0, Y''_1,Y''_2 \end{smallmatrix}\right)$ sont deux copies de 
+$\left(\begin{smallmatrix}
+X_0, X_1, X_2 \\ Y_0, Y_1, Y_2 \end{smallmatrix}\right)$. 
+Vérifions la propriété de synchronisation à $n=1$. On a 
+$$
+\LL(Y'_2 \given \HH_1, X'_2) = \LL(Y'_1 \given \FF'_1, Y'_0, Y'_1, X'_2) 
+$$
+et grâce à~\eqref{eq:quadricoimm2} on obtient 
+$$
+\LL(Y'_2 \given \HH_1) = \LL(Y'_2 \given \FF'_1, Y'_0, Y'_1) = \LL(Y'_2 \given Y'_0, Y'_1).  
+$$
+\end{proof}
 \end{appendices}
 
 \newpage
