@@ -64,3 +64,4 @@ for(i in 1:length(u)){
 }
 plot(u, Iu, pch=19, cex=.5)
 abline(v=2/3*2/3, col=2)
+abline(v=(2/3+2/9)*2/3, col=2)

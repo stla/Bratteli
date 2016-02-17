@@ -1,0 +1,246 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage{amsmath, amsthm}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{lmodern}
+\usepackage[left=2cm,right=2cm,top=2cm,bottom=2cm]{geometry}
+
+\usepackage[labelformat=simple]{subcaption}
+\renewcommand\thesubfigure{(\alph{subfigure})}
+
+\author{Stéphane Laurent}
+\title{xxx}
+\begin{document}
+
+
+\newtheoremstyle{thmstyle}{3pt}{3pt}{\itshape}{}{\bf}{.}{.5em}{}      
+\newtheoremstyle{defstyle}{3pt}{3pt}{\sffamily}{}{\bf}{.}{.5em}{} 
+\theoremstyle{defstyle}
+\newtheorem{definition}{Definition}
+\newtheorem{remark}{Remark}    
+\theoremstyle{thmstyle}
+\newtheorem{thm}{Theorem}[section]
+\newtheorem{ppsition}{Proposition}
+\newtheorem{lemma}{Lemma}
+
+\newcommand{\FF}{\mathcal{F}}
+\newcommand{\GG}{\mathcal{G}}
+\newcommand{\EE}{\mathbb{E}}
+\newcommand{\II}{\mathcal{I}}
+\newcommand{\LL}{\mathcal{L}}
+\newcommand{\OO}{\mathcal{O}}
+\newcommand{\given}{\mid}
+\newcommand{\eps}{\epsilon}
+\newcommand{\indic}{\boldsymbol 1}
+\newcommand{\Vb}{\boldsymbol V}
+
+
+\maketitle
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Filtration associated to an adic transformation} 
+
+\subsection{The sequence of measurable partitions}
+
+Consider an adic transformation $S$ acting on set of paths $\Gamma$ of a 
+Bratteli graph, preserving a probability measure $\mu$ on $\Gamma$. 
+We consider that the root level of the graph is graded by the index 
+$n=1$ and the subsequent levels are graded by $n=0$, $n=-1$, $\ldots$. 
+The example of the golden graph is shown on Figure~\ref{fig:GoldenGraph}. 
+Figure~\ref{fig:GoldenGraph_newlabs} will be expained later.
+
+A path $\gamma \in \Gamma$ is a sequence of arcs 
+$\gamma=(\gamma_{1}, \gamma_0, \gamma_{-1}, \ldots)$, where $\gamma_n$ connects 
+a vertex at level $n$ to a vertex at level $n-1$. 
+Note that $\gamma$ is determined by $(\gamma_0, \gamma_{-1}, \ldots)$ 
+because there is a unique arc between a vertex at level $n=0$ and the root vertex 
+at level $n=1$.  
+
+We denote by $v_n(\gamma)$ the vertex at level $n$ through which passes a path $\gamma$. 
+The dimension of a vertex $v$, that is to say the number of paths connecting $v$ 
+to the root vertex, is denoted by $\dim(v)$, and we set $d_n(\gamma)=\dim\bigl(v_n(\gamma)\bigr)$. 
+
+
+\begin{figure}[!h]
+   \centering
+   \begin{subfigure}[t]{0.37\textwidth}
+   \centering
+   	\includegraphics[scale=0.6]{figures/GoldenGraph_redpath_usual}
+ 		\caption{\footnotesize Usual labels on the arcs}\label{fig:GoldenGraph}
+    \end{subfigure}              
+   \quad
+    \begin{subfigure}[t]{0.37\textwidth}
+    \centering
+   	\includegraphics[scale=0.6]{figures/GoldenGraph_redpath_newlabels}
+ 		\caption{\footnotesize New labels on the arc}\label{fig:GoldenGraph_newlabs}
+ 	\end{subfigure}      
+
+   \caption{Golden graph}
+   \label{fig:ostro}
+ \end{figure}
+
+There is an increasing sequence of measurable partitions ${(\zeta_n)}_{n \leq 0}$ 
+on $(\Gamma, \mu)$, defined by declaring that $\gamma \overset{\zeta_n}{\sim} \gamma'$ 
+if $\gamma_k=\gamma'_k$ for every $k \leq n$.  
+% if $v_n(\gamma)=v_n(\gamma')$. 
+The $\zeta_n$-equivalence class $\zeta_n(\gamma)$ consists of $d_n(\gamma)$ elements. 
+These elements are ordered: there is one element in $\zeta_n(\gamma)$, denoted by 
+$\bar\gamma_n$, such that 
+$$
+\zeta_n(\gamma)= \{\bar\gamma_n, S\bar\gamma_n, \ldots, S^{d_n(\gamma)-1}\bar\gamma_n\}.
+$$
+We consider $\bar\gamma_n$ as the $\zeta_n$-representative of $\gamma$.
+
+
+
+The increasing property of ${(\zeta_n)}_{n \leq 1}$ provides a structure 
+on the $\zeta_{n}$-equivalence classes: a $\zeta_n$-equivalence class 
+is a union of $\zeta_{n+1}$-equivalences classes. 
+This is illustrated on Figure~\ref{fig:GoldenOrbits}. 
+The labels on the arcs of this figure correspond to the ones of Figure~\ref{fig:GoldenGraph_newlabs}. 
+The label between level $n$ and level $n+1$ indicates the location of 
+$\zeta_{n+1}(\gamma)$ as a block of $\zeta_n(\gamma)$. 
+
+\begin{figure}[!h]
+\centering
+\includegraphics[scale=0.9, clip=true]{figures/GoldenOrbits}
+\caption{A $\zeta_{-4}$-equivalence class}
+\label{fig:GoldenOrbits}
+\end{figure}
+
+Thus, $\bar\gamma_n = S^{-k_n(\gamma)}\gamma$ where the nonnegative integer $k_n(\gamma)$ 
+is a function of $(\gamma_{1}, \gamma_0, \ldots, \gamma_n)$. 
+
+The usual labels on the arcs of a Bratteli graph, such as the one 
+shown on Figure~\ref{fig:GoldenGraph}, provide, for each vertex $v_n$ 
+at a level $n$, an ordering of the arcs between $v_n$ and the vertices connected 
+to $v_n$ at level $n-1$.  
+The labels shown on Figure~\ref{fig:GoldenGraph_newlabs} and Figure~\ref{fig:GoldenOrbits} 
+are obtained by considering the other direction: they provide, 
+for each vertex $v_{n-1}$ at a level $n-1$, 
+an ordering of the arcs between $v_{n-1}$ and the vertices connected 
+to $v_{n-1}$ at level $n$. 
+Since there is a unique arc between the root vertex and a vertex at level $0$, 
+we do not need such a label for $n=1$. 
+After a choice of such labels, we denote 
+by $\epsilon_n(\gamma)$ the label connecting $v_{n-1}(\gamma)$ to 
+$v_n(\gamma)$. 
+ 
+The sequence $\bigl(v_n(\gamma), \epsilon_n(\gamma)\bigr)_{n \leq n_0}$ up to 
+a level $n_0 \leq 0$ determines the path $\gamma$ truncated at this level. 
+In other words it determines the $\zeta_{n}$-equivalence classe 
+$\zeta_n(\gamma)$. 
+
+We will come back to the above points in the next section below, in the 
+language of $\sigma$-fields. 
+
+\begin{lemma}
+The set-theoretic intersection $\cap_{n \leq 0} \zeta_n$ is the orbital partition of $S$. 
+\end{lemma}
+
+\begin{proof}
+
+\end{proof}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{The filtration}
+
+One gets a filtration ${(\FF_n)}_{n \leq 0}$ by defining the $\sigma$-field 
+$\FF_n$ as the one generated by the measurable partition $\zeta_n$. 
+Considering a path $\gamma \in \Gamma$ as the actual point taken at random 
+in the probability space, we consider $v_n$ and $\epsilon_n$ as random 
+variables but we use the notation $V_n$ instead of $v_n$. 
+Thus $\FF$ is generated by the stochastic process 
+${(V_n, \epsilon_n)}_{n \leq 0}$, and 
+$\FF_{n+1} = \FF_n \vee \sigma(\epsilon_{n+1})$.  
+
+In the previous section, we introduced the integer $k_n(\gamma)$ such that 
+$\bar\gamma_n = S^{-k_n(\gamma)}\gamma$. 
+
+
+We use the notation $K_n$ instead of $k_n$ to denote $k_n$ considered as 
+a random variable, and we denote by $R_n$ the random variable whose 
+value at $\gamma$ is the $\zeta_n$-representative 
+$\bar\gamma_n$ of $\gamma$. 
+Thus $R_0$ is a path taken at random according to $\mu$ and 
+$R_0 = S^{K_n} R_n$. 
+Conditionally to $V_n$, the random integer $K_n$ is a one-to-one function of 
+$(\epsilon_{n+1}, \ldots, \epsilon_0)$, and it has the 
+uniform distribution on $\{0, \ldots, \dim(V_n)-1\}$. 
+This is the \emph{centrality} property of $\mu$. 
+
+Observe that $R_{n+1} = S^{K_n - K_{n+1}}R_n$ and, 
+conditionally to $V_n$, the nonnegative integer $K_n - K_{n+1}$ 
+is a one-one function of $\epsilon_{n+1}$. 
+
+For example, $K_n$ has a very convenient expression for the case of the adic 
+transformation on the golden graph with our choice of the labels shown on 
+Figure~\ref{fig:GoldenGraph_newlabs}:
+$$
+K_n = \epsilon_{n+1}F_{n} + \ldots + \epsilon_0F_0.   
+$$
+where $F_0=1$, $F_{-1}=2$,  $\ldots$ are the Fibonacci numbers.  
+Its expression does not depend on $V_n$, but its distribution does. 
+
+As another example, consider the Chacon graph shown on Figure~\ref{fig:ChaconGraph} 
+which also shows our choice of the labels on the arcs. 
+For this example, 
+$K_n=\sum_{k=0}^{n+1}f_k(\epsilon_k)$, with  
+$$
+\begin{cases}
+f_n(0) = 0 \\ 
+f_n(1) = h_{n+1} \\ 
+f_n(2) = 2h_{n+1} \\
+f_n(3) = 2 h_{n+1} + 1
+\end{cases}.
+$$
+where $h_n=\frac{3^{|n|+1}-1}{2}$ is the dimension of the vertex $1$ at level $n$. 
+
+\begin{figure}[!h]
+   \centering
+   	\includegraphics[scale=0.6]{figures/Chacon_Labels_hand}
+   \caption{Chacon graph}\label{fig:ChaconGraph}
+ \end{figure}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{The scale of an automorphism}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{The sequence of measurable partitions}
+
+Now, in addition to the adic transformation $S$, let $T$ be a measure-preserving transformation on a Lebesgue space $(X, \nu)$. 
+
+One can define an increasing sequence of measurable partitions ${(\xi_n)}_{n \leq 0}$ 
+locally isomorphic to the elementary sequence ${(\zeta_n)}_{n \leq 0}$,  
+and such that $\xi_n$ approximates the orbital partition of $T \times S$ as 
+$n \to -\infty$.
+
+For two paths $\gamma$, $\gamma'$ in the same $S$-orbit, denote by $k(\gamma,\gamma')$ 
+the integer such that $\gamma'=S^{k(\gamma,\gamma')}\gamma$. 
+The define the measurable partition $\xi_n$ by 
+$$
+(x, \gamma) \overset{\xi_n}{\sim} (x', \gamma') \iff 
+\gamma \overset{\zeta_n}{\sim} \gamma' \quad 
+\text{and $x'=T^{k(\gamma,\gamma')}x$}. 
+$$
+
+$$
+\xi_n(x,\gamma) = \bigl\{(\bar x_n, \bar\gamma_n), (T\bar x_n, S\bar\gamma_n), 
+\ldots, (T^{d_n(\gamma)-1}\bar x_n, S^{d_n(\gamma)-1}\bar\gamma_n) \bigr\}
+$$
+where $\bar x_n = T^{-k_n(\gamma)}x$ and, as already seen, 
+$\bar\gamma_n = S^{-k_n(\gamma)}\gamma$ is the $\zeta_n$-representative of 
+$\gamma$. 
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{The filtration} 
+
+
+
+\end{document}
