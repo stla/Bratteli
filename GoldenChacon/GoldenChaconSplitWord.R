@@ -1,0 +1,25 @@
+setwd("~/Work/Filtrations/Bratteli/GoldenChacon")
+
+M0 <- t(c(a=1L, b=1L))
+M1 <- matrix(integer(2*5), nrow=2)
+rownames(M1) <- colnames(M0)
+colnames(M1) <- c("a","b","aa","ab","ba")
+M1[1,] <- c(1L, 0L, 2L, 1L, 1L)
+M1[2,] <- c(0L, 1L, 0L, 1L, 1L)
+M2 <- matrix(integer(5*8), nrow=5)
+rownames(M2) <- colnames(M1)
+colnames(M2) <- c("aa","ab","ba","aaa","aab","aba","baa","bab")
+M2[,1] <- c(0,0,1,0,0)
+M2[,2] <- c(0,0,0,1,0)
+M2[,3] <- c(0,0,0,0,1)
+M2[,4] <- c(1,0,1,0,0)
+M2[,5] <- c(0,1,1,0,0)
+M2[,6] <- c(1,0,0,1,0)
+M2[,7] <- c(1,0,0,0,1)
+M2[,8] <- c(0,1,0,0,1)
+M2 <- M2[, c(4,5,6,7,8,1,2,3)]
+
+Mn <- list(M0,M1,M2)
+
+library(myutils)
+BgraphTikZ("GoldenChaconSW.tex", function(n) Mn[[n+1]], N=3)
