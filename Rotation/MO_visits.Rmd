@@ -1,0 +1,56 @@
+---
+title: "Untitled"
+author: "Stéphane Laurent"
+date: "18 février 2016"
+output: 
+  html_document: 
+    keep_md: yes
+---
+
+According to my simulations, it looks like the number of times that the $N$  first iterates $u_0$, $\ldots$, $u_{N-1}$ of the  sequence $(u_n)$  [defined here](http://mathoverflow.net/questions/212840/random-suborbits-of-a-rotation) meets an interval $I$ is close to $N|I|$ for any initial value $u_0=x$. 
+
+This observation is just the motivation of the following question. I don't need to recall the sequence $(u_n)$ in order to state the question. 
+
+Because of this observation, one could expect that for almost all $x$,  
+$$
+\lim_{N \to \infty} \sum_{k=0}^{\infty} a_{N,k} {\boldsymbol 1}_{T^kx \in I} = |I| 
+$$
+where $T$ is an irrational rotation, and $a_{N,k} = \dfrac{\#\{i | 0 \leq i \leq N-1, K_i = k\}}{N}$ 
+where $K_N=\sum_{i = 0}^{N-1} \epsilon_i2^i$ and  ${(\epsilon_n)}_{n \geq 0}$ is a sequence of independent $0$-$1$ symmetric Bernoulli random variables (thus $a_{N,k}=0$ for $k > 2^N-1$ and $\sum_{k=0}^{2^N-1} a_{N,k}=1)$. 
+
+Observe that the $a_{N,k}$ are random, so I should also say that the above limit holds for almost all sequences ${(\epsilon_n)}_{n \geq 0}$.
+
+Thus the expectation is that the following limit holds for almost every realisation of the $a_{N,k}$:
+$$
+\sum_{k=0}^{\infty} a_{N,k} f(T^k x) \overset{a.s.}{\to} E(f) 
+$$
+for every $f \in L^1$. Is it true ? 
+
+Here is a weaker question. 
+In [this paper by Hanson & Pledger](http://link.springer.com/article/10.1007%2FBF00537020), a sufficient condition on the $a_{N,k}$ is given in order that 
+$$
+\sum_{k=0}^{\infty} a_{N,k} f(T^kx) \overset{L^2}{\to} E(f) 
+$$
+for every $f \in L^2$, when $T$ is any weakly mixing ergodic transformation. Namely this condition is:
+$$
+\lim_{N \to \infty} \sum_{\substack{0 \leq k \leq 2^{N-1} \\ k \in S}} a_{N,k} =0 \qquad (\star)
+$$
+for any subset $S$ of integers having natural density zero. 
+
+Does property $(\star)$ almost surely holds true ? 
+
+__________
+
+algo :
+
+```
+simulate y(0), y(1), ....
+SET x(0)=y(0)
+i <- 0
+REPEAT
+  SET k=2^i
+  SIMULATE epsilon = 0 or 1
+  IF epsilon=0 SET x(i+1)=x(i) ELSE SET x(i+1)=x(k)
+  SET i=i+1
+```
+
