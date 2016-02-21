@@ -1,0 +1,76 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{lmodern}
+\usepackage[left=1cm,right=1cm,top=2cm,bottom=2cm]{geometry}
+
+\usepackage{subcaption}
+\usepackage{color}
+
+\author{Stéphane Laurent}
+\title{xxxxx}
+
+\begin{document}
+
+The way one labels the edges on a Bratteli graph possibly causes some confusion.
+
+There are two different labellings. 
+
+\begin{itemize}
+\item The first labelling, shown on Figure 1(a), consists in identifying 
+the edges from a vertex $v$ at level $n$ to all the vertices connected to $v$ at 
+level $n+1$. These labels allow to identify a path starting at the root vertex. 
+
+\item The second labelling, shown on Figure 1(b), is done in the other direction. 
+For each vertex $v$ at level $n\geq 1$, the labels identify the edges connecting $v$ 
+to all the vertices connected to $v$ at level $n-1$. 
+Note that these labels are useless for $n=1$, because there is only one edge from 
+a vertex $v$ at level $n=1$ to the root vertex at level $n=0$. 
+\end{itemize}
+
+
+
+
+\begin{figure}[!h]
+   \centering
+   \begin{subfigure}[t]{0.47\textwidth}
+   \centering
+   	\includegraphics[scale=0.54]{figures/OB1_idlabels_hand}
+ 		\caption{\footnotesize Identifier labels}\label{fig:labels_id}
+    \end{subfigure}              
+   \quad
+    \begin{subfigure}[t]{0.47\textwidth}
+    \centering
+   	\includegraphics[scale=0.54]{figures/OB1_orderlabels_hand}
+ 		\caption{\footnotesize Order labels}\label{fig:labels_order}
+ 	\end{subfigure}      
+
+   \caption{Labelling the edges}
+   \label{fig:labels}
+ \end{figure}
+ 
+The second labelling defines the order between the paths. To see it, it is convenient to visualize the trees shown on Figure~2. For each vertex at level $n=3$, the tree, when one reads it from the bottom to the top, shows the possible paths from this vertex to the vertices at level $n=1$. 
+ 
+ \begin{figure}[!h]
+   \centering
+   	\includegraphics[scale=0.75]{figures/OB1_walk_hand}
+   \caption{Trees from the vertices at level $n=3$}
+   \label{fig:tree}
+ \end{figure}
+
+The branches are ordered by the lexicographic order on the sequences of labels, and this corresponds to the order between the paths. 
+
+Here, one sees on the first tree: 
+\begin{center}
+ \fcolorbox{yellow}{yellow}{000x} $<$ \fcolorbox{yellow}{yellow}{100x} $<$  \fcolorbox{yellow}{yellow}{110x}
+\end{center}
+and on the second one: 
+\begin{center}
+\fcolorbox{yellow}{yellow}{001x} $<$ \fcolorbox{yellow}{yellow}{101x} $<$ \fcolorbox{yellow}{yellow}{111x} $<$ \fcolorbox{yellow}{yellow}{120x} $<$ \fcolorbox{yellow}{yellow}{200x}
+\end{center}
+
+\end{document}
