@@ -1,0 +1,235 @@
+\documentclass[12pt,a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage{amsmath, amsthm}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{lmodern}
+\usepackage[left=2cm,right=2cm,top=2cm,bottom=2cm]{geometry}
+
+\usepackage[labelformat=simple]{subcaption}
+\renewcommand\thesubfigure{(\alph{subfigure})}
+
+\usepackage{diagbox}
+
+%\usepackage{array}
+%\usepackage{makecell}
+%\usepackage{tikz}
+%\newcommand\diag[4]{%
+%  \multicolumn{1}{p{#2}|}{\hskip-\tabcolsep
+%  $\vcenter{\begin{tikzpicture}[baseline=0,anchor=south west,inner sep=#1]
+%  \path[use as bounding box] (0,0) rectangle (#2+2\tabcolsep,\baselineskip);
+%  \node[minimum width={#2+2\tabcolsep},minimum height=\baselineskip+\extrarowheight] (box) {};
+%  \draw (box.north west) -- (box.south east);
+%  \node[anchor=south west] at (box.south west) {#3};
+%  \node[anchor=north east] at (box.north east) {#4};
+% \end{tikzpicture}}$\hskip-\tabcolsep}}
+
+\author{Stéphane Laurent}
+\title{xxx}
+\begin{document}
+
+
+\newtheoremstyle{thmstyle}{3pt}{3pt}{\itshape}{}{\bf}{.}{.5em}{}      
+\newtheoremstyle{defstyle}{3pt}{3pt}{\sffamily}{}{\bf}{.}{.5em}{} 
+\theoremstyle{defstyle}
+\newtheorem{definition}{Definition}
+\newtheorem{remark}{Remark}
+\newtheorem{question}{Question}
+\newtheorem{clarify}{To clarify}
+\theoremstyle{thmstyle}
+\newtheorem{thm}{Theorem}[section]
+\newtheorem{ppsition}{Proposition}
+\newtheorem{lemma}{Lemma}
+
+\newcommand{\FF}{\mathcal{F}}
+\newcommand{\GG}{\mathcal{G}}
+\newcommand{\EE}{\mathbb{E}}
+\newcommand{\II}{\mathcal{I}}
+\newcommand{\LL}{\mathcal{L}}
+\newcommand{\OO}{\mathcal{O}}
+\newcommand{\XX}{\mathcal{X}}
+\newcommand{\given}{\mid}
+\newcommand{\eps}{\epsilon}
+\newcommand{\indic}{\boldsymbol 1}
+\newcommand{\Vb}{\boldsymbol V}
+\newcommand{\tildV}{\widetilde{V}}
+
+\maketitle
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Joinable processes}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Example 1: Markov chains on the golden graph} 
+
+We use the following notations.
+
+\begin{itemize}
+\item  ${(f_n)}_{n \leq 0}$ is the reversed Fibonnaci sequence:
+$$
+f_0=f_{-1}=1, f_{-2}=2, f_{-3}=3, f_{-4}=5, \ldots,
+$$
+and we also set $f_1=0$. 
+
+\item $\theta=\frac{1}{1+\phi}=\frac{1}{\phi^2}=1-\frac{1}{\phi}=\frac{2}{3+\sqrt{5}}$ is the irrational 
+number with continued fraction expansion $[0,2,1,1,\ldots]$
+\end{itemize}
+
+
+\subsection{The Markov chain ${(V_n)}_{n \leq 0}$}
+
+We consider the Markov chain ${(V_n)}_{n \leq 0}$ walking on the graph shown on Figure~\ref{fig:GoldenGraph}, whose law is given by:
+
+\begin{itemize}
+\item $V_n$ takes the value $0$ or $1$ and $\Pr(V_n=1) = \frac{f_n}{f_n + \phi f_{n-1}} =: p_n$ 
+(in particular $\Pr(V_0=1)=\theta$)
+%  {(-1)}^{n+1} f_n\bigl(f_{n+1} - f_{n-1} \theta\bigr)
+
+\item The transition matrix from $V_{n}$ to $V_{n+1}$ is 
+\begin{center}
+\begin{tabular}{|c||c|c|}\hline
+\diagbox{$V_{n}$}{$V_{n+1}$}
+&\makebox[3em]{$0$}&\makebox[3em]{$1$}\\ \hline\hline
+$0$ & $f_n/f_{n-1}$ & $f_{n+1}/f_{n-1}$\\ \hline
+$1$ & $1$ & $0$\\ \hline
+\end{tabular}
+\end{center}
+\end{itemize}
+
+
+\begin{figure}[!h]
+   \centering
+\scalebox{0.95}{
+   \begin{subfigure}[t]{0.47\textwidth}
+   \centering
+   	\includegraphics[scale=0.6]{figures/GoldenGraph2}
+ 		\caption{\footnotesize GoldenGraph}\label{fig:GoldenGraph}
+    \end{subfigure}              
+   \quad
+    \begin{subfigure}[t]{0.47\textwidth}
+    \centering
+   	\includegraphics[scale=0.6]{figures/GoldenGraph2_probs}
+ 		\caption{\footnotesize Probability transitions}\label{fig:GoldenGraph_probs}
+ 	\end{subfigure}      
+}
+   \caption{Random walk on the golden graph}
+   \label{fig:Golden}
+ \end{figure}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{The limit Markov chain ${(\tildV_n)}_{n \leq 0}$}
+
+It is easy to see that 
+$$
+p_n \to p_\infty := \frac{1}{1+\phi^2}= \frac{\theta}{1+\theta} = \frac{\sqrt{5}-1}{2\sqrt{5}}.
+$$
+and 
+$$
+\begin{pmatrix}
+f_n/f_{n-1} & f_{n+1}/f_{n-1} \\
+1 & 0
+\end{pmatrix} 
+\to \begin{pmatrix}
+\phi^{-1} & \phi^{-2} \\
+1 & 0
+\end{pmatrix}. 
+$$
+
+The other Markov chain ${(\tildV_n)}_{n \leq 0}$ walking on the golden graph has law given by:
+
+\begin{itemize}
+\item $\tildV_n$ takes the value $0$ or $1$ and $\Pr(\tildV_n=1) = p_\infty$;
+
+\item The transition matrix from $\tildV_{n}$ to $\tildV_{n+1}$ is 
+$$
+\begin{pmatrix}
+\phi^{-1} & \phi^{-2} \\
+1 & 0
+\end{pmatrix}
+$$
+\end{itemize}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Joining the two Markov chains}
+
+
+
+Let $n_0 \leq 0$. We are going to define a joining of $(V_{n_0}, \ldots, V_0)$ and 
+$(\tildV_{n_0}, \ldots, \tildV_0)$.
+
+We consider the joint law of $V_{n_0}$ and $\tildV_{n_0}$ given by
+$$
+\begin{cases}
+\begin{pmatrix} 
+1-p_\infty &  p_\infty - p_{n_0} \\
+0 & p_{n_0}
+\end{pmatrix} & \text{if $n$ is odd} \\
+\begin{pmatrix} 
+1-p_{n_0}  &  0 \\
+p_{n_0} - p_\infty  & p_\infty
+\end{pmatrix} & \text{if $n$ is even}
+\end{cases}
+$$
+Hence $\Pr(V_{n_0} \neq \tildV_{n_0}) = |p_{n_0}-p_\infty|$.
+
+Then we take the transition from $(V_n, \tildV_n)$ to $(V_{n+1}, \tildV_{n+1})$ 
+given by the matrix:
+$$
+\begin{cases}
+\begin{array}{r|cccc}
+%\diagbox{$V_{n}$}{$V_{n+1}$}
+ & (0,0) & (0,1) & (1,0) & (1,1) \\ 
+  \hline
+(0,0) & \phi^{-1}  &  \frac{f_n}{f_{n-1}} - \phi^{-1} & 0  & \frac{f_{n+1}}{f_{n-1}}\\ 
+  (0,1) & f_{n}/f_{n-1} & 0 & f_{n+1}/f_{n-1} & 0 \\ 
+  (1,0) & \phi^{-1}  & \phi^{-2}  & 0 & 0 \\ 
+  (1,1) & 1 & 0 & 0 & 0 \\ 
+\end{array} 
+& \text{if $n$ is even}
+\\ \\
+\begin{array}{r|cccc}
+ & (0,0) & (0,1) & (1,0) & (1,1) \\ 
+  \hline
+(0,0) & \frac{f_n}{f_{n-1}} &  0 & \phi^{-1} - \frac{f_n}{f_{n-1}}  & \phi^{-1}\\ 
+  (0,1) & f_{n}/f_{n-1} & 0 & f_{n+1}/f_{n-1} & 0 \\ 
+  (1,0) & \phi^{-1}  & \phi^{-2}  & 0 & 0 \\ 
+  (1,1) & 1 & 0 & 0 & 0 \\ 
+\end{array}
+& \text{if $n$ is odd}
+\end{cases}
+$$
+Then $\Pr(V_{n+1} \neq \tildV_{n+1} \given V_{n}=\tildV_{n}=1)  = 0$ and 
+$$
+\Pr(V_{n+1} \neq \tildV_{n+1} \given V_{n}=\tildV_{n}=0) 
+= \left|\frac{f_n}{f_{n-1}} - \phi^{-1}\right| =: \alpha_n.
+$$
+Therefore the probability
+$$
+\beta_n:=\Pr(V_{n+1} = \tildV_{n+1} \mid V_{n}=\tildV_{n})
+$$
+lies between $\alpha_n$ and $1$. 
+Thus, when $n_0 \leq N \leq 0$, 
+$$
+\Pr(V_{n_0} = \tildV_{n_0}, V_{n_0+1} = \tildV_{n_0+1}, \ldots, V_{N} = \tildV_{N}) = 
+\Pr(V_{n_0} = \tildV_{n_0}) \prod_{k={n_0}}^N \beta_k 
+\geq \Pr(V_{n_0} = \tildV_{n_0}) \prod_{k={n_0}}^N \alpha_k.
+$$
+The rational numbers $\frac{f_n}{f_{n-1}}$ are the convergent of the continued fraction 
+expansion of $\phi^{-1}$, hence $\alpha_n \leq {(f_{n-1}f_{n-2})}^{-1}$. 
+Therefore $\prod \alpha_k$ is a divergent product. 
+Consequently, for any $\delta>0$, one can find an integer $N \leq 0$ such that 
+$$
+\Pr(V_{n_0} = \tildV_{n_0}, V_{n_0+1} = \tildV_{n_0+1}, \ldots, V_{N} = \tildV_{N}) > 1-\delta.
+$$
+for every $n_0 \leq N$. 
+
+\end{document}

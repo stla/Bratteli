@@ -1,0 +1,86 @@
+\documentclass[12pt,border=0pt]{standalone}
+
+\usepackage[utf8]{inputenc} 
+\usepackage{amssymb,amsmath}
+\usepackage{tikz}
+\usetikzlibrary{arrows}
+
+\usepackage{nicefrac}
+
+
+\thispagestyle{empty}
+
+\begin{document}
+
+\begin{tikzpicture}[x=10pt,y=7pt]
+  \centering
+  \tikzset{VertexStyle/.style = {
+    shape         = rectangle,
+    draw          = blue, 
+    fill          = white, 
+  	line width    = 1pt, 
+    text          = black,
+    inner sep     = 1pt,
+    outer sep     = 0pt,
+    minimum size  = 14 pt,
+    scale         = 1
+    }
+  }
+  \tikzset{EdgeStyle/.style = {
+    draw            = black, 
+    thick,
+    double          = black,
+    double distance = 1pt,
+    <-,>=stealth',shorten >=0.5pt
+    }
+  }
+  \tikzset{EdgeEmpty/.style = {
+    draw            = black, 
+    thick,
+    double          = black,
+    double distance = 1pt
+    }
+  }
+  \tikzset{EdgeLabelStyle/.style = {
+    draw          = none,
+  	shape         = rectangle, 
+  	line width    = 0.5pt, 
+  	minimum size  = 14pt, 
+    inner sep     = 3pt,
+    outer sep     = 0pt,
+    fill          = none,
+    text          = black,
+    scale         = 1.1,
+    pos=0.7
+    }
+  }
+
+	\node[VertexStyle](A1) at (25, 45.8333333333333) {$\varnothing$};
+	\node[VertexStyle](B1) at (12.5, 37.5) {$1$};
+	\node[VertexStyle](B2) at (37.5, 37.5) {$0$};
+	\node[VertexStyle](C1) at (12.5, 29.1666666666667) {$0$};
+	\node[VertexStyle](C2) at (37.5, 29.1666666666667) {$1$};
+	\node[VertexStyle](D1) at (12.5, 20.8333333333333) {$1$};
+	\node[VertexStyle](D2) at (37.5, 20.8333333333333) {$0$};
+	\node[VertexStyle](E1) at (12.5, 12.5) {$0$};
+	\node[VertexStyle](E2) at (37.5, 12.5) {$1$};
+	\node[VertexStyle](F1) at (12.5, 4.16666666666667) {$1$};
+	\node[VertexStyle](F2) at (37.5, 4.16666666666667) {$0$};
+	\draw[EdgeEmpty](A1) to (B1);
+	\draw[EdgeEmpty](A1) to (B2);
+	\draw[EdgeStyle, right](B1) to node[EdgeLabelStyle]{$\nicefrac{1}{2}$} (C1);
+	\draw[EdgeStyle, above](B2) to node[EdgeLabelStyle]{$\nicefrac{1}{2}$} (C1);
+	\draw[EdgeStyle, left](B2) to node[EdgeLabelStyle]{$1$} (C2);
+	\draw[EdgeStyle, right](C1) to node[EdgeLabelStyle]{$1$} (D1);
+	\draw[EdgeStyle, above](C1) to node[EdgeLabelStyle]{$\nicefrac{2}{3}$} (D2);
+	\draw[EdgeStyle, left](C2) to node[EdgeLabelStyle]{$\nicefrac{1}{3}$} (D2);
+	\draw[EdgeStyle, right](D1) to node[EdgeLabelStyle]{$\nicefrac{2}{5}$} (E1);
+	\draw[EdgeStyle, above](D2) to node[EdgeLabelStyle]{$\nicefrac{3}{5}$} (E1);
+	\draw[EdgeStyle, left](D2) to node[EdgeLabelStyle]{$1$} (E2);
+	\draw[EdgeStyle, right](E1) to node[EdgeLabelStyle]{$1$} (F1);
+	\draw[EdgeStyle, above](E1) to node[EdgeLabelStyle]{$\nicefrac{5}{8}$} (F2);
+	\draw[EdgeStyle, left](E2) to node[EdgeLabelStyle]{$\nicefrac{3}{8}$} (F2);
+
+  \end{tikzpicture}
+
+\end{document}

@@ -190,17 +190,17 @@ au sens suivant.
 
 \begin{definition}
 Deux processus  ${(X_n)}_{n \leq 0}$ et ${(Y_n)}_{n \leq 0}$ sont \emph{bien couplables}  
-si pour tout $n_0 \leq 0$ il existe un couplage de 
-${(X_n)}_{n_0 \leq n \leq 0}$ et ${(Y_n)}_{n_0 \leq n \leq 0}$ tel que :
+si pour tout $\delta >0$, il existe $N_\delta \leq 0$ tel que pour tout $n_0 \leq N_\delta$ il existe un couplage de 
+${(X_n)}_{n_0 \leq n \leq N_\delta}$ et ${(Y_n)}_{n_0 \leq n \leq N_\delta}$ tel que :
 \begin{enumerate}
-\item ${(X_n)}_{n_0 \leq n \leq 0}$ et ${(Y_n)}_{n_0 \leq n \leq 0}$ 
+\item ${(X_n)}_{n_0 \leq n \leq N_\delta}$ et ${(Y_n)}_{n_0 \leq n \leq N_\delta}$ 
 sont co\"immergés ; 
 
-\item  pour tout $\delta >0$, il existe $N_\delta \leq 0$ tel que   
+\item 
 $$
-\Pr(X_{n_0}=Y_{n_0}, \ldots, X_{N_\delta}=Y_{N_\delta}) > 1-\delta 
+\Pr(X_{n_0}=Y_{n_0}, \ldots, X_{N_\delta}=Y_{N_\delta}) > 1-\delta. 
 $$
-quand $n_0$ est suffisamment plus petit que $N_\delta$.
+%quand $n_0$ est suffisamment plus petit que $N_\delta$.
 \end{enumerate} 
 \end{definition}
 
@@ -279,7 +279,7 @@ et $\Pr(V_{n_0}=1) \to 1$.
 %Je préciserai les hypothèses générales du théorème ci-dessous dans une version ultérieure. 
 
 \begin{thm}\label{thm:joining}
-Soient ${(X_n)}_{n \leq 0}$ et ${(Y_n)}_{n \leq 0}$ deux processus couplables 
+Soient ${(X_n)}_{n \leq 0}$ et ${(Y_n)}_{n \leq 0}$ deux processus bien couplables 
 telles que les v.a.\ $X_n$ et $Y_n$ prennent un nombre fini de valeurs. 
 Alors la filtration de l'un est I-confortable si et seulement si 
 la filtration de l'autre est I-confortable.
