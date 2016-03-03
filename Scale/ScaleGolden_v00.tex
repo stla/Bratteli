@@ -14,6 +14,8 @@
 
 \usepackage{diagbox}
 
+\usepackage{enumerate}
+
 %\usepackage{array}
 %\usepackage{makecell}
 %\usepackage{tikz}
@@ -44,9 +46,12 @@
 \newtheorem{ppsition}{Proposition}
 \newtheorem{lemma}{Lemma}
 
+\newcommand{\BB}{\mathcal{B}}
+\newcommand{\CC}{\mathcal{C}}
 \newcommand{\FF}{\mathcal{F}}
 \newcommand{\GG}{\mathcal{G}}
 \newcommand{\EE}{\mathbb{E}}
+\newcommand{\HH}{\mathcal{H}}
 \newcommand{\II}{\mathcal{I}}
 \newcommand{\LL}{\mathcal{L}}
 \newcommand{\OO}{\mathcal{O}}
@@ -57,13 +62,202 @@
 \newcommand{\Vb}{\boldsymbol V}
 \newcommand{\tildV}{\widetilde{V}}
 
+\newcommand{\indvee}{\dot{\vee}}
+\newcommand{\indep}{\mathrel{\text{\scalebox{1.07}{$\perp\mkern-10mu\perp$}}}}
+
+
 \maketitle
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Joinable processes}
 
+When two random vectors 
+${(X_n)}_{0 \leq n \leq n_0}$ and ${(Y_n)}_{0 \leq n \leq n_0}$ are defined 
+on the same probability space and the filtrations they generate are 
+jointly immersed (see below), we will write and say that 
+$\left\{\begin{smallmatrix} {(X_n)}_{0 \leq n \leq n_0} \\ 
+{(Y_n)}_{0 \leq n \leq n_0}
+\end{smallmatrix}\right.$  is a \emph{synchronous joining}. 
+That means, after introducing the $\sigma$-fields 
+$\BB_n = \sigma(X_{0}, \ldots, X_n)$ and  
+$\CC_n = \sigma(Y_{0}, \ldots, Y_n)$, that 
+$\BB_{n+1} \indep_{\BB_n} \BB_n \vee \CC_n$ 
+and $\CC_{n+1} \indep_{\CC_n} \BB_n \vee \CC_n$.  
 
+When $\left\{\begin{smallmatrix} {(X'_n)}_{0 \leq n \leq n_0} \\ 
+{(Y'_n)}_{0 \leq n \leq n_0}
+\end{smallmatrix}\right.$  is a \emph{synchronous joining} in the situation when 
+${(X'_n)}_{0 \leq n \leq n_0}$ is a copy of a random vector 
+${(X_n)}_{0 \leq n \leq n_0}$  and ${(Y'_n)}_{0 \leq n \leq n_0}$ 
+is a copy of a random vector ${(Y_n)}_{0 \leq n \leq n_0}$, we say that 
+$\left\{\begin{smallmatrix} {(X'_n)}_{0 \leq n \leq n_0} \\ 
+{(Y'_n)}_{0 \leq n \leq n_0}
+\end{smallmatrix}\right.$  is a \emph{synchronous joining of 
+${(X_n)}_{0 \leq n \leq n_0}$ and ${(Y_n)}_{0 \leq n \leq n_0}$}. 
+
+\begin{definition}
+Let ${(X_n)}_{n \leq 0}$ and ${(Y_n)}_{n \leq 0}$ be two stochastic processes. 
+We say that they are \emph{closely joinable} if for every $\delta >0$ there exists 
+$N_\delta \leq 0$ such that for every $n_0 \leq N_\delta$ there exists a 
+synchronous joining $\left\{\begin{smallmatrix} {(X_n)}_{n_0 \leq n \leq N_\delta} \\ 
+{(Y_n)}_{n_0 \leq n \leq N_\delta}
+\end{smallmatrix}\right.$ 
+of ${(X_n)}_{n_0 \leq n \leq N_\delta}$ and ${(Y_n)}_{n_0 \leq n \leq N_\delta}$ 
+such that 
+$$
+\Pr(X'_{n_0}=Y'_{n_0}, \ldots, X'_{N_\delta}=Y'_{N_\delta}) > 1-\delta. 
+$$ 
+\end{definition}
+
+\begin{thm}
+Let ${(X_n)}_{n \leq 0}$ and ${(Y_n)}_{n \leq 0}$ be two stochastic processes, and 
+denote by $\FF$ and $\GG$ the filtrations they respectively generate. 
+\begin{enumerate}
+\item If $\FF_{-\infty}$ is degenerate, then $\GG_{-\infty}$ is degenerate.
+
+\item If $\FF$ is I-cosy, then $\GG$ is I-cosy.
+\end{enumerate}
+\end{thm}
+
+This theorem will be proved with the help of the following lemma. 
+
+\begin{lemma}
+Soient 
+$\left\{\begin{smallmatrix} {(X_n)}_{0 \leq n \leq n_0} \\ 
+{(Y_n)}_{0 \leq n \leq n_0}
+\end{smallmatrix}\right.$  
+un couplage synchrone de 
+deux vecteurs aléatoires ${(X_n)}_{0 \leq n \leq n_0}$ et ${(Y_n)}_{0 \leq n \leq n_0}$. 
+Sur un autre espace probabilisé, soit 
+$\left\{\begin{smallmatrix} {(X'_n)}_{0 \leq n \leq n_0} \\ 
+{(X''_n)}_{0 \leq n \leq n_0}
+\end{smallmatrix}\right.$
+un couplage synchrone de deux copies 
+de ${(X_n)}_{0 \leq n \leq n_0}$. 
+Alors, sur cet espace probabilisé éventuellement grossi, il 
+existe un couplage synchrone 
+$\left\{\begin{smallmatrix} {(Y'_n)}_{0 \leq n \leq n_0} \\ 
+{(Y''_n)}_{0 \leq n \leq n_0}
+\end{smallmatrix}\right.$
+de deux copies de ${(Y_n)}_{0 \leq n \leq n_0}$ 
+such that  
+$\left\{\begin{smallmatrix} {(X'_n)}_{0 \leq n \leq n_0} \\ 
+{(Y'_n)}_{0 \leq n \leq n_0}
+\end{smallmatrix}\right.$ and 
+$\left\{\begin{smallmatrix} {(X''_n)}_{0 \leq n \leq n_0} \\ 
+{(Y''_n)}_{0 \leq n \leq n_0}
+\end{smallmatrix}\right.$
+are two copies of 
+$\left\{\begin{smallmatrix} {(X_n)}_{0 \leq n \leq n_0} \\ 
+{(Y_n)}_{0 \leq n \leq n_0}
+\end{smallmatrix}\right.$.
+\end{lemma}
+
+\begin{proof}
+In the proof, we will use the three following elementary facts about 
+conditional independence:
+\begin{enumerate}[{\it(i)}]
+\item If $U \indep {\cal B} \subset {\cal A}$, 
+then $X \indep_\BB {\cal A}$ for any $\sigma({\cal B}, U)$-measurable r.v.\ $X$ mesurable.
+
+\item If $U \indep \sigma({\cal B}, X)$ then $X \indep_\BB \sigma({\cal B}, U)$.
+
+\item If $\CC \subset \BB \subset {\cal A}$, then 
+the two conditional independences $Y \indep_{\BB \vee \sigma(X)} {\cal A} \vee \sigma(X)$
+and $X \indep_{\CC} {\cal A}$ imply $Y \indep_{\BB} {\cal A}$.
+\end{enumerate}
+
+On the probability space of $\left\{\begin{smallmatrix} {(X_n)}_{0 \leq n \leq n_0} \\ 
+{(Y_n)}_{0 \leq n \leq n_0}
+\end{smallmatrix}\right.$, one can assume there exist some random variables 
+$U_0$, $\ldots$, $U_{n_0}$ such that 
+\begin{itemize}
+\item[$\bullet$] $U_n \indep \bigl((X_0,U_0), \ldots, (X_{n-1}, U_{n-1}), X_n\bigr)$;
+
+\item[$\bullet$] $Y_n = f_n\bigl((X_0,Y_0), \ldots, (X_{n-1}, Y_{n-1}), X_n, U_n\bigr)$   
+for some Borelian functions $f_n$. 
+\end{itemize}
+
+We denote by $(\FF'_0, \ldots, \FF'_{n_0})$ the filtration generated by 
+${(X'_n)}_{0 \leq n \leq n_0}$ and by $(\FF''_0, \ldots, \FF''_{n_0})$ 
+the filtration generated by ${(X''_n)}_{0 \leq n \leq n_0}$. 
+
+On the probability space of $\left\{\begin{smallmatrix} {(X'_n)}_{0 \leq n \leq n_0} \\ 
+{(X''_n)}_{0 \leq n \leq n_0}
+\end{smallmatrix}\right.$, one can assume there are two copies 
+$\mathbf{U}'=(U'_0, \ldots, U'_{n_0})$ and $\mathbf{U}''=(U''_0, \ldots, U''_{n_0})$ of 
+$(U_0, \ldots, U_{n_0})$ such that $\mathbf{U}' \indep \mathbf{U}''$ and 
+$(\mathbf{U}',\mathbf{U}'') \indep \FF'_{n_0} \vee \FF''_{n_0}$. 
+
+We set $Y'_0 = f_0(X'_0, U'_0)$ and $Y''_0 = f_0(X''_0, U''_0)$, and we 
+recursively set 
+$$
+Y'_n = f_n\bigl((X'_0,Y'_0), \ldots, (X'_{n-1}, Y'_{n-1}), X'_n, U'_n\bigr)
+$$
+and 
+$$
+Y''_n = f_n\bigl((X''_0,Y''_0), \ldots, (X''_{n-1}, Y''_{n-1}), X''_n, U''_n\bigr).
+$$
+In this way, it is clear that $\left\{\begin{smallmatrix} {(X'_n)}_{0 \leq n \leq n_0} \\ 
+{(Y'_n)}_{0 \leq n \leq n_0}
+\end{smallmatrix}\right.$ and 
+$\left\{\begin{smallmatrix} {(X''_n)}_{0 \leq n \leq n_0} \\ 
+{(Y''_n)}_{0 \leq n \leq n_0}
+\end{smallmatrix}\right.$
+are two copies of 
+$\left\{\begin{smallmatrix} {(X_n)}_{0 \leq n \leq n_0} \\ 
+{(Y_n)}_{0 \leq n \leq n_0}
+\end{smallmatrix}\right.$.
+
+We define the filtration $(\HH_0, \ldots, \HH_{n_0})$ by setting 
+$$
+\HH_n = (\FF'_n \vee \FF''_n) \vee \sigma\bigl((U'_0,U''_0), \ldots, (U'_n, U''_n) \bigr) 
+\supset  \sigma\bigl((X'_0,Y'_0,X''_0, Y''_0), \ldots, (X'_n,Y'_n,X''_n, Y''_n) \bigr).
+$$
+
+By property {\it(ii)}, 
+$$
+X'_{n+1} \indep_{\FF'_n\vee\FF''_n} \HH_n 
+\quad \text{and }\;
+X''_{n+1} \indep_{\FF'_n\vee\FF''_n} \HH_n 
+$$
+and by the immersion property, 
+\begin{equation}\label{eq:immX}
+X'_{n+1} \indep_{\FF'_n} \HH_n 
+\quad \text{and }\;
+X''_{n+1} \indep_{\FF''_n} \HH_n 
+\end{equation}
+Now, we define the filtrations  $(\GG'_0, \ldots, \GG'_{n_0})$ 
+and  $(\GG''_0, \ldots, \GG''_{n_0})$ by setting 
+$$
+\GG'_n = \sigma\bigl((X'_0,Y'_0), \ldots, (X'_n, Y'_n)\bigr) 
+\quad \text{and }\;
+\GG''_n = \sigma\bigl((X''_0,Y''_0), \ldots, (X''_n, Y''_n)\bigr) 
+$$
+By property {\it(i)}, 
+$$
+Y'_{n+1} \indep_{\GG'_n \vee \sigma(X'_{n+1})} \HH_n \vee \sigma(X'_{n+1})
+\quad \text{and }\;
+Y''_{n+1} \indep_{\GG''_n \vee \sigma(X''_{n+1})} \HH_n \vee \sigma(X''_{n+1})
+$$
+and by \eqref{eq:immX} and property {\it(iii)},
+$$
+Y'_{n+1} \indep_{\GG'_n} \HH_n 
+\quad \text{and }\;
+Y''_{n+1} \indep_{\GG''_n} \HH_n
+$$, 
+and finally by the immersion property 
+$$
+Y'_{n+1} \indep_{\sigma(Y'_0, \ldots, Y'_n)} \HH_n 
+\quad \text{and }\;
+Y''_{n+1} \indep_{\sigma(Y''_0, \ldots, Y''_n)} \HH_n.
+$$
+Thus, we have proved that the four filtrations generated by 
+${(X'_n)}_{0 \leq n \leq n_0}$, ${(X''_n)}_{0 \leq n \leq n_0}$, 
+${(Y'_n)}_{0 \leq n \leq n_0}$, and ${(Y''_n)}_{0 \leq n \leq n_0}$ 
+are jointly immersed in the filtration ${(\HH_n)}_{0 \leq n \leq n_0}$.
+\end{proof}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -162,7 +356,6 @@ $$
 \subsection{Joining the two Markov chains}
 
 
-
 Let $n_0 \leq 0$. We are going to define a joining of $(V_{n_0}, \ldots, V_0)$ and 
 $(\tildV_{n_0}, \ldots, \tildV_0)$.
 
@@ -181,8 +374,20 @@ p_{n_0} - p_\infty  & p_\infty
 $$
 Hence $\Pr(V_{n_0} \neq \tildV_{n_0}) = |p_{n_0}-p_\infty|$.
 
-Then we take the transition from $(V_n, \tildV_n)$ to $(V_{n+1}, \tildV_{n+1})$ 
-given by the matrix:
+The transition matrix from $(V_n, \tildV_n)$ to $(V_{n+1}, \tildV_{n+1})$ 
+necessarily has the following form:
+$$
+\begin{array}{r|cccc}
+%\diagbox{$V_{n}$}{$V_{n+1}$}
+ & (0,0) & (0,1) & (1,0) & (1,1) \\ 
+  \hline
+(0,0) & ?  &  ? & ?  & ? \\ 
+  (0,1) & f_{n}/f_{n-1} & 0 & f_{n+1}/f_{n-1} & 0 \\ 
+  (1,0) & \phi^{-1}  & \phi^{-2}  & 0 & 0 \\ 
+  (1,1) & 1 & 0 & 0 & 0 \\ 
+\end{array} 
+$$
+One just needs to fill the first line. One takes 
 $$
 \begin{cases}
 \begin{array}{r|cccc}
@@ -207,16 +412,37 @@ $$
 & \text{if $n$ is odd}
 \end{cases}
 $$
-Then $\Pr(V_{n+1} \neq \tildV_{n+1} \given V_{n}=\tildV_{n}=1)  = 0$ and 
+There is a constructive way to get this joining. 
+Consider a vector $(U_{n_0+1}, \ldots, U_0)$ of independent random variables having the 
+uniform distribution on $(0,1)$ and which is independent of $(V_{n_0}, \tildV_{n_0})$. 
+Then, for each $n$ recursively going from $n_0$ to $-1$, set 
 $$
-\Pr(V_{n+1} \neq \tildV_{n+1} \given V_{n}=\tildV_{n}=0) 
-= \left|\frac{f_n}{f_{n-1}} - \phi^{-1}\right| =: \alpha_n.
+V_{n+1} = \begin{cases}
+0 & \text{if $V_n=1$} \\
+0 & \text{if $V_n=0$ and $U_{n+1} < \frac{f_n}{f_{n-1}}$} \\
+1 & \text{if $V_n=0$ and $U_{n+1} \geq \frac{f_n}{f_{n-1}}$}
+\end{cases}, \quad 
+\tildV_{n+1} = \begin{cases}
+0 & \text{if $\tildV_n=1$} \\
+0 & \text{if $\tildV_n=0$ and $U_{n+1} < \phi^{-1}$} \\
+1 & \text{if $\tildV_n=0$ and $U_{n+1} \geq \phi^{-1}$}
+\end{cases}.
 $$
-Therefore the probability
+In this way it is clear that this joining of 
+$(V_{n_0}, \ldots, V_0)$ and 
+$(\tildV_{n_0}, \ldots, \tildV_0)$ is synchronous. 
+
+The probability 
 $$
 \beta_n:=\Pr(V_{n+1} = \tildV_{n+1} \mid V_{n}=\tildV_{n})
 $$
-lies between $\alpha_n$ and $1$. 
+is an average of 
+$\Pr(V_{n+1} = \tildV_{n+1} \given V_{n}=\tildV_{n}=1)  = 1$ and 
+$$
+\Pr(V_{n+1} = \tildV_{n+1} \given V_{n}=\tildV_{n}=0) 
+= 1 - \left|\frac{f_n}{f_{n-1}} - \phi^{-1}\right| =: \alpha_n, 
+$$
+hence it lies between $\alpha_n$ and $1$. 
 Thus, when $n_0 \leq N \leq 0$, 
 $$
 \Pr(V_{n_0} = \tildV_{n_0}, V_{n_0+1} = \tildV_{n_0+1}, \ldots, V_{N} = \tildV_{N}) = 
@@ -224,12 +450,16 @@ $$
 \geq \Pr(V_{n_0} = \tildV_{n_0}) \prod_{k={n_0}}^N \alpha_k.
 $$
 The rational numbers $\frac{f_n}{f_{n-1}}$ are the convergent of the continued fraction 
-expansion of $\phi^{-1}$, hence $\alpha_n \leq {(f_{n-1}f_{n-2})}^{-1}$. 
-Therefore $\prod \alpha_k$ is a divergent product. 
-Consequently, for any $\delta>0$, one can find an integer $N \leq 0$ such that 
+expansion of $\phi^{-1}$, hence $1 - \alpha_n \leq {(f_{n-1}f_{n-2})}^{-1}$. 
+Therefore $\prod \alpha_k$ is a divergent product.
+
+Consequently, the two processes ${(V_n)}_{n \leq 0}$ and ${(\tildV_n)}_{n \leq 0}$ 
+are joinable. Indeed, given $\delta>0$, if one takes $N$ such that 
+$\prod_{k={-\infty}}^N \alpha_k > 1 - \delta$ and such that 
+$\Pr(V_{n_0} = \tildV_{n_0}) > 1-\delta$ when the construction starts at 
+$n_0 \leq N$, one gets 
 $$
-\Pr(V_{n_0} = \tildV_{n_0}, V_{n_0+1} = \tildV_{n_0+1}, \ldots, V_{N} = \tildV_{N}) > 1-\delta.
+\Pr(V_{n_0} = \tildV_{n_0}, V_{n_0+1} = \tildV_{n_0+1}, \ldots, V_{N} = \tildV_{N}) > 1-2\delta.
 $$
-for every $n_0 \leq N$. 
 
 \end{document}
