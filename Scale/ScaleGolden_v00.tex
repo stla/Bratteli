@@ -90,7 +90,7 @@ When $\left\{\begin{smallmatrix} {(X'_n)}_{0 \leq n \leq n_0} \\
 \end{smallmatrix}\right.$  is a \emph{synchronous joining} in the situation when 
 ${(X'_n)}_{0 \leq n \leq n_0}$ is a copy of a random vector 
 ${(X_n)}_{0 \leq n \leq n_0}$  and ${(Y'_n)}_{0 \leq n \leq n_0}$ 
-is a copy of a random vector ${(Y_n)}_{0 \leq n \leq n_0}$, we say that 
+is a copy of a random vector ${(Y_n)}_{0 \leq n \leq n_0}$, we also say that 
 $\left\{\begin{smallmatrix} {(X'_n)}_{0 \leq n \leq n_0} \\ 
 {(Y'_n)}_{0 \leq n \leq n_0}
 \end{smallmatrix}\right.$  is a \emph{synchronous joining of 
@@ -100,8 +100,8 @@ ${(X_n)}_{0 \leq n \leq n_0}$ and ${(Y_n)}_{0 \leq n \leq n_0}$}.
 Let ${(X_n)}_{n \leq 0}$ and ${(Y_n)}_{n \leq 0}$ be two stochastic processes. 
 We say that they are \emph{closely joinable} if for every $\delta >0$ there exists 
 $N_\delta \leq 0$ such that for every $n_0 \leq N_\delta$ there exists a 
-synchronous joining $\left\{\begin{smallmatrix} {(X_n)}_{n_0 \leq n \leq N_\delta} \\ 
-{(Y_n)}_{n_0 \leq n \leq N_\delta}
+synchronous joining $\left\{\begin{smallmatrix} {(X'_n)}_{n_0 \leq n \leq N_\delta} \\ 
+{(Y'_n)}_{n_0 \leq n \leq N_\delta}
 \end{smallmatrix}\right.$ 
 of ${(X_n)}_{n_0 \leq n \leq N_\delta}$ and ${(Y_n)}_{n_0 \leq n \leq N_\delta}$ 
 such that 
@@ -110,37 +110,209 @@ $$
 $$ 
 \end{definition}
 
-\begin{thm}
-Let ${(X_n)}_{n \leq 0}$ and ${(Y_n)}_{n \leq 0}$ be two stochastic processes, and 
+\begin{thm}\label{thm:joinable}
+Let ${(X_n)}_{n \leq 0}$ and ${(Y_n)}_{n \leq 0}$ be two Markovian stochastic processes, and 
 denote by $\FF$ and $\GG$ the filtrations they respectively generate. 
+Assume ${(X_n)}_{n \leq 0}$ and ${(Y_n)}_{n \leq 0}$ are closely joinable. 
 \begin{enumerate}
-\item If $\FF_{-\infty}$ is degenerate, then $\GG_{-\infty}$ is degenerate.
+\item The $\sigma$-field $\FF_{-\infty}$ is degenerate if and 
+only if the $\sigma$-field $\GG_{-\infty}$ is degenerate.
 
-\item If $\FF$ is I-cosy, then $\GG$ is I-cosy.
+\item The filtration $\FF$ is I-cosy if and only if the filtration $\GG$ is I-cosy.
 \end{enumerate}
 \end{thm}
 
-This theorem will be proved with the help of the following lemma. 
+We firstly prove the first point of this theorem. 
+
+\begin{proof}[Proof of 1 in Theorem~\ref{thm:joinable}]
+Let $X_0$ be a $\FF_0$-measurable random variable taking its values in $[0,1]$. 
+To establish the claim, it suffices to show that 
+$\EE[X_{0} \given \FF_{-\infty}]$ can be made as $L^1$-close as desired to a 
+$\GG_{-\infty}$-measurable random variable. 
+
+Let $\delta>0$ and $N = N_\delta$ the integer provided by the joinability assumption. 
+One has 
+$\EE[X_0 \given \FF_{N}\bigr] = g(X_{N})$ 
+for a certain Borelian function $g$ taking its values in $[0,1]$. 
+Take the joining provided by the joinability assumption with 
+$n_0$ small enough in order that 
+$$
+\EE\left[ \Bigr| 
+\EE[X_0 \given \FF_{n_0}] - \EE[X_0 \given \FF_{-\infty}] 
+\Bigl| \right] 
+\leq \delta
+\quad \text{and }\; 
+\EE\left[ \Bigr| 
+\EE\bigl[g(Y_N) \given \GG_{n_0}\bigr] - \EE\bigl[g(Y_N) \given \GG_{-\infty}\bigr]
+\Bigl| \right] 
+\leq \delta,
+$$
+which is possibly by virtue of the theorem on reverse martingale convergence. 
+
+One has $\EE\bigl[\bigl|g(X'_N) - g(Y'_N)\bigr|\Bigr] \leq \delta$. Therefore 
+$$
+\EE\left[ \Bigr|\EE\bigl[g(X'_N) \given \sigma(X'_{n_0}, Y'_{n_0})\bigr] 
+ - \EE\bigl[g(Y'_N) \given \sigma(X'_{n_0}, Y'_{n_0}) \bigr] \Bigl| \right] \leq \delta.
+$$
+because of the contractivity of the conditional expectation. 
+By immersion, 
+$$
+\EE\bigl[g(X'_N) \given \sigma(X'_{n_0}, Y'_{n_0})\bigr] 
+= \EE\bigl[g(X'_N) \given \sigma(X'_{n_0})\bigr] = \EE\bigl[X'_0 \given \sigma(X'_{n_0})\bigr]
+$$
+and 
+$$
+\EE\bigl[g(Y'_N) \given \sigma(X'_{n_0}, Y'_{n_0})\bigr] 
+= \EE\bigl[g(Y'_N) \given \sigma(Y'_{n_0})\bigr]. 
+$$
+On the other hand, 
+\begin{align*}
+\EE\left[ \Bigr| 
+\EE\bigl[X'_0 \given \sigma(X'_{n_0})\bigr] 
+ - \EE\bigl[g(Y'_N) \given \sigma(Y'_{n_0})\bigr] 
+\Bigl| \right] 
+& = \EE\left[ \Bigr| 
+\EE\bigl[X_0 \given \sigma(X_{n_0})\bigr] 
+ - \EE\bigl[g(Y_N) \given \sigma(Y_{n_0})\bigr] 
+\Bigl| \right] \\
+& = \EE\left[ \Bigr| 
+\EE\bigl[X_0 \given \FF_{n_0}\bigr] 
+ - \EE\bigl[g(Y_N) \given \GG_{n_0}\bigr] 
+\Bigl| \right]
+\end{align*}
+By combining the previous equalities and inequalities, 
+$$
+\EE\left[ \Bigr| 
+\EE[X_0 \given \FF_{-\infty}\bigr]  -  \EE\bigl[g(Y_N) \given \GG_{-\infty}\bigr]
+\Bigl| \right] 
+\leq 3\delta,
+$$
+%
+%\bigskip
+%
+%xxxxxx
+%
+%Let $\delta >0$ and take the joining provided by the joinability assumption. 
+%
+%xxxxx je suppose que j'ai le joining de $-\infty$ à $N$ xxxxx
+%
+%One has 
+%$\EE[X'_0 \given \FF'_{N_\delta}\bigr] = g(X'_{N_\delta})$ 
+%for a certain Borelian function $g$ taking its values in $[0,1]$, and 
+%$\EE\bigl[\bigl|g(X'_N) - g(Y'_N)\bigr|\Bigr] \leq \delta$. Therefore 
+%$$
+%\EE\left[ \Bigr|\EE\bigl[g(X'_N) \given \HH_n\bigr] 
+% - \EE\bigl[g(Y'_N) \given \HH_n \bigr] \Bigl| \right] \leq \delta.
+%$$
+%for every $n \leq N$ because of the contractivity of the conditional expectation. 
+%
+%By immersion, 
+%$$
+%\EE\bigl[g(X'_N) \given \HH_n\bigr] = \EE\bigl[g(X'_N) \given \FF_n\bigr] = \EE[X'_0 \given \FF'_{n}]
+%$$
+%and 
+%$$
+%\EE\bigl[g(Y'_N) \given \HH_n\bigr] = \EE\bigl[g(Y'_N) \given \GG_n\bigr].
+%$$
+%By the theorem on reverse martingale convergence, 
+%$$
+%\EE\left[ \Bigr| 
+%\EE[X'_0 \given \FF'_{n}] - \EE[X'_0 \given \FF'_{-\infty}] 
+%\Bigl| \right] 
+%\leq \delta
+%\quad \text{and }\; 
+%\EE\left[ \Bigr| 
+%\EE\bigl[g(Y'_N) \given \GG_n\bigr] - \EE\bigl[g(Y'_N) \given \GG_{-\infty}\bigr]
+%\Bigl| \right] 
+%\leq \delta
+%$$
+%whenever $n$ is small enough. 
+%By combining the previous equalities and inequalities, 
+%$$
+%\EE\left[ \Bigr| 
+%\EE[X'_0 \given \FF'_{-\infty}\bigr]  -  \EE\bigl[g(Y'_N) \given \GG_{-\infty}\bigr]
+%\Bigl| \right] 
+%\leq 3\delta.
+%$$
+%
+%
+%\bigskip 
+%
+%xxxxxxxxxx
+%
+%On suppose $\GG_{-\infty}$ triviale. Montrons que $\FF_{-\infty}$ est triviale. 
+%
+%Prenons un entier $N_0 \leq 0$ et $\delta >0$. 
+%Tâchons de montrer que $\EE\bigl[f(X_{N_0}) \given \FF_n\bigr] \to 0$ dans $L^1$, où $f$ est une fonction mesurable qui prend ses valeurs dans $[0,1]$. 
+%
+%Prenons $N=N_\delta \leq N_0$ tel que en faisant le couplage qu'on a vu, on a $\Pr(X_N \neq Y_N) < \delta$. Notons $\HH=\FF\vee\GG$ la filtration engendrée par les deux processus. En raison de la coïmmersion, on a 
+%$$
+%\EE\bigl[f(X_{N_0}) \given \FF_n\bigr] = \EE\bigl[f(X_{N_0}) \given \HH_n\bigr] 
+%$$
+%Prenons $n \leq N$. On a 
+%$$
+%\EE\bigl[f(X_{N_0}) \given \HH_n\bigr] = 
+%\EE\Bigl[\EE\bigl[f(X_{N_0}) \given X_N\bigr] \given \HH_n \Bigr].
+%$$
+%On a une fonction $g$ à valeurs dans $[0,1]$ telle que $\EE\bigl[f(X_{N_0}) \given X_N\bigr] = g(X_N)$, et on a pris $N$ de sorte que $\Pr\bigl(g(X_N) \neq g(Y_N)\bigr) < \delta$. Par la propriété de contractivité de l'espérance conditionnelle, 
+%$$
+%\EE\left[ \Bigr|\EE\bigl[g(X_N) \given \HH_n\bigr] 
+% - \EE\bigl[g(Y_N) \given \HH_n \bigr] \Bigl| \right] \leq 2\delta.
+%$$
+%
+%xxxx
+%
+%a-t-on \emph{égalité} ? 
+%
+%en construisant une suite $(n_k)$ telle que 
+%$$
+%\EE\bigl[f(X_{N_0}) \given \FF_{n_k}\bigr] - \EE\bigl[f(X_{N_0}) \given \GG_{n_k}\bigr] \to 0
+%$$
+%?
+%xxx
+%
+%Pour $n$ suffisamment petit, 
+%$$
+%\EE\left[ \Bigr|\EE\bigl[g(Y_N) \given \HH_n \bigr] 
+%- \EE\bigl[g(Y_N) \bigr] \Bigl| \right] \leq \delta, 
+%$$
+%et finalement 
+%$$
+%\EE\left[ \Bigr|\EE\bigl[g(X_N) \given \HH_n\bigr] 
+% - \EE\bigl[g(Y_N) \bigr] \Bigl| \right] \leq 3\delta.
+%$$
+%
+%Ceci montre que $\EE\bigl[f(X_{N_0}) \given \FF_n\bigr]$ a une limite dans $L^1$ aussi proche qu'on veut d'une constante. 
+and the proof is over.
+\end{proof}
+
+\begin{remark}
+We did not entirely use the inequality 
+$\Pr(X'_{n_0}=Y'_{n_0}, \ldots, X'_{N_\delta}=Y'_{N_\delta}) > 1-\delta$, but 
+only $\Pr(X'_{N_\delta}=Y'_{N_\delta}) > 1-\delta$.
+\end{remark}
+
+The second point of the theorem will be proved with the help of the following lemma. 
 
 \begin{lemma}
-Soient 
+Let 
 $\left\{\begin{smallmatrix} {(X_n)}_{0 \leq n \leq n_0} \\ 
 {(Y_n)}_{0 \leq n \leq n_0}
 \end{smallmatrix}\right.$  
-un couplage synchrone de 
-deux vecteurs aléatoires ${(X_n)}_{0 \leq n \leq n_0}$ et ${(Y_n)}_{0 \leq n \leq n_0}$. 
-Sur un autre espace probabilisé, soit 
+be a synchronous joining of two random vectors 
+${(X_n)}_{0 \leq n \leq n_0}$ and ${(Y_n)}_{0 \leq n \leq n_0}$. 
+If 
 $\left\{\begin{smallmatrix} {(X'_n)}_{0 \leq n \leq n_0} \\ 
 {(X''_n)}_{0 \leq n \leq n_0}
 \end{smallmatrix}\right.$
-un couplage synchrone de deux copies 
-de ${(X_n)}_{0 \leq n \leq n_0}$. 
-Alors, sur cet espace probabilisé éventuellement grossi, il 
-existe un couplage synchrone 
+is a synchronous joining of two copies of ${(X_n)}_{0 \leq n \leq n_0}$ 
+on some probability space,  
+then, on an enlargement of this probability space, there 
+exists a synchronous joining 
 $\left\{\begin{smallmatrix} {(Y'_n)}_{0 \leq n \leq n_0} \\ 
 {(Y''_n)}_{0 \leq n \leq n_0}
 \end{smallmatrix}\right.$
-de deux copies de ${(Y_n)}_{0 \leq n \leq n_0}$ 
+of two copies of ${(Y_n)}_{0 \leq n \leq n_0}$ 
 such that  
 $\left\{\begin{smallmatrix} {(X'_n)}_{0 \leq n \leq n_0} \\ 
 {(Y'_n)}_{0 \leq n \leq n_0}
@@ -258,6 +430,13 @@ ${(X'_n)}_{0 \leq n \leq n_0}$, ${(X''_n)}_{0 \leq n \leq n_0}$,
 ${(Y'_n)}_{0 \leq n \leq n_0}$, and ${(Y''_n)}_{0 \leq n \leq n_0}$ 
 are jointly immersed in the filtration ${(\HH_n)}_{0 \leq n \leq n_0}$.
 \end{proof}
+
+Now we prove the second point of Theorem~\ref{thm:joinable}.
+
+\begin{proof}[Proof of 2 in Theorem~\ref{thm:joinable}]
+
+\end{proof}
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
