@@ -55,6 +55,7 @@
 \newtheorem{lemma}{Lemma}
 \newtheorem{lemme}{Lemme}
 
+\renewcommand{\AA}{\mathcal{A}}
 \newcommand{\BB}{\mathcal{B}}
 \newcommand{\CC}{\mathcal{C}}
 \newcommand{\EEE}{\mathcal{E}}
@@ -65,8 +66,10 @@
 \newcommand{\II}{\mathcal{I}}
 \newcommand{\LL}{\mathcal{L}}
 \newcommand{\OO}{\mathcal{O}}
+\newcommand{\PP}{\mathbb{P}}
 \newcommand{\XX}{\mathcal{X}}
 \newcommand{\given}{\mid}
+\newcommand{\biggiven}{\,\big\vert\,}
 \newcommand{\eps}{\epsilon}
 \newcommand{\indic}{\boldsymbol 1}
 \newcommand{\Vb}{\boldsymbol V}
@@ -75,6 +78,7 @@
 \newcommand{\indvee}{\dot{\vee}}
 \newcommand{\indep}{\mathrel{\text{\scalebox{1.07}{$\perp\mkern-10mu\perp$}}}}
 
+\newcommand{\disp}{\textrm{disp}}
 
 \maketitle
 
@@ -131,13 +135,10 @@ a & \text{si $G=bd$ et $\epsilon_{2n+1}=H$} \\
 c & \text{si $G=bd$ et $\epsilon_{2n+1}=B$} \\
 \end{cases}.
 $$
- 
 %
 %Notons $G$ une variable aléatoire qui prend les valeurs $ac$ ou $bd$ avec équiprobabilité. 
 %Notons ${(\epsilon_n)}_{n \leq 0}$ une suite de variables de Bernoulli indépendantes et symétriques sur $\{B,H\}$  et indépendante de $G$. 
 %On pose 
-
-
 \end{exemple}
 
 \begin{exemple}[Variables aléatoires échangeables]\label{exple:echangeable}
@@ -148,16 +149,8 @@ $\Theta$.
 La tribu germe $\FF_{-\infty}$ de la filtration $\FF$ engendrée par 
 ${(\epsilon_n)}_{n \leq 0}$ n'est pas dégénérée : c'est la tribu $\sigma(\Theta)$. 
 L'inclusion $\sigma(\Theta) \subset \FF_{-\infty}$ s'obtient avec la loi des 
-grands nombres. Montrons l'inclusion réciproque. 
-Soit $A \in \FF_{-\infty}$. Alors $A$ est conditionnellement 
-indépendant de tout événement 
-$B \in \BB_n := \sigma(\epsilon_0, \ldots, \epsilon_n)$ sachant 
-$\Theta$. Il est donc conditionnellement 
-indépendant sachant $\Theta$ de tout événement 
-$B \in \bigcup_{n \leq 0}\BB_n$ et par le théorème des classes monotones 
-il est conditionnellement indépendant sachant $\Theta$ de $\FF_0$. 
-Finalement $A$ est conditionnellement indépendant sachant 
-$\Theta$ de lui-même, donc il est mesurable pour $\sigma(\Theta)$. 
+grands nombres. L'inclusion réciproque 
+résulte du lemme~\ref{lemme:tribuI}. 
 \end{exemple}
 
 
@@ -171,7 +164,8 @@ $\FF_{-\infty} = \bigvee_{n \geq 0} \II_n \otimes \{\varnothing, [0,1]\}$
 où $\II_n$ est la tribu des invariants de $T^{2^n}$. 
 Or $\II_n$ est la tribu engendrée par les intervalles 
  $\left[\frac{k}{2^n}, \frac{k+1}{2^n}\right[$, $k=0, \ldots, 2^{n}-1$, 
-et donc $\FF_{-\infty}$ .......
+et donc $\FF_{-\infty}$ est la tribu borélienne de $[0,1]$. 
+Le mot $X_n$ est déterministe conditionnellement à $\FF_{-\infty}$.
 \end{exemple}
 
 
@@ -180,27 +174,9 @@ et donc $\FF_{-\infty}$ .......
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Filtrations de type C-produit}
 
-Dans l'exemple \ref{exple:echangeable}, nous avons démontré le lemme suivant.
-
-\begin{lemme}\label{lemme:tribuI}
-Soit ${(V_n)}_{n \leq 0}$ une suite de v.a.\ conditionnellement indépendantes 
-sachant une tribu $\II$. Alors 
-$\bigcap_{n \leq 0}\sigma(\ldots, V_{n-1}, V_n) \subset \II$.
-\end{lemme}
-
-\begin{proof}
-Soit $A \in \bigcap_{n \leq 0}\sigma(\ldots, V_{n-1}, V_n)$. Alors $A$ est conditionnellement 
-indépendant de tout événement 
-$B \in \BB_n := \sigma(V_0, \ldots, V_n)$ sachant 
-$\II$. Il est donc conditionnellement 
-indépendant sachant $\II$ de tout événement 
-$B \in \bigcup_{n \leq 0}\BB_n$ et par le théorème des classes monotones 
-il est conditionnellement indépendant sachant $\II$ de $\sigma(\ldots, V_{-1}, V_0)$. 
-Finalement $A$ est conditionnellement indépendant sachant 
-$\II$ de lui-même, donc il est mesurable pour $\II$. 
-\end{proof}
-
- 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Définitions}
 
 \begin{definition}
 Une filtration $\FF$ est dite de type C-produit quand elle est engendrée par 
@@ -229,93 +205,140 @@ $\bigcap_{n \leq 0}\sigma(\ldots, V_{n-1}, V_n) \subset \sigma(G)$ et l'inclusio
 réciproque est évidente.
 \end{exemple}
 
-%\begin{lemme}\label{lemme:parametrisation}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Paramétrisation}
+
+Soit $\FF$ une filtration de type C-produit engendrée par 
+une suite de v.a.\ ${(V_n)}_{n \leq 0}$ conditionnellement indépendantes 
+sachant $\bigcap_{n \leq 0}\sigma(\ldots, V_{n-1}, V_n) = \FF_{-\infty}$. 
+On note $G$ une v.a.\ qui engendre $\FF_{-\infty}$.
+
+Soit $n_0 \leq -1$ un entier. Nous allons construire une copie de 
+$\FF$ avec une paramétrisation spéciale de $n_0+1$ à $0$. 
+
+Considérons un espace probabilisé avec une copie ${(V'_n)}_{n \leq n_0}$ 
+de ${(V_n)}_{n \leq n_0}$ et un vecteur $(U'_{n_0+1}, \ldots, U'_0)$ 
+de variables aléatoires indépendantes uniformes sur $[0,1]$, indépendant 
+de ${(V'_n)}_{n \leq n_0}$. 
+On a la copie $G'$ de $G$. 
+En utilisant le lemme~\ref{lemme:representation2}, on peut construire 
+$V'_{n_0+1} = f_{n_0+1}(G', U'_{n_0+1})$ tel que 
+${(V'_n)}_{n \leq n_0+1}$ a même loi que ${(V_n)}_{n \leq n_0+1}$. 
+En poursuivant cette construction, on obtient le lemme suivant. 
+
+\begin{lemme}\label{lemme:parametrisation}
+Soit $\FF$ une filtration de type C-produit engendrée par 
+une suite de v.a.\ ${(V_n)}_{n \leq 0}$  conditionnellement indépendantes 
+sachant $\bigcap_{n \leq 0}\sigma(\ldots, V_{n-1}, V_n) = \FF_{-\infty}$. 
+Alors on peut considérer (c'est-à-dire à isomorphisme près) que 
+pour tout $n_0 \leq -1$, il existe une paramétrisation 
+$(U_{n_0+1}, \ldots, U_0)$  de $\FF$ 
+telle que $\sigma(V_n) \subset \FF_{-\infty} \indvee \sigma(U_n)$ 
+pour tout  $n \in \{n_0+1, \ldots, 0\}$.
+\end{lemme}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Couplage à la Rosenblatt}\label{sec:Rosenblatt}
+
+\`A l'aide du lemme~\ref{lemme:parametrisation}, on 
+peut construire, pour une filtration de type 
+$C$-produit, l'analogue d'un couplage à la Rosenblatt (terminologie de \cite{LauXLIII}).
+
+
+Soit $n_0 \leq -1$ un entier. 
+Considérons un espace probabilisé avec : 
+\begin{itemize}
+\item[$\bullet$] (en utilisant le lemme~\ref{lemme:CIcopies}) 
+deux copies $\FF'_{n_0}$ et $\FF''_{n_0}$ de $\FF_{n_0}$
+ telles que $\FF'_{n_0} \indep_{\bar\FF_{-\infty}} \FF''_{n_0}$, 
+ où $\bar\FF_{-\infty}$ est la copie commune de $\FF_{-\infty}$ par les deux 
+isomorphismes ;
+
+\item[$\bullet$] un vecteur aléatoire $(\bar U_{n_0+1}, \ldots, \bar U_0)$ 
+de variables aléatoires indépendantes uniformes sur $[0,1]$, indépendant 
+de $\FF'_{n_0} \vee \FF''_{n_0}$. 
+\end{itemize}
+
+Notons $G$ une v.a.\ qui engendre  $\FF_{-\infty}$ et prenons les fonctions $f_n$ du lemme~\ref{lemme:parametrisation} telles que $V_n = f_n(G, U_n)$ 
+pour $n \in \{n_0+1, \ldots, 0\}$. 
+Notant $\bar G$ la copie commune de $G$, on pose alors 
+$\bar V_n = f_n(\bar G, \bar U_n)$. 
+On définit alors les tribus 
+$$
+\FF'_n = \FF'_{n_0} \vee \sigma(\bar V_{n_0+1}, \ldots, \bar V_n) 
+\quad \text{et }\;
+\FF''_n = \FF''_{n_0} \vee \sigma(\bar V_{n_0+1}, \ldots, \bar V_n).  
+$$
+Les filtrations ${(\FF'_n)}_{n_0 \leq n \leq 0}$ et 
+${(\FF''_n)}_{n_0 \leq n \leq 0}$ sont deux copies co\"immergées de 
+${(\FF_n)}_{n_0 \leq n \leq 0}$. 
+
+
+%
+%\begin{lemme}\label{lemme:couplage}
 %Soit $\FF$ une filtration de type C-produit engendrée par 
 %une suite de v.a.\ ${(V_n)}_{n \leq 0}$  conditionnellement indépendantes 
 %sachant $\bigcap_{n \leq 0}\sigma(\ldots, V_{n-1}, V_n) = \FF_{-\infty}$. 
 %Pour tout $n_0 \leq 0$, il existe, sur un même espace probabilisé, 
-%une filtration $\FF'$ isomorphe à $\FF$, et des variables aléatoires
-%$U'_{n_0+1}, \ldots, U'_0$  uniformes sur 
+%deux filtrations $\FF'$ et $\FF''$ isomorphes à $\FF$, et des variables aléatoires
+%$\bar U_{n_0+1}, \ldots, \bar U_0$ indépendantes et uniformes sur 
 %$[0,1]$ telles que 
 %\begin{itemize}
-%\item[$\bullet$] les $U'_n$ sont indépendantes entre elles et 
-%indépendantes de $\FF'_{n_0}$
+%\item[$\bullet$] la tribu $\FF_{-\infty}$ a la m\^eme copie $\bar\FF_{-\infty}$ par les 
+%deux isomorphismes ;
 %
-%\item[$\bullet$] $\FF'_{n+1} \subset \FF'_n \indvee \sigma(U'_{n+1})$ 
+%\item[$\bullet$] $\FF'_{n_0} \indep_{\bar\FF_{-\infty}} \FF''_{n_0}$ ;
+%
+%\item[$\bullet$] les $\bar U_n$ sont indépendantes de $\FF'_{n_0}$
+%
+%\item[$\bullet$] $\FF'_{n+1} \subset \FF'_n \indvee \sigma(\bar U_{n+1})$ 
+%et $\FF''_{n+1} \subset \FF''_n \indvee \sigma(\bar U_{n+1})$ 
 %pour tout $n \in \{n_0, \ldots, -1\}$ 
 %
-%\item[$\bullet$] $V'_n$ est mesurable pour $\FF'_{-\infty} \indvee \sigma(U'_n)$ 
+%\item[$\bullet$] $V'_n = V''_n =: \bar V_n$ pour tout $n \in \{n_0+1, \ldots, 0\}$ ;
+%
+%\item[$\bullet$] $\bar V_n$ est mesurable pour $\bar\FF_{-\infty} \indvee \sigma(\bar U_n)$ 
 %pour tout  $n \in \{n_0+1, \ldots, 0\}$.
 %\end{itemize}
 %\end{lemme}
 %
 %\begin{proof}
+%Considérons un espace probabilisé sur lequel on a :
+%\begin{itemize}
+%\item[$\bullet$] une tribu $\bar\FF_{-\infty}$ isomorphe à $\FF_{-\infty}$ ;
+%
+%\item[$\bullet$] deux v.a.\ $U'$ et $U''$ indépendantes entre elles et 
+%indépendantes de $\FF_{-\infty}$ ; 
+%
+%\item[$\bullet$] des v.a.\ $\bar U_{n_0+1}, \ldots, \bar U_0$ uniformes sur 
+%$[0,1]$, indépendantes entre elles et indépendantes de  
+%$\FF_{-\infty} \indvee \sigma(U',U'')$.
+%\end{itemize}
+%
+%\medskip
+%\noindent
+%{\bf Construction de $\FF'$ et $\FF''$ jusqu'à $n_0$.} 
+%Notons $\bar I$ une v.a. qui engendre $\bar\FF_{-\infty}$. 
+%À l'aide du lemme~\ref{lemme:representation}, 
+%on construit 
+%$(\ldots, V'_{n_0-1}, V'_{n_0}) = g(\bar I, U')$ et 
+%$(\ldots, V''_{n_0-1}, V''_{n_0}) = g(\bar I, U'')$.
+%
+%
+%\medskip
+%\noindent
+%{\bf Construction de $\FF'$ et $\FF''$ après $n_0$.} 
+%On procède comme dans la preuve du lemme~\ref{lemme:representation2}.
 %
 %\end{proof}
-%
-%\begin{definition}
-%Un vecteur $(U'_{n_0+1}, \ldots, U'_0)$ tel que dans le lemme précédent 
-%sera appelé une paramétrisation adaptée à la filtration de type C-produit $\FF'$.
-%\end{definition}
 
-\begin{lemme}\label{lemme:couplage}
-Soit $\FF$ une filtration de type C-produit engendrée par 
-une suite de v.a.\ ${(V_n)}_{n \leq 0}$  conditionnellement indépendantes 
-sachant $\bigcap_{n \leq 0}\sigma(\ldots, V_{n-1}, V_n) = \FF_{-\infty}$. 
-Pour tout $n_0 \leq 0$, il existe, sur un même espace probabilisé, 
-deux filtrations $\FF'$ et $\FF''$ isomorphes à $\FF$, et des variables aléatoires
-$\bar U_{n_0+1}, \ldots, \bar U_0$ indépendantes et uniformes sur 
-$[0,1]$ telles que 
-\begin{itemize}
-\item[$\bullet$] la tribu $\FF_{-\infty}$ a la m\^eme copie $\bar\FF_{-\infty}$ par les 
-deux isomorphismes ;
-
-\item[$\bullet$] $\FF'_{n_0} \indep_{\bar\FF_{-\infty}} \FF''_{n_0}$ ;
-
-\item[$\bullet$] les $\bar U_n$ sont indépendantes de $\FF'_{n_0}$
-
-\item[$\bullet$] $\FF'_{n+1} \subset \FF'_n \indvee \sigma(\bar U_{n+1})$ 
-et $\FF''_{n+1} \subset \FF''_n \indvee \sigma(\bar U_{n+1})$ 
-pour tout $n \in \{n_0, \ldots, -1\}$ 
-
-\item[$\bullet$] $V'_n = V''_n =: \bar V_n$ pour tout $n \in \{n_0+1, \ldots, 0\}$ ;
-
-\item[$\bullet$] $\bar V_n$ est mesurable pour $\bar\FF_{-\infty} \indvee \sigma(\bar U_n)$ 
-pour tout  $n \in \{n_0+1, \ldots, 0\}$.
-\end{itemize}
-\end{lemme}
-
-\begin{proof}
-Considérons un espace probabilisé sur lequel on a :
-\begin{itemize}
-\item[$\bullet$] une tribu $\bar\FF_{-\infty}$ isomorphe à $\FF_{-\infty}$ ;
-
-\item[$\bullet$] deux v.a.\ $U'$ et $U''$ indépendantes entre elles et 
-indépendantes de $\FF_{-\infty}$ ; 
-
-\item[$\bullet$] des v.a.\ $\bar U_{n_0+1}, \ldots, \bar U_0$ uniformes sur 
-$[0,1]$, indépendantes entre elles et indépendantes de  
-$\FF_{-\infty} \indvee \sigma(U',U'')$.
-\end{itemize}
-
-\medskip
-\noindent
-{\bf Construction de $\FF'$ et $\FF''$ jusqu'à $n_0$.} 
-Notons $\bar I$ une v.a. qui engendre $\bar\FF_{-\infty}$. 
-À l'aide du lemme~\ref{lemme:representation}, 
-on construit 
-$(\ldots, V'_{n_0-1}, V'_{n_0}) = g(\bar I, U')$ et 
-$(\ldots, V''_{n_0-1}, V''_{n_0}) = g(\bar I, U'')$.
-
-
-\medskip
-\noindent
-{\bf Construction de $\FF'$ et $\FF''$ après $n_0$.} 
-On procède comme dans la preuve du lemme~\ref{lemme:representation2}.
-
-\end{proof}
-
-plutôt que de faire un lemme tu pourrais faire la construction dans un "paragraphe"
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -326,18 +349,24 @@ Soient $\FF$ une filtration et $X$ une v.a.\ mesurable pour $\FF_0$
 intégrable prenant ses valeurs dans un espace polonais métrique $(E,\rho)$. 
 
 On dit que $X$ satisfait le critère de CI-confort si pour tout $\delta>0$, 
-il existe deux copies $\FF'$ et $\FF''$ de $\FF$ telles que 
+il existe un entier $n_0 \leq 0$ et deux copies  ${(\FF'_n)}_{n_0 \leq n \leq 0}$ et 
+${(\FF''_n)}_{n_0 \leq n \leq 0}$ de 
+${(\FF_n)}_{n_0 \leq n \leq 0}$ telles que 
 \begin{enumerate}
-\item $\FF'$ et $\FF''$ sont co\"immergées ;
+\item  ${(\FF'_n)}_{n_0 \leq n \leq 0}$ et 
+${(\FF''_n)}_{n_0 \leq n \leq 0}$  sont co\"immergées ;
 
 \item la tribu $\FF_{-\infty}$ a la m\^eme copie $\bar\FF_{-\infty}$ par les 
 deux isomorphismes 
 
-\item $\FF'_{n_0} \indep_{\bar\FF_{-\infty}} \FF''_{n_0}$ pour un certain entier $n_0 \leq 0$ ;
+\item $\FF'_{n_0} \indep_{\bar\FF_{-\infty}} \FF''_{n_0}$ ;
 
 \item $\EE\bigl(\rho(X', X'')\bigr) < \delta$.
 \end{enumerate}
 \end{definition}
+
+Remarquons que dans les conditions de cette définition on 
+a $\FF'_{n}\cap\FF''_{n} = \bar\FF_{-\infty}$ pour tout $n \leq n_0$, en vertu du lemme~\ref{lemme:CIinter}.
 
 \begin{definition}
 Soit $\FF$ une filtration. On dit qu'une tribu $\BB \subset \FF_0$ 
@@ -350,17 +379,6 @@ Soit $\FF$ une filtration. Elle est dite \emph{CI-confortable} si
 la tribu $\FF_0$  satisfait le critère de CI-confort. 
 \end{definition}
 
-Remarquons que dans les conditions de cette définition on 
-a $\FF'_{n}\cap\FF''_{n} = \bar\FF_{-\infty}$ pour tout $n \leq n_0$, en vertu du lemme~\ref{lemme:CIinter}.
-
-\begin{ppsition}\label{ppsition:CIferme}
-Pour tout espace métrique polonais $(E,\rho)$, 
-l'ensemble des v.a.\ $X \in L^1(\FF_0; E)$ qui satisfont le critère de CI-confort est fermé. 
-\end{ppsition}
-
-\begin{proof}
-
-\end{proof}
 
 \begin{ppsition}
 Soit $\FF$ une filtration de type C-produit. Alors $\FF$ est CI-confortable.
@@ -375,7 +393,7 @@ Soit $X \in L^1\bigl(\FF_0; [0,1]\bigr)$. Pour $\delta>0$, il existe
 $n_0 \leq 0$ et une v.a.\ $Y \in L^1\bigl(\sigma(V_{n_0+1},\ldots, V_0); [0,1]\bigr)$ 
 telle que $\EE\bigl[|X-Y|\bigr] < \delta$. 
  
-On utilise le couplage du lemme~\ref{lemme:couplage}. 
+On utilise le couplage de la section~\ref{sec:Rosenblatt}. 
 Avec ce couplage on a $Y'=Y''$, et donc on obtient 
 $\EE\bigl[|X'-X''|\bigr] < 2\delta$. 
 %Par la proposition \ref{ppsition:CIferme}, il suffit de montrer que 
@@ -415,36 +433,94 @@ $$
 \end{proof}
 
 
+\begin{ppsition}\label{ppsition:CIferme}
+Pour tout espace métrique polonais $(E,\rho)$, 
+l'ensemble des v.a.\ $X \in L^1(\FF_0; E)$ qui satisfont le critère de CI-confort est fermé. 
+\end{ppsition}
+
+\begin{proof}
+
+\end{proof}
+
+\begin{ppsition}\label{ppsition:CItribu}
+Une v.a.\ $X \in L^1(\FF_0; E)$ satisfait le critère de CI-confort si 
+et seulement si la tribu $\sigma(X)$ satisfait le critère de CI-confort. 
+\end{ppsition}
+
+\begin{proof}
+
+\end{proof}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Critère de Vershik}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Dispersion}
+
+Sur un m\^eme espace probabilisé, soient $X$ une v.a.\ intégrable 
+dans un espace métrique polonais $(E,\rho)$ et $\II$ une tribu. 
+
+On pose $\BB= \II \vee \sigma(X)$ et on considère le couplage 
+ $\left\{\begin{smallmatrix} 
+(\bar \II, \BB')
+\\ 
+(\bar \II, \BB'')
+\end{smallmatrix}\right.$ 
+de $\bigl(\II, \BB\bigr)$ fourni par le lemme~\ref{lemme:CIcopies}. 
+
+On définit alors la dispersion de $X$ par rapport à $\II$ :
+$$
+\disp_\II(X) = \EE\bigl[\rho(X', X'') \bigr]
+$$
+
+\begin{lemme}\label{lemme:dispersion}
+Si $\disp_\II(X) < \epsilon$ alors il existe une v.a.\ $S$ mesurable pour $\II$ 
+telle que  $\EE\bigl[\rho(X, S) \bigr] < \epsilon$. 
+
+S'il existe  une v.a.\ $S$ mesurable pour $\II$ 
+telle que  $\EE\bigl[\rho(X, S) \bigr] < \epsilon$ alors 
+ $\disp_\II(X) < 2\epsilon$.
+\end{lemme}
+
+\begin{proof}
+Le premier point résulte du lemme~\ref{lemme:desintegr}. 
+Le second résulte de l'inégalité triangulaire. 
+\end{proof}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Critère de Vershik}
+
+\begin{definition}
+Soit $\FF$ une filtration. On dit qu'une v.a.\ $X \in L^1$ 
+satisfait le critère de Vershik si $\disp_{\FF_{-\infty}}(X) \to 0$.
+Partant de cette définition, on 
+ définit le critère de Vershik pour les sous-tribus de $\FF_0$ et pour $\FF$ 
+comme d'habitude. 
+\end{definition}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Du CI-confort à Vershik}
 
 Soit $X \in L^1$ qui satisfait le critère de CI-confort (définition~\ref{def:CIconfort}). 
-
 Par la co\"immersion, le processus ${\bigl(\rho_n(\pi_n X', \pi_n X'')\bigr)}_{n \leq 0}$ 
 est une sous-martingale, donc 
 $$
 \EE\bigl[ \rho_n(\pi_n X', \pi_n X'') \bigr] < \delta. 
 $$
-Ceci équivaut (lemme~\ref{lemme:desintegr}) à l'existence d'une v.a. $\bar S$ 
-mesurable pour $\bar\FF_{-\infty}$ telle que  
-$$
-\EE\bigl[ \rho_n(\pi_n X', \bar S) \bigr] < \delta. 
-$$
-ce qui revient à l'existence d'une v.a. $S$ 
-mesurable pour $\FF_{-\infty}$ telle que  
-$$
-\EE\bigl[ \rho_n(\pi_n X, S) \bigr] < \delta. 
-$$
+
+Il est donc clair que le CI-confort implique le critère de Vershik. 
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{De Vershik au CI-confort}
 
+On démontre que le critère de Vershik pour $X$ implique le critère de confort 
+pour $X$ en utilisant la proposition 8.1 de \cite{LauTeoriya}. 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -462,6 +538,26 @@ Toute v.a.\ mesurable pour $\BB\cap\BB'$ est conditionnellement indépendante
 d'elle-même sachant $\CC$. 
 \end{proof}
 
+
+\begin{lemme}\label{lemme:tribuI}
+Soit ${(V_n)}_{n \leq 0}$ une suite de v.a.\ conditionnellement indépendantes 
+sachant une tribu $\II$. Alors 
+$\bigcap_{n \leq 0}\sigma(\ldots, V_{n-1}, V_n) \subset \II$.
+\end{lemme}
+
+\begin{proof}
+Soit $A \in \bigcap_{n \leq 0}\sigma(\ldots, V_{n-1}, V_n)$. Alors $A$ est conditionnellement 
+indépendant de tout événement 
+$B \in \BB_n := \sigma(V_0, \ldots, V_n)$ sachant 
+$\II$. Il est donc conditionnellement 
+indépendant sachant $\II$ de tout événement 
+$B \in \bigcup_{n \leq 0}\BB_n$ et par le théorème des classes monotones 
+il est conditionnellement indépendant sachant $\II$ de $\sigma(\ldots, V_{-1}, V_0)$. 
+Finalement $A$ est conditionnellement indépendant sachant 
+$\II$ de lui-même, donc il est mesurable pour $\II$. 
+\end{proof}
+
+ 
 \begin{lemme}\label{lemme:representation}
 Soit $(X,V)$ un couple de variables aléatoires.  
 Sur un autre espace probabilisé, soient $X'$ une v.a.\ de même loi que 
@@ -517,6 +613,106 @@ $$
 Il existe donc au moins un $u$ tel que $\EE[d\left(X, f(I, u)\right)] < \epsilon$, 
 d'où le résultat avec $S=f(I,u)$. 
 \end{proof}
+
+%\begin{lemme}\label{lemme:desintegr2}
+%Soient $X$ et $Y$ deux v.a.\ et $\BB$ une tribu telle que $\BB\supset\sigma(Y)$. 
+%Alors 
+%$$
+%\EE\bigl[f(X,Y) \mid \BB] = \int \EE\bigl[f(X,y) \mid \BB] \mathrm{d}\mu(y)
+%$$
+%xxxx
+%\end{lemme}
+%
+%\begin{proof}
+%Notons $B$ une v.a.\ qui engendre $\BB$, et $h$ une fonction telle que 
+%$Y=h(B)$. 
+%On a 
+%$$
+%\EE\bigl[f(X,Y) \mid \BB\bigr] 
+%= \EE\Bigl[f\bigl(X,h(B)\bigr) \mid \BB\Bigr] = \psi(B)
+%$$
+%où $\psi(b) = \EE\Bigl[f\bigl(X,h(b)\bigr) \mid B=b\Bigr]$
+%
+%\end{proof}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Co\"immersions CI-séparées}
+
+\begin{lemme}\label{lemme:uniciteCIcopies}
+Soient $G$, $X$ et $Y$ trois v.a.\ sur un même espace probabilisé.  
+%$(\Omega, {\cal A}, \PP)$. 
+Soient $\Psi'$ et $\Psi''$  deux isomorphismes de 
+cet espace probabilisé dans un même espace probabilisé 
+tels que $\Psi'(G) = \Psi''(G) =: \bar G$ et 
+$\Psi'(X) \indep_{\bar G} \Psi''(Y)$.  
+Alors la loi de $\bigl(\bar G, \Psi'(X), \Psi''(Y)\bigr)$ 
+ne dépend pas du choix de $\Psi'$ et $\Psi''$. 
+\end{lemme}
+
+\begin{proof}
+Posons $X'=\Psi'(X)$ et $Y''=\Psi''(Y)$. 
+Pour toute fonctions $f_1$, $f_2$ et $g$, 
+l'espérance conditionnelle 
+$$
+\EE\bigl[f_1(X')f_2(Y'')g(\bar G) \given \bar G \bigr] 
+= \LL(X'\given\bar G)(f_1) \times \LL(Y''\given\bar G)(f_2) \times g(\bar G),
+$$
+a la même loi que 
+$$
+\LL(X\given G)(f_1) \times \LL(Y\given G)(f_2) \times g(G)
+$$
+ce qui montre que la loi de $(X',Y'',\bar G)$ ne dépend que de la loi de $G$. 
+\end{proof}
+
+\begin{lemme}\label{lemme:CIcopies}
+Soient $\BB$ et $\II \subset \BB$ des tribus sur un espace probabilisé. 
+Il existe deux isomorphismes $\Psi'$ et $\Psi''$  de 
+cet espace probabilisé dans un même espace probabilisé 
+tels que $\Psi'(\II)=\Psi''(\II) =: \bar\II$ et 
+ $\Psi'(\BB) \indep_{\bar \II} \Psi''(\BB)$. 
+Ce couplage $\left\{\begin{smallmatrix} 
+\bigl(\bar \II, \Psi'(\BB)\bigr)
+\\ 
+\bigl(\bar \II, \Psi''(\BB)\bigr)
+\end{smallmatrix}\right.$ 
+de $\bigl(\II, \BB\bigr)$ est unique à isomorphisme près. 
+\end{lemme}
+
+\begin{proof}
+Notons $I$ et $B$ des v.a.\ telles que $\II=\sigma(I)$ et $\BB=\sigma(B)$. 
+Par le lemme~\ref{lemme:representation}, on peut supposer que 
+$B=g(I,U)$ où $U$ est une v.a.\ uniforme sur $[0,1]$ indépendante de $I$. 
+Considérons un espace probabilisé avec une copie $\bar I$ de $I$ 
+et un couple $(U', U'')$ de variables aléatoires indépendantes uniformes sur 
+$[0,1]$, indépendant de $\bar\II$. 
+On pose $B'=g(\bar I, U')$ et $B''=g(\bar I, U'')$, et on définit les tribus 
+$\bar \II=\sigma(\bar I)$, $\BB' = \sigma(B')$ et $\BB'' = \sigma(B'')$. 
+L'unicité résulte du lemme~\ref{lemme:uniciteCIcopies}. 
+\end{proof}
+
+
+\begin{lemme}
+Soient $\FF$ et $\GG$ deux filtrations co\"immergées et telles que 
+$\FF_{n} \indep_{\II_{n}} \GG_{n}$ où $\II_{n} = \FF_{n} \cap \GG_{n}$. 
+Alors  $\FF_{0} \indep_{\II_{n}} \GG_{n}$.  
+\end{lemme}
+
+\begin{proof}
+Soit $F_0 \in L^2(\FF_0)$ et $G_n \in L^2(\GG_n)$. On a 
+$$
+\EE[F_0G_n \given \FF_n \vee \GG_n] = \EE[F_0 \given \FF_n] G_n,
+$$
+donc 
+\begin{align*}
+\EE[F_0G_n \given \II_n] & = 
+\EE\bigl[\EE[F_0 \given \FF_n] G_n \biggiven \II_n \bigr] 
+= \EE\bigl[\EE[F_0 \given \FF_n] \biggiven \II_n \bigr] \EE[G_n \given \II_n ] \\
+& = \EE[F_0 \given \II_n]  \EE[G_n \given \II_n ].
+\end{align*}
+\end{proof}
+
 \end{appendices}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -529,6 +725,11 @@ Standardness of monotonic Markov filtrations.
 	arXiv:1501.02166 (2015). 
 To appear in: Markov Processes and Related Fields. 
 
+\bibitem{LauXLIII}
+ Laurent, S.: 
+On standardness and I-cosiness. S\'eminaire de Probabilit\'es XLIII, 
+Springer Lecture Notes in Mathematics 2006, 
+127--186 (2010).
 
 \bibitem{LauTeoriya}  
  Laurent, S.: 
