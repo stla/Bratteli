@@ -42,18 +42,20 @@
 \newtheoremstyle{thmstyle}{3pt}{3pt}{\itshape}{}{\bf}{.}{.5em}{}      
 \newtheoremstyle{defstyle}{3pt}{3pt}{\sffamily}{}{\bf}{.}{.5em}{} 
 \theoremstyle{defstyle}
-\newtheorem{definition}{Definition}
-\newtheorem{remark}{Remark}
-\newtheorem{question}{Question}
-\newtheorem{clarify}{To clarify}
-\newtheorem{remarque}{Remarque}
-\newtheorem{exemple}{Exemple}
+\newtheorem{definition}{Definition}[section]
+\newtheorem{remark}{Remark}[section]
+\newtheorem{question}{Question}[section]
+\newtheorem{clarify}{To clarify}[section]
+\newtheorem{remarque}{Remarque}[section]
+\newtheorem{exemple}{Exemple}[section]
 
 \theoremstyle{thmstyle}
 \newtheorem{thm}{Theorem}[section]
-\newtheorem{ppsition}{Proposition}
+\newtheorem{ppsition}{Proposition}[section]
 \newtheorem{lemma}{Lemma}
-\newtheorem{lemme}{Lemme}
+\newtheorem{lemme}{Lemme}[section]
+
+ 
 
 \renewcommand{\AA}{\mathcal{A}}
 \newcommand{\BB}{\mathcal{B}}
@@ -86,11 +88,25 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Exemples}
 
-Nous donnons ici quatre exemples de filtrations $\FF$ dont la tribu germe 
+Nous donnons ici trois exemples de filtrations $\FF$ dont la tribu germe 
 n'est pas dégénérée $\FF_{-\infty}$. 
 Pour cette raison, on considère que ces filtrations ne sont pas standard. 
 Mais chacune d'elles para\^it "standard conditionnellement à $\FF_{-\infty}$", 
 en un sens qui sera précisé dans la suite. 
+
+
+\begin{exemple}[Variables aléatoires échangeables]\label{exple:echangeable}
+Soit $\Theta$ une v.a.\ uniforme sur $[0,1]$ et ${(\epsilon_n)}_{n \leq 0}$ 
+une suite de variables aléatoires conditionnellement i.i.d.\ 
+selon la loi de Bernoulli de probabilité de succés $\Theta$ sachant 
+$\Theta$. 
+La tribu germe $\FF_{-\infty}$ de la filtration $\FF$ engendrée par 
+${(\epsilon_n)}_{n \leq 0}$ n'est pas dégénérée : c'est la tribu $\sigma(\Theta)$. 
+L'inclusion $\sigma(\Theta) \subset \FF_{-\infty}$ s'obtient avec la loi des 
+grands nombres. L'inclusion réciproque 
+résulte du lemme~\ref{lemme:tribuI}. 
+\end{exemple}
+
 
 \begin{exemple}[Marche aléatoire sur le carré]
 Soit ${(X_n)}_{n \leq 0}$ la chaîne de Markov stationnaire sur le carré 
@@ -115,9 +131,10 @@ et c'est l'information donnée par $\FF_{-\infty}$.
 On peut voir $\FF$ de la façon suivante. 
 Notons $a=(-1,1)$, $b=(1,1)$, $c=(1,-1)$ et $d=(-1,-1)$ les sommets du carré. 
 Définissons la variable aléatoire $G$ par $G=ac$ si $X_{2n} \in \{a,c\}$ et 
-$G=bd$ si  $X_{2n} \in \{b,d\}$, et pour chaque définissons 
-la variable aléatoire $\epsilon_n$ par $\epsilon_n=H$ si $X_n \in \{a,b\}$ 
-et $\epsilon_n=B$ si $X_n \in \{c,d\}$  ($B$ pour "bas" et $H$ pour "haut"). 
+$G=bd$ si  $X_{2n} \in \{b,d\}$, et définissons 
+la variable aléatoire $\epsilon_n \in \{B,H\}$ ($B$ pour "bas" et $H$ pour "haut") 
+par $\epsilon_n=H$ si $X_n \in \{a,b\}$ 
+et $\epsilon_n=B$ si $X_n \in \{c,d\}$. 
 On a $\FF_{-\infty} = \sigma(G)$ et 
 $\FF_n = \FF_{-\infty} \indvee \sigma(\ldots, \epsilon_{n-1}, \epsilon_n)$:
 $$
@@ -141,31 +158,25 @@ $$
 %On pose 
 \end{exemple}
 
-\begin{exemple}[Variables aléatoires échangeables]\label{exple:echangeable}
-Soit $\Theta$ une v.a.\ uniforme sur $[0,1]$ et ${(\epsilon_n)}_{n \leq 0}$ 
-une suite de variables aléatoires conditionnellement i.i.d.\ 
-selon la loi de Bernoulli de probabilité de succés $\Theta$ sachant 
-$\Theta$. 
-La tribu germe $\FF_{-\infty}$ de la filtration $\FF$ engendrée par 
-${(\epsilon_n)}_{n \leq 0}$ n'est pas dégénérée : c'est la tribu $\sigma(\Theta)$. 
-L'inclusion $\sigma(\Theta) \subset \FF_{-\infty}$ s'obtient avec la loi des 
-grands nombres. L'inclusion réciproque 
-résulte du lemme~\ref{lemme:tribuI}. 
-\end{exemple}
-
 
 \begin{exemple}[Échelle de l'odomètre]
-Soit ${(X_n, \epsilon_n)}_{n \leq 0}$ le processus dyadique des mots découpés 
-associé à l'odomètre dyadique $T$, tel que défini dans \cite{LauXLV} mais 
-défini sur l'espace $[0,1] \times [0,1]$, tel qu'expliqué dans \cite{LauScale}.
+Soit ${(D_n, \epsilon_n)}_{n \leq 0}$ le processus dyadique des mots découpés 
+associé à l'odomètre dyadique $T$, tel qu'introduit dans \cite{LauXLV}.
+% mais défini sur l'espace $[0,1] \times [0,1]$, tel qu'expliqué dans \cite{LauScale}.
  La tribu germe $\FF_{-\infty}$ de la filtration $\FF$ engendrée par 
 ce processus n'est pas dégénérée : 
-$\FF_{-\infty} = \bigvee_{n \geq 0} \II_n \otimes \{\varnothing, [0,1]\}$ 
-où $\II_n$ est la tribu des invariants de $T^{2^n}$. 
-Or $\II_n$ est la tribu engendrée par les intervalles 
- $\left[\frac{k}{2^n}, \frac{k+1}{2^n}\right[$, $k=0, \ldots, 2^{n}-1$, 
-et donc $\FF_{-\infty}$ est la tribu borélienne de $[0,1]$. 
-Le mot $X_n$ est déterministe conditionnellement à $\FF_{-\infty}$.
+$\FF_{-\infty} = \bigvee_{n \leq 0} D_n^{-1}(\II_{|n|})$ où 
+$\II_m$ est la tribu des invariants de $T^{2^m}$. 
+Cette tribu $\II_m$ est la tribu engendrée par les intervalles 
+$\left[\frac{k}{2^m}, \frac{k+1}{2^m}\right[$, $k=0, \ldots, 2^{m}-1$. 
+Conditionnellement à $\FF_{-\infty}$, le processus n'est plus qu'un 
+mot déterministe découpé avec les $\epsilon_n$.
+%$\FF_{-\infty} = \bigvee_{m \geq 0} \II_m \otimes \{\varnothing, [0,1]\}$ 
+%où $\II_m$ est la tribu des invariants de $T^{2^m}$. 
+%Or $\II_m$ est la tribu engendrée par les intervalles 
+% $\left[\frac{k}{2^m}, \frac{k+1}{2^m}\right[$, $k=0, \ldots, 2^{m}-1$, 
+%et donc $\FF_{-\infty}$ est la tribu borélienne de $[0,1]$. 
+%Le mot $X_n$ est déterministe conditionnellement à $\FF_{-\infty}$.
 \end{exemple}
 
 
@@ -181,12 +192,12 @@ Le mot $X_n$ est déterministe conditionnellement à $\FF_{-\infty}$.
 \begin{definition}
 Une filtration $\FF$ est dite de type C-produit quand elle est engendrée par 
 une suite de v.a.\ ${(V_n)}_{n \leq 0}$  conditionnellement indépendantes 
-sachant $\bigcap_{n \leq 0}\sigma(\ldots, V_{n-1}, V_n) = \FF_{-\infty}$
+sachant $\bigcap_{n \leq 0}\sigma(\ldots, V_{n-1}, V_n) = \FF_{-\infty}$.
 \end{definition}
 
 \begin{exemple}
 Soient $G$ une v.a.\ et  ${(\epsilon_n)}_{n \leq 0}$ une suite de v.a.\ indépendantes 
-entre elles indépendante de $G$. On pose 
+entre elles qui est indépendante de $G$. On pose 
 $$
 \FF_n = \sigma(G) \indvee \sigma(\ldots, \epsilon_{n-1}, \epsilon_n).
 $$
@@ -221,7 +232,7 @@ Soit $n_0 \leq -1$ un entier. Nous allons construire une copie de
 $\FF$ avec une paramétrisation spéciale de $n_0+1$ à $0$. 
 
 Considérons un espace probabilisé avec une copie ${(V'_n)}_{n \leq n_0}$ 
-de ${(V_n)}_{n \leq n_0}$ et un vecteur $(U'_{n_0+1}, \ldots, U'_0)$ 
+de ${(V_n)}_{n \leq n_0}$ ainsi qu'un vecteur $(U'_{n_0+1}, \ldots, U'_0)$ 
 de variables aléatoires indépendantes uniformes sur $[0,1]$, indépendant 
 de ${(V'_n)}_{n \leq n_0}$. 
 On a la copie $G'$ de $G$. 
@@ -348,7 +359,7 @@ ${(\FF_n)}_{n_0 \leq n \leq 0}$.
 Soient $\FF$ une filtration et $X$ une v.a.\ mesurable pour $\FF_0$ 
 intégrable prenant ses valeurs dans un espace polonais métrique $(E,\rho)$. 
 
-On dit que $X$ satisfait le critère de CI-confort si pour tout $\delta>0$, 
+On dit que $X$ satisfait le critère de CI-confort (par rapport à $\FF$) si pour tout $\delta>0$, 
 il existe un entier $n_0 \leq 0$ et deux copies  ${(\FF'_n)}_{n_0 \leq n \leq 0}$ et 
 ${(\FF''_n)}_{n_0 \leq n \leq 0}$ de 
 ${(\FF_n)}_{n_0 \leq n \leq 0}$ telles que 
@@ -357,11 +368,11 @@ ${(\FF_n)}_{n_0 \leq n \leq 0}$ telles que
 ${(\FF''_n)}_{n_0 \leq n \leq 0}$  sont co\"immergées ;
 
 \item la tribu $\FF_{-\infty}$ a la m\^eme copie $\bar\FF_{-\infty}$ par les 
-deux isomorphismes 
+deux isomorphismes ;
 
 \item $\FF'_{n_0} \indep_{\bar\FF_{-\infty}} \FF''_{n_0}$ ;
 
-\item $\EE\bigl(\rho(X', X'')\bigr) < \delta$.
+\item $\EE\bigl[\rho(X', X'')\bigr] < \delta$.
 \end{enumerate}
 \end{definition}
 
@@ -371,7 +382,7 @@ a $\FF'_{n}\cap\FF''_{n} = \bar\FF_{-\infty}$ pour tout $n \leq n_0$, en vertu d
 \begin{definition}
 Soit $\FF$ une filtration. On dit qu'une tribu $\BB \subset \FF_0$ 
 satisfait le critère de CI-confort si 
- toute v.a.\ simple $X \in L^1(\BB; [0,1])$  satisfait le critère de CI-confort. 
+ toute v.a.\  $X \in L^1(\BB; [0,1])$  satisfait le critère de CI-confort. 
 \end{definition}
 
 \begin{definition}
@@ -380,7 +391,7 @@ la tribu $\FF_0$  satisfait le critère de CI-confort.
 \end{definition}
 
 
-\begin{ppsition}
+\begin{ppsition}\label{ppsition:CproduitCIconfortable}
 Soit $\FF$ une filtration de type C-produit. Alors $\FF$ est CI-confortable.
 \end{ppsition}
 
@@ -392,9 +403,8 @@ sachant $\bigcap_{n \leq 0}\sigma(\ldots, V_{n-1}, V_n) = \FF_{-\infty}$.
 Soit $X \in L^1\bigl(\FF_0; [0,1]\bigr)$. Pour $\delta>0$, il existe 
 $n_0 \leq 0$ et une v.a.\ $Y \in L^1\bigl(\sigma(V_{n_0+1},\ldots, V_0); [0,1]\bigr)$ 
 telle que $\EE\bigl[|X-Y|\bigr] < \delta$. 
- 
 On utilise le couplage de la section~\ref{sec:Rosenblatt}. 
-Avec ce couplage on a $Y'=Y''$, et donc on obtient 
+Avec ce couplage on a $Y'=Y''$, et on obtient 
 $\EE\bigl[|X'-X''|\bigr] < 2\delta$. 
 %Par la proposition \ref{ppsition:CIferme}, il suffit de montrer que 
 %pour tout $N \leq 0$, la tribu $\BB_N:=\sigma(V_N, \ldots, V_0)$  
@@ -403,9 +413,9 @@ $\EE\bigl[|X'-X''|\bigr] < 2\delta$.
 
 
 \begin{ppsition}
-Soit $\FF$ une filtration et soit $X \in L^1$ une v.a.\ qui satisfait le critère de 
-CI-confort par rapport à $\FF$. 
-Soit $\EEE$ une filtration immergée dans $\FF$. Si $X$ est mesurable pour 
+Soit $\FF$ une filtration et soit $\EEE$ une filtration immergée dans $\FF$. 
+Si $X \in L^1$ est une v.a.\ qui satisfait le critère de CI-confort par rapport à $\FF$ 
+et qu'elle est mesurable pour 
 $\EEE_0$, alors $X$ satisfait le critère de CI-confort par rapport à $\EEE$. 
 
 Par conséquent, si $\FF$ est CI-confortable, alors $\EEE$ l'est aussi. 
@@ -415,7 +425,7 @@ Par conséquent, si $\FF$ est CI-confortable, alors $\EEE$ l'est aussi.
 On a le couplage de $\FF$ de la définition \ref{def:CIconfort}. 
 Celui-ci induit un couplage de $\EEE$. 
 La seule chose à vérifier c'est que $\EEE'_{n_0}$ et $\EEE''_{n_0}$ sont 
-conditionnellement indépendantes sachant xxx
+conditionnellement indépendantes sachant $\bar\EEE_{-\infty}$.
 
 Soient $A' \in \EEE'_{n_0}$ et $B'' \in \EEE''_{n_0}$. 
 Alors  
@@ -489,17 +499,23 @@ Le premier point résulte du lemme~\ref{lemme:desintegr}.
 Le second résulte de l'inégalité triangulaire. 
 \end{proof}
 
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Critère de Vershik}
 
 \begin{definition}
 Soit $\FF$ une filtration. On dit qu'une v.a.\ $X \in L^1$ 
-satisfait le critère de Vershik si $\disp_{\FF_{-\infty}}(X) \to 0$.
+satisfait le critère de Vershik si $\disp_{\FF_{-\infty}}(\pi_nX) \to 0$.
 Partant de cette définition, on 
  définit le critère de Vershik pour les sous-tribus de $\FF_0$ et pour $\FF$ 
 comme d'habitude. 
 \end{definition}
+
+Dans \cite{LauXLV}, j'ai vaguement écrit qu'on peut prendre 
+comme critère la convergence en probabilité de 
+$\inf_w\EE\bigl[\rho_n(\pi_nX, w) \given \FF_{-\infty}\bigr]$. 
+Je ne suis pas convaincu que ceci est correct. 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -509,7 +525,7 @@ Soit $X \in L^1$ qui satisfait le critère de CI-confort (définition~\ref{def:C
 Par la co\"immersion, le processus ${\bigl(\rho_n(\pi_n X', \pi_n X'')\bigr)}_{n \leq 0}$ 
 est une sous-martingale, donc 
 $$
-\EE\bigl[ \rho_n(\pi_n X', \pi_n X'') \bigr] < \delta. 
+\EE\bigl[ \rho_n(\pi_{n_0} X', \pi_{n_0} X'') \bigr] < \delta. 
 $$
 
 Il est donc clair que le CI-confort implique le critère de Vershik. 
@@ -520,7 +536,22 @@ Il est donc clair que le CI-confort implique le critère de Vershik.
 \subsection{De Vershik au CI-confort}
 
 On démontre que le critère de Vershik pour $X$ implique le critère de confort 
-pour $X$ en utilisant la proposition 8.1 de \cite{LauTeoriya}. 
+pour $X$ en utilisant la proposition 8.1 de \cite{LauTeoriya}, de 
+la même façon que le cas du I-confort. 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Questions}
+
+\begin{enumerate}
+\item Une filtration CI-confortable se plonge-t-elle dans une filtration de type 
+C-produit ?
+
+\item Une filtration localement de type C-produit et conditionnellement poly-adique 
+est-elle de type C-produit ?
+
+\item Théorème lacunaire ?
+\end{enumerate}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -736,7 +767,6 @@ Springer Lecture Notes in Mathematics 2006,
 On Vershikian and I-cosy random variables and filtrations.
 Teoriya Veroyatnostei i ee Primeneniya 55 (2010), 104--132. 
 Also published in: Theory Probab. Appl. 55 (2011), 54--76.
-
 
 \bibitem{LauXLV}
 Laurent, S.: 

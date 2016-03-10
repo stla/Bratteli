@@ -1,0 +1,281 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage{amsmath, amsthm}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{lmodern}
+\usepackage[left=2cm,right=2cm,top=2cm,bottom=2cm]{geometry}
+
+\usepackage[labelformat=simple]{subcaption}
+\renewcommand\thesubfigure{(\alph{subfigure})}
+
+\usepackage{wrapfig}
+
+\usepackage[normalem]{ulem}
+
+\usepackage[toc,page]{appendix}
+
+\usepackage{hyperref}
+
+\author{Stéphane Laurent}
+\title{Application de $\GG_{-\infty}$}
+\begin{document}
+
+
+\newtheoremstyle{thmstyle}{3pt}{3pt}{\itshape}{}{\bf}{.}{.5em}{}      
+\newtheoremstyle{defstyle}{3pt}{3pt}{\sffamily}{}{\bf}{.}{.5em}{} 
+\theoremstyle{defstyle}
+\newtheorem{definition}{Definition}
+\newtheorem{remark}{Remark}
+\newtheorem{question}{Question}
+\newtheorem{clarify}{To clarify}
+\theoremstyle{thmstyle}
+\newtheorem{thm}{Theorem}[section]
+\newtheorem{ppsition}{Proposition}
+\newtheorem{lemma}{Lemma}
+
+\newcommand{\FF}{\mathcal{F}}
+\newcommand{\GG}{\mathcal{G}}
+\newcommand{\EE}{\mathbb{E}}
+\newcommand{\II}{\mathcal{I}}
+\newcommand{\LL}{\mathcal{L}}
+\newcommand{\OO}{\mathcal{O}}
+\newcommand{\XX}{\mathcal{X}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+
+\newcommand{\given}{\mid}
+\newcommand{\eps}{\epsilon}
+\newcommand{\indic}{\boldsymbol 1}
+\newcommand{\Vb}{\boldsymbol V}
+
+\newcommand{\indvee}{\dot{\vee}}
+\newcommand{\indep}{\mathrel{\text{\scalebox{1.07}{$\perp\mkern-10mu\perp$}}}}
+
+\maketitle
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{La filtration $\GG$}
+
+
+\begin{wrapfigure}{r}{60mm}
+   \centering
+   	\includegraphics[scale=1]{figures/Golden_towers}
+   \caption{Golden towers}
+   \label{fig:GoldenTowers}
+\end{wrapfigure}
+Considérons une transformation $S$ obtenue par découpage-empilage, 
+comme le cas de la rotation d'angle $\theta=1/\phi^2$ qui 
+est représenté sur la figure \ref{fig:GoldenTowers}. 
+On note $\mu$ la mesure de Lebesgue sur $(0,1)$. 
+
+Pour $\gamma \in (0,1)$ et $n \leq 0$ on définit l'entier 
+$k_n(\gamma)$ comme étant le niveau de la tour à l'étape $n$ 
+dans lequel se situe $\gamma$ (en particulier $k_0 \equiv 0$). 
+Sur l'illustration de la figure~\ref{fig:GoldenTowers}, 
+$k_{-1}(\gamma) = 0$ et $k_{-2}(\gamma)=1$. 
+On note $v_n(\gamma)$ l'indice de la tour de l'étape $n$ dans laquelle 
+se situe $\gamma$.
+
+Soit $T$ une transformation sur un espace de Lebesgue 
+$(\XX, \nu)$. La transformation produit $T \times S$ 
+agit sur $\Omega := \XX \times [0,1]$. 
+Sur cet espace, on définit les variables aléatoires 
+$X_0(x, \gamma)=x$ et $R_0(x, \gamma)=\gamma$. 
+Ainsi la v.a.\ $X_0 \sim \nu$ est indépendante de la v.a.\ $R_0 \sim \mu$. 
+On définit aussi $K_n(x,\gamma)=k_n(\gamma)$, et on 
+pose $\boxed{X_n = T^{-K_n}(X_0)}$ et 
+$\boxed{R_n = S^{-K_n}(R_0)}$. 
+Notons que $X_n = T^{K_{n-1}-K_n}X_{n-1}$. 
+
+La variable aléatoire $R_n$ vit dans la base du découpage-empilage 
+à l'étape $n$. 
+Remarquons que $R_n$ détermine complétement $R_{n-1}$, $R_{n-2}$, $\ldots$. 
+Ainsi, notant $\FF={(\FF_n)}_{n \leq 0}$ la filtration engendrée 
+par le processus ${(R_n)}_{n \leq 0}$, on a 
+$\GG_n = \sigma(R_n)$. 
+ De plus, $R_n$ détermine $K_{n-1}-K_n$. 
+Notant $\GG={(\GG_n)}_{n \leq 0}$ la filtration engendrée 
+par le processus ${(X_n,R_n)}_{n \leq 0}$, on a alors
+$\GG_n = \sigma(X_n, R_n)$. 
+
+Attention à la notation $K_n$ qui pourrait prêter à croire que 
+$K_n$ est mesurable à l'instant $n$. 
+En fait $K_n$ est un complément de $\GG_n$ dans $\GG_0$ : 
+on a $\GG_0 = \GG_n \vee \sigma(K_n)$ puisque 
+$R_0$ est déterminée par $R_n$ et $K_n$. 
+
+Notons maintenant $V_n(x,\gamma)=v_n(\gamma)$. 
+L'entier aléatoire $K_n$ ne dépend de $\GG_n$ qu'à travers de 
+$V_n$, c'est-à-dire que $K_n \indep_{V_n} \GG_n$, et 
+plus précisément la loi conditionnelle de $K_n$ sachant $\GG_n$ 
+est uniforme sur $\dim(V_n)$, la hauteur de la tour indiquée par $V_n$. 
+
+De ce fait, pour toute fonction $f \in L^1(\XX \times [0,1])$, 
+\begin{equation}\label{eq:conditionalexpectation}
+\EE\bigl[f(X_0, R_0) \given \GG_n\bigr]
+ =\frac{1}{\dim(V_n)}\sum_{k=0}^{\dim(V_n)-1} f\bigl(T^kX_n, S^kR_n \bigr).
+\end{equation}
+
+J'ai montré ailleurs que l'on déduit de ça que 
+\uline{\emph{$\GG_{-\infty}$ est la tribu des invariants de $T \times S$}}. 
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Application} 
+
+\subsection{Application à la transformation de Chacon}
+
+Prenons l'example où $S$ est la transformation de Chacon 
+(définie dans \href{https://cdr.lib.unc.edu/indexablecontent/uuid:bfc41b0c-b048-440f-9a57-533e02ea4f76}{ce document}). 
+
+Soit $g \in L^1(\XX)$. 
+Appliquons~\eqref{eq:conditionalexpectation} à 
+$f(x,\gamma) = g(x)\indic_{x \in I}$ où $I=[2/3, 1[$ :
+\begin{align*}
+\EE\bigl[g(X_0) \indic_{R_0 \in I} \given \GG_n\bigr]
+&  = \frac{1}{\dim(V_n)}\sum_{k=0}^{\dim(V_n)-1} g(T^kX_n) \indic_{S^k R_n \in I} \\
+& = \underset{=:A_n}{\underbrace{\left(\frac{1}{h_n}\sum_{k=0}^{h_n-1} g(T^kX_n) \indic_{S^k R_n \in I}\right)}}\indic_{V_n=0} 
++ \underset{=:B_n}{\underbrace{\left(g(X_n) \indic_{R_n \in I}\right)}}\indic_{V_n=1}
+\end{align*}
+
+On sait que 
+$\EE\bigl[g(X_0) \indic_{R_0 \in I} \given \GG_n\bigr] \to \ell:= \frac{1}{3}\EE[g(X_0)]$. 
+Comme $\Pr(V_n=0) \to 1$, cela implique que $A_n \to \ell$ en probabilité. 
+
+Or 
+$$
+A_n = \frac{1}{h_n}\sum_{k=0}^{h_n-1} c_k g(T^kX_n) 
+$$
+où $c = (0, 0, 1, 0, 0, 0, 0, 1, 0, \ldots)$ est "le mot de Chacon". 
+Remarquons que $3A_n$ a la même loi que 
+$$
+S_n(g) = \frac{3}{h_n}\sum_{k=0}^{h_n-1} c_k g(T^kX_0)
+$$ 
+et donc $S_n(g) \to E(g)$ en probabilité. 
+
+\subsection{Application à la rotation d'or}
+
+Prenons l'exemple où $S$ est la rotation d'or illustré sur la figure~\ref{fig:GoldenTowers}. 
+Introduisons la filtration $\GG$ associée non pas à $T$ mais à $T^{-1}$, où 
+$T$ est telle que $T^{-1} \times S$ ergodique. 
+%Supposons que $T$ est telle que $T \times S$ ergodique. 
+Soit $g \in L^1(\XX)$. 
+Appliquons~\eqref{eq:conditionalexpectation} à 
+$f(x,\gamma) = g(x)\indic_{x \in I}$ où $I=[1-\theta, 1[$ :
+\begin{align*}
+\EE\bigl[g(X_0) \indic_{R_0 \in I} \given \GG_n\bigr]
+&  = \frac{1}{\dim(V_n)}\sum_{k=0}^{\dim(V_n)-1} g(T^kX_n) \indic_{S^k R_n \in I} \\
+& = \underset{=:A_n}{\underbrace{\left(\frac{1}{F_{|n|}}\sum_{k=0}^{F_{|n|}-1} g(T^kX_n) \indic_{S^k R_n \in I}\right)}}\indic_{V_n=0} 
++ \underset{=:B_n}{\underbrace{\left(\frac{1}{F_{|n|-1}}\sum_{k=0}^{F_{|n|-1}-1} g(T^kX_n) \indic_{S^k R_n \in I}\right)}}\indic_{V_n=1}
+\end{align*}
+où $F_0=1$, $F_1=2$, $F_2=3$, $F_3=4$, $\ldots$, est la suite de Fibonacci. 
+
+On sait que 
+$\EE\bigl[g(X_0) \indic_{R_0 \in I} \given \GG_n\bigr] \to \ell:= |I|\EE[g(X_0)]$. 
+Du fait que $\Pr(V_n=0)$ converge vers un réel $>0$ on peut en 
+déduite que $A_n$ converge en probabilité vers $\ell$. 
+
+%
+%Les "$\indic_{S^k R_n \in I}$" dans cette expression sont déterministes. 
+%En effet, définissons les mots
+%\begin{itemize}
+%\item 
+%\end{itemize} 
+
+\begin{align*}
+A_n & = \frac{1}{F_{|n|}}\sum_{k=0}^{F_{|n|}-1} g(T^{-k}X_n) \indic_{S^k R_n \in I}
+  = \frac{1}{F_{|n|}}\sum_{k=0}^{F_{|n|}-1} g(T^k(T^{-(F_{|n|}-1)}X_n)) \indic_{S^{F_{|n|}-1-k} R_n \in I} 
+ \\ & = \frac{1}{F_{|n|}}\sum_{k=0}^{F_{|n|}-1} B(k) g(T^k(T^{-(F_{|n|}-1)}X_n)) 
+\end{align*}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{appendices}
+
+\section{Un résultat de Hanson et Pledger}\label{sec:HP}
+
+%Soient $a_{N,k}$ des réels $\geq0$ pour $N,k = 0, 1, \ldots$ qui vérifient 
+%$$
+%\lim_{N \to \infty} \sum_{k=0}^\infty a_{N,k} =1. 
+%$$
+%Pour une transformation $T$ et une fonction $f \in L^2$, on définit 
+%la moyenne pondérée 
+%$$
+%S_N(f) = \sum_{k=0}^\infty a_{N,k} f \circ T^k.
+%$$
+%
+%Nous disons que les poids $a_{N,k}$ 
+
+Let $a_{N,k}$ be non-negative numbers for $N,k = 0, 1, \ldots$, satisfying 
+$$
+\lim_{N \to \infty} \sum_{k=0}^\infty a_{N,k} =1. 
+$$
+They are fixed throughout these notes. 
+
+For an underlying invertible \emph{mpt} $T$, we set
+$$
+S_N(f) = \sum_{k=0}^\infty a_{N,k} f \circ T^k.
+$$
+
+We say that the weights $a_{N,k}$ are \emph{good for $T$} if 
+$S_N(f) \overset{L^2}{\longrightarrow} E(f \given \II)$ for every 
+$f \in L^2$ where $\II$ is the $T$-invariant $\sigma$-field. 
+
+\begin{lemma}
+Assume that the $a_{N,k}$ are good for the transformation 
+ $T$ on $\Z/\alpha\Z$ defined by $Tx = x - 1$. Then 
+$$
+\lim_{N \to \infty} \sum_{k=0}^\infty a_{N,k\alpha+j} = \frac{1}{\alpha}
+$$
+for every $j \in \{0, \ldots, \alpha-1\}$. 
+\end{lemma}
+
+\begin{proof}
+Here the goodness means $S_N(f)(x) \to \frac{1}{\alpha} \sum_{n=0}^{\alpha-1} {f(n)}^2$ for 
+every $x \in \Z/\alpha\Z$. 
+Take $f(x) = \delta_{x,j}$ (Kronecker symbol). 
+Then $S_N(f)(0) = \sum_{k=0}^\infty a_{N,k\alpha+j}$.
+\end{proof}
+
+
+\begin{lemma}
+Let $\gamma \in (0,1)$ be an irrational number. For $a < b \in [0,1)$ define the set  
+$$
+Q_{a,b} = \bigl\{k \in \N \mid \{k\gamma\} \in [a,b] \bigr\}.  
+$$
+Assume that the $a_{N,k}$ are good for the rotation  
+ $T$ on $S^1$ defined by $Tx = x - \gamma$. 
+ Then 
+$$
+\lim_{N \to \infty} \sum_{\substack{k=0 \\ k \in Q_{a,b}}}^\infty a_{N,k} = b-a.
+$$
+\end{lemma}
+
+
+\begin{proof}
+See \cite{HP}.
+\end{proof}
+
+\end{appendices}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{thebibliography}{99.}
+
+\bibitem{HP} 
+Hanson D.L., Pledger G.,
+\emph{On the mean ergodic theorem for weighted averages}. 
+Zeitschrift für Wahrscheinlichkeitstheorie und Verwandte Gebiete 13 (1969), 141--149.
+
+\end{thebibliography}
+
+
+
+\end{document}

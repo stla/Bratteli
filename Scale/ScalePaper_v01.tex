@@ -40,6 +40,8 @@
 \newcommand{\indic}{\boldsymbol 1}
 \newcommand{\Vb}{\boldsymbol V}
 
+\newcommand{\indvee}{\dot{\vee}}
+\newcommand{\indep}{\mathrel{\text{\scalebox{1.07}{$\perp\mkern-10mu\perp$}}}}
 
 \maketitle
 
@@ -310,16 +312,16 @@ ${(X_n, \epsilon_n)}_{n \leq 0}$ ... oui mais j'aime autant "voir" $V_n$.
 \end{remark}
 
 \begin{lemma}
-The random variable $\epsilon_{n+1}$ is conditionally independent of $\GG_n$ 
-given $V_n$, is 
+The random integer $K_n$ is conditionally independent of $\GG_n$ 
+given $V_n$ (then so is  $\epsilon_{n+1}$), and  $\epsilon_{n+1}$ is 
 a "novation" from $\GG_n$ to $\GG_{n+1}$, that is 
 to say $\GG_{n+1} = \GG_n \vee \sigma(\epsilon_{n+1})$, and  
 the filtration $\FF$ is immersed in $\GG$. 
 \end{lemma}
 
 \begin{proof}
-Given $\GG_n$, the random variable $\epsilon_{n+1}$ is the label of an 
-arc connecting the vertex $V_n$ to a vertex at level $n+1$. 
+Given $\GG_n$, the random integer $K_n$ corresponds to a path  
+connecting the vertex $V_n$ to the root vertex. 
 That shows the conditional independence. 
 As seen before, $K_{n}-K_{n+1}$ is, conditionally to $V_n$, 
 a one-to-one function of $\epsilon_{n+1}$. Since 
@@ -385,6 +387,26 @@ and the proof is over.
 For people who deal with the filtration $\GG$ on an abstract probability space, 
 the equality is $\GG_{-\infty} = {(X_0, R_0)}^{-1}(\II)$. 
 \end{remark}
+
+\begin{lemma}
+$X_n \indep \FF_n$ for every $n \leq 0$.
+\end{lemma}
+
+\begin{proof}
+Take $f \in L^1$. Then
+$$
+\EE\bigl[ f(X_n) \given \FF_n\bigr] 
+= \EE\bigl[ f(T^{-K_n}X_0) \given \FF_n\bigr]. 
+$$
+Since $K_n$ is $\FF_0$-measurable and $X_0 \indep \FF_0$, 
+$$
+\EE\bigl[ f(T^{-K_n}X_0) \given \FF_n\bigr] = 
+\EE\bigl[ h(K_n) \given \FF_n\bigr]
+$$
+where $h(k) = \EE\bigl[ f(T^{-k}X_0)\bigr]$. 
+But $h(k) =   \EE\bigl[ f(X_0)\bigr]=  \EE\bigl[ f(X_n)\bigr]$ 
+since $T$ preserves the law of $X_0$. 
+\end{proof}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{The case of an odometer graph}

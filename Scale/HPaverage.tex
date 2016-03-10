@@ -1,0 +1,143 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage{amsmath, amsthm}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{lmodern}
+\usepackage[left=2cm,right=2cm,top=2cm,bottom=2cm]{geometry}
+
+\usepackage[labelformat=simple]{subcaption}
+\renewcommand\thesubfigure{(\alph{subfigure})}
+
+\author{Stéphane Laurent}
+\title{xxx}
+\begin{document}
+
+
+\newtheoremstyle{thmstyle}{3pt}{3pt}{\itshape}{}{\bf}{.}{.5em}{}      
+\newtheoremstyle{defstyle}{3pt}{3pt}{\sffamily}{}{\bf}{.}{.5em}{} 
+\theoremstyle{defstyle}
+\newtheorem{definition}{Definition}
+\newtheorem{remark}{Remark}
+\newtheorem{question}{Question}
+\newtheorem{clarify}{To clarify}
+\theoremstyle{thmstyle}
+\newtheorem{thm}{Theorem}[section]
+\newtheorem{ppsition}{Proposition}
+\newtheorem{lemma}{Lemma}
+
+\newcommand{\FF}{\mathcal{F}}
+\newcommand{\GG}{\mathcal{G}}
+\newcommand{\EE}{\mathbb{E}}
+\newcommand{\II}{\mathcal{I}}
+\newcommand{\LL}{\mathcal{L}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\OO}{\mathcal{O}}
+\newcommand{\XX}{\mathcal{X}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\given}{\mid}
+\newcommand{\eps}{\epsilon}
+\newcommand{\indic}{\boldsymbol 1}
+\newcommand{\Vb}{\boldsymbol V}
+
+\newcommand{\indvee}{\dot{\vee}}
+\newcommand{\indep}{\mathrel{\text{\scalebox{1.07}{$\perp\mkern-10mu\perp$}}}}
+
+\maketitle
+
+Let $a_{N,k}$ be non-negative numbers for $N,k = 0, 1, \ldots$, satisfying 
+$$
+\lim_{N \to \infty} \sum_{k=0}^\infty a_{N,k} =1. 
+$$
+They are fixed throughout these notes. 
+
+For an underlying invertible \emph{mpt} $T$, we set
+$$
+S_N(f) = \sum_{k=0}^\infty a_{N,k} f \circ T^k.
+$$
+
+We say that the weights $a_{N,k}$ are \emph{good for $T$} if 
+$S_N(f) \overset{L^2}{\longrightarrow} E(f \given \II)$ for every 
+$f \in L^2$ where $\II$ is the $T$-invariant $\sigma$-field. 
+
+\begin{lemma}
+Assume that the $a_{N,k}$ are good for the transformation 
+ $T$ on $\Z/\alpha\Z$ defined by $Tx = x - 1$. Then 
+$$
+\lim_{N \to \infty} \sum_{k=0}^\infty a_{N,k\alpha+j} = \frac{1}{\alpha}
+$$
+for every $j \in \{0, \ldots, \alpha-1\}$. 
+\end{lemma}
+
+\begin{proof}
+Here the goodness means $S_N(f)(x) \to \frac{1}{\alpha} \sum_{n=0}^{\alpha-1} {f(n)}^2$ for 
+every $x \in \Z/\alpha\Z$. 
+Take $f(x) = \delta_{x,j}$ (Kronecker symbol). 
+Then $S_N(f)(0) = \sum_{k=0}^\infty a_{N,k\alpha+j}$.
+\end{proof}
+
+
+\begin{lemma}
+Let $\gamma \in (0,1)$ be an irrational number. For $a < b \in [0,1)$ define the set  
+$$
+Q_{a,b} = \bigl\{k \in \N \mid \{k\gamma\} \in [a,b] \bigr\}.  
+$$
+Assume that the $a_{N,k}$ are good for the rotation  
+ $T$ on $S^1$ defined by $Tx = x - \gamma$. 
+ Then 
+$$
+\lim_{N \to \infty} \sum_{\substack{k=0 \\ k \in Q_{a,b}}}^\infty a_{N,k} = b-a.
+$$
+\end{lemma}
+
+
+\begin{proof}
+We firstly prove that the assumptions of the lemma imply
+$$
+\lim_{\epsilon \to 0} \limsup_{N \to \infty} 
+\sum_{\substack{k=0 \\ k \in Q_{y-\epsilon,y+\epsilon}}}^\infty a_{N,k} = 0. 
+$$
+
+ouais bon admettons 
+
+\end{proof}
+
+\newpage
+
+Soient $a_{N,k}$ des réels $\geq 0$ pour $N,k = 0, 1, \ldots$ qui vérifient 
+$$
+\lim_{N \to \infty} \sum_{k=0}^\infty a_{N,k} =1. 
+$$
+Si ça simplifie quelque chose dans la question qui va venir, on pourra supposer 
+$$
+\sum_{k=0}^\infty a_{N,k} =1 \quad \text{ pour tout $N \geq 0$}.
+$$
+
+
+Soit $T(x)=x-\gamma$ la rotation sur $S^1$ d'angle $\gamma \in (0,1)$ irrationnel.
+On définit la moyenne pondérée 
+$$
+S_N(f) = \sum_{k=0}^\infty a_{N,k} f \circ T^k.
+$$
+On suppose que 
+$S_N(f) \overset{L^2}{\longrightarrow} \int f$ pour toute fonction $f \in L^2$. 
+
+On cherche à en déduire que pour tous $a,b \in [0,1]$ tels que $a < b$, on a
+$$
+\lim_{N \to \infty} \sum_{\substack{k=0 \\ k \in Q_{a,b}}}^\infty a_{N,k} = b-a 
+\quad \text{où }\;  
+Q_{a,b} = \bigl\{k \in \N \mid \{k\gamma\} \in [a,b] \bigr\}.  
+$$
+
+Une preuve dans un article raisonne par contraposition. 
+En supposant donc que ce n'est pas vrai, les auteurs disent alors qu'on aurait 
+$$
+\lim_{\epsilon \to 0} \limsup_{N \to \infty} 
+\sum_{\substack{k=0 \\ k \in Q_{y-\epsilon,y+\epsilon}}}^\infty a_{N,k} 
+\geq \delta >0.
+$$
+Je ne comprends pas ce point. Qu'en pensez-vous ?
+
+\end{document}
