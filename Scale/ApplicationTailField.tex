@@ -56,6 +56,19 @@
 
 \maketitle
 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Introduction}
+
+Dans \cite{LauScale}, j'ai introduit une filtration $\GG={(\GG_n)}_{n \leq 0}$ 
+associée à la donnée d'une transformation adique $S$ et d'une transformation 
+quelconque $T$, qui est telle que $\GG_{-\infty}$ est la tribu des 
+événements invariants par $T \times S$. 
+Je vais montrer ici comment on peut l'utiliser pour obtenir 
+des moyennes pondérées ergodiques $\sum a_{N,k} f(T^k x)$.
+ 
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{La filtration $\GG$}
@@ -96,7 +109,7 @@ La variable aléatoire $R_n$ vit dans la base du découpage-empilage
 Remarquons que $R_n$ détermine complétement $R_{n-1}$, $R_{n-2}$, $\ldots$. 
 Ainsi, notant $\FF={(\FF_n)}_{n \leq 0}$ la filtration engendrée 
 par le processus ${(R_n)}_{n \leq 0}$, on a 
-$\GG_n = \sigma(R_n)$. 
+$\FF_n = \sigma(R_n)$. 
  De plus, $R_n$ détermine $K_{n-1}-K_n$. 
 Notant $\GG={(\GG_n)}_{n \leq 0}$ la filtration engendrée 
 par le processus ${(X_n,R_n)}_{n \leq 0}$, on a alors
@@ -121,7 +134,10 @@ De ce fait, pour toute fonction $f \in L^1(\XX \times [0,1])$,
 \end{equation}
 
 J'ai montré ailleurs que l'on déduit de ça que 
-\uline{\emph{$\GG_{-\infty}$ est la tribu des invariants de $T \times S$}}. 
+\uline{\emph{$\GG_{-\infty}$ est la tribu des invariants de $T \times S$}}, 
+et j'ai aussi montré que $X_n \indep \FF_n$.
+
+
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -131,7 +147,15 @@ J'ai montré ailleurs que l'on déduit de ça que
 \subsection{Application à la transformation de Chacon}
 
 Prenons l'example où $S$ est la transformation de Chacon 
-(définie dans \href{https://cdr.lib.unc.edu/indexablecontent/uuid:bfc41b0c-b048-440f-9a57-533e02ea4f76}{ce document}). 
+(voir \href{https://cdr.lib.unc.edu/indexablecontent/uuid:bfc41b0c-b048-440f-9a57-533e02ea4f76}{ce document} ou \cite{LauScale}). 
+
+Le découpage-empilage qui définit $S$ est composé de deux tours à chaque étape $n$, 
+l'une de longueur $h_n = \frac{3^{|n|+1}-1}{2}$ et l'autre de hauteur $1$.  
+La mesure de la première tend vers $1$, celle de l'autre vers $0$. 
+
+La transformation $S$ est faiblement mélangeante, ce qui implique que $T \times S$ 
+est ergodique du moment que $T$ est ergodique, donc que $\GG_{-\infty}$ est triviale. 
+
 
 Soit $g \in L^1(\XX)$. 
 Appliquons~\eqref{eq:conditionalexpectation} à 
@@ -142,28 +166,43 @@ $f(x,\gamma) = g(x)\indic_{x \in I}$ où $I=[2/3, 1[$ :
 & = \underset{=:A_n}{\underbrace{\left(\frac{1}{h_n}\sum_{k=0}^{h_n-1} g(T^kX_n) \indic_{S^k R_n \in I}\right)}}\indic_{V_n=0} 
 + \underset{=:B_n}{\underbrace{\left(g(X_n) \indic_{R_n \in I}\right)}}\indic_{V_n=1}
 \end{align*}
-
 On sait que 
-$\EE\bigl[g(X_0) \indic_{R_0 \in I} \given \GG_n\bigr] \to \ell:= \frac{1}{3}\EE[g(X_0)]$. 
-Comme $\Pr(V_n=0) \to 1$, cela implique que $A_n \to \ell$ en probabilité. 
+$\EE\bigl[g(X_0) \indic_{R_0 \in I} \given \GG_n\bigr] \to \ell:= \frac{1}{3}\int g \mathrm{d}\nu$. 
+Comme $X_n \indep V_n$ et $\Pr(V_n=0) \to 1$, cela implique que $A_n \to \ell$ en probabilité. 
 
 Or 
 $$
 A_n = \frac{1}{h_n}\sum_{k=0}^{h_n-1} c_k g(T^kX_n) 
 $$
-où $c = (0, 0, 1, 0, 0, 0, 0, 1, 0, \ldots)$ est "le mot de Chacon". 
+où $c = (0, 0, 1, 0, 0, 0, 0, 1, 0, \ldots)$ est "le mot de Chacon", 
+la limite des mots $w_n$ obtenu en posant $w_0=0$ et successivement 
+$w_{n+1} = w_nw_n1w_n$. 
+
+
 Remarquons que $3A_n$ a la même loi que 
 $$
-S_n(g) = \frac{3}{h_n}\sum_{k=0}^{h_n-1} c_k g(T^kX_0)
+S_n(g) = \frac{3}{h_n}\sum_{k=0}^{h_n-1} c_k g(T^kX_0) 
+= \sum_{k=0}^\infty a_{n,k} g(T^kX_0) 
 $$ 
-et donc $S_n(g) \to E(g)$ en probabilité. 
+où
+$$
+a_{n,k} = \begin{cases}
+\frac{3}{h_n} c_k & \text{si $0 \leq k \leq h_n-1$} \\
+0 & \text{si $k \geq h_n$}.
+\end{cases}
+$$
+et donc $S_n(g) \to \int g \mathrm{d}\nu$ en probabilité. 
 
+
+En appliquant les lemmes de l'appendice \ref{sec:HP}, on obtient des 
+propriétés sur la répartition asymptotique des "$1$" dans $c$. 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Application à la rotation d'or}
 
 Prenons l'exemple où $S$ est la rotation d'or illustré sur la figure~\ref{fig:GoldenTowers}. 
-Introduisons la filtration $\GG$ associée non pas à $T$ mais à $T^{-1}$, où 
-$T$ est telle que $T^{-1} \times S$ ergodique. 
-%Supposons que $T$ est telle que $T \times S$ ergodique. 
+Supposons que $T$ est telle que $T \times S$ ergodique. 
 Soit $g \in L^1(\XX)$. 
 Appliquons~\eqref{eq:conditionalexpectation} à 
 $f(x,\gamma) = g(x)\indic_{x \in I}$ où $I=[1-\theta, 1[$ :
@@ -176,8 +215,8 @@ $f(x,\gamma) = g(x)\indic_{x \in I}$ où $I=[1-\theta, 1[$ :
 où $F_0=1$, $F_1=2$, $F_2=3$, $F_3=4$, $\ldots$, est la suite de Fibonacci. 
 
 On sait que 
-$\EE\bigl[g(X_0) \indic_{R_0 \in I} \given \GG_n\bigr] \to \ell:= |I|\EE[g(X_0)]$. 
-Du fait que $\Pr(V_n=0)$ converge vers un réel $>0$ on peut en 
+$\EE\bigl[g(X_0) \indic_{R_0 \in I} \given \GG_n\bigr] \to \ell:= \theta\int g \mathrm{d}\nu$. 
+Du fait que $X_n \indep V_n$  et $\Pr(V_n=0)$ converge vers un réel $>0$ on peut en 
 déduite que $A_n$ converge en probabilité vers $\ell$. 
 
 %
@@ -186,19 +225,28 @@ déduite que $A_n$ converge en probabilité vers $\ell$.
 %\begin{itemize}
 %\item 
 %\end{itemize} 
-
+Par ailleurs, 
 \begin{align*}
 A_n & = \frac{1}{F_{|n|}}\sum_{k=0}^{F_{|n|}-1} g(T^{-k}X_n) \indic_{S^k R_n \in I}
   = \frac{1}{F_{|n|}}\sum_{k=0}^{F_{|n|}-1} g(T^k(T^{-(F_{|n|}-1)}X_n)) \indic_{S^{F_{|n|}-1-k} R_n \in I} 
- \\ & = \frac{1}{F_{|n|}}\sum_{k=0}^{F_{|n|}-1} B(k) g(T^k(T^{-(F_{|n|}-1)}X_n)) 
+ \\ & = \frac{1}{F_{|n|}}\sum_{k=0}^{F_{|n|}-1} c_k g(T^k(T^{-(F_{|n|}-1)}X_n)) 
 \end{align*}
+où $c_k = (0, 1, 0, 0, 1, 0, 1, 0, \ldots)$ est le mot de Fibonacci.
+Remarquons que $A_n/\theta$ a la même loi que 
+$$
+S_n(g) = \frac{1}{\theta F_{|n|}}\sum_{k=0}^{F_{|n|}-1} c_k g(T^kX_0),  
+$$
+on a donc la convergence en probabilité $S_n(g) \to \int g \mathrm{d}\nu$. 
+
+En appliquant les lemmes de l'appendice \ref{sec:HP}, on obtient des 
+propriétés sur la répartition asymptotique des "$1$" dans $c$. 
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{appendices}
 
-\section{Un résultat de Hanson et Pledger}\label{sec:HP}
+\section{Moyennes ergodiques pondérées}\label{sec:HP}
 
 %Soient $a_{N,k}$ des réels $\geq0$ pour $N,k = 0, 1, \ldots$ qui vérifient 
 %$$
@@ -216,9 +264,7 @@ Let $a_{N,k}$ be non-negative numbers for $N,k = 0, 1, \ldots$, satisfying
 $$
 \lim_{N \to \infty} \sum_{k=0}^\infty a_{N,k} =1. 
 $$
-They are fixed throughout these notes. 
-
-For an underlying invertible \emph{mpt} $T$, we set
+For a given invertible \emph{mpt} $T$, we set
 $$
 S_N(f) = \sum_{k=0}^\infty a_{N,k} f \circ T^k.
 $$
@@ -273,6 +319,11 @@ See \cite{HP}.
 Hanson D.L., Pledger G.,
 \emph{On the mean ergodic theorem for weighted averages}. 
 Zeitschrift für Wahrscheinlichkeitstheorie und Verwandte Gebiete 13 (1969), 141--149.
+
+\bibitem{LauScale}
+Laurent, S.: 
+Notes diverses sur la généralisation de l'échelle d'un automorphisme. 
+
 
 \end{thebibliography}
 
