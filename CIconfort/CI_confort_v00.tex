@@ -160,8 +160,9 @@ $$
 
 
 \begin{exemple}[Échelle de l'odomètre]
-Soit ${(D_n, \epsilon_n)}_{n \leq 0}$ le processus dyadique des mots découpés 
-associé à l'odomètre dyadique $T$, tel qu'introduit dans \cite{LauXLV}.
+Soit ${(D_n, \epsilon_n)}_{n \leq 0}$ le processus dyadique 
+associé à l'odomètre dyadique $T$, tel qu'introduit dans \cite{LauXLV} et avec les 
+mêmes notations.
 % mais défini sur l'espace $[0,1] \times [0,1]$, tel qu'expliqué dans \cite{LauScale}.
  La tribu germe $\FF_{-\infty}$ de la filtration $\FF$ engendrée par 
 ce processus n'est pas dégénérée : 
@@ -169,14 +170,23 @@ $\FF_{-\infty} = \bigvee_{n \leq 0} D_n^{-1}(\II_{|n|})$ où
 $\II_m$ est la tribu des invariants de $T^{2^m}$. 
 Cette tribu $\II_m$ est la tribu engendrée par les intervalles 
 $\left[\frac{k}{2^m}, \frac{k+1}{2^m}\right[$, $k=0, \ldots, 2^{m}-1$. 
-Conditionnellement à $\FF_{-\infty}$, le processus n'est plus qu'un 
-mot déterministe découpé avec les $\epsilon_n$.
+%Conditionnellement à $\FF_{-\infty}$, le processus n'est plus qu'un 
+%mot déterministe découpé avec les $\epsilon_n$.
 %$\FF_{-\infty} = \bigvee_{m \geq 0} \II_m \otimes \{\varnothing, [0,1]\}$ 
 %où $\II_m$ est la tribu des invariants de $T^{2^m}$. 
 %Or $\II_m$ est la tribu engendrée par les intervalles 
 % $\left[\frac{k}{2^m}, \frac{k+1}{2^m}\right[$, $k=0, \ldots, 2^{m}-1$, 
 %et donc $\FF_{-\infty}$ est la tribu borélienne de $[0,1]$. 
 %Le mot $X_n$ est déterministe conditionnellement à $\FF_{-\infty}$.
+Je ne vois pas trop ici comment la filtration paraît "standard conditionnellement 
+à $\FF_{-\infty}$". Mais le CI-confort (section~\ref{sec:CIconfort}) de $\FF$ est clair : 
+si on considère deux copies $\FF'$ et $\FF''$ de $\FF$ 
+telles que $\FF_{-\infty}$ a une copie commune dans $\FF'$ et $\FF''$, égale 
+à $\FF'_{n_0} \cap \FF''_{n_0}$, cela 
+signifie que  les v.a.\ $D'_{n_0}$ et $D''_{n_0}$ sont dans un même intervalle 
+dyadique $\left[\frac{k}{2^{|n_0|}}, \frac{k+1}{2^{|n_0|}}\right[$. 
+Prenant $n_0$ aussi petit qu'on veut elles sont donc aussi proches qu'on veut, 
+et on peut les maintenir proches pour réaliser le critère de CI-confort.  
 \end{exemple}
 
 
@@ -353,7 +363,7 @@ ${(\FF_n)}_{n_0 \leq n \leq 0}$.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Filtrations CI-confortables}
+\section{Filtrations CI-confortables}\label{sec:CIconfort}
 
 \begin{definition}\label{def:CIconfort}
 Soient $\FF$ une filtration et $X$ une v.a.\ mesurable pour $\FF_0$ 
@@ -550,7 +560,9 @@ C-produit ?
 \item Une filtration localement de type C-produit et conditionnellement poly-adique 
 est-elle de type C-produit ?
 
-\item Théorème lacunaire ?
+\item Théorème lacunaire ? (je n'ai pas essayé)
+
+\item Le produit de deux filtrations CI-confortables est-il CI-confortable ? (je n'ai pas essayé) 
 \end{enumerate}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
