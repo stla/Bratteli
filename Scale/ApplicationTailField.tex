@@ -1,12 +1,13 @@
 \documentclass[12pt,a4paper]{article}
 \usepackage[utf8]{inputenc}
-\usepackage[english]{babel}
+\usepackage[T1]{fontenc}
+\usepackage[francais]{babel}
 \usepackage{amsmath, amsthm}
 \usepackage{amsfonts}
 \usepackage{amssymb}
 \usepackage{graphicx}
 \usepackage{lmodern}
-\usepackage[left=2cm,right=2cm,top=2cm,bottom=2cm]{geometry}
+\usepackage[left=1.8cm,right=1.8cm,top=1.5cm,bottom=1.5cm]{geometry}
 
 \usepackage[labelformat=simple]{subcaption}
 \renewcommand\thesubfigure{(\alph{subfigure})}
@@ -20,9 +21,13 @@
 \usepackage{hyperref}
 
 \author{Stéphane Laurent}
-\title{Application de $\GG_{-\infty}$}
+\title{\TitleFont Obtention de moyennes pondérées ergodiques \\ (application de $\GG_{-\infty}$)\vspace{-0.5cm}}
 \begin{document}
 
+\newcommand*{\TitleFont}{%
+      \usefont{\encodingdefault}{\rmdefault}{b}{n}%
+      \fontsize{16}{20}%
+      \selectfont}
 
 \newtheoremstyle{thmstyle}{3pt}{3pt}{\itshape}{}{\bf}{.}{.5em}{}      
 \newtheoremstyle{defstyle}{3pt}{3pt}{\sffamily}{}{\bf}{.}{.5em}{} 
@@ -35,6 +40,7 @@
 \newtheorem{thm}{Theorem}[section]
 \newtheorem{ppsition}{Proposition}
 \newtheorem{lemma}{Lemma}
+\newtheorem{lemme}{Lemme}[section]
 
 \newcommand{\FF}{\mathcal{F}}
 \newcommand{\GG}{\mathcal{G}}
@@ -54,6 +60,7 @@
 \newcommand{\indvee}{\dot{\vee}}
 \newcommand{\indep}{\mathrel{\text{\scalebox{1.07}{$\perp\mkern-10mu\perp$}}}}
 
+
 \maketitle
 
 
@@ -65,18 +72,37 @@ Dans \cite{LauScale}, j'ai introduit une filtration $\GG={(\GG_n)}_{n \leq 0}$
 associée à la donnée d'une transformation adique $S$ et d'une transformation 
 quelconque $T$, qui est telle que $\GG_{-\infty}$ est la tribu des 
 événements invariants par $T \times S$. 
-Je vais montrer ici comment on peut l'utiliser pour obtenir 
-des moyennes pondérées ergodiques $\sum a_{N,k} f(T^k x)$.
+Je vais montrer ici comment on peut utiliser la trivialité de $\GG_{-\infty}$ pour obtenir 
+des moyennes pondérées ergodiques de la forme $\sum a_{N,k} f(T^k x)$, qui font 
+l'objet de l'article \cite{HP}. 
  
+ En appliquant les lemmes de l'appendice~\ref{sec:HP}, on tire de 
+ces résultats des propriétés arithmétiques asymptotiques sur des mots infinis tels que 
+le mot de Chacon et le mot de Fibonacci (voir section~\ref{sec:application}).
+Par exemple, si $c=(0, 1, 0, 0, 1, \ldots)$ est le mot de Fibonacci, nous obtiendrons 
+les deux propriétés suivantes (voir section~\ref{sec:application} pour les notations).  
+\begin{itemize}
+\item Pour tout entier $\alpha \geq 2$ et $0 \leq j < \alpha$,
+$$
+\frac{\#\bigl\{i \mid 0 \leq i \leq F_n-1,\, c(i)=1 \,\text{  et  }\, i\!\!\!\!\pmod\alpha=j \bigr\}}{F_n} \to \frac{1}{\phi\alpha}.
+$$
+
+\item Pour tout irrationel $\gamma \in (0,1)$ rationnellement indépendant de $\phi$ et 
+$[a,b) \subset [0,1)$, 
+$$
+\frac{\#\bigl\{i \mid 0 \leq i \leq F_n-1,\, c(i)=1 \,\text{  et  }\,  \{n\gamma\} \in [a,b) \bigr\}}{F_n} \to \frac{b-a}{\phi}.
+$$
+\end{itemize}
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{La filtration $\GG$}
 
 
-\begin{wrapfigure}{r}{60mm}
+\begin{wrapfigure}{r}{48mm}
    \centering
-   	\includegraphics[scale=1]{figures/Golden_towers}
+   	\includegraphics[scale=0.88]{figures/Golden_towers}
    \caption{Golden towers}
    \label{fig:GoldenTowers}
 \end{wrapfigure}
@@ -91,7 +117,9 @@ dans lequel se situe $\gamma$ (en particulier $k_0 \equiv 0$).
 Sur l'illustration de la figure~\ref{fig:GoldenTowers}, 
 $k_{-1}(\gamma) = 0$ et $k_{-2}(\gamma)=1$. 
 On note $v_n(\gamma)$ l'indice de la tour de l'étape $n$ dans laquelle 
-se situe $\gamma$.
+se situe $\gamma$ (sur la figure~\ref{fig:GoldenTowers} 
+j'ai choisi d'étiqueter par "$0$" la grande tour et par "$1$" la 
+petite tour).
 
 Soit $T$ une transformation sur un espace de Lebesgue 
 $(\XX, \nu)$. La transformation produit $T \times S$ 
@@ -114,6 +142,7 @@ $\FF_n = \sigma(R_n)$.
 Notant $\GG={(\GG_n)}_{n \leq 0}$ la filtration engendrée 
 par le processus ${(X_n,R_n)}_{n \leq 0}$, on a alors
 $\GG_n = \sigma(X_n, R_n)$. 
+J'ai montré dans \cite{LauScale} que $\boxed{X_n \indep R_n}$.
 
 Attention à la notation $K_n$ qui pourrait prêter à croire que 
 $K_n$ est mesurable à l'instant $n$. 
@@ -132,26 +161,31 @@ De ce fait, pour toute fonction $f \in L^1(\XX \times [0,1])$,
 \EE\bigl[f(X_0, R_0) \given \GG_n\bigr]
  =\frac{1}{\dim(V_n)}\sum_{k=0}^{\dim(V_n)-1} f\bigl(T^kX_n, S^kR_n \bigr).
 \end{equation}
+J'ai montré dans \cite{LauScale}  que l'on déduit de ça que 
+\uline{\emph{$\GG_{-\infty}$ est la tribu des invariants de $T \times S$}}.  
 
-J'ai montré ailleurs que l'on déduit de ça que 
-\uline{\emph{$\GG_{-\infty}$ est la tribu des invariants de $T \times S$}}, 
-et j'ai aussi montré que $X_n \indep \FF_n$.
 
 
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Application} 
+\section{Application}\label{sec:application}
 
 \subsection{Application à la transformation de Chacon}
 
-Prenons l'example où $S$ est la transformation de Chacon 
-(voir \href{https://cdr.lib.unc.edu/indexablecontent/uuid:bfc41b0c-b048-440f-9a57-533e02ea4f76}{ce document} ou \cite{LauScale}). 
+Prenons l'exemple où $S$ est la transformation de Chacon 
+(je conseille vivement d'observer les figures du  \href{https://cdr.lib.unc.edu/indexablecontent/uuid:bfc41b0c-b048-440f-9a57-533e02ea4f76}{document~\cite{AP}} pour comprendre). 
 
 Le découpage-empilage qui définit $S$ est composé de deux tours à chaque étape $n$, 
 l'une de longueur $h_n = \frac{3^{|n|+1}-1}{2}$ et l'autre de hauteur $1$.  
 La mesure de la première tend vers $1$, celle de l'autre vers $0$. 
+
+Si on code les étages de la grande tour par "$0$" lorsqu'il est inclus dans 
+$[0, 2/3[$ et par "$1$" sinon, on obtient, en lisant du bas vers le haut, les 
+"mots de Chacon" $w_n$ obtenus en posant $w_0=0$ et successivement 
+$w_{n+1} = w_nw_n1w_n$ (ce codage se visualise avec des couleurs sur les figures du document~\cite{AP}). 
+C'est cela que nous allons utiliser. 
 
 La transformation $S$ est faiblement mélangeante, ce qui implique que $T \times S$ 
 est ergodique du moment que $T$ est ergodique, donc que $\GG_{-\infty}$ est triviale. 
@@ -164,18 +198,18 @@ $f(x,\gamma) = g(x)\indic_{x \in I}$ où $I=[2/3, 1[$ :
 \EE\bigl[g(X_0) \indic_{R_0 \in I} \given \GG_n\bigr]
 &  = \frac{1}{\dim(V_n)}\sum_{k=0}^{\dim(V_n)-1} g(T^kX_n) \indic_{S^k R_n \in I} \\
 & = \underset{=:A_n}{\underbrace{\left(\frac{1}{h_n}\sum_{k=0}^{h_n-1} g(T^kX_n) \indic_{S^k R_n \in I}\right)}}\indic_{V_n=0} 
-+ \underset{=:B_n}{\underbrace{\left(g(X_n) \indic_{R_n \in I}\right)}}\indic_{V_n=1}
++ \underset{=:B_n}{\underbrace{\left(g(X_n) \indic_{R_n \in I}\right)}}\indic_{V_n=1}.
 \end{align*}
 On sait que 
 $\EE\bigl[g(X_0) \indic_{R_0 \in I} \given \GG_n\bigr] \to \ell:= \frac{1}{3}\int g \mathrm{d}\nu$. 
-Comme $X_n \indep V_n$ et $\Pr(V_n=0) \to 1$, cela implique que $A_n \to \ell$ en probabilité. 
-
-Or 
+Comme $X_n \indep V_n$ et $\Pr(V_n=0) \to 1$, cela implique que $A_n \to \ell$ en probabilité 
+(voir lemme~\ref{lemme:convergence}). 
+On peut écrire
 $$
 A_n = \frac{1}{h_n}\sum_{k=0}^{h_n-1} c_k g(T^kX_n) 
 $$
 où $c = (0, 0, 1, 0, 0, 0, 0, 1, 0, \ldots)$ est "le mot de Chacon", 
-la limite des mots $w_n$ obtenu en posant $w_0=0$ et successivement 
+la limite des mots $w_n$ obtenus en posant $w_0=0$ et successivement 
 $w_{n+1} = w_nw_n1w_n$. 
 
 
@@ -188,21 +222,45 @@ où
 $$
 a_{n,k} = \begin{cases}
 \frac{3}{h_n} c_k & \text{si $0 \leq k \leq h_n-1$} \\
-0 & \text{si $k \geq h_n$}.
+0 & \text{si $k \geq h_n$}
 \end{cases}
 $$
 et donc $S_n(g) \to \int g \mathrm{d}\nu$ en probabilité. 
 
 
 En appliquant les lemmes de l'appendice \ref{sec:HP}, on obtient des 
-propriétés sur la répartition asymptotique des "$1$" dans $c$. 
+propriétés sur la répartition asymptotique des "$1$" dans $c$ :
+
+\begin{itemize}
+\item Pour tout entier $\alpha \geq 2$ et $0 \leq j < \alpha$,
+$$
+\frac{\#\bigl\{i \mid 0 \leq i \leq h_n-1,\, c(i)=1 \,\text{  et  }\, i\!\!\!\!\pmod\alpha=j \bigr\}}{h_n} \to \frac{1}{3\alpha}.
+$$
+
+\item Pour tout irrationel $\gamma \in (0,1)$ et $[a,b) \subset [0,1)$, 
+$$
+\frac{\#\bigl\{i \mid 0 \leq i \leq h_n-1,\, c(i)=1 \,\text{  et  }\,  \{n\gamma\} \in [a,b) \bigr\}}{h_n} \to \frac{b-a}{3}.
+$$
+\end{itemize}
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Application à la rotation d'or}
 
-Prenons l'exemple où $S$ est la rotation d'or illustré sur la figure~\ref{fig:GoldenTowers}. 
-Supposons que $T$ est telle que $T \times S$ ergodique. 
+
+Prenons l'exemple où $S$ est la rotation d'or, dont le découpage-empilage 
+est illustré sur la figure~\ref{fig:GoldenTowers}. 
+
+Sur la figure~\ref{fig:GoldenTowers}, si on code les étages d'une tour 
+par "$0$" lorsqu'il est noir et par "$1$" lorsque qu'il est rouge, on 
+obtient, en lisant du haut vers le bas, les mots de Fibonacci. 
+C'est cela que nous allons utiliser. 
+Contrairement à l'exemple de Chacon, le mot se lit du haut vers le bas, 
+et il faudra alors un peu bricoler.
+
+Supposons que $T$ est telle que $T \times S$ ergodique, de sorte 
+que $\GG_{-\infty}$ est triviale.  
 Soit $g \in L^1(\XX)$. 
 Appliquons~\eqref{eq:conditionalexpectation} à 
 $f(x,\gamma) = g(x)\indic_{x \in I}$ où $I=[1-\theta, 1[$ :
@@ -217,7 +275,7 @@ où $F_0=1$, $F_1=2$, $F_2=3$, $F_3=4$, $\ldots$, est la suite de Fibonacci.
 On sait que 
 $\EE\bigl[g(X_0) \indic_{R_0 \in I} \given \GG_n\bigr] \to \ell:= \theta\int g \mathrm{d}\nu$. 
 Du fait que $X_n \indep V_n$  et $\Pr(V_n=0)$ converge vers un réel $>0$ on peut en 
-déduite que $A_n$ converge en probabilité vers $\ell$. 
+déduire que $A_n$ converge en probabilité vers $\ell$ (voir lemme~\ref{lemme:convergence}). 
 
 %
 %Les "$\indic_{S^k R_n \in I}$" dans cette expression sont déterministes. 
@@ -231,15 +289,68 @@ A_n & = \frac{1}{F_{|n|}}\sum_{k=0}^{F_{|n|}-1} g(T^{-k}X_n) \indic_{S^k R_n \in
   = \frac{1}{F_{|n|}}\sum_{k=0}^{F_{|n|}-1} g(T^k(T^{-(F_{|n|}-1)}X_n)) \indic_{S^{F_{|n|}-1-k} R_n \in I} 
  \\ & = \frac{1}{F_{|n|}}\sum_{k=0}^{F_{|n|}-1} c_k g(T^k(T^{-(F_{|n|}-1)}X_n)) 
 \end{align*}
-où $c_k = (0, 1, 0, 0, 1, 0, 1, 0, \ldots)$ est le mot de Fibonacci.
+où $c = (0, 1, 0, 0, 1, 0, 1, 0, \ldots)$ est le mot de Fibonacci.
 Remarquons que $A_n/\theta$ a la même loi que 
 $$
 S_n(g) = \frac{1}{\theta F_{|n|}}\sum_{k=0}^{F_{|n|}-1} c_k g(T^kX_0),  
+= \sum_{k=0}^\infty a_{n,k} g(T^kX_0) 
+$$ 
+où
+$$
+a_{n,k} = \begin{cases}
+\frac{1}{\theta} c_k & \text{si $0 \leq k \leq F_{|n|}-1$} \\
+0 & \text{si $k \geq F_{|n|}$}
+\end{cases}
 $$
 on a donc la convergence en probabilité $S_n(g) \to \int g \mathrm{d}\nu$. 
 
 En appliquant les lemmes de l'appendice \ref{sec:HP}, on obtient des 
-propriétés sur la répartition asymptotique des "$1$" dans $c$. 
+propriétés sur la répartition asymptotique des "$1$" dans $c$ 
+(celles notées dans l'introduction).  
+
+On obtiendrait un résultat similaire avec les autres rotations irrationnelles. 
+En notant $\theta = [0, d_1+1, d_2, \ldots]$ le développement en fraction 
+continue de l'angle de la rotation, le mot $c$ serait la limite des mots 
+$w_n$ obtenus en posant $w_0=1$, $w_1=0$ puis successivement 
+$w_{n+1}=w_n^{d_n}w_{n-1}$, et à la place de $F_{|n|}$ on aurait le 
+dénominateur $q_{|n|}$ des convergents de $\theta$. 
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Principe général}
+
+Dans les deux exemples j'ai utilisé le lemme suivant pour passer de la convergence 
+de $\EE\bigl[g(X_0) \indic_{R_0 \in I} \given \GG_n\bigr]$ à la convergence de 
+$S_n(g)$. 
+
+\begin{lemme}\label{lemme:convergence}
+Soit $(Y_n)$ une suite de v.a.\ de la forme 
+$Y_n = A_n \indic_{E_n} + B_n \indic_{E_n^c}$, 
+avec $A_n \indep E_n$.
+Si $Y_n$ converge en probabilité vers un réel $\ell>0$ et si $\Pr(E_n) \to p>0$, 
+alors $A_n \to \ell$ en probabilité.
+\end{lemme}
+
+\begin{proof}
+Cela résulte de
+$$
+\Pr\bigl(|A_n - \ell|> \epsilon\bigr) = 
+\frac{\Pr\bigl(|A_n - \ell|> \epsilon, E_n\bigr)}{\Pr(E_n)} 
+= \frac{\Pr\bigl(|Y_n - \ell|> \epsilon, E_n\bigr)}{\Pr(E_n)} 
+\leq \frac{\Pr\bigl(|Y_n - \ell|> \epsilon)}{\Pr(E_n)}.  
+$$
+\end{proof}
+
+La variable aléatoire $Y_n$ est séparée en deux parties parce qu'il y 
+a deux tours dans les exemples. 
+La stratégie s'appliquerait aussi bien à un découpage-empilage avec un 
+nombre borné de tours. 
+Par contre pour un cas tel que le transformation de Pascal où le nombre de 
+tours à l'étape $n$ est $|n|$, je ne sais rien en tirer de cette manière. 
+On obtient pourtant des mots infinis intéressants pour la transformation de 
+Pascal, liés à la suite de Van der Corput, pour lesquels les propriétés arithmétiques 
+sur la répartition des "$1$" semblent avoir lieu (j'ai vérifié par ordinateur). 
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -305,7 +416,7 @@ $$
 
 
 \begin{proof}
-See \cite{HP}.
+See in \cite{HP} the proof of the necessity of condition (2) in theorem 1.
 \end{proof}
 
 \end{appendices}
@@ -314,6 +425,11 @@ See \cite{HP}.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{thebibliography}{99.}
+
+\bibitem{AP}
+Agyeman-Prempeh C., 
+\emph{Cutting and stacking in ergodic theory} (\href{https://cdr.lib.unc.edu/indexablecontent/uuid:bfc41b0c-b048-440f-9a57-533e02ea4f76}{link}).
+Master thesis, University of North Carolina. 
 
 \bibitem{HP} 
 Hanson D.L., Pledger G.,

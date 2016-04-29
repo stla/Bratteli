@@ -1,0 +1,631 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage{amsmath, amsthm}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{lmodern}
+\usepackage[left=2cm,right=2cm,top=2cm,bottom=2cm]{geometry}
+
+\usepackage[labelformat=simple]{subcaption}
+\renewcommand\thesubfigure{(\alph{subfigure})}
+
+\author{Stéphane Laurent}
+\title{xxx}
+\begin{document}
+
+
+\newtheoremstyle{thmstyle}{3pt}{3pt}{\itshape}{}{\bf}{.}{.5em}{}      
+\newtheoremstyle{defstyle}{3pt}{3pt}{\sffamily}{}{\bf}{.}{.5em}{} 
+\theoremstyle{defstyle}
+\newtheorem{definition}{Definition}
+\newtheorem{remark}{Remark}
+\newtheorem{question}{Question}
+\newtheorem{clarify}{To clarify}
+\theoremstyle{thmstyle}
+\newtheorem{thm}{Theorem}[section]
+\newtheorem{ppsition}{Proposition}
+\newtheorem{lemma}{Lemma}
+
+\newcommand{\FF}{\mathcal{F}}
+\newcommand{\GG}{\mathcal{G}}
+\newcommand{\EE}{\mathbb{E}}
+\newcommand{\II}{\mathcal{I}}
+\newcommand{\LL}{\mathcal{L}}
+\newcommand{\OO}{\mathcal{O}}
+\newcommand{\XX}{\mathcal{X}}
+\newcommand{\given}{\mid}
+\newcommand{\eps}{\epsilon}
+\newcommand{\indic}{\boldsymbol 1}
+\newcommand{\Vb}{\boldsymbol V}
+
+\newcommand{\indvee}{\dot{\vee}}
+\newcommand{\indep}{\mathrel{\text{\scalebox{1.07}{$\perp\mkern-10mu\perp$}}}}
+
+\maketitle
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Filtration associated to an adic transformation} 
+
+\subsection{The sequence of measurable partitions}
+
+Consider an adic transformation $S$ acting on set of paths $\Gamma$ of a 
+Bratteli graph, preserving a probability measure $\mu$ on $\Gamma$. 
+We consider that the root level of the graph is graded by the index 
+$n=1$ and the subsequent levels are graded by $n=0$, $n=-1$, $\ldots$. 
+The example of the golden graph is shown on Figure~\ref{fig:GoldenGraph}. 
+Figure~\ref{fig:GoldenGraph_newlabs} will be expained later.
+
+A path $\gamma \in \Gamma$ is a sequence of arcs 
+$\gamma=(\gamma_{1}, \gamma_0, \gamma_{-1}, \ldots)$, where $\gamma_n$ connects 
+a vertex at level $n$ to a vertex at level $n-1$. 
+Note that $\gamma$ is determined by $(\gamma_0, \gamma_{-1}, \ldots)$ 
+because there is a unique arc between a vertex at level $n=0$ and the root vertex 
+at level $n=1$.  
+
+We denote by $v_n(\gamma)$ the vertex at level $n$ through which passes a path $\gamma$. 
+The dimension of a vertex $v$, that is to say the number of paths connecting $v$ 
+to the root vertex, is denoted by $\dim(v)$, and we set 
+$\boxed{d_n(\gamma)=\dim\bigl(v_n(\gamma)\bigr)}$, the dimension of the vertex at level $n$ 
+through which passes the path $\gamma$. 
+
+
+\begin{figure}[!h]
+   \centering
+   \begin{subfigure}[t]{0.37\textwidth}
+   \centering
+   	\includegraphics[scale=0.6]{figures/GoldenGraph_redpath_usual}
+ 		\caption{\footnotesize Usual labels on the arcs}\label{fig:GoldenGraph}
+    \end{subfigure}              
+   \quad
+    \begin{subfigure}[t]{0.37\textwidth}
+    \centering
+   	\includegraphics[scale=0.6]{figures/GoldenGraph_redpath_newlabels}
+ 		\caption{\footnotesize New labels on the arc}\label{fig:GoldenGraph_newlabs}
+ 	\end{subfigure}      
+
+   \caption{Golden graph}
+   \label{fig:ostro}
+ \end{figure}
+
+There is an increasing sequence of measurable partitions ${(\zeta_n)}_{n \leq 0}$ 
+on $(\Gamma, \mu)$, defined by 
+$$
+\boxed{\gamma \overset{\zeta_n}{\sim} \gamma' 
+\iff \gamma_k=\gamma'_k \quad\text{for every $k \leq n$}}.
+$$ 
+% if $v_n(\gamma)=v_n(\gamma')$. 
+The $\zeta_n$-equivalence class $\zeta_n(\gamma)$ consists of $d_n(\gamma)$ elements. 
+These elements are ordered: there is one element in $\zeta_n(\gamma)$, denoted by 
+$\bar\gamma_n$, such that 
+$$
+\boxed{\zeta_n(\gamma)= \{\bar\gamma_n, S\bar\gamma_n, \ldots, S^{d_n(\gamma)-1}\bar\gamma_n\}}.
+$$
+We consider $\bar\gamma_n$ as the $\zeta_n$-representative of $\gamma$.
+
+
+
+The increasing property of ${(\zeta_n)}_{n \leq 1}$ provides a structure 
+on the $\zeta_{n}$-equivalence classes: a $\zeta_n$-equivalence class 
+is a union of $\zeta_{n+1}$-equivalences classes. 
+This is illustrated on Figure~\ref{fig:GoldenOrbits}. 
+The labels on the arcs of this figure correspond to the ones of Figure~\ref{fig:GoldenGraph_newlabs}. 
+The label between level $n$ and level $n+1$ indicates the location of 
+$\zeta_{n+1}(\gamma)$ as a block of $\zeta_n(\gamma)$. 
+
+\begin{figure}[!h]
+\centering
+\includegraphics[scale=0.9, clip=true]{figures/GoldenOrbits}
+\caption{A $\zeta_{-4}$-equivalence class}
+\label{fig:GoldenOrbits}
+\end{figure}
+
+Thus, $\bar\gamma_n = S^{-k_n(\gamma)}\gamma$ where the nonnegative integer $k_n(\gamma)$ 
+is a function of $(\gamma_{1}, \gamma_0, \ldots, \gamma_n)$, and 
+$$
+\zeta_n(\gamma) = \{S^{-k_n(\gamma)}\gamma, S^{-k_n(\gamma)+1}\gamma, 
+\ldots, S^{-k_n(\gamma)+d_n(\gamma)-1}\gamma \}.
+$$ 
+
+\begin{lemma}\label{lemma:infinitelimits}
+For almost $\gamma \in \Gamma$, 
+$k_n(\gamma) \to \infty$ and $-k_n(\gamma)+d_n(\gamma) \to \infty$.
+\end{lemma}
+
+\begin{proof}
+
+\end{proof}
+
+The usual labels on the arcs of a Bratteli graph, such as the one 
+shown on Figure~\ref{fig:GoldenGraph}, provide, for each vertex $v_n$ 
+at a level $n$, an ordering of the arcs between $v_n$ and the vertices connected 
+to $v_n$ at level $n-1$.  
+The labels shown on Figure~\ref{fig:GoldenGraph_newlabs} and Figure~\ref{fig:GoldenOrbits} 
+are obtained by considering the other direction: they provide, 
+for each vertex $v_{n-1}$ at a level $n-1$, 
+an ordering of the arcs between $v_{n-1}$ and the vertices connected 
+to $v_{n-1}$ at level $n$. 
+Since there is a unique arc between the root vertex and a vertex at level $0$, 
+we do not need such a label for $n=1$. 
+After a choice of such labels, we denote 
+by $\epsilon_n(\gamma)$ the label connecting $v_{n-1}(\gamma)$ to 
+$v_n(\gamma)$. 
+ 
+The sequence $\bigl(v_n(\gamma), \epsilon_n(\gamma)\bigr)_{n \leq n_0}$ up to 
+a level $n_0 \leq 0$ determines the path $\gamma$ truncated at this level. 
+In other words it determines the $\zeta_{n}$-equivalence classe 
+$\zeta_n(\gamma)$. 
+
+We will come back to the above points in the next section below, in the 
+language of $\sigma$-fields. 
+
+\begin{lemma}
+The set-theoretic intersection $\cap_{n \leq 0} \zeta_n$ is the orbital partition of $S$. 
+\end{lemma}
+
+%\begin{proof}
+%Je ne sais pas comment faire ça, ça devrait être le fait que 
+%$\zeta_n(\gamma) = \{T^{-P_n}\gamma, \ldots, T^{Q_n}\gamma\}$ avec 
+%$P_n,Q_n\to\infty$... 
+%
+%ça ne vient pas du fait de l'approximation périodique ? 
+%\end{proof}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{The filtration}
+
+One gets a filtration ${(\FF_n)}_{n \leq 0}$ by defining the $\sigma$-field 
+$\FF_n$ as the one generated by the measurable partition $\zeta_n$. 
+Considering a path $\gamma \in \Gamma$ as the actual point taken at random 
+in the probability space, we consider $v_n$ and $\epsilon_n$ as random 
+variables but we use the notation $V_n$ instead of $v_n$. 
+Thus $\FF$ is generated by the stochastic process 
+${(V_n, \epsilon_n)}_{n \leq 0}$:
+$$
+\boxed{\FF_n = \sigma(V_m, \epsilon_m; m \leq n)}
+$$
+ and $\epsilon_{n+1}$ is a "novation" from $\FF_n$ to $\FF_{n+1}$, that is 
+to say $\FF_{n+1} = \FF_n \vee \sigma(\epsilon_{n+1})$, since 
+$V_{n+1}$ is a function of $V_n$ and $\epsilon_{n+1}$. 
+
+\begin{lemma}
+The random variable $\epsilon_{n+1}$ is conditionally independent of $\FF_n$ 
+given $V_n$. 
+\end{lemma} 
+
+\begin{proof}
+Given $\FF_n$, the random variable $\epsilon_{n+1}$ is the label of an 
+arc connecting the vertex $V_n$ to a vertex at level $n+1$. 
+\end{proof}
+
+In the previous section, we introduced the integer $k_n(\gamma)$ such that 
+$\bar\gamma_n = S^{-k_n(\gamma)}\gamma$. 
+
+
+We use the notation $K_n$ instead of $k_n$ to denote $k_n$ considered as 
+a random variable, and we denote by $R_n$ the random variable whose 
+value at $\gamma$ is the $\zeta_n$-representative 
+$\bar\gamma_n$ of $\gamma$. 
+Thus $R_0$ is a path taken at random according to $\mu$ and 
+$R_n = S^{-K_n} R_0$. Since $\bar\gamma_n$ determines the path 
+$\gamma$ truncated at $n$, and vice-versa, the filtration $\FF$ is also 
+generated by the stochastic process ${(R_n)}_{n \leq 0}$, but more precisely
+$\boxed{\FF_n = \sigma(R_n)}$. 
+ 
+Conditionally to $V_n$, the random integer $K_n$ is a one-to-one function of 
+$(\epsilon_{n+1}, \ldots, \epsilon_0)$, and it has the 
+uniform distribution on $\{0, \ldots, \dim(V_n)-1\}$. 
+This is the \emph{centrality} property of $\mu$. 
+
+Observe that $R_{n+1} = S^{K_n - K_{n+1}}R_n$ and, 
+conditionally to $V_n$, the nonnegative integer $K_n - K_{n+1}$ 
+is a one-one function of $\epsilon_{n+1}$. 
+Thus, conditionally to $V_n$, the random integer $K_n$ has always 
+an expression of the form $K_n = \sum_{k=0}^{n+1}f_k(\epsilon_k)$. 
+
+For example, $K_n$ has a very convenient expression for the case of the adic 
+transformation on the golden graph with our choice of the labels shown on 
+Figure~\ref{fig:GoldenGraph_newlabs}:
+$$
+K_n = \epsilon_{n+1}F_{n} + \ldots + \epsilon_0F_0.   
+$$
+where $F_0=1$, $F_{-1}=2$,  $\ldots$ are the Fibonacci numbers.  
+Here its expression does not depend on $V_n$, but its distribution does. 
+
+As another example, consider the Chacon graph shown on Figure~\ref{fig:ChaconGraph} 
+which also shows our choice of the labels on the arcs. 
+For this example, 
+$K_n=\sum_{k=0}^{n+1}f_k(\epsilon_k)$, with  
+$$
+\begin{cases}
+f_n(0) = 0 \\ 
+f_n(1) = h_{n+1} \\ 
+f_n(2) = 2h_{n+1} \\
+f_n(3) = 2 h_{n+1} + 1
+\end{cases}.
+$$
+where $h_n=\frac{3^{|n|+1}-1}{2}$ is the dimension of the vertex $1$ at level $n$. 
+
+\begin{figure}[!h]
+   \centering
+   \begin{subfigure}[t]{0.47\textwidth}
+   \centering
+   	\includegraphics[scale=0.6]{figures/ChaconGraph_SimpleEdges}
+ 		\caption{\footnotesize Usual labels on the arcs}\label{fig:ChaconGraph_simpleedges}
+    \end{subfigure}              
+   \quad
+    \begin{subfigure}[t]{0.47\textwidth}
+    \centering
+   	\includegraphics[scale=0.6]{figures/Chacon_Labels_hand}
+ 		\caption{\footnotesize New labels on the arc}\label{fig:ChaconGraph_newlabs}
+ 	\end{subfigure}      
+
+   \caption{Chacon graph}
+   \label{fig:ChaconGraph}
+ \end{figure}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{The scale of an automorphism}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{The sequence of measurable partitions}
+
+Now, in addition to the adic transformation $S$, let $T$ be a measure-preserving transformation on a Lebesgue space $(\XX, \nu)$. 
+
+One can define an increasing sequence of measurable partitions ${(\xi_n)}_{n \leq 0}$ 
+locally isomorphic to the elementary sequence ${(\zeta_n)}_{n \leq 0}$ associated to $S$,  
+and such that $\xi_n$ approximates the orbital partition of $T \times S$ as 
+$n \to -\infty$.
+
+For two paths $\gamma$, $\gamma'$ in the same $S$-orbit, denote by $k(\gamma,\gamma')$ 
+the integer such that $\gamma'=S^{k(\gamma,\gamma')}\gamma$. 
+Thus $k(\gamma,\gamma') = k_n(\gamma)-k_n(\gamma')$ when $\gamma \overset{\zeta_n}{\sim} \gamma'$. 
+Then define the measurable partition $\xi_n$ by 
+$$
+\boxed{(x, \gamma) \overset{\xi_n}{\sim} (x', \gamma') \iff 
+\gamma \overset{\zeta_n}{\sim} \gamma' \quad 
+\text{and $x'=T^{k(\gamma,\gamma')}x$}}. 
+$$
+That is, the $\xi_n$-equivalence class of $(x,\gamma)$ is 
+$$
+\boxed{\xi_n(x,\gamma) = \bigl\{(\bar x_n, \bar\gamma_n), (T\bar x_n, S\bar\gamma_n), 
+\ldots, (T^{d_n(\gamma)-1}\bar x_n, S^{d_n(\gamma)-1}\bar\gamma_n) \bigr\}}
+$$
+where $\bar x_n = T^{-k_n(\gamma)}x$ and, as already seen, 
+$\bar\gamma_n = S^{-k_n(\gamma)}\gamma$ is the $\zeta_n$-representative of 
+$\gamma$. 
+We can consider $(\bar x_n, \bar\gamma_n)$ as the $\xi_n$-representative of
+$(x,\gamma)$. 
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{The filtration} 
+
+We take a random variable $X_0$ distributed on $\XX$ according to $\nu$ 
+and we set $\boxed{X_n = T^{-K_n} X_0}$, similarly to $R_n = S^{-K_n} R_0$. 
+Since $K_n$ is independent of $X_0$, one has $X_n \sim \nu$ for every $n \leq 0$.
+
+We denote by $\GG$ the filtration generated by the stochastic process 
+${(X_n, V_n, \epsilon_n)}_{n \leq 0}$:
+$$
+\boxed{\GG_n = \sigma(X_m, V_m, \epsilon_m; m \leq n)}, 
+$$
+ which is also generated by ${(X_n, R_n)}_{n \leq 0}$. 
+ Thus $\GG_n = \sigma(\xi_n)$ because $(X_n,R_n)(x,\gamma) = (\bar x_n, \bar\gamma_n)$ 
+and one actually has 
+$\boxed{\GG_n = \sigma(X_n, R_n)}$.
+
+\begin{remark}
+Si je prenais des $\epsilon_n$ distincts je pourrais dire 
+${(X_n, \epsilon_n)}_{n \leq 0}$ ... oui mais j'aime autant "voir" $V_n$.
+\end{remark}
+
+\begin{lemma}
+The random integer $K_n$ is conditionally independent of $\GG_n$ 
+given $V_n$ (then so is  $\epsilon_{n+1}$), and  $\epsilon_{n+1}$ is 
+a "novation" from $\GG_n$ to $\GG_{n+1}$, that is 
+to say $\GG_{n+1} = \GG_n \vee \sigma(\epsilon_{n+1})$, and  
+the filtration $\FF$ is immersed in $\GG$. 
+\end{lemma}
+
+\begin{proof}
+Given $\GG_n$, the random integer $K_n$ corresponds to a path  
+connecting the vertex $V_n$ to the root vertex. 
+That shows the conditional independence. 
+As seen before, $K_{n}-K_{n+1}$ is, conditionally to $V_n$, 
+a one-to-one function of $\epsilon_{n+1}$. Since 
+$X_{n+1} = T^{K_{n}-K_{n+1}}X_n$, that shows the equality 
+$\GG_{n+1} = \GG_n \vee \sigma(\epsilon_{n+1})$. 
+The immersion stems from the fact that 
+ $\epsilon_{n+1}$ is also a novation from $\FF_n$ to $\FF_{n+1}$.  
+\end{proof}
+
+Thus the process ${(X_n, V_n, \epsilon_n)}_{n \leq 0}$ is Markovian. 
+
+
+\begin{lemma}
+$X_n \indep \FF_n$ for every $n \leq 0$.
+\end{lemma}
+
+\begin{proof}
+Take $f \in L^1$. Then
+$$
+\EE\bigl[ f(X_n) \given \FF_n\bigr] 
+= \EE\bigl[ f(T^{-K_n}X_0) \given \FF_n\bigr]. 
+$$
+Since $K_n$ is $\FF_0$-measurable and $X_0 \indep \FF_0$, 
+$$
+\EE\bigl[ f(T^{-K_n}X_0) \given \FF_n\bigr] = 
+\EE\bigl[ h(K_n) \given \FF_n\bigr]
+$$
+where $h(k) = \EE\bigl[ f(T^{-k}X_0)\bigr]$. 
+But $h(k) =   \EE\bigl[ f(X_0)\bigr]=  \EE\bigl[ f(X_n)\bigr]$ 
+since $T$ preserves the law of $X_0$. 
+\end{proof}
+
+Therefore the law of the process ${(X_n,V_n,\epsilon_n)}_{n \leq 0}$ can 
+be described as follows:
+\begin{itemize}
+\item ${(V_n,\epsilon_n)}_{n \leq 0}$ is a path taken at random in $\Gamma$ 
+according to $\mu$;
+
+\item $X_n \indep (V_n,\epsilon_n)$;
+
+\item $\epsilon_{n+1}$ is conditionally independent of $\GG_n$ given $V_n$;
+
+\item $X_{n+1} = T^{K_n-K_{n+1}}X_n$.
+\end{itemize}
+
+
+\begin{figure}[!h]
+\centering
+	\includegraphics[scale=0.8]{figures/GoldenWalk_PowersProbs}
+\caption{The process $(X_n, V_n)$ for the golden graph}
+\end{figure}
+
+\begin{ppsition}\label{ppsition:tailfield}
+The tail $\sigma$-field $\GG_{-\infty}$ is degenerate if and only if $T \times S$ is ergodic. 
+More precisely, $\GG_{-\infty}$ equals  the $(T\times S)$-invariant $\sigma$-field. 
+\end{ppsition}
+ 
+\begin{proof}
+Denote by $\II$ the $(T\times S)$-invariant $\sigma$-field. 
+Since the pair $(X_0, R_0)$ generates $\GG_0$, the degeneracy of $\GG_{-\infty}$ 
+is equivalent to the $L^1$-convergence of 
+$\EE\bigl[f(X_0, R_0) \given \GG_n\bigr]$ to $\EE\bigl[f(X_0, R_0) \given \II\bigr]$   
+for every bounded measurabe function $f$. 
+
+Recall that $X_{0} = T^{K_n}X_n$ and $R_{0} = S^{K_n}R_n$. 
+Conditionally to $\GG_n$, the random integer $K_n$ 
+has the uniform distribution on $\bigl\{1, \ldots, \dim(V_n)\bigr\}$, 
+therefore 
+\begin{align*}
+\EE\bigl[f(X_0, R_0) \given \GG_n\bigr]
+& =\frac{1}{\dim(V_n)}\sum_{k=0}^{\dim(V_n)-1} f\bigl(T^kX_n, S^kR_n \bigr) \\
+& = \frac{1}{\dim(V_n)}\sum_{k=0}^{\dim(V_n)-1} f\bigl(T^{k}T^{-K_n}X_0, S^{k}S^{-K_n}R_0 \bigr).
+\end{align*}
+Now, write 
+$$
+\sum_{k=0}^{\dim(V_n)-1} f\bigl(T^{k}T^{-K_n}X_0, S^{k}S^{-K_n}R_0 \bigr) = 
+\sum_{M=1}^{\dim(V_n)} \left(\sum_{k=0}^{\dim(V_n)-1} f\bigl(T^kT^{-M}X_0, S^kS^{-M}R_0 \bigr) \right)\indic_{K_n=M}.
+$$
+and denote by $E(f\given\II)$ the conditional expectation of $f$ given $\II$.
+
+Let $\epsilon>0$. By the ergodic theorem, for every integer $N$ large enough and 
+for every pair of random variables $(U,V) \sim \nu \otimes \mu$, the average 
+$\frac{1}{N} \left(\sum_{k=0}^{N-1} f\bigl(T^k U, S^kV\bigr) \right)$ 
+is $\epsilon$-close in $L^2(\nu \otimes \mu)$ to 
+$E(f\given\II)(U,V)$. 
+For $n$ large enough, one can apply this fact to $U=T^{-M}X_0$ and $V=S^{-M}R_0$ and 
+$N=\dim(V_n)$, and one gets that the average 
+$$
+\frac{1}{\dim(V_n)}\sum_{k=0}^{\dim(V_n)-1} f\bigl(T^kT^{-M}X_0, S^kS^{-M}R_0 \bigr)
+$$
+is $\epsilon$-close in $L^2(\nu \otimes \mu)$ to 
+$E(f\given\II)(T^{-M}X_0,S^{-M}R_0)=E(f\given\II)(X_0,R_0)$. 
+
+Finally, using the Cauchy-Schwarz inequality,
+$$
+\EE\Bigl[ \left| \EE\bigl[f(X_0, R_0) \given \GG_n\bigr] - E(f\given\II)(X_0,R_0) \right| \Bigr] 
+\leq \epsilon,
+$$
+and the proof is over.
+\end{proof}
+
+\begin{remark}
+For people who deal with the filtration $\GG$ on an abstract probability space, 
+the equality is $\GG_{-\infty} = {(X_0, R_0)}^{-1}(\II)$. 
+\end{remark}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Adic split-words processes}
+
+We use the notations of the previous section. 
+
+Let $P$ be a finite or countable partition of $\XX$. 
+The elements of $P$ are labelled by the letters of an alphabet $A$ 
+and for $x \in \XX$ we denote by $P(x) \in A$ the label of the block to which $x$ belongs.
+
+Define the random word $W_n$ by 
+$$
+W_n = P(X_n)P(TX_n)\ldots P(T^{\dim(V_n)-1}X_n).
+$$
+
+\begin{figure}[!h]
+\centering
+	\includegraphics[scale=0.8]{figures/GoldenWalk_WordsProbs}
+\caption{The process $(W_n, V_n)$ for the golden graph}
+\end{figure}
+
+\begin{lemma}
+The filtration generated by ${(W_n,V_n,\epsilon_n)}_{n \leq 0}$  
+is immersed in $\GG$. 
+It equals $\GG$ when $P$ is a generating partition of $T$.
+\end{lemma}
+
+\begin{proof}
+Denote by $\FF$ this filtration. The immersion follows from the fact 
+that the random variable $\epsilon_{n+1}$ is 
+a novation of $\FF_n$ to $\FF_{n+1}$ and its conditional law given 
+$\FF_n$ is the same as given $\GG_n$. 
+
+To show that $\FF=\GG$ when $P$ is generating, it suffices to show 
+that $X_0$ is measurable with respect to $\FF_0$. 
+Since $X_n=T^{-K_n}X_0$, this follows from lemma~\ref{lemma:infinitelimits}. 
+\end{proof}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{The case of an odometer graph}
+
+In the case when $S$ is the usual adic transformation isomorphic to 
+the $(r_n)$-ary odometer, 
+the filtration $\GG$ is the one introduced by Laurent in \cite{LauXLV}, 
+whose standardness provides an equivalent definition of the first 
+definition of the scale of an automorphism introduced by Vershik in \cite{thescale}. 
+
+In this case, as shown in \cite{LauXLV}, the tail $\sigma$-field $\GG_{-\infty}$ 
+is degenerate if and only if $T^{\prod_{k=0}^{n+1}r_k}$ is ergodic for every $n \leq 0$. 
+This is indeed equivalent to the ergodicity of the product of $T$ 
+with the $(r_n)$-ary odometer, as claimed by Proposition~\ref{ppsition:tailfield}.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Examples}
+ 
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{The golden graph and the golden rotation}
+
+The adic transformation on the golden graph shown on Figure~\ref{fig:GoldenGraph} 
+is isomorphic to the golden rotation on $S^1$, 
+with angle $\theta=\frac{1}{1+\phi}=\frac{2}{3+\sqrt{5}}$. 
+Denote by 
+\({(f_n)}_{n \leq 0}\) the reversed Fibonacci sequence: 
+\[
+  f_0=f_{-1}=1, f_{-2}=2, f_{-3}=3, f_{-4}=5, \ldots.
+\]
+and also set $f_1=0$. 
+
+Using the labels shown on Figure~\ref{fig:GoldenGraph_newlabs}, 
+the law of the Markov process 
+${(V_n, \epsilon_n)}_{n \leq 0}$ generating the elementary filtration $\FF$ 
+is given by:
+\begin{itemize}
+\item $\Pr(V_n = 2) =  {(-1)}^{n+1} f_n\bigl(f_{n+1} - f_{n-1} \theta\bigr)$ 
+(thus $\Pr(V_0=2)=\theta$);
+
+\item $\Pr(\epsilon_n=0 \given V_{n-1}=1) = f_{n-1}/f_{n-2}$. 
+\end{itemize}
+
+It is not difficult to prove that $\FF$ is standard. 
+
+For a given transformation $T$, the law of the stochastic process 
+${(X_n, V_n, \epsilon_n)}_{n \leq 0}$ generating the filtration $\GG$ 
+is given by 
+$$
+Z_{n+1} = T^{\epsilon_{n+1}f_n}Z_n.
+$$
+
+Hence, in the case when $T$ is the golden rotation, the tail $\sigma$-field 
+$\GG_{-\infty}$ is not degenerate. 
+One can see that $Z_n$ almost surely goes to a random variable $Z_{-\infty}$ 
+as $n \to -\infty$.  
+Indeed, first observe that
+$$
+Z_{n+1} = Z_n \, \text{ or\, $Z_{n+1} = Z_n + \theta f_n$}. 
+$$
+But the distance between $\theta f_n$ and $0$ in $S^1$ is less than 
+$1/f_{n-1}$, because of the inequality
+$$
+|\theta f_n - f_{n+2}| \leq \frac{1}{f_{n-1}},
+$$
+coming from the well-known results about continued fraction 
+(the continued fraction expansion of $\theta$ is $[0, 2, 1, 1, \ldots]$). 
+Therefore $|Z_{n+1} - Z_n| \leq 1/f_{n-1}$, and $Z_n \to Z_{-\infty}$ because 
+$1/f_{n-1}$ is the general term of a convergent series. 
+Of course $Z_{-\infty}$ has the uniform distribution on $S^1$, like each $Z_n$.
+
+\begin{question}
+Does $\GG_{-\infty} = \sigma(Z_{-\infty})$ ? 
+\end{question}
+
+\begin{clarify}
+Conditionally to $Z_{-\infty}$, the filtration $\GG$ is isomorphic to $\FF$.  
+\end{clarify}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{The Chacon graph and Bernoulli automorphisms}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{thebibliography}{99.}
+
+\bibitem{ES}
+ \'{E}mery, M.,  Schachermayer, W.: 
+On Vershik's standardness criterion and Tsirelson's  notion of cosiness. 
+ S\'eminaire de Probabilit\'es XXXV,  
+Springer Lectures Notes in Math. 1755 (2001), 
+265--305.
+
+\bibitem{LauXLIII}
+ Laurent, S.: 
+On standardness and I-cosiness. S\'eminaire de Probabilit\'es XLIII, 
+Springer Lecture Notes in Mathematics 2006, 
+127--186 (2010).
+
+\bibitem{LauTeoriya}  
+ Laurent, S.: 
+On Vershikian and I-cosy random variables and filtrations.
+Teoriya Veroyatnostei i ee Primeneniya 55 (2010), 104--132. 
+Also published in: Theory Probab. Appl. 55 (2011), 54--76.
+
+\bibitem{LauSPL} 
+Laurent, S.: 
+Further comments on the representation problem for stationary processes. 
+Statist. Probab. Lett. 80 (2010),  592--596. 
+
+\bibitem{LauXLV}
+Laurent, S.: 
+Vershik's Intermediate Level Standardness Criterion and the Scale of an Automorphism. 
+S\'eminaire de Probabilit\'es XLV,
+Springer Lecture Notes in Mathematics 2078,
+123--139 (2013).
+
+\bibitem{LauEntropy}
+Laurent, S.: 
+Uniform entropy scalings of filtrations. 
+\verb+https://hal.archives-ouvertes.fr/hal-01006337+ 
+
+\bibitem{thescale} 
+Vershik, A.M.: 
+Four definitions of the scale of an automorphism. 
+Funktsional'nyi Analiz i Ego Prilozheniya, 7:3, 
+1--17 (1973). 
+English translation:    
+Functional Analysis and Its Applications, 7:3, 169--181 (1973)
+
+\bibitem{Ver95}
+Vershik, A.M.: 
+The theory of decreasing sequences of measurable partitions (in Russian). 
+ Algebra i Analiz,  6:4, 1--68 (1994). 
+English translation:  St. Petersburg Mathematical Journal, 6:4, 705--761 (1995)
+
+
+\end{thebibliography}
+
+
+
+
+\end{document}
