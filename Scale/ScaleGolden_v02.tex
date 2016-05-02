@@ -554,12 +554,6 @@ Now we  prove the second point of Theorem~\ref{thm:joinable}.
 
 \begin{proof}[Proof of 2 in Theorem~\ref{thm:joinable}]
 
-( penser au fait que le couplage commence en $n_0$ )
-
-( ai-je besoin de Markov ? )
-
-(conditionnel à $\FF_{-\infty}$ devrait aussi marcher 
-
 Assume $\FF$ is I-cosy. Take an integer $M \leq 0$. 
 To prove the claim, it suffices to show that $(Y_M, \ldots, Y_0)$ 
 satisfies the I-cosiness criterion with respect to $\GG$. 
@@ -628,20 +622,10 @@ such that
 $\left\{\begin{smallmatrix} {(Y'_n)}_{n_0 \leq n \leq N_\delta} \\ 
 {(Y''_n)}_{n_0 \leq n \leq N_\delta}
 \end{smallmatrix}\right.$ is a synchronous joining of 
-${(Y_n)}_{n_0 \leq n \leq N_\delta}$. 
-Clearly,  $\Pr(Y'_{N_\delta} \neq Y''_{N_\delta}) < 3\delta$.
-
-independent up to $n_0$ ?
-
-xxx
-
-On a donc  deux copies ${(Y'_n)}_{n \leq N_\delta}$ et ${(Y''_n)}_{n \leq N_\delta}$ 
-de ${(Y_n)}_{n \leq N_\delta}$ coïmmergées et indépendantes jusqu'à $n_0$, 
-et on a $\Pr(Y'_{N_\delta} \neq Y''_{N_\delta}) < 3\delta$ 
-quand $n_0$ est suffisamment plus petit que $N_\delta$. 
-Pour finir, on prolonge ce couplage de sorte que 
-$\{Y'_n = Y''_n\} \subset \{Y'_{n+1} = Y''_{n+1}\}$.
-
+${(Y_n)}_{n_0 \leq n \leq N_\delta}$ and 
+$Y'_{n_0} \indep Y''_{n_0}$. 
+Clearly,  $\Pr(Y'_{N_\delta} \neq Y''_{N_\delta}) < 3\delta$. 
+The result follows from Lemma~\ref{lemma:markovcosy}.
 \end{proof}
 
 

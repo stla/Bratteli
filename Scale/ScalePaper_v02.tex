@@ -11,6 +11,9 @@
 \usepackage[labelformat=simple]{subcaption}
 \renewcommand\thesubfigure{(\alph{subfigure})}
 
+\usepackage{diagbox}
+
+
 \author{Stéphane Laurent}
 \title{xxx}
 \begin{document}
@@ -48,10 +51,13 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Filtration associated to an adic transformation} 
 
-\subsection{The sequence of measurable partitions}
-
 Consider an adic transformation $S$ acting on set of paths $\Gamma$ of a 
 Bratteli graph, preserving a probability measure $\mu$ on $\Gamma$. 
+In this section we introduce the sequence of measurable partitions 
+and the corresponding filtration on the probability space $\Gamma$.
+
+We only consider Bratteli graphs whose edges connected to the root 
+vertex are simple (multiplicity $1$). 
 We consider that the root level of the graph is graded by the index 
 $n=1$ and the subsequent levels are graded by $n=0$, $n=-1$, $\ldots$. 
 The example of the golden graph is shown on Figure~\ref{fig:GoldenGraph}. 
@@ -66,8 +72,8 @@ at level $n=1$.
 
 We denote by $v_n(\gamma)$ the vertex at level $n$ through which passes a path $\gamma$. 
 The dimension of a vertex $v$, that is to say the number of paths connecting $v$ 
-to the root vertex, is denoted by $\dim(v)$, and we set 
-$\boxed{d_n(\gamma)=\dim\bigl(v_n(\gamma)\bigr)}$, the dimension of the vertex at level $n$ 
+to the root vertex, is denoted by $\dim(v)$, and we denote by 
+$\boxed{d_n(\gamma)=\dim\bigl(v_n(\gamma)\bigr)}$ the dimension of the vertex at level $n$ 
 through which passes the path $\gamma$. 
 
 
@@ -84,10 +90,13 @@ through which passes the path $\gamma$.
    	\includegraphics[scale=0.6]{figures/GoldenGraph_redpath_newlabels}
  		\caption{\footnotesize New labels on the arc}\label{fig:GoldenGraph_newlabs}
  	\end{subfigure}      
-
    \caption{Golden graph}
    \label{fig:ostro}
  \end{figure}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{The sequence of measurable partitions}
 
 There is an increasing sequence of measurable partitions ${(\zeta_n)}_{n \leq 0}$ 
 on $(\Gamma, \mu)$, defined by 
@@ -109,8 +118,8 @@ We consider $\bar\gamma_n$ as the $\zeta_n$-representative of $\gamma$.
 The increasing property of ${(\zeta_n)}_{n \leq 1}$ provides a structure 
 on the $\zeta_{n}$-equivalence classes: a $\zeta_n$-equivalence class 
 is a union of $\zeta_{n+1}$-equivalences classes. 
-This is illustrated on Figure~\ref{fig:GoldenOrbits}. 
-The labels on the arcs of this figure correspond to the ones of Figure~\ref{fig:GoldenGraph_newlabs}. 
+This is illustrated on Figure~\ref{fig:GoldenOrbits} for the case of the golden graph. 
+The labels on the edges of the tree shown on this figure correspond to the ones of Figure~\ref{fig:GoldenGraph_newlabs}. 
 The label between level $n$ and level $n+1$ indicates the location of 
 $\zeta_{n+1}(\gamma)$ as a block of $\zeta_n(\gamma)$. 
 
@@ -121,7 +130,7 @@ $\zeta_{n+1}(\gamma)$ as a block of $\zeta_n(\gamma)$.
 \label{fig:GoldenOrbits}
 \end{figure}
 
-Thus, $\bar\gamma_n = S^{-k_n(\gamma)}\gamma$ where the nonnegative integer $k_n(\gamma)$ 
+Thus, $\boxed{\bar\gamma_n = S^{-k_n(\gamma)}\gamma}$ where the nonnegative integer $k_n(\gamma)$ 
 is a function of $(\gamma_{1}, \gamma_0, \ldots, \gamma_n)$, and 
 $$
 \zeta_n(\gamma) = \{S^{-k_n(\gamma)}\gamma, S^{-k_n(\gamma)+1}\gamma, 
@@ -134,7 +143,15 @@ $k_n(\gamma) \to \infty$ and $-k_n(\gamma)+d_n(\gamma) \to \infty$.
 \end{lemma}
 
 \begin{proof}
-
+The integer $k_n(\gamma)$ increases as $n$ decreases to $-\infty$. 
+If $k_n(\gamma) \to j < \infty$, that is to say $k_n(\gamma)=j$ for $n$ small 
+enough, then $S^{-j}\gamma$ belongs to the set of minimal paths 
+of $\Gamma$, and this set has measure $0$. 
+Thus the set where $k_n(\gamma) \to j$ has measure $0$ for every $j$, 
+therefore the set where $k_n(\gamma) \not\to \infty$ has measure $0$ 
+by countable additivity. 
+In the same way, the set where $-k_n(\gamma)+d_n(\gamma) \not\to \infty$ 
+has measure $0$ because the set of maximal paths of $\Gamma$ has measure $0$.
 \end{proof}
 
 The usual labels on the arcs of a Bratteli graph, such as the one 
@@ -149,7 +166,7 @@ to $v_{n-1}$ at level $n$.
 Since there is a unique arc between the root vertex and a vertex at level $0$, 
 we do not need such a label for $n=1$. 
 After a choice of such labels, we denote 
-by $\epsilon_n(\gamma)$ the label connecting $v_{n-1}(\gamma)$ to 
+by $\boxed{\epsilon_n(\gamma)}$ the label of the edge connecting $v_{n-1}(\gamma)$ to 
 $v_n(\gamma)$. 
  
 The sequence $\bigl(v_n(\gamma), \epsilon_n(\gamma)\bigr)_{n \leq n_0}$ up to 
@@ -160,9 +177,14 @@ $\zeta_n(\gamma)$.
 We will come back to the above points in the next section below, in the 
 language of $\sigma$-fields. 
 
+\bigskip 
+
+xxxxxx
+
 \begin{lemma}
 The set-theoretic intersection $\cap_{n \leq 0} \zeta_n$ is the orbital partition of $S$. 
 \end{lemma}
+
 
 %\begin{proof}
 %Je ne sais pas comment faire ça, ça devrait être le fait que 
@@ -172,15 +194,36 @@ The set-theoretic intersection $\cap_{n \leq 0} \zeta_n$ is the orbital partitio
 %ça ne vient pas du fait de l'approximation périodique ? 
 %\end{proof}
 
+xxxxx
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{The filtration}
 
 One gets a filtration ${(\FF_n)}_{n \leq 0}$ by defining the $\sigma$-field 
 $\FF_n$ as the one generated by the measurable partition $\zeta_n$. 
-Considering a path $\gamma \in \Gamma$ as the actual point taken at random 
-in the probability space, we consider $v_n$ and $\epsilon_n$ as random 
-variables but we use the notation $V_n$ instead of $v_n$. 
-Thus $\FF$ is generated by the stochastic process 
+Here, a path $\gamma \in \Gamma$ is considered as the actual point taken at random 
+in the probability space. 
+Thus the $\sigma$-field $\FF_n$ is 
+$\boxed{\FF_n = \sigma(R_n)}$ where we denote by $R_n$ the random variable whose 
+value at $\gamma$ is the $\zeta_n$-representative 
+$\bar\gamma_n$ of $\gamma$. 
+The random variable  $R_0$ is a path taken at random according to $\mu$. 
+Note that $\sigma(R_{n}) \supset \sigma(R_{n-1})$ because 
+$\bar\gamma_n$ determines the path 
+$\gamma$ truncated at $n$. 
+
+In the previous section, we introduced the integer $k_n(\gamma)$ such that 
+$\bar\gamma_n = S^{-k_n(\gamma)}\gamma$. 
+We consider $k_n$ as random variable but 
+we use the notation $K_n$ instead of $k_n$. 
+Thus $\boxed{R_n = S^{-K_n} R_0}$. 
+
+
+We also introduced the notations $v_n$ and $\epsilon_n$ in the previous section. 
+Here $v_n$ and $\epsilon_n$ are random variables, 
+and we use the notation $V_n$ instead of $v_n$. 
+
+Thus the filtration $\FF$ is  generated by the stochastic process 
 ${(V_n, \epsilon_n)}_{n \leq 0}$:
 $$
 \boxed{\FF_n = \sigma(V_m, \epsilon_m; m \leq n)}
@@ -188,6 +231,7 @@ $$
  and $\epsilon_{n+1}$ is a "novation" from $\FF_n$ to $\FF_{n+1}$, that is 
 to say $\FF_{n+1} = \FF_n \vee \sigma(\epsilon_{n+1})$, since 
 $V_{n+1}$ is a function of $V_n$ and $\epsilon_{n+1}$. 
+
 
 \begin{lemma}
 The random variable $\epsilon_{n+1}$ is conditionally independent of $\FF_n$ 
@@ -199,24 +243,18 @@ Given $\FF_n$, the random variable $\epsilon_{n+1}$ is the label of an
 arc connecting the vertex $V_n$ to a vertex at level $n+1$. 
 \end{proof}
 
-In the previous section, we introduced the integer $k_n(\gamma)$ such that 
-$\bar\gamma_n = S^{-k_n(\gamma)}\gamma$. 
-
-
-We use the notation $K_n$ instead of $k_n$ to denote $k_n$ considered as 
-a random variable, and we denote by $R_n$ the random variable whose 
-value at $\gamma$ is the $\zeta_n$-representative 
-$\bar\gamma_n$ of $\gamma$. 
-Thus $R_0$ is a path taken at random according to $\mu$ and 
-$R_n = S^{-K_n} R_0$. Since $\bar\gamma_n$ determines the path 
-$\gamma$ truncated at $n$, and vice-versa, the filtration $\FF$ is also 
-generated by the stochastic process ${(R_n)}_{n \leq 0}$, but more precisely
-$\boxed{\FF_n = \sigma(R_n)}$. 
- 
-Conditionally to $V_n$, the random integer $K_n$ is a one-to-one function of 
+ Conditionally to $V_n$, the random integer $K_n$ is a one-to-one function of 
 $(\epsilon_{n+1}, \ldots, \epsilon_0)$, and it has the 
 uniform distribution on $\{0, \ldots, \dim(V_n)-1\}$. 
 This is the \emph{centrality} property of $\mu$. 
+Because of this property, the conditional law of $V_{n+1}$ given $V_n$ 
+is given by 
+$$
+\Pr(V_{n+1}=v_{n+1} \given V_n=v_n) = 
+m(v_n, v_{n+1})\frac{\dim(v_{n+1})}{\dim(v_n)}
+$$
+where $m(v_n, v_{n+1})$ is the number of edges connecting $v_n$ and $v_{n+1}$. 
+
 
 Observe that $R_{n+1} = S^{K_n - K_{n+1}}R_n$ and, 
 conditionally to $V_n$, the nonnegative integer $K_n - K_{n+1}$ 
@@ -224,14 +262,44 @@ is a one-one function of $\epsilon_{n+1}$.
 Thus, conditionally to $V_n$, the random integer $K_n$ has always 
 an expression of the form $K_n = \sum_{k=0}^{n+1}f_k(\epsilon_k)$. 
 
-For example, $K_n$ has a very convenient expression for the case of the adic 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Example: the golden graph}
+
+The random integer $K_n$ has a very convenient expression for the case of the adic 
 transformation on the golden graph with our choice of the labels shown on 
 Figure~\ref{fig:GoldenGraph_newlabs}:
 $$
-K_n = \epsilon_{n+1}F_{n} + \ldots + \epsilon_0F_0.   
+K_n = \epsilon_{n+1}f_{n} + \ldots + \epsilon_0f_{-1}.   
 $$
-where $F_0=1$, $F_{-1}=2$,  $\ldots$ are the Fibonacci numbers.  
+where $f_0=f_{-1}=1$, $f_{-2}=2$,  $\ldots$ are the Fibonacci numbers.  
 Here its expression does not depend on $V_n$, but its distribution does. 
+
+There is no multiple edges in this graph, therefore the filtration $\FF$ 
+is generated by the stochastic process ${(V_n)}_{n \leq 0}$. 
+Denoting by $\phi$ the golden number, the law of 
+${(V_n)}_{n \leq 0}$ is given by:
+
+\begin{itemize}
+\item $V_n$ takes the value $1$ or $2$ and $\Pr(V_n=2) = \frac{f_n}{f_n + \phi f_{n-1}} =: p_n$ 
+(in particular $\Pr(V_0=1)=\theta$)
+%  {(-1)}^{n+1} f_n\bigl(f_{n+1} - f_{n-1} \theta\bigr)
+
+\item The transition matrix from $V_{n}$ to $V_{n+1}$ is 
+\begin{center}
+\begin{tabular}{|c||c|c|}\hline
+\diagbox{$V_{n}$}{$V_{n+1}$}
+&\makebox[3em]{$1$}&\makebox[3em]{$2$}\\ \hline\hline
+$1$ & $f_n/f_{n-1}$ & $f_{n+1}/f_{n-1}$\\ \hline
+$2$ & $1$ & $0$\\ \hline
+\end{tabular}
+\end{center}
+\end{itemize}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Example: the Chacon graph}
 
 As another example, consider the Chacon graph shown on Figure~\ref{fig:ChaconGraph} 
 which also shows our choice of the labels on the arcs. 
@@ -246,6 +314,23 @@ f_n(3) = 2 h_{n+1} + 1
 \end{cases}.
 $$
 where $h_n=\frac{3^{|n|+1}-1}{2}$ is the dimension of the vertex $1$ at level $n$. 
+
+
+The law of the process ${(V_n, \epsilon_n)}_{n \leq 0}$ is given by:
+
+\begin{itemize}
+\item[$\bullet$] $V_n$ takes the value $1$ or $2$, and 
+ $\Pr(V_n = 2) = 1/3^{|n|+1}$;
+
+\item[$\bullet$] $\epsilon_n=0$ and $V_n=2$ if $V_{n-1}=2$ ;
+
+\item[$\bullet$] conditionally to $V_{n-1}=1$, the label $\epsilon_n$ 
+of the edge between $V_{n-1}$ and $V_n$ equals 
+ $2$ with probability $1/h_{n-1}$, or equals a value in 
+$\{0,1,3\}$ with probability $h_{n}/h_{n-1}$. 
+\end{itemize}
+
+
 
 \begin{figure}[!h]
    \centering
@@ -266,20 +351,42 @@ where $h_n=\frac{3^{|n|+1}-1}{2}$ is the dimension of the vertex $1$ at level $n
  \end{figure}
 
 
+\begin{figure}[!h]
+   \centering
+   \begin{subfigure}[t]{0.47\textwidth}
+   \centering
+   	\includegraphics[scale=0.6]{figures/Chacon_Labels_hand}
+ 		\caption{\footnotesize Chacon graph}\label{fig:ChaconLabels}
+    \end{subfigure}              
+   \quad
+    \begin{subfigure}[t]{0.47\textwidth}
+    \centering
+   	\includegraphics[scale=0.6]{figures/Chacon_DimsProbs_hand}
+ 		\caption{\footnotesize Dimensions and transition probabilities}\label{fig:ChaconDimsProbs}
+ 	\end{subfigure}      
+
+   \caption{Chacon graph}\label{fig:ChaconGraph}
+ \end{figure}
+
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{The scale of an automorphism}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{The sequence of measurable partitions}
 
 Now, in addition to the adic transformation $S$, let $T$ be a measure-preserving transformation on a Lebesgue space $(\XX, \nu)$. 
 
-One can define an increasing sequence of measurable partitions ${(\xi_n)}_{n \leq 0}$ 
-locally isomorphic to the elementary sequence ${(\zeta_n)}_{n \leq 0}$ associated to $S$,  
-and such that $\xi_n$ approximates the orbital partition of $T \times S$ as 
-$n \to -\infty$.
+We will define a filtration $\GG$ locally isomorphic to $\FF$, whose 
+tail $\sigma$-field $\GG_{-\infty}$ is the invariant $\sigma$-field of 
+the product transformation $T \times S$. 
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{The sequence of measurable partitions}
+
+Here one defines an increasing sequence of measurable partitions ${(\xi_n)}_{n \leq 0}$ 
+locally isomorphic to the elementary sequence ${(\zeta_n)}_{n \leq 0}$ associated to $S$. 
 
 For two paths $\gamma$, $\gamma'$ in the same $S$-orbit, denote by $k(\gamma,\gamma')$ 
 the integer such that $\gamma'=S^{k(\gamma,\gamma')}\gamma$. 
@@ -298,26 +405,39 @@ $$
 where $\bar x_n = T^{-k_n(\gamma)}x$ and, as already seen, 
 $\bar\gamma_n = S^{-k_n(\gamma)}\gamma$ is the $\zeta_n$-representative of 
 $\gamma$. 
-We can consider $(\bar x_n, \bar\gamma_n)$ as the $\xi_n$-representative of
+It is clear that $\xi_n \prec \xi_{n+1}$. 
+We  consider $(\bar x_n, \bar\gamma_n)$ as the $\xi_n$-representative of
 $(x,\gamma)$. 
 
+\begin{remark}
+As we will see (Proposition~\ref{ppsition:tailfield}), 
+the measurable hull of the tail partition $\cap \xi_n$ is 
+the invariant $\sigma$-field of $T \times S$. 
+But I do not know whether $\cap \xi_n$ 
+is the orbital partition of $T \times S$.
+\end{remark}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{The filtration} 
 
+
+
 We take a random variable $X_0$ distributed on $\XX$ according to $\nu$ 
 and we set $\boxed{X_n = T^{-K_n} X_0}$, similarly to $R_n = S^{-K_n} R_0$. 
-Since $K_n$ is independent of $X_0$, one has $X_n \sim \nu$ for every $n \leq 0$.
 
-We denote by $\GG$ the filtration generated by the stochastic process 
+Thus $(X_n,R_n)(x,\gamma) = (\bar x_n, \bar\gamma_n)$, 
+and setting $\boxed{\GG_n = \sigma(X_n, R_n)}$ then 
+$\GG_n = \sigma(\xi_n)$ is the $\sigma$-field corresponding to 
+the measurable partition $\xi_n$. 
+
+Note that $X_n \sim \nu$ for every $n \leq 0$ because $K_n$ is independent of $X_0$.
+
+The filtration $\GG={(\GG_n)}_{n \leq 0}$ is  generated by the stochastic process 
 ${(X_n, V_n, \epsilon_n)}_{n \leq 0}$:
 $$
-\boxed{\GG_n = \sigma(X_m, V_m, \epsilon_m; m \leq n)}, 
+\boxed{\GG_n = \sigma(X_m, V_m, \epsilon_m; m \leq n)}. 
 $$
- which is also generated by ${(X_n, R_n)}_{n \leq 0}$. 
- Thus $\GG_n = \sigma(\xi_n)$ because $(X_n,R_n)(x,\gamma) = (\bar x_n, \bar\gamma_n)$ 
-and one actually has 
-$\boxed{\GG_n = \sigma(X_n, R_n)}$.
+
 
 \begin{remark}
 Si je prenais des $\epsilon_n$ distincts je pourrais dire 
@@ -578,6 +698,11 @@ On Vershik's standardness criterion and Tsirelson's  notion of cosiness.
  S\'eminaire de Probabilit\'es XXXV,  
 Springer Lectures Notes in Math. 1755 (2001), 
 265--305.
+
+\bibitem{JLR}
+Janvresse, E., Laurent, S., de la Rue, T.:
+Standardness of monotonic Markov filtrations. 
+
 
 \bibitem{LauXLIII}
  Laurent, S.: 
