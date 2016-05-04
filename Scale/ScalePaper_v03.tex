@@ -50,27 +50,61 @@
 
 \maketitle
 
+\begin{abstract}
+Given an adic transformation $S$ on the path space of a Bratteli graph and 
+an automorphism $T$ of a Lebesgue, we define a filtration whose 
+tail $\sigma$-field is the $(T \times S)$-invariant $\sigma$-field. 
+Considering the standardness property of this filtration provides 
+a generalization of the scale of an automorphism as defined in 
+\cite{LauXLV}.
+\end{abstract}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Introduction} 
+
+For a given adic transformation $S$ acting on the set of infinite paths $\Gamma$ of a 
+Bratteli graph, one can associate a filtration on $\Gamma$ whose 
+tail $\sigma$-field is the $S$-invariant $\sigma$-field. 
+
+xxxxxxxx
+
+xxxxxxxx
+
+xxxxxx
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Filtration associated to an adic transformation} 
 
-Consider an adic transformation $S$ acting on set of paths $\Gamma$ of a 
+Consider an adic transformation $S$ acting on the set of infinite paths $\Gamma$ of a 
 Bratteli graph, preserving a probability measure $\mu$ on $\Gamma$. 
 In this section we introduce the sequence of measurable partitions 
 and the corresponding filtration on the probability space $\Gamma$.
 
-We only consider Bratteli graphs whose edges connected to the root 
-vertex are simple (multiplicity $1$). 
 We consider that the root level of the graph is graded by the index 
-$n=1$ and the subsequent levels are graded by $n=0$, $n=-1$, $\ldots$. 
-The example of the golden graph is shown on Figure~\ref{fig:GoldenGraph}. 
-Figure~\ref{fig:GoldenGraph_newlabs} will be expained later.
+$n=0$ and the subsequent levels are graded by $n=-1$, $n=-2$, $\ldots$. 
+The example of the golden graph is shown on Figure~\ref{fig:goldengraph}. 
+
+The usual labels on the arcs of a Bratteli graph, such as the one 
+shown on Figure~\ref{fig:GoldenGraph}, provide, for each vertex $v_n$ 
+at a level $n$, an ordering of the arcs between $v_n$ and the vertices connected 
+to $v_n$ at level $n-1$.  
+The labels shown on Figure~\ref{fig:GoldenGraph_newlabs}  
+are obtained by considering the other direction: they provide, 
+for each vertex $v_{n-1}$ at a level $n-1$, 
+an ordering of the arcs between $v_{n-1}$ and the vertices at level $n$ connected 
+to $v_{n-1}$. 
+After a choice of such labels, we denote 
+by $\boxed{\epsilon_n(\gamma)}$ the label of the edge connecting $v_{n-1}(\gamma)$ to 
+$v_n(\gamma)$. 
+
+
 
 A path $\gamma \in \Gamma$ is a sequence of arcs 
-$\gamma=(\gamma_{1}, \gamma_0, \gamma_{-1}, \ldots)$, where $\gamma_n$ connects 
+$\gamma=(\gamma_0, \gamma_{-1}, \ldots)$, where $\gamma_n$ connects 
 a vertex at level $n$ to a vertex at level $n-1$. 
-Note that $\gamma$ is determined by $(\gamma_0, \gamma_{-1}, \ldots)$ 
-because there is a unique arc between a vertex at level $n=0$ and the root vertex 
-at level $n=1$.  
+Note that $\gamma$ is determined by $(\gamma_{-1}, \gamma_{-2}, \ldots)$ 
+when there is a unique arc between each vertex at level $n=-1$ and the root vertex 
+at level $n=0$.  
 
 We denote by $v_n(\gamma)$ the vertex at level $n$ through which passes a path $\gamma$. 
 The dimension of a vertex $v$, that is to say the number of paths connecting $v$ 
@@ -83,17 +117,17 @@ through which passes the path $\gamma$.
    \centering
    \begin{subfigure}[t]{0.37\textwidth}
    \centering
-   	\includegraphics[scale=0.6]{figures/GoldenGraph_redpath_usual}
+   	\includegraphics[scale=0.6]{figures/GoldenGraph_redpath_usual2}
  		\caption{\footnotesize Usual labels on the arcs}\label{fig:GoldenGraph}
     \end{subfigure}              
    \quad
     \begin{subfigure}[t]{0.37\textwidth}
     \centering
-   	\includegraphics[scale=0.6]{figures/GoldenGraph_redpath_newlabels}
- 		\caption{\footnotesize New labels on the arc}\label{fig:GoldenGraph_newlabs}
+   	\includegraphics[scale=0.6]{figures/GoldenGraph_redpath_newlabels2}
+ 		\caption{\footnotesize Order labels $\epsilon_n$ on the arcs}\label{fig:GoldenGraph_newlabs}
  	\end{subfigure}      
    \caption{Golden graph}
-   \label{fig:ostro}
+   \label{fig:goldengraph}
  \end{figure}
 
 
@@ -107,6 +141,12 @@ $$
 \iff \gamma_k=\gamma'_k \quad\text{for every $k \leq n$}}.
 $$ 
 % if $v_n(\gamma)=v_n(\gamma')$. 
+
+The partition $\zeta_0$ is the partition into singletons. 
+The partition $\zeta_{-1}$ is also the partition into singletons 
+when there is a unique arc between each vertex at level $n=-1$ and the root vertex 
+at level $n=0$.  
+
 The $\zeta_n$-equivalence class $\zeta_n(\gamma)$ consists of $d_n(\gamma)$ elements. 
 These elements are ordered: there is one element in $\zeta_n(\gamma)$, denoted by 
 $\bar\gamma_n$, such that 
@@ -115,22 +155,23 @@ $$
 $$
 We consider $\bar\gamma_n$ as the $\zeta_n$-representative of $\gamma$.
 
+\begin{figure}[!h]
+\centering
+	\includegraphics[scale=0.7, clip=true]{figures/GoldenOrbits2}
+\caption{A $\zeta_{-5}$-equivalence class}
+\label{fig:GoldenOrbits}
+\end{figure}
 
 
 The increasing property of ${(\zeta_n)}_{n \leq 1}$ provides a structure 
 on the $\zeta_{n}$-equivalence classes: a $\zeta_n$-equivalence class 
 is a union of $\zeta_{n+1}$-equivalences classes. 
 This is illustrated on Figure~\ref{fig:GoldenOrbits} for the case of the golden graph. 
-The labels on the edges of the tree shown on this figure correspond to the ones of Figure~\ref{fig:GoldenGraph_newlabs}. 
-The label between level $n$ and level $n+1$ indicates the location of 
+The labels on the edges of the tree shown on this figure are the labels $\epsilon_n$ 
+also shown on Figure~\ref{fig:GoldenGraph_newlabs}. 
+The label $\epsilon_n(\gamma)$ between level $n$ and level $n+1$ indicates the location of 
 $\zeta_{n+1}(\gamma)$ as a block of $\zeta_n(\gamma)$. 
 
-\begin{figure}[!h]
-\centering
-\includegraphics[scale=0.9, clip=true]{figures/GoldenOrbits}
-\caption{A $\zeta_{-4}$-equivalence class}
-\label{fig:GoldenOrbits}
-\end{figure}
 
 Thus, $\boxed{\bar\gamma_n = S^{-k_n(\gamma)}\gamma}$ where the nonnegative integer $k_n(\gamma)$ 
 is a function of $(\gamma_{1}, \gamma_0, \ldots, \gamma_n)$, and 
@@ -138,6 +179,26 @@ $$
 \zeta_n(\gamma) = \{S^{-k_n(\gamma)}\gamma, S^{-k_n(\gamma)+1}\gamma, 
 \ldots, S^{-k_n(\gamma)+d_n(\gamma)-1}\gamma \}.
 $$ 
+
+\begin{wrapfigure}{r}{48mm}
+   \centering
+   	\includegraphics[scale=0.88]{figures/Golden_towers2}
+   \caption{Golden towers}
+   \label{fig:GoldenTowers}
+\end{wrapfigure}
+The adic transformation on the path space of a Bratteli graph is 
+a representation of a cutting-and-stacking construction. 
+The cutting-and-stacking construction corresponding to 
+the adic transformation on the golden graph is shown on
+Figure~\ref{fig:GoldenTowers}. 
+The $\zeta_n$-representative $\bar\gamma_n$ of $\gamma$ 
+corresponds to the point in the base of the tower. 
+For the example shown on Figure~\ref{fig:GoldenTowers}, 
+one has $k_0(\gamma)=k_{-1}(\gamma)=k_{-2}(\gamma)=0$ 
+and $k_{-3}(\gamma)=1$. 
+
+
+
 
 \begin{lemma}\label{lemma:infinitelimits}
 For almost $\gamma \in \Gamma$, 
@@ -156,27 +217,12 @@ In the same way, the set where $-k_n(\gamma)+d_n(\gamma) \not\to \infty$
 has measure $0$ because the set of maximal paths of $\Gamma$ has measure $0$.
 \end{proof}
 
-The usual labels on the arcs of a Bratteli graph, such as the one 
-shown on Figure~\ref{fig:GoldenGraph}, provide, for each vertex $v_n$ 
-at a level $n$, an ordering of the arcs between $v_n$ and the vertices connected 
-to $v_n$ at level $n-1$.  
-The labels shown on Figure~\ref{fig:GoldenGraph_newlabs} and Figure~\ref{fig:GoldenOrbits} 
-are obtained by considering the other direction: they provide, 
-for each vertex $v_{n-1}$ at a level $n-1$, 
-an ordering of the arcs between $v_{n-1}$ and the vertices connected 
-to $v_{n-1}$ at level $n$. 
-Since there is a unique arc between the root vertex and a vertex at level $0$, 
-we do not need such a label for $n=1$. 
-After a choice of such labels, we denote 
-by $\boxed{\epsilon_n(\gamma)}$ the label of the edge connecting $v_{n-1}(\gamma)$ to 
-$v_n(\gamma)$. 
  
-The sequence $\bigl(v_n(\gamma), \epsilon_n(\gamma)\bigr)_{n \leq n_0}$ up to 
-a level $n_0 \leq 0$ determines the path $\gamma$ truncated at this level. 
-In other words it determines the $\zeta_{n}$-equivalence classe 
+Note that the sequence $\bigl(v_n(\gamma), \epsilon_n(\gamma)\bigr)_{n \leq n_0}$  
+ determines the path $\gamma$ truncated at level $n_0$. 
+In other words it determines the $\zeta_{n}$-equivalence class  
 $\zeta_n(\gamma)$. 
-
-We will come back to the above points in the next section below, in the 
+We will come back to the above points in the next section, in the 
 language of $\sigma$-fields. 
 
 \bigskip 
@@ -216,7 +262,7 @@ $\gamma$ truncated at $n$.
 
 In the previous section, we introduced the integer $k_n(\gamma)$ such that 
 $\bar\gamma_n = S^{-k_n(\gamma)}\gamma$. 
-We consider $k_n$ as random variable but 
+Here we consider $k_n$ as random variable but 
 we use the notation $K_n$ instead of $k_n$. 
 Thus $\boxed{R_n = S^{-K_n} R_0}$. 
 
@@ -228,9 +274,10 @@ and we use the notation $V_n$ instead of $v_n$.
 Thus the filtration $\FF$ is  generated by the stochastic process 
 ${(V_n, \epsilon_n)}_{n \leq 0}$:
 $$
-\boxed{\FF_n = \sigma(V_m, \epsilon_m; m \leq n)}
+\boxed{\FF_n = \sigma(V_m, \epsilon_m; m \leq n)}.
 $$
- and $\epsilon_{n+1}$ is a "novation" from $\FF_n$ to $\FF_{n+1}$, that is 
+
+The random variable $\epsilon_{n+1}$ is a "novation" from $\FF_n$ to $\FF_{n+1}$, that is 
 to say $\FF_{n+1} = \FF_n \vee \sigma(\epsilon_{n+1})$, since 
 $V_{n+1}$ is a function of $V_n$ and $\epsilon_{n+1}$. 
 
