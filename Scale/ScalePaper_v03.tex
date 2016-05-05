@@ -520,14 +520,19 @@ ${(X_n, \epsilon_n)}_{n \leq 0}$ ... oui mais j'aime autant "voir" $V_n$.
 \end{remark}
 
 \begin{lemma}
+The following properties hold:
+\begin{enumerate}
+\item The random integer $K_n$ is conditionally independent of $\GG_n$ 
+given $V_n$ (equivalently, $(\epsilon_{n+1}, \ldots, \epsilon_0)$ 
+is conditionally independent of $\GG_n$ 
+given $V_n$ because $K_n$ is a one-to-one function of 
+$(\epsilon_{n+1}, \ldots, \epsilon_0)$ given $V_n$).
 
-$(\epsilon_{n+1}, \ldots, \epsilon_0)$ 
-
-The random integer $K_n$ is conditionally independent of $\GG_n$ 
-given $V_n$ (then so is  $\epsilon_{n+1}$), and  $\epsilon_{n+1}$ is 
+\item $\epsilon_{n+1}$ is 
 a "novation" from $\GG_n$ to $\GG_{n+1}$, that is 
 to say $\GG_{n+1} = \GG_n \vee \sigma(\epsilon_{n+1})$, and  
-the filtration $\FF$ is immersed in $\GG$. 
+the filtration $\FF$ is immersed in $\GG$.
+\end{enumerate}
 \end{lemma}
 
 \begin{proof}
@@ -542,7 +547,7 @@ The immersion stems from the fact that
  $\epsilon_{n+1}$ is also a novation from $\FF_n$ to $\FF_{n+1}$.  
 \end{proof}
 
-Thus the process ${(X_n, V_n, \epsilon_n)}_{n \leq 0}$ is Markovian. 
+As a consequence, the process ${(X_n, V_n, \epsilon_n)}_{n \leq 0}$ is Markovian. 
 
 
 \begin{lemma}
@@ -581,7 +586,7 @@ according to $\mu$;
 
 \begin{figure}[!h]
 \centering
-	\includegraphics[scale=0.8]{figures/GoldenWalk_PowersProbs}
+	\includegraphics[scale=0.8]{figures/GoldenWalk_PowersProbs2}
 \caption{The process $(X_n, V_n)$ for the golden graph}
 \end{figure}
 
@@ -638,6 +643,97 @@ and the proof is over.
 For people who deal with the filtration $\GG$ on an abstract probability space, 
 the equality is $\GG_{-\infty} = {(X_0, R_0)}^{-1}(\II)$. 
 \end{remark}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{An application of the tail $\sigma$-field}
+
+As seen in the proof of Proposition~\ref{ppsition:tailfield}, 
+\begin{equation}\label{eq:conditionalexpectation}
+\EE\bigl[f(X_0, R_0) \given \GG_n\bigr]
+ =\frac{1}{\dim(V_n)}\sum_{k=0}^{\dim(V_n)-1} f\bigl(T^kX_n, S^kR_n \bigr).
+\end{equation}
+
+\begin{ppsition}\label{ppsition:chaconweights}
+Let $c$ be the Chacon word defined below \eqref{eq:ChaconWord}. 
+Define the weights 
+$$
+a_{n,k} = \begin{cases}
+\frac{3}{h_n} c_k & \text{si $0 \leq k \leq h_n-1$} \\
+0 & \text{si $k \geq h_n$}
+\end{cases}
+$$
+Let $T$ be an invertible measure-preserving transformation of a Lebesgue space 
+$(\XX, \nu)$. 
+For $g \in L^1(\nu)$, define 
+$$
+S_n(g) = \frac{3}{h_n}\sum_{k=0}^{h_n-1} c_k g(T^kX_0) 
+= \sum_{k=0}^\infty a_{n,k} g(T^kX_0) 
+$$ 
+Then $S_n(g) \to \int g \mathrm{d}\nu$ in probability. 
+xxxx nonxxx $E(g \given {\cal I})$. 
+\end{ppsition}
+
+\begin{lemma}\label{lemme:convergence}
+Soit $(Y_n)$ une suite de v.a.\ de la forme 
+$Y_n = A_n \indic_{E_n} + B_n \indic_{E_n^c}$, 
+avec $A_n \indep E_n$.
+Si $Y_n$ converge en probabilité vers un réel $\ell>0$ et si $\Pr(E_n) \to p>0$, 
+alors $A_n \to \ell$ en probabilité.
+\end{lemma}
+
+\begin{proof}
+Cela résulte de
+$$
+\Pr\bigl(|A_n - \ell|> \epsilon\bigr) = 
+\frac{\Pr\bigl(|A_n - \ell|> \epsilon, E_n\bigr)}{\Pr(E_n)} 
+= \frac{\Pr\bigl(|Y_n - \ell|> \epsilon, E_n\bigr)}{\Pr(E_n)} 
+\leq \frac{\Pr\bigl(|Y_n - \ell|> \epsilon)}{\Pr(E_n)}.  
+$$
+\end{proof}
+
+\begin{lemma}\label{lemma:weakmixing}
+Let $S$ and $T$ be two invertible measure-preserving transformations. 
+If $S$ is weakly mixing, then the $(T\times S)$-invariant $\sigma$-field is 
+the product of the $T$-invariant $\sigma$-field times the trivial $\sigma$-field.
+\end{lemma}
+
+\begin{proof}
+It is well known that the product of an ergodic transformation times a weakly mixing 
+transformation is ergodic. 
+The lemma is a generalization of this result, it can be proved by 
+looking at the space of ergodic components. 
+\end{proof}
+
+\begin{proof}[Proof of Proposition~\ref{ppsition:chaconweights}]
+Appliquons~\eqref{eq:conditionalexpectation} à 
+$f(x,\gamma) = g(x)\indic_{x \in I}$ où $I=[2/3, 1[$ :
+\begin{align*}
+\EE\bigl[g(X_0) \indic_{R_0 \in I} \given \GG_n\bigr]
+&  = \frac{1}{\dim(V_n)}\sum_{k=0}^{\dim(V_n)-1} g(T^kX_n) \indic_{S^k R_n \in I} \\
+& = \underset{=:A_n}{\underbrace{\left(\frac{1}{h_n}\sum_{k=0}^{h_n-1} g(T^kX_n) \indic_{S^k R_n \in I}\right)}}\indic_{V_n=0} 
++ \underset{=:B_n}{\underbrace{\left(g(X_n) \indic_{R_n \in I}\right)}}\indic_{V_n=1}.
+\end{align*}
+On sait que 
+$\EE\bigl[g(X_0) \indic_{R_0 \in I} \given \GG_n\bigr] \to \ell:= \frac{1}{3}\int g \mathrm{d}\nu$. 
+Comme $X_n \indep V_n$ et $\Pr(V_n=0) \to 1$, cela implique que $A_n \to \ell$ en probabilité 
+(voir lemme~\ref{lemme:convergence}). 
+On peut écrire
+$$
+A_n = \frac{1}{h_n}\sum_{k=0}^{h_n-1} c_k g(T^kX_n) 
+$$
+
+
+
+Remarquons que $3A_n$ a la même loi que 
+$$
+S_n(g) = \frac{3}{h_n}\sum_{k=0}^{h_n-1} c_k g(T^kX_0) 
+= \sum_{k=0}^\infty a_{n,k} g(T^kX_0) 
+$$ 
+et donc $S_n(g) \to \int g \mathrm{d}\nu$ en probabilité. 
+\end{proof}
+
+
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
