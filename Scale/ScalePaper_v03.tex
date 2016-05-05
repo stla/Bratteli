@@ -431,7 +431,8 @@ $\{0,1,3\}$ with probability $h_{n}/h_{n-1}$.
 \label{fig:ChaconProcess}
 \end{figure}
 
-Later, we will use the following property of the Chacon transformation, which is 
+Later, in order to prove Proposition~\ref{ppsition:chaconweights}, 
+we will use the following property of the Chacon transformation, which is 
 easy to see with the help of Figure~\ref{fig:ChaconProcess}. 
 Let $I = \{\gamma \mid v_{-1}(\gamma)=2\}$ be the set of infinite paths 
 which pass through the vertex $2$ at level $n=-1$. 
@@ -443,6 +444,7 @@ If $V_n=1$, then
 where $c = (0, 0, 1, 0, 0, 0, 1, 0, 1, 0, 0, 1, 0 \ldots)$ is the limit of 
 the words $w_k$ obtained by initially setting $w_0=0$ and 
 recursively setting $w_{k+1} = w_kw_k1w_k$. 
+We call $c$ the \emph{Chacon word}. 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -519,7 +521,7 @@ Si je prenais des $\epsilon_n$ distincts je pourrais dire
 ${(X_n, \epsilon_n)}_{n \leq 0}$ ... oui mais j'aime autant "voir" $V_n$.
 \end{remark}
 
-\begin{lemma}
+\begin{lemma}\label{lemma:novation}
 The following properties hold:
 \begin{enumerate}
 \item The random integer $K_n$ is conditionally independent of $\GG_n$ 
@@ -550,7 +552,7 @@ The immersion stems from the fact that
 As a consequence, the process ${(X_n, V_n, \epsilon_n)}_{n \leq 0}$ is Markovian. 
 
 
-\begin{lemma}
+\begin{lemma}\label{lemma:independence}
 $X_n \indep \FF_n$ for every $n \leq 0$.
 \end{lemma}
 
@@ -647,47 +649,59 @@ the equality is $\GG_{-\infty} = {(X_0, R_0)}^{-1}(\II)$.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{An application of the tail $\sigma$-field}
 
-As seen in the proof of Proposition~\ref{ppsition:tailfield}, 
+As an application of Proposition~\ref{ppsition:tailfield}, 
+we provide in Proposition~\ref{ppsition:chaconweights} a 
+weighted ergodic average.
+We will use the following equality, seen in the proof of Proposition~\ref{ppsition:tailfield}: 
 \begin{equation}\label{eq:conditionalexpectation}
 \EE\bigl[f(X_0, R_0) \given \GG_n\bigr]
  =\frac{1}{\dim(V_n)}\sum_{k=0}^{\dim(V_n)-1} f\bigl(T^kX_n, S^kR_n \bigr).
 \end{equation}
 
 \begin{ppsition}\label{ppsition:chaconweights}
-Let $c$ be the Chacon word defined below \eqref{eq:ChaconWord}. 
+Let $c$ be the Chacon word defined below equality \eqref{eq:ChaconWord}. 
 Define the weights 
 $$
 a_{n,k} = \begin{cases}
-\frac{3}{h_n} c_k & \text{si $0 \leq k \leq h_n-1$} \\
-0 & \text{si $k \geq h_n$}
+\frac{3}{h_n} c_k & \text{if $0 \leq k \leq h_n-1$} \\
+0 & \text{if $k \geq h_n$}
 \end{cases}
 $$
 Let $T$ be an invertible measure-preserving transformation of a Lebesgue space 
 $(\XX, \nu)$. 
-For $g \in L^1(\nu)$, define 
+For $g \in L^1(\nu)$, define the weighted average
 $$
-S_n(g) = \frac{3}{h_n}\sum_{k=0}^{h_n-1} c_k g(T^kX_0) 
-= \sum_{k=0}^\infty a_{n,k} g(T^kX_0) 
+S_n(g)(x) = \frac{3}{h_n}\sum_{k=0}^{h_n-1} c_k g(T^kx) 
+= \sum_{k=0}^\infty a_{n,k} g(T^kx).  
 $$ 
-Then $S_n(g) \to \int g \mathrm{d}\nu$ in probability. 
-xxxx nonxxx $E(g \given {\cal I})$. 
+Then $S_n(g) \to E(g \given {\cal I})$ in probability, 
+where ${\cal I}$ is $T$-invariant $\sigma$-field.
 \end{ppsition}
 
+We give two lemmas before proving the previous proposition.
+
 \begin{lemma}\label{lemme:convergence}
-Soit $(Y_n)$ une suite de v.a.\ de la forme 
-$Y_n = A_n \indic_{E_n} + B_n \indic_{E_n^c}$, 
-avec $A_n \indep E_n$.
-Si $Y_n$ converge en probabilité vers un réel $\ell>0$ et si $\Pr(E_n) \to p>0$, 
-alors $A_n \to \ell$ en probabilité.
+On the same probability space, let $(A_n)$ and $(B_n)$ be two 
+sequences of random variables and $(E_n)$ be a sequence of events. 
+Set $Y_n = A_n \indic_{E_n} + B_n \indic_{E_n^c}$. 
+Assume that 
+\begin{itemize}
+\item $A_n \indep E_n$;
+
+\item $\Pr(E_n) \to p>0$;
+
+\item $Y_n \to Y >0$ in probability.
+\end{itemize}
+Then $A_n \to Y$ in probability.
 \end{lemma}
 
 \begin{proof}
-Cela résulte de
+This follows from
 $$
-\Pr\bigl(|A_n - \ell|> \epsilon\bigr) = 
-\frac{\Pr\bigl(|A_n - \ell|> \epsilon, E_n\bigr)}{\Pr(E_n)} 
-= \frac{\Pr\bigl(|Y_n - \ell|> \epsilon, E_n\bigr)}{\Pr(E_n)} 
-\leq \frac{\Pr\bigl(|Y_n - \ell|> \epsilon)}{\Pr(E_n)}.  
+\Pr\bigl(|A_n - Y|> \epsilon\bigr) = 
+\frac{\Pr\bigl(|A_n - Y|> \epsilon, E_n\bigr)}{\Pr(E_n)} 
+= \frac{\Pr\bigl(|Y_n - Y|> \epsilon, E_n\bigr)}{\Pr(E_n)} 
+\leq \frac{\Pr\bigl(|Y_n - Y|> \epsilon)}{\Pr(E_n)}.  
 $$
 \end{proof}
 
@@ -700,36 +714,39 @@ the product of the $T$-invariant $\sigma$-field times the trivial $\sigma$-field
 \begin{proof}
 It is well known that the product of an ergodic transformation times a weakly mixing 
 transformation is ergodic. 
-The lemma is a generalization of this result, it can be proved by 
+The lemma, which generalizes this result,  can be proved by 
 looking at the space of ergodic components. 
 \end{proof}
 
 \begin{proof}[Proof of Proposition~\ref{ppsition:chaconweights}]
-Appliquons~\eqref{eq:conditionalexpectation} à 
-$f(x,\gamma) = g(x)\indic_{x \in I}$ où $I=[2/3, 1[$ :
+Let $S$ be the Chacon adic transformation, which is known to be weakly mixing. 
+Apply equality~\eqref{eq:conditionalexpectation} to the function
+$f(x,\gamma) = g(x)\indic_{x \in I}$ where $I = \{\gamma \mid v_{-1}(\gamma)=2\}$ 
+was introduced before equality~\eqref{eq:ChaconWord}. 
+This gives
 \begin{align*}
 \EE\bigl[g(X_0) \indic_{R_0 \in I} \given \GG_n\bigr]
 &  = \frac{1}{\dim(V_n)}\sum_{k=0}^{\dim(V_n)-1} g(T^kX_n) \indic_{S^k R_n \in I} \\
-& = \underset{=:A_n}{\underbrace{\left(\frac{1}{h_n}\sum_{k=0}^{h_n-1} g(T^kX_n) \indic_{S^k R_n \in I}\right)}}\indic_{V_n=0} 
-+ \underset{=:B_n}{\underbrace{\left(g(X_n) \indic_{R_n \in I}\right)}}\indic_{V_n=1}.
+& = \left(\frac{1}{h_n}\sum_{k=0}^{h_n-1} g(T^kX_n) \indic_{S^k R_n \in I}\right)\indic_{V_n=1} 
++ \left(g(X_n) \indic_{R_n \in I}\right)\indic_{V_n=2} \\
+& = \underset{=:A_n}{\underbrace{\left(\frac{1}{h_n}\sum_{k=0}^{h_n-1} c_k g(T^kX_n) \right)}}\indic_{V_n=1} 
++ \underset{=:B_n}{\underbrace{\left(g(X_n) \indic_{R_n \in I}\right)}}\indic_{V_n=2},
 \end{align*}
-On sait que 
-$\EE\bigl[g(X_0) \indic_{R_0 \in I} \given \GG_n\bigr] \to \ell:= \frac{1}{3}\int g \mathrm{d}\nu$. 
-Comme $X_n \indep V_n$ et $\Pr(V_n=0) \to 1$, cela implique que $A_n \to \ell$ en probabilité 
-(voir lemme~\ref{lemme:convergence}). 
-On peut écrire
-$$
-A_n = \frac{1}{h_n}\sum_{k=0}^{h_n-1} c_k g(T^kX_n) 
-$$
+where the last equality come from equality~\eqref{eq:ChaconWord}. 
 
-
-
-Remarquons que $3A_n$ a la même loi que 
+By Proposition~\ref{ppsition:tailfield}, 
+$\EE\bigl[g(X_0) \indic_{R_0 \in I} \given \GG_n\bigr] 
+\to \EE\bigl[g(X_0) \indic_{R_0 \in I} \given \GG_{-\infty}\bigr]$. 
+We know that $\GG_{-\infty} = {\cal I} \otimes \{\varnothing, \Gamma\}$ 
+by Lemma~\ref{lemma:weakmixing}, therefore 
 $$
-S_n(g) = \frac{3}{h_n}\sum_{k=0}^{h_n-1} c_k g(T^kX_0) 
-= \sum_{k=0}^\infty a_{n,k} g(T^kX_0) 
-$$ 
-et donc $S_n(g) \to \int g \mathrm{d}\nu$ en probabilité. 
+\EE\bigl[g(X_0) \indic_{R_0 \in I} \given \GG_{-\infty}\bigr] = 
+\Pr(R_0 \in I) \EE\bigl[g(X_0) \given {\cal I} \otimes \{\varnothing, \Gamma\}\bigr] =
+\frac{1}{3} E(g \given {\cal I}). 
+$$
+Since $X_n \indep V_n$ (Lemma~\ref{lemma:independence}  and $\Pr(V_n=1) \to 1$, 
+one gets $A_n \to \frac{1}{3} E(g \given {\cal I})$ by virtue of 
+Lemma~\ref{lemme:convergence}. 
 \end{proof}
 
 
@@ -741,10 +758,9 @@ et donc $S_n(g) \to \int g \mathrm{d}\nu$ en probabilité.
 \section{Adic split-words processes}
 
 We use the notations of the previous section. 
-
 Let $P$ be a finite or countable partition of $\XX$. 
-The elements of $P$ are labelled by the letters of an alphabet $A$ 
-and for $x \in \XX$ we denote by $P(x) \in A$ the label of the block to which $x$ belongs.
+The elements of $P$ are labelled by the letters of an alphabet $A$. 
+For $x \in \XX$ we denote by $P(x) \in A$ the label of the block to which $x$ belongs.
 
 Define the random word $W_n$ by 
 $$
@@ -753,7 +769,7 @@ $$
 
 \begin{figure}[!h]
 \centering
-	\includegraphics[scale=0.8]{figures/GoldenWalk_WordsProbs}
+	\includegraphics[scale=0.8]{figures/GoldenWalk_WordsProbs2}
 \caption{The process $(W_n, V_n)$ for the golden graph}
 \end{figure}
 
@@ -764,15 +780,38 @@ It equals $\GG$ when $P$ is a generating partition of $T$.
 \end{lemma}
 
 \begin{proof}
-Denote by $\FF$ this filtration. The immersion follows from the fact 
+Denote by $\GG'$ this filtration. The immersion follows from the fact 
 that the random variable $\epsilon_{n+1}$ is 
-a novation of $\FF_n$ to $\FF_{n+1}$ and its conditional law given 
-$\FF_n$ is the same as given $\GG_n$. 
+a novation of $\GG'_n$ to $\GG'_{n+1}$ and its conditional law given 
+$\GG'_n$ is the same as given $\GG_n$ (Lemma~\ref{lemma:novation}).
 
-To show that $\FF=\GG$ when $P$ is generating, it suffices to show 
-that $X_0$ is measurable with respect to $\FF_0$. 
-Since $X_n=T^{-K_n}X_0$, this follows from lemma~\ref{lemma:infinitelimits}. 
+To show that $\GG'=\GG$ when $P$ is generating, it suffices to show 
+that $X_0$ is measurable with respect to $\GG'_0$. 
+Since $X_n=T^{-K_n}X_0$, this follows from Lemma~\ref{lemma:infinitelimits}. 
 \end{proof}
+
+The filtration generated by ${(W_n,V_n,\epsilon_n)}_{n \leq 0}$ 
+is also generated by ${(W_n,\epsilon_n)}_{n \leq 0}$ when 
+two different vertices at each level $n$ have different dimensions, 
+because the length of $W_n$ is $\dim(V_n)$. 
+
+Note that $W_{-1}=W_0$ when there is a unique edge between the root vertex and each vertex at 
+level $-1$ (that is to say when $\epsilon_0$ takes only one value). 
+In the general situation,  $W_0$ is a function of $W_{-1}$ and $\epsilon_0$. 
+Therefore one can set $W_0=\varnothing$ without changing the filtration. 
+This allows to represent the space of trajectories of the process 
+on a Bratteli graph. 
+An example is shown on Figure~\ref{fig:GoldenChacon} for the case when 
+$S$ is the golden adic transformation, $T$ is the Chacon transformation, 
+and $P$ is the generating partition $\{[0,2/3[, [2/3, 1[\}$.  
+
+\begin{figure}[!h]
+\centering
+	\includegraphics[scale=0.8]{figures/GoldenChaconSW_hand}
+\caption{$(W_n,\epsilon)$ when $S$ is the golden adic transformation and $T$ is the Chacon transformation}
+\label{fig:GoldenChacon}
+\end{figure}
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -783,12 +822,20 @@ In the case when $S$ is the usual adic transformation isomorphic to
 the $(r_n)$-ary odometer, 
 the filtration $\GG$ is the one introduced by Laurent in \cite{LauXLV}, 
 whose standardness provides an equivalent definition of the first 
-definition of the scale of an automorphism introduced by Vershik in \cite{thescale}. 
+definition of the scale of an automorphism originally introduced by Vershik in \cite{thescale}. 
 
 In this case, as shown in \cite{LauXLV}, the tail $\sigma$-field $\GG_{-\infty}$ 
 is degenerate if and only if $T^{\prod_{k=0}^{n+1}r_k}$ is ergodic for every $n \leq 0$. 
-This is indeed equivalent to the ergodicity of the product of $T$ 
-with the $(r_n)$-ary odometer, as claimed by Proposition~\ref{ppsition:tailfield}.
+This is equivalent to the ergodicity of the product of $T$ 
+with the $(r_n)$-ary odometer, as expected in view of Proposition~\ref{ppsition:tailfield}.
+
+\begin{figure}[!h]
+\centering
+	\includegraphics[scale=0.8]{figures/OdometerGraphDoubleEdges_hand}
+\caption{The Bratteli graph of the dyadic odometer}
+\label{fig:graphodometer}
+\end{figure}
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Examples}
