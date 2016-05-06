@@ -15,6 +15,8 @@
 
 \usepackage{wrapfig}
 
+\usepackage[normalem]{ulem}
+
 
 \author{Stéphane Laurent}
 \title{xxx}
@@ -448,7 +450,7 @@ We call $c$ the \emph{Chacon word}.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{The scale of an automorphism}
+\section{Filtration associated to an adic transformation and an automorphism}
 
 
 Now, in addition to the adic transformation $S$, let $T$ be an invertible 
@@ -732,7 +734,7 @@ This gives
 & = \underset{=:A_n}{\underbrace{\left(\frac{1}{h_n}\sum_{k=0}^{h_n-1} c_k g(T^kX_n) \right)}}\indic_{V_n=1} 
 + \underset{=:B_n}{\underbrace{\left(g(X_n) \indic_{R_n \in I}\right)}}\indic_{V_n=2},
 \end{align*}
-where the last equality come from equality~\eqref{eq:ChaconWord}. 
+where the last equality comes from equality~\eqref{eq:ChaconWord}. 
 
 By Proposition~\ref{ppsition:tailfield}, 
 $\EE\bigl[g(X_0) \indic_{R_0 \in I} \given \GG_n\bigr] 
@@ -748,6 +750,56 @@ Since $X_n \indep V_n$ (Lemma~\ref{lemma:independence}  and $\Pr(V_n=1) \to 1$,
 one gets $A_n \to \frac{1}{3} E(g \given {\cal I})$ by virtue of 
 Lemma~\ref{lemme:convergence}. 
 \end{proof}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{The scale of an automorphism}
+
+In the case when $S$ is the usual adic transformation isomorphic to 
+the $(r_n)$-ary odometer, 
+the filtration $\GG$ is the one introduced by Laurent in \cite{LauXLV}, 
+whose standardness provides an equivalent definition of the first 
+definition of the scale of an automorphism originally introduced by Vershik in \cite{thescale}. 
+This definition is the following one. 
+
+\begin{definition}
+Let $\GG$ be the filtration of the previous section in the case when 
+$S$ is the $(r_n)$-ary odometer. 
+The sequence $(r_n)$ belongs to the scale of $T$ if $\GG$ is standard. 
+\end{definition}
+
+In this case, it is shown in \cite{LauXLV} that the tail $\sigma$-field $\GG_{-\infty}$ 
+is degenerate if and only if $T^{\prod_{k=n+1}^{0}r_k}$ is ergodic for every $n \leq 0$. 
+This is equivalent to the ergodicity of the product of $T$ 
+with the $(r_n)$-ary odometer, as expected in view of Proposition~\ref{ppsition:tailfield}. 
+
+The filtration $\GG$ cannot be standard when $\GG_{-\infty}$ is not degenerate. 
+A more general definition is proposed in~\cite{LauXLV} to deal with this situation: 
+say that  $(r_n)$ belongs to the scale of $T$ if $\GG$ is 
+\uline{\emph{conditionally standard given $\GG_{-\infty}$}}. 
+But this generalization of standardness has not been studied yet in the literature. 
+
+Therefore, the definition of the scale can be generalized as follows. 
+
+\begin{definition}
+Let $\GG$ be the filtration of the previous section associated to an adic 
+transformation $S$ and an automorphism $T$. Say that $S$ is in the scale 
+of $T$ if $\GG$ is standard, or, more generally, if $\GG$ is conditionally standard 
+given $\GG_{-\infty}$. 
+\end{definition}
+
+In the case when $S$ is the $(r_n)$-ary odometer and 
+$T$ is a Bernoulli automorphism, standardness of $\GG$ 
+has been characterized in terms of the asymptotic behavior or the 
+sequence $(r_n)$ (see~\cite{Ceil, LauXLIII, LauXLV}).
+
+\begin{figure}[!h]
+\centering
+	\includegraphics[scale=0.7]{figures/OdometerGraphDoubleEdges_hand}
+\caption{The Bratteli graph of the dyadic odometer}
+\label{fig:graphodometer}
+\end{figure}
 
 
 
@@ -807,34 +859,11 @@ and $P$ is the generating partition $\{[0,2/3[, [2/3, 1[\}$.
 
 \begin{figure}[!h]
 \centering
-	\includegraphics[scale=0.8]{figures/GoldenChaconSW_hand}
-\caption{$(W_n,\epsilon)$ when $S$ is the golden adic transformation and $T$ is the Chacon transformation}
+	\includegraphics[scale=0.8]{figures/GoldenChaconSW_hand2}
+\caption{$(W_n,\epsilon_n)$ when $S$ is the golden adic transformation and $T$ is the Chacon transformation}
 \label{fig:GoldenChacon}
 \end{figure}
 
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{The case of an odometer graph}
-
-In the case when $S$ is the usual adic transformation isomorphic to 
-the $(r_n)$-ary odometer, 
-the filtration $\GG$ is the one introduced by Laurent in \cite{LauXLV}, 
-whose standardness provides an equivalent definition of the first 
-definition of the scale of an automorphism originally introduced by Vershik in \cite{thescale}. 
-
-In this case, as shown in \cite{LauXLV}, the tail $\sigma$-field $\GG_{-\infty}$ 
-is degenerate if and only if $T^{\prod_{k=0}^{n+1}r_k}$ is ergodic for every $n \leq 0$. 
-This is equivalent to the ergodicity of the product of $T$ 
-with the $(r_n)$-ary odometer, as expected in view of Proposition~\ref{ppsition:tailfield}.
-
-\begin{figure}[!h]
-\centering
-	\includegraphics[scale=0.8]{figures/OdometerGraphDoubleEdges_hand}
-\caption{The Bratteli graph of the dyadic odometer}
-\label{fig:graphodometer}
-\end{figure}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -912,6 +941,12 @@ Conditionally to $Z_{-\infty}$, the filtration $\GG$ is isomorphic to $\FF$.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{thebibliography}{99.}
+
+\bibitem{Ceil}
+Ceillier, G.:
+The filtration of the split-words process. 
+Probability Theory and Related Fields 153, Issue 1--2, 
+ 269--292 (2012).
 
 \bibitem{ES}
  \'{E}mery, M.,  Schachermayer, W.: 
