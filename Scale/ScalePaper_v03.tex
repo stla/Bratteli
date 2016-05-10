@@ -46,6 +46,11 @@
 \newcommand{\eps}{\epsilon}
 \newcommand{\indic}{\boldsymbol 1}
 \newcommand{\Vb}{\boldsymbol V}
+\newcommand{\tildV}{\widetilde{V}}
+\newcommand{\tildW}{\widetilde{W}}
+\newcommand{\tildX}{\widetilde{X}}
+\newcommand{\tildeps}{\widetilde{\epsilon}}
+
 
 \newcommand{\indvee}{\dot{\vee}}
 \newcommand{\indep}{\mathrel{\text{\scalebox{1.07}{$\perp\mkern-10mu\perp$}}}}
@@ -320,7 +325,7 @@ an expression of the form $K_n = \sum_{k=0}^{n+1}f_k(\epsilon_k)$.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Example: the golden graph}
+\subsection{Example: the golden graph}\label{sec:goldengraph}
 
 The random integer $K_n$ has a very convenient expression for the case of the adic 
 transformation on the golden graph with our choice of the labels shown on 
@@ -356,7 +361,7 @@ $2$ & $1$ & $0$\\ \hline
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Example: the Chacon graph}
+\subsection{Example: the Chacon graph}\label{sec:chacongraph}
 
 As another example, consider the Chacon graph shown on Figure~\ref{fig:ChaconGraph} 
 which also shows our choice of the labels on the arcs. 
@@ -365,9 +370,9 @@ $K_n=\sum_{k=0}^{n+1}f_k(\epsilon_k)$, with
 $$
 \begin{cases}
 f_n(0) = 0 \\ 
-f_n(1) = h_{n+1} \\ 
-f_n(2) = 2h_{n+1} \\
-f_n(3) = 2 h_{n+1} + 1
+f_n(1) = h_{n} \\ 
+f_n(2) = 2h_{n} \\
+f_n(3) = 2 h_{n} + 1
 \end{cases}.
 $$
 where $h_n=\frac{3^{|n|}-1}{2}$ is the dimension of the vertex $1$ at level $n$. 
@@ -867,50 +872,32 @@ and $P$ is the generating partition $\{[0,2/3[, [2/3, 1[\}$.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Examples}
- 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Example: the golden graph and the golden rotation}
 
+The filtration $\FF$ was introduced in Section~\ref{sec:goldengraph}
+in the case when $S$ is the adic transformation on the golden graph. 
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{The golden graph and the golden rotation}
-
-The adic transformation on the golden graph shown on Figure~\ref{fig:GoldenGraph} 
+This adic transformation  
 is isomorphic to the golden rotation on $S^1$, 
 with angle $\theta=\frac{1}{1+\phi}=\frac{2}{3+\sqrt{5}}$. 
-Denote by 
-\({(f_n)}_{n \leq 0}\) the reversed Fibonacci sequence: 
-\[
-  f_0=f_{-1}=1, f_{-2}=2, f_{-3}=3, f_{-4}=5, \ldots.
-\]
-and also set $f_1=0$. 
-
-Using the labels shown on Figure~\ref{fig:GoldenGraph_newlabs}, 
-the law of the Markov process 
-${(V_n, \epsilon_n)}_{n \leq 0}$ generating the elementary filtration $\FF$ 
-is given by:
-\begin{itemize}
-\item $\Pr(V_n = 2) =  {(-1)}^{n+1} f_n\bigl(f_{n+1} - f_{n-1} \theta\bigr)$ 
-(thus $\Pr(V_0=2)=\theta$);
-
-\item $\Pr(\epsilon_n=0 \given V_{n-1}=1) = f_{n-1}/f_{n-2}$. 
-\end{itemize}
-
-It is not difficult to prove that $\FF$ is standard. 
 
 For a given transformation $T$, the law of the stochastic process 
 ${(X_n, V_n, \epsilon_n)}_{n \leq 0}$ generating the filtration $\GG$ 
 is given by 
 $$
-Z_{n+1} = T^{\epsilon_{n+1}f_n}Z_n.
+X_{n+1} = T^{\epsilon_{n+1}f_{n+1}}X_n.
 $$
 
+The product of a rotation with itself is not ergodic. 
 Hence, in the case when $T$ is the golden rotation, the tail $\sigma$-field 
 $\GG_{-\infty}$ is not degenerate. 
-One can see that $Z_n$ almost surely goes to a random variable $Z_{-\infty}$ 
+For this case, one can see that $X_n$ almost surely goes to a random variable $X_{-\infty}$ 
 as $n \to -\infty$.  
 Indeed, first observe that
 $$
-Z_{n+1} = Z_n \, \text{ or\, $Z_{n+1} = Z_n + \theta f_n$}. 
+X_{n+1} = X_n \, \text{ or\, $X_{n+1} = X_n + \theta f_{n+1}$}. 
 $$
 But the distance between $\theta f_n$ and $0$ in $S^1$ is less than 
 $1/f_{n-1}$, because of the inequality
@@ -919,22 +906,113 @@ $$
 $$
 coming from the well-known results about continued fraction 
 (the continued fraction expansion of $\theta$ is $[0, 2, 1, 1, \ldots]$). 
-Therefore $|Z_{n+1} - Z_n| \leq 1/f_{n-1}$, and $Z_n \to Z_{-\infty}$ because 
-$1/f_{n-1}$ is the general term of a convergent series. 
-Of course $Z_{-\infty}$ has the uniform distribution on $S^1$, like each $Z_n$.
+Therefore $|X_{n+1} - X_n| \leq 1/f_{n}$, and $X_n \to X_{-\infty}$ because 
+$1/f_{n}$ is the general term of a convergent series. 
+Of course $X_{-\infty}$ has the uniform distribution on $S^1$, like each $X_n$.
 
 \begin{question}
-Does $\GG_{-\infty} = \sigma(Z_{-\infty})$ ? 
+Does $\GG_{-\infty} = \sigma(X_{-\infty})$ ? 
 \end{question}
 
 \begin{clarify}
-Conditionally to $Z_{-\infty}$, the filtration $\GG$ is isomorphic to $\FF$.  
+Conditionally to $X_{-\infty}$, the filtration $\GG$ is isomorphic to $\FF$.  
 \end{clarify}
 
 
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{The Chacon graph and Bernoulli automorphisms}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Example: the Chacon graph and Bernoulli automorphisms}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{The filtration $\GG$}
+
+In the case when $S$ is the Chacon adic transformation, the 
+filtration $\FF$ was introduced in Section~\ref{sec:chacongraph}. 
+
+The law of the process ${(X_n, V_n, \epsilon_n)}_{n \leq 0}$ generating the 
+filtration $\GG$ is given by (see Figure~\ref{fig:ChaconPowers}):
+
+\begin{itemize}
+\item ${(V_n, \epsilon_n)}_{n \leq 0}$ has the law given in Section~\ref{sec:chacongraph};
+
+\item $X_n \sim \nu$ is independent of $(V_n, \epsilon_n)$;
+
+\item $X_{n+1} = T^{f_{n+1}(\epsilon_{n+1})}X_n$
+\end{itemize}
+
+\begin{figure}[!h]
+\centering
+	\includegraphics[scale=0.8]{figures/ChaconWalk_powers_N2_hand2}
+\caption{$(X_n, V_n, \epsilon_n)$}
+\label{fig:ChaconPowers}
+\end{figure}
+
+The split-word process ${(W_n, V_n, \epsilon_n)}_{n \leq 0}$ 
+has the following law (see Figure~\ref{fig:ChaconSplitWord}). 
+The length of the word $W_n$ is $h_n$ if $V_n=1$, and length $1$ if $V_n=2$. 
+When $V_n=1$, we consider $W_n$ as the concatenation of four subwords 
+with respective lengths $d_{n+1}$, $d_{n+1}$, $1$ and $d_{n+1}$. 
+Then $W_{n+1}$ is the subword of $W_n$ selected by the value of $\epsilon_{n+1}$. 
+
+\begin{figure}[!h]
+\centering
+	\includegraphics[scale=0.8]{figures/ChaconWalk_words_hand2}
+\caption{$(W_n, V_n, \epsilon_n)$}
+\label{fig:ChaconSplitWord}
+\end{figure}
+
+The Chacon transformation $S$ is known to be weakly mixing. 
+This implies that $T \times S$ is ergodic whenever $T$ is ergodic, 
+therefore the filtration $\GG$ has a degenerate tail $\sigma$-field 
+$\GG_{-\infty}$ whenever $T$ is ergodic (Proposition~\ref{ppsition:tailfield}). 
+
+We will prove the following result.
+
+\begin{ppsition}\label{ppsition:ChaconNonStandard}
+When $T$ is a Bernoulli automorphism, the filtration $\GG$ is not standard.
+\end{ppsition}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{The process $(\tildW_n, \tildV_n, \tildeps_n)$}
+
+
+Proposition~\ref{ppsition:ChaconNonStandard} will be derived from the 
+non-standardness of the filtration $\widetilde{\GG}$ generated by 
+the following process $(\tildW_n, \tildV_n, \tildeps_n)$, 
+which is asymptotically the same as the process $(W_n, V_n, \epsilon_n)$, 
+in a sense that will be made precise in Section~\ref{sec:joinable}.
+
+
+
+\begin{figure}[!h]
+\centering
+	\includegraphics[scale=0.8]{figures/ChaconWalk_words_tilde2}
+\caption{$(\widetilde{Y}_n, \widetilde{\epsilon}_n)$}
+\label{fig:tildeWn}
+\end{figure}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Closely joinable processes}\label{sec:joinable}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Proof of Proposition~\ref{ppsition:ChaconNonStandard}}
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
 
 
 

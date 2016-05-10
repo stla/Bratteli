@@ -66,6 +66,7 @@
 \newcommand{\Vb}{\boldsymbol V}
 \newcommand{\tildV}{\widetilde{V}}
 \newcommand{\tildX}{\widetilde{X}}
+\newcommand{\tildeps}{\widetilde{\epsilon}}
 
 \newcommand{\indvee}{\dot{\vee}}
 \newcommand{\indep}{\mathrel{\text{\scalebox{1.07}{$\perp\mkern-10mu\perp$}}}}
@@ -898,6 +899,94 @@ $V_{n_0} = \tildV_{n_0}$ $\implies$ $X_{n_0}=\tildX_{n_0}$.
 Thus we can use the joining of Section~\ref{sec:joiningVn} to show 
 that ${(X_n, V_n)}_{n \leq 0}$ and ${(\tildX_n, \tildV_n)}_{n \leq 0}$ 
 are closely joinable. 
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Example 3: Markov chain on the Chacon graph}
+
+Let ${(\tildeps_n)}_{n \leq -1}$ be a sequence of independent random 
+variables having the uniform law on $\{0, 1, 3\}$. 
+In addition, for every $n \leq -1$, we denote by $\tildV_n$ a constant 
+random variable equal to $1$.
+
+\begin{lemma}
+The processes ${(V_n, \epsilon_n)}_{n \leq -1}$ and 
+${(\tildV_n, \tildeps_n)}_{n \leq -1}$ are closely joinable.
+\end{lemma}
+
+\begin{proof}
+For $i \in \{0, 1, 3\}$, 
+$$
+\Pr(V_n=1, \epsilon_n=i) = \frac{3^{|n|}-1}{3^{|n|+1}} < \frac{1}{3}.
+$$
+Therefore, one can construct a joining of 
+$(V_{n_0}, \epsilon_{n_0})$ and $(\tildV_{n_0},\tildeps_{n_0})$ such that  
+$$
+\{V_{n_0}=1, \epsilon_{n_0}=i\} \subset \{\tildV_{n_0}=1,\tildeps_{n_0} = i\} 
+$$
+for $i \in \{0,1,3\}$. 
+
+
+Now, take some independent random variables $U_{n_0+1}$, $\ldots$, $U_{-1}$ 
+having the $\UU(0,1)$ distribution, and such that the vector $(U_{n_0+1}, \ldots, U_{-1})$ 
+is independent of $(V_{n_0}, \epsilon_{n_0})$ and $(\tildV_{n_0},\tildeps_{n_0})$. 
+
+We recursively construct $(V_{n_0+1}, \epsilon_{n_0+1})$, $\ldots$, $(V_{-1}, \epsilon_{-1})$ 
+and $(\tildV_{n_0+1}, \tildeps_{n_0+1})$, $\ldots$, $(\tildV_{-1}, \tildeps_{-1})$ 
+as follows.
+
+Once the construction is done up to time $n$, we set 
+$\epsilon_{n+1} = f_n(V_n, U_{n+1})$ and $\tildeps_{n+1} = g_n(U_{n+1})$ 
+where the functions $f_n$ and $g_n$ are defined as follows. 
+We simply set $f_n(2, u)=0$
+For $i \in \{0,1,3\}$, the function $f_n(1, \cdot)$ is such that  
+$f_n(1, u) = i$ for $u \in J_i$ 
+where $J_i$ is the set having Lebesgue measure 
+$|J_i| = \frac{h_{n+1}}{h_{n}} < \frac{1}{3}$. 
+We take a set $J'_i \supset J_i$ such that $|J'_i|=\frac{1}{3}$ 
+and set $g_n(u)=i$ for $u \in J'_i$. 
+Thus, on the event $\{V_n=1\}$, one has $\tildeps_{n+1}=i$ if $\epsilon_{n+1}=i$. 
+
+With this joining, 
+$$
+\Pr\bigl((V_{n_0+1}, \epsilon_{n_0+1})=(\widetilde{V}_{n_0+1}, \widetilde{\epsilon}_{n_0+1}), 
+\ldots, (V_N, \epsilon_{N})=(\widetilde{V}_{N},\widetilde{\epsilon}_{N}) 
+\given V_{n_0}=1 \bigr) \geq \prod_{n=n_0}^{N-1} \frac{h_{n+1}}{h_{n}}.  
+$$
+The lemma follows because the product $\prod_{n=n_0}^{N-1} \frac{h_{n+1}}{h_{n}}$ 
+is divergent as  $n_0 \to -\infty$ and $\Pr(V_{n_0}=1) \to 1$. 
+\end{proof}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Example 4: Chacon split-words processes}
+
+
+\begin{figure}[!h]
+\centering
+	\includegraphics[scale=0.8]{figures/ChaconWalk_powers_N2_hand2}
+\caption{$(X_n, V_n, \epsilon_n)$}
+\label{fig:ChaconPowers}
+\end{figure}
+
+
+\begin{figure}[!h]
+\centering
+	\includegraphics[scale=0.8]{figures/ChaconWalk_words_hand2}
+\caption{$(W_n, V_n, \epsilon_n)$}
+\label{fig:Wn}
+\end{figure}
+
+
+
+\begin{figure}[!h]
+\centering
+	\includegraphics[scale=0.8]{figures/ChaconWalk_words_tilde2}
+\caption{$(\widetilde{W}_n, \widetilde{\epsilon}_n)$}
+\label{fig:tildeWn}
+\end{figure}
 
 
 \end{document}
