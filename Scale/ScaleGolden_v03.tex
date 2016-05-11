@@ -1,0 +1,979 @@
+\documentclass[12pt,a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage{amsmath, amsthm}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{lmodern}
+\usepackage[left=2cm,right=2cm,top=2cm,bottom=2cm]{geometry}
+
+\usepackage[labelformat=simple]{subcaption}
+\renewcommand\thesubfigure{(\alph{subfigure})}
+
+\usepackage{diagbox}
+
+\usepackage{enumerate}
+
+\usepackage[normalem]{ulem}
+
+%\usepackage{array}
+%\usepackage{makecell}
+%\usepackage{tikz}
+%\newcommand\diag[4]{%
+%  \multicolumn{1}{p{#2}|}{\hskip-\tabcolsep
+%  $\vcenter{\begin{tikzpicture}[baseline=0,anchor=south west,inner sep=#1]
+%  \path[use as bounding box] (0,0) rectangle (#2+2\tabcolsep,\baselineskip);
+%  \node[minimum width={#2+2\tabcolsep},minimum height=\baselineskip+\extrarowheight] (box) {};
+%  \draw (box.north west) -- (box.south east);
+%  \node[anchor=south west] at (box.south west) {#3};
+%  \node[anchor=north east] at (box.north east) {#4};
+% \end{tikzpicture}}$\hskip-\tabcolsep}}
+
+\author{Stéphane Laurent}
+\title{xxx}
+\begin{document}
+
+
+\newtheoremstyle{thmstyle}{3pt}{3pt}{\itshape}{}{\bf}{.}{.5em}{}      
+\newtheoremstyle{defstyle}{3pt}{3pt}{\sffamily}{}{\bf}{.}{.5em}{} 
+\theoremstyle{defstyle}
+\newtheorem{definition}{Definition}
+\newtheorem{remark}{Remark}
+\newtheorem{question}{Question}
+\newtheorem{clarify}{To clarify}
+\theoremstyle{thmstyle}
+\newtheorem{thm}{Theorem}[section]
+\newtheorem{ppsition}{Proposition}
+\newtheorem{lemma}{Lemma}
+
+\newcommand{\BB}{\mathcal{B}}
+\newcommand{\CC}{\mathcal{C}}
+\newcommand{\FF}{\mathcal{F}}
+\newcommand{\GG}{\mathcal{G}}
+\newcommand{\EE}{\mathbb{E}}
+\newcommand{\EEE}{\mathcal{E}}
+\newcommand{\HH}{\mathcal{H}}
+\newcommand{\II}{\mathcal{I}}
+\newcommand{\LL}{\mathcal{L}}
+\newcommand{\OO}{\mathcal{O}}
+\newcommand{\UU}{\mathcal{U}}
+\newcommand{\XX}{\mathcal{X}}
+\newcommand{\given}{\mid}
+\newcommand{\eps}{\epsilon}
+\newcommand{\indic}{\boldsymbol 1}
+\newcommand{\Vb}{\boldsymbol V}
+\newcommand{\tildV}{\widetilde{V}}
+\newcommand{\tildX}{\widetilde{X}}
+\newcommand{\tildeps}{\widetilde{\epsilon}}
+
+\newcommand{\indvee}{\dot{\vee}}
+\newcommand{\indep}{\mathrel{\text{\scalebox{1.07}{$\perp\mkern-10mu\perp$}}}}
+
+
+\maketitle
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Joinable processes}
+
+When two random vectors 
+${(X_n)}_{0 \leq n \leq n_0}$ and ${(Y_n)}_{0 \leq n \leq n_0}$ are defined 
+on the same probability space and the filtrations they generate are 
+jointly immersed (see below), we will write and say that 
+$\left\{\begin{smallmatrix} {(X_n)}_{0 \leq n \leq n_0} \\ 
+{(Y_n)}_{0 \leq n \leq n_0}
+\end{smallmatrix}\right.$  is a \emph{synchronous joining}. 
+That means, after introducing the $\sigma$-fields 
+$\BB_n = \sigma(X_{0}, \ldots, X_n)$ and  
+$\CC_n = \sigma(Y_{0}, \ldots, Y_n)$, that 
+$\BB_{n+1} \indep_{\BB_n} \BB_n \vee \CC_n$ 
+and $\CC_{n+1} \indep_{\CC_n} \BB_n \vee \CC_n$.  
+
+When $\left\{\begin{smallmatrix} {(X'_n)}_{0 \leq n \leq n_0} \\ 
+{(Y'_n)}_{0 \leq n \leq n_0}
+\end{smallmatrix}\right.$  is a \emph{synchronous joining} in the situation when 
+${(X'_n)}_{0 \leq n \leq n_0}$ is a copy of a random vector 
+${(X_n)}_{0 \leq n \leq n_0}$  and ${(Y'_n)}_{0 \leq n \leq n_0}$ 
+is a copy of a random vector ${(Y_n)}_{0 \leq n \leq n_0}$, we also say that 
+$\left\{\begin{smallmatrix} {(X'_n)}_{0 \leq n \leq n_0} \\ 
+{(Y'_n)}_{0 \leq n \leq n_0}
+\end{smallmatrix}\right.$  is a \emph{synchronous joining of 
+${(X_n)}_{0 \leq n \leq n_0}$ and ${(Y_n)}_{0 \leq n \leq n_0}$}. 
+
+%\begin{definition}
+%Let ${(X_n)}_{n \leq 0}$ and ${(Y_n)}_{n \leq 0}$ be two stochastic processes. 
+%We say that they are \emph{closely joinable of type I} if for every $\delta >0$ there exists 
+%$N_\delta \leq 0$ such that for every $n_0 \leq N_\delta$ there exists a 
+%synchronous joining $\left\{\begin{smallmatrix} {(X'_n)}_{n_0 \leq n \leq N_\delta} \\ 
+%{(Y'_n)}_{n_0 \leq n \leq N_\delta}
+%\end{smallmatrix}\right.$ 
+%of ${(X_n)}_{n_0 \leq n \leq N_\delta}$ and ${(Y_n)}_{n_0 \leq n \leq N_\delta}$ 
+%such that 
+%$$
+%\Pr(X'_{n_0}=Y'_{n_0}, \ldots, X'_{N_\delta}=Y'_{N_\delta}) > 1-\delta. 
+%$$ 
+%\end{definition}
+
+\begin{definition}
+Let ${(X_n)}_{n \leq 0}$ and ${(Y_n)}_{n \leq 0}$ be two stochastic processes. 
+We say that they are \emph{closely joinable} if for every $\delta >0$ 
+\uline{and for every $M\leq 0$}, there exists 
+$\uline{N_\delta \leq M}$ such that for every $n_0 \leq N_\delta$ there exists a 
+synchronous joining $\left\{\begin{smallmatrix} {(X'_n)}_{n_0 \leq n \leq N_\delta} \\ 
+{(Y'_n)}_{n_0 \leq n \leq N_\delta}
+\end{smallmatrix}\right.$ 
+of ${(X_n)}_{n_0 \leq n \leq N_\delta}$ and ${(Y_n)}_{n_0 \leq n \leq N_\delta}$ 
+such that 
+$$
+\Pr(X'_{N_\delta}=Y'_{N_\delta}) > 1-\delta. 
+$$ 
+\end{definition}
+
+\begin{thm}\label{thm:joinable}
+Let ${(X_n)}_{n \leq 0}$ and ${(Y_n)}_{n \leq 0}$ be two Markovian stochastic processes, and 
+denote by $\FF$ and $\GG$ the filtrations they respectively generate. 
+Assume ${(X_n)}_{n \leq 0}$ and ${(Y_n)}_{n \leq 0}$ are closely joinable. 
+\begin{enumerate}
+\item The $\sigma$-fields $\FF_{-\infty}$  and $\GG_{-\infty}$ are equal. 
+
+\item The filtration $\FF$ is I-cosy if and only if the filtration $\GG$ is I-cosy.
+\end{enumerate}
+\end{thm}
+
+We firstly prove the first point of this theorem. 
+
+\begin{proof}[Proof of 1 in Theorem~\ref{thm:joinable}]
+To establish the claim, it suffices to show that 
+$\EE[X_{M} \given \FF_{-\infty}]$ can be made as $L^1$-close as desired to a 
+$\GG_{-\infty}$-measurable random variable for every integer $M \leq 0$. 
+Without loss of generality, we assume that $X_M$ takes its values in $[0,1]$. 
+
+Let $\delta>0$ and $N = N_\delta$ the integer provided by the joinability assumption. 
+One has 
+$\EE[X_M \given \FF_{N}\bigr] = g(X_{N})$ 
+for a certain Borelian function $g$ taking its values in $[0,1]$. 
+Take $n_0 \leq N$ small enough in order that 
+$$
+\EE\left[ \Bigr| 
+\EE[X_M \given \FF_{n_0}] - \EE[X_M \given \FF_{-\infty}] 
+\Bigl| \right] 
+\leq \delta
+\quad \text{and }\; 
+\EE\left[ \Bigr| 
+\EE\bigl[g(Y_N) \given \GG_{n_0}\bigr] - \EE\bigl[g(Y_N) \given \GG_{-\infty}\bigr]
+\Bigl| \right] 
+\leq \delta,
+$$
+which is possibly by virtue of the theorem on reverse martingale convergence. 
+
+Now, take the joining provided by the joinability assumption. 
+One has $\EE\bigl[\bigl|g(X'_N) - g(Y'_N)\bigr|\Bigr] \leq \delta$. Therefore 
+$$
+\EE\left[ \Bigr|\EE\bigl[g(X'_N) \given \sigma(X'_{n_0}, Y'_{n_0})\bigr] 
+ - \EE\bigl[g(Y'_N) \given \sigma(X'_{n_0}, Y'_{n_0}) \bigr] \Bigl| \right] \leq \delta
+$$
+because of the contractivity of the conditional expectation. 
+By immersion, 
+$$
+\EE\bigl[g(X'_N) \given \sigma(X'_{n_0}, Y'_{n_0})\bigr] 
+= \EE\bigl[g(X'_N) \given \sigma(X'_{n_0})\bigr] = \EE\bigl[X'_M \given \sigma(X'_{n_0})\bigr]
+$$
+and 
+$$
+\EE\bigl[g(Y'_N) \given \sigma(X'_{n_0}, Y'_{n_0})\bigr] 
+= \EE\bigl[g(Y'_N) \given \sigma(Y'_{n_0})\bigr]. 
+$$
+On the other hand, 
+\begin{align*}
+\EE\left[ \Bigr| 
+\EE\bigl[X'_M \given \sigma(X'_{n_0})\bigr] 
+ - \EE\bigl[g(Y'_N) \given \sigma(Y'_{n_0})\bigr] 
+\Bigl| \right] 
+& = \EE\left[ \Bigr| 
+\EE\bigl[X_M \given \sigma(X_{n_0})\bigr] 
+ - \EE\bigl[g(Y_N) \given \sigma(Y_{n_0})\bigr] 
+\Bigl| \right] \\
+& = \EE\left[ \Bigr| 
+\EE\bigl[X_M \given \FF_{n_0}\bigr] 
+ - \EE\bigl[g(Y_N) \given \GG_{n_0}\bigr] 
+\Bigl| \right]
+\end{align*}
+By combining the previous equalities and inequalities, 
+$$
+\EE\left[ \Bigr| 
+\EE[X_M \given \FF_{-\infty}\bigr]  -  \EE\bigl[g(Y_N) \given \GG_{-\infty}\bigr]
+\Bigl| \right] 
+\leq 3\delta,
+$$
+%
+%\bigskip
+%
+%xxxxxx
+%
+%Let $\delta >0$ and take the joining provided by the joinability assumption. 
+%
+%xxxxx je suppose que j'ai le joining de $-\infty$ à $N$ xxxxx
+%
+%One has 
+%$\EE[X'_0 \given \FF'_{N_\delta}\bigr] = g(X'_{N_\delta})$ 
+%for a certain Borelian function $g$ taking its values in $[0,1]$, and 
+%$\EE\bigl[\bigl|g(X'_N) - g(Y'_N)\bigr|\Bigr] \leq \delta$. Therefore 
+%$$
+%\EE\left[ \Bigr|\EE\bigl[g(X'_N) \given \HH_n\bigr] 
+% - \EE\bigl[g(Y'_N) \given \HH_n \bigr] \Bigl| \right] \leq \delta.
+%$$
+%for every $n \leq N$ because of the contractivity of the conditional expectation. 
+%
+%By immersion, 
+%$$
+%\EE\bigl[g(X'_N) \given \HH_n\bigr] = \EE\bigl[g(X'_N) \given \FF_n\bigr] = \EE[X'_0 \given \FF'_{n}]
+%$$
+%and 
+%$$
+%\EE\bigl[g(Y'_N) \given \HH_n\bigr] = \EE\bigl[g(Y'_N) \given \GG_n\bigr].
+%$$
+%By the theorem on reverse martingale convergence, 
+%$$
+%\EE\left[ \Bigr| 
+%\EE[X'_0 \given \FF'_{n}] - \EE[X'_0 \given \FF'_{-\infty}] 
+%\Bigl| \right] 
+%\leq \delta
+%\quad \text{and }\; 
+%\EE\left[ \Bigr| 
+%\EE\bigl[g(Y'_N) \given \GG_n\bigr] - \EE\bigl[g(Y'_N) \given \GG_{-\infty}\bigr]
+%\Bigl| \right] 
+%\leq \delta
+%$$
+%whenever $n$ is small enough. 
+%By combining the previous equalities and inequalities, 
+%$$
+%\EE\left[ \Bigr| 
+%\EE[X'_0 \given \FF'_{-\infty}\bigr]  -  \EE\bigl[g(Y'_N) \given \GG_{-\infty}\bigr]
+%\Bigl| \right] 
+%\leq 3\delta.
+%$$
+%
+%
+%\bigskip 
+%
+%xxxxxxxxxx
+%
+%On suppose $\GG_{-\infty}$ triviale. Montrons que $\FF_{-\infty}$ est triviale. 
+%
+%Prenons un entier $N_0 \leq 0$ et $\delta >0$. 
+%Tâchons de montrer que $\EE\bigl[f(X_{N_0}) \given \FF_n\bigr] \to 0$ dans $L^1$, où $f$ est une fonction mesurable qui prend ses valeurs dans $[0,1]$. 
+%
+%Prenons $N=N_\delta \leq N_0$ tel que en faisant le couplage qu'on a vu, on a $\Pr(X_N \neq Y_N) < \delta$. Notons $\HH=\FF\vee\GG$ la filtration engendrée par les deux processus. En raison de la coïmmersion, on a 
+%$$
+%\EE\bigl[f(X_{N_0}) \given \FF_n\bigr] = \EE\bigl[f(X_{N_0}) \given \HH_n\bigr] 
+%$$
+%Prenons $n \leq N$. On a 
+%$$
+%\EE\bigl[f(X_{N_0}) \given \HH_n\bigr] = 
+%\EE\Bigl[\EE\bigl[f(X_{N_0}) \given X_N\bigr] \given \HH_n \Bigr].
+%$$
+%On a une fonction $g$ à valeurs dans $[0,1]$ telle que $\EE\bigl[f(X_{N_0}) \given X_N\bigr] = g(X_N)$, et on a pris $N$ de sorte que $\Pr\bigl(g(X_N) \neq g(Y_N)\bigr) < \delta$. Par la propriété de contractivité de l'espérance conditionnelle, 
+%$$
+%\EE\left[ \Bigr|\EE\bigl[g(X_N) \given \HH_n\bigr] 
+% - \EE\bigl[g(Y_N) \given \HH_n \bigr] \Bigl| \right] \leq 2\delta.
+%$$
+%
+%xxxx
+%
+%a-t-on \emph{égalité} ? 
+%
+%en construisant une suite $(n_k)$ telle que 
+%$$
+%\EE\bigl[f(X_{N_0}) \given \FF_{n_k}\bigr] - \EE\bigl[f(X_{N_0}) \given \GG_{n_k}\bigr] \to 0
+%$$
+%?
+%xxx
+%
+%Pour $n$ suffisamment petit, 
+%$$
+%\EE\left[ \Bigr|\EE\bigl[g(Y_N) \given \HH_n \bigr] 
+%- \EE\bigl[g(Y_N) \bigr] \Bigl| \right] \leq \delta, 
+%$$
+%et finalement 
+%$$
+%\EE\left[ \Bigr|\EE\bigl[g(X_N) \given \HH_n\bigr] 
+% - \EE\bigl[g(Y_N) \bigr] \Bigl| \right] \leq 3\delta.
+%$$
+%
+%Ceci montre que $\EE\bigl[f(X_{N_0}) \given \FF_n\bigr]$ a une limite dans $L^1$ aussi proche qu'on veut d'une constante. 
+and the proof is over.
+\end{proof}
+
+The second point of the theorem will be proved with the help of the following lemma. 
+
+\begin{lemma}\label{lemma:quadricoimm}
+Let 
+$\left\{\begin{smallmatrix} {(X_n)}_{0 \leq n \leq n_0} \\ 
+{(Y_n)}_{0 \leq n \leq n_0}
+\end{smallmatrix}\right.$  
+be a synchronous joining of two random vectors 
+${(X_n)}_{0 \leq n \leq n_0}$ and ${(Y_n)}_{0 \leq n \leq n_0}$. 
+One assumes that a synchronous joining 
+$\left\{\begin{smallmatrix} {(X'_n)}_{0 \leq n \leq n_0} \\ 
+{(X''_n)}_{0 \leq n \leq n_0}
+\end{smallmatrix}\right.$
+ of two copies of ${(X_n)}_{0 \leq n \leq n_0}$ 
+is given on some probability space.  
+Then, on an enlargement of this probability space, there 
+exists a synchronous joining 
+$\left\{\begin{smallmatrix} {(Y'_n)}_{0 \leq n \leq n_0} \\ 
+{(Y''_n)}_{0 \leq n \leq n_0}
+\end{smallmatrix}\right.$
+of two copies of ${(Y_n)}_{0 \leq n \leq n_0}$ 
+such that  
+$\left\{\begin{smallmatrix} {(X'_n)}_{0 \leq n \leq n_0} \\ 
+{(Y'_n)}_{0 \leq n \leq n_0}
+\end{smallmatrix}\right.$ and 
+$\left\{\begin{smallmatrix} {(X''_n)}_{0 \leq n \leq n_0} \\ 
+{(Y''_n)}_{0 \leq n \leq n_0}
+\end{smallmatrix}\right.$
+are two copies of 
+$\left\{\begin{smallmatrix} {(X_n)}_{0 \leq n \leq n_0} \\ 
+{(Y_n)}_{0 \leq n \leq n_0}
+\end{smallmatrix}\right.$.
+
+Moreover, if $X'_0 \indep_{\sigma(X'_0)\cap\sigma(X''_0)} X''_0$, then 
+ $Y'_0 \indep_{\sigma(X'_0)\cap\sigma(X''_0)} Y''_0$.
+\end{lemma}
+
+\begin{proof}
+In the proof, we will use the three following elementary facts about 
+conditional independence:
+\begin{enumerate}[{\it(i)}]
+\item If $U \indep {\cal A} \supset {\cal B}$, 
+then $X \indep_\BB {\cal A}$ for any $\sigma({\cal B}, U)$-measurable r.v.\ $X$.
+
+\item If $U \indep \sigma({\cal B}, X)$ then $X \indep_\BB U$ (hence $X \indep_\BB \sigma({\cal B}, U)$).
+
+\item If $\BB \subset {\cal A}$, then 
+the two conditional independences $Y \indep_{\BB \vee \sigma(X)} {\cal A}$
+and $X \indep_{\BB} {\cal A}$ imply $Y \indep_{\BB} {\cal A}$.
+\end{enumerate}
+
+On the probability space of $\left\{\begin{smallmatrix} {(X_n)}_{0 \leq n \leq n_0} \\ 
+{(Y_n)}_{0 \leq n \leq n_0}
+\end{smallmatrix}\right.$, one can assume there exist some random variables 
+$U_0$, $\ldots$, $U_{n_0}$ such that 
+\begin{itemize}
+\item[$\bullet$] $U_n \indep \bigl((X_0,U_0), \ldots, (X_{n-1}, U_{n-1}), X_n\bigr)$;
+
+\item[$\bullet$] $Y_n = f_n\bigl((X_0,Y_0), \ldots, (X_{n-1}, Y_{n-1}), X_n, U_n\bigr)$   
+for some Borelian functions $f_n$. 
+\end{itemize}
+
+We denote by $(\EEE'_0, \ldots, \EEE'_{n_0})$ the filtration generated by 
+${(X'_n)}_{0 \leq n \leq n_0}$ and by $(\EEE''_0, \ldots, \EEE''_{n_0})$ 
+the filtration generated by ${(X''_n)}_{0 \leq n \leq n_0}$. 
+
+On the probability space of $\left\{\begin{smallmatrix} {(X'_n)}_{0 \leq n \leq n_0} \\ 
+{(X''_n)}_{0 \leq n \leq n_0}
+\end{smallmatrix}\right.$, one can assume there are two copies 
+$\mathbf{U}'=(U'_0, \ldots, U'_{n_0})$ and $\mathbf{U}''=(U''_0, \ldots, U''_{n_0})$ of 
+$(U_0, \ldots, U_{n_0})$ such that $\mathbf{U}' \indep \mathbf{U}''$ and 
+$(\mathbf{U}',\mathbf{U}'') \indep \EEE'_{n_0} \vee \EEE''_{n_0}$. 
+
+We set $Y'_0 = f_0(X'_0, U'_0)$ and $Y''_0 = f_0(X''_0, U''_0)$. 
+Then it is not difficult to check that 
+the last point of the lemma:  
+ $Y'_0 \indep_{\sigma(X'_0)\cap\sigma(X''_0)} Y''_0$
+if  $X'_0 \indep_{\sigma(X'_0)\cap\sigma(X''_0)} X''_0$.  
+
+
+Now we recursively set 
+$$
+Y'_n = f_n\bigl((X'_0,Y'_0), \ldots, (X'_{n-1}, Y'_{n-1}), X'_n, U'_n\bigr)
+$$
+and 
+$$
+Y''_n = f_n\bigl((X''_0,Y''_0), \ldots, (X''_{n-1}, Y''_{n-1}), X''_n, U''_n\bigr).
+$$
+In this way, it is clear that $\left\{\begin{smallmatrix} {(X'_n)}_{0 \leq n \leq n_0} \\ 
+{(Y'_n)}_{0 \leq n \leq n_0}
+\end{smallmatrix}\right.$ and 
+$\left\{\begin{smallmatrix} {(X''_n)}_{0 \leq n \leq n_0} \\ 
+{(Y''_n)}_{0 \leq n \leq n_0}
+\end{smallmatrix}\right.$
+are two copies of 
+$\left\{\begin{smallmatrix} {(X_n)}_{0 \leq n \leq n_0} \\ 
+{(Y_n)}_{0 \leq n \leq n_0}
+\end{smallmatrix}\right.$.
+
+We define the filtrations  $(\GG'_0, \ldots, \GG'_{n_0})$ 
+and  $(\GG''_0, \ldots, \GG''_{n_0})$ by setting 
+$$
+\GG'_n = \sigma\bigl((X'_0,Y'_0), \ldots, (X'_n, Y'_n)\bigr) 
+\quad \text{and }\;
+\GG''_n = \sigma\bigl((X''_0,Y''_0), \ldots, (X''_n, Y''_n)\bigr), 
+$$
+and  the filtration $(\HH_0, \ldots, \HH_{n_0})$ by setting 
+$$
+\HH_n = (\EEE'_n \vee \EEE''_n) \vee \sigma\bigl((U'_0,U''_0), \ldots, (U'_n, U''_n) \bigr) 
+\supset  \GG'_n \vee \GG''_n.
+$$
+
+By property {\it(ii)}, 
+$$
+X'_{n+1} \indep_{\EEE'_n\vee\EEE''_n} \HH_n 
+\quad \text{and }\;
+X''_{n+1} \indep_{\EEE'_n\vee\EEE''_n} \HH_n 
+$$
+and by the immersion property, 
+\begin{equation}\label{eq:immX}
+X'_{n+1} \indep_{\EEE'_n} \HH_n 
+\quad \text{and }\;
+X''_{n+1} \indep_{\EEE''_n} \HH_n 
+\end{equation}
+Therefore
+\begin{equation}\label{eq:immXX}
+X'_{n+1} \indep_{\GG'_n} \HH_n 
+\quad \text{and }\;
+X''_{n+1} \indep_{\GG''_n} \HH_n 
+\end{equation}
+
+
+By property {\it(i)}, 
+$$
+Y'_{n+1} \indep_{\GG'_n \vee \sigma(X'_{n+1})} \HH_n 
+\quad \text{and }\;
+Y''_{n+1} \indep_{\GG''_n \vee \sigma(X''_{n+1})} \HH_n, 
+$$
+and by \eqref{eq:immXX} and property {\it(iii)},
+$$
+Y'_{n+1} \indep_{\GG'_n} \HH_n 
+\quad \text{and }\;
+Y''_{n+1} \indep_{\GG''_n} \HH_n
+$$
+and  by the immersion property 
+$$
+Y'_{n+1} \indep_{\sigma(Y'_0, \ldots, Y'_n)} \HH_n 
+\quad \text{and }\;
+Y''_{n+1} \indep_{\sigma(Y''_0, \ldots, Y''_n)} \HH_n.
+$$
+
+Thus, we have proved that the four filtrations generated by 
+${(X'_n)}_{0 \leq n \leq n_0}$, ${(X''_n)}_{0 \leq n \leq n_0}$, 
+${(Y'_n)}_{0 \leq n \leq n_0}$, and ${(Y''_n)}_{0 \leq n \leq n_0}$ 
+are jointly immersed in the filtration ${(\HH_n)}_{0 \leq n \leq n_0}$.
+\end{proof}
+
+\begin{lemma}\label{lemma:extendjoining}
+Let ${(Y_n)}_{n \leq 0}$ be a Markov process. 
+For two integers $n_0 \leq N < 0$, let 
+$\left\{\begin{smallmatrix} {(Y'_n)}_{n_0 \leq n \leq N} \\ 
+{(Y''_n)}_{n_0 \leq n \leq N}
+\end{smallmatrix}\right.$ be a synchronous joining of two copies of  
+${(Y_n)}_{n_0 \leq n \leq N}$ such that 
+$\Pr(Y'_N \neq Y''_N) < \delta$. 
+Then it is possible to extend this joining to 
+a synchronous joining 
+$\left\{\begin{smallmatrix} {(Y'_n)}_{n_0 \leq n \leq 0} \\ 
+{(Y''_n)}_{n_0 \leq n \leq 0}
+\end{smallmatrix}\right.$ 
+of ${(Y_n)}_{n_0 \leq n \leq 0}$ such that 
+$\Pr(Y'_N \neq Y''_N, \ldots, Y'_0 \neq Y''_0) < \delta$.
+\end{lemma}
+
+\begin{proof}
+One can assume that $Y_{n+1} = f_n(Y_n, U_{n+1})$ where 
+$(U_{N+1}, \ldots, U_0)$ is a vector of independent $\UU(0,1)$ random variables 
+such that 
+$U_{n+1} \indep (Y_{N}, U_{N+1}, \ldots, U_n)$. 
+On the other hand, on the probability space of 
+$\left\{\begin{smallmatrix} {(Y'_n)}_{n_0 \leq n \leq N} \\ 
+{(Y''_n)}_{n_0 \leq n \leq N}
+\end{smallmatrix}\right.$, one can assume there is a vector  
+$(\bar U_{N+1}, \ldots, \bar U_0)$ of $\UU(0,1)$ random variables 
+independent of ${(Y'_n, Y''_n)}_{n_0 \leq n \leq N}$. 
+Then we extend the joining by recursively setting 
+$Y'_{n+1} = f_n(Y'_n, \bar U_{n+1})$ and $Y''_{n+1} = f_n(Y''_n, \bar U_{n+1})$.
+\end{proof}
+
+\begin{lemma}\label{lemma:markovcosy}
+Let $\GG$ be the filtration generated by a Markov process ${(Y_n)}_{n \leq 0}$. 
+Assume that for any integer $M \leq 0$ and any real number $\delta >0$, 
+there exists two integers $n_0 \leq N_\delta \leq M$ and a synchronous joining 
+$\left\{\begin{smallmatrix} {(Y'_n)}_{n_0 \leq n \leq N_\delta} \\ 
+{(Y''_n)}_{n_0 \leq n \leq N_\delta}
+\end{smallmatrix}\right.$  of two copies of  
+${(Y_n)}_{n_0 \leq n \leq N_\delta}$ such that 
+$Y'_{n_0} \indep Y''_{n_0}$ and $\Pr(Y'_{N_\delta} \neq Y''_{N_\delta}) < \delta$.  
+Then $\GG$ is I-cosy.
+\end{lemma}
+
+\begin{proof}
+In order for $\GG$ to be I-cosy, it suffices that 
+$(Y_M, \ldots, Y_0)$ satisfies the I-cosiness criterion 
+for every $M \leq 0$  (see~\cite{LauXLIII}). 
+By Lemma~\ref{lemma:extendjoining}, 
+the synchronous joining $\left\{\begin{smallmatrix} {(Y'_n)}_{n_0 \leq n \leq N_\delta} \\ 
+{(Y''_n)}_{n_0 \leq n \leq N_\delta}
+\end{smallmatrix}\right.$ given by the assumption can be extended 
+to a synchronous joining 
+$\left\{\begin{smallmatrix} {(Y'_n)}_{n_0 \leq n \leq 0} \\ 
+{(Y''_n)}_{n_0 \leq n \leq 0}
+\end{smallmatrix}\right.$ of two copies of ${(Y_n)}_{n_0 \leq n \leq 0}$ 
+satisfying 
+$\Pr(Y'_{N_\delta} \neq Y''_{N_\delta}, \ldots, Y'_0 \neq Y''_0) < \delta$. 
+
+Now, this joining can be extended 
+to two copies ${(Y^*_n)}_{n \leq N_\delta}$ and ${(Y^{**}_n)}_{n \leq N_\delta}$ 
+of ${(Y_n)}_{n \leq N_\delta}$ independent up to $n_0$ as follows. 
+One can assume that $(Y'_{n+1}, Y''_{n+1}) = f_n(Y'_n, Y''_n, U_{n+1})$ 
+where $U_{n+1} \indep (Y'_{n_0}, Y''_{n_0}, U_{n_0}, \ldots, Y'_n, Y''_n, U_n)$ 
+is $\UU(0,1)$. 
+Then, given two independent copies 
+${(Y^*_n)}_{n \leq n_0}$ and ${(Y^{**}_n)}_{n \leq n_0}$ 
+of ${(Y_n)}_{n \leq n_0}$, one  recursively set  
+$(Y^*_{n+1}, Y^{**}_{n+1}) = f_n(Y^*_n, Y^{**}_n, \bar U_{n+1})$ where 
+$(\bar U_{n_0+1}, \ldots, \bar U_{0}) \indep {(Y^*_n, Y^{**}_n)}_{n \leq n_0}$ 
+is a vector of independent $\UU(0,1)$ random variables.   
+In this way one has 
+$$
+\LL(Y^*_{n+1} \given Y^*_m, Y^{**}_m ; m \leq n) = 
+\LL(Y^*_{n+1} \given Y^*_n, Y^{**}_n),
+$$
+and $\LL(Y^*_{n+1} \given Y^*_n, Y^{**}_n)=\LL(Y^*_{n+1} \given Y^*_n)$ 
+by isomorphism. 
+\end{proof}
+
+
+Now we  prove the second point of Theorem~\ref{thm:joinable}.
+
+\begin{proof}[Proof of 2 in Theorem~\ref{thm:joinable}]
+
+Assume $\FF$ is I-cosy. Take an integer $M \leq 0$. 
+To prove the claim, it suffices to show that $(Y_M, \ldots, Y_0)$ 
+satisfies the I-cosiness criterion with respect to $\GG$. 
+
+Let $\delta>0$ and take the integer $N_\delta \leq M$ provided by the 
+joinability assumption. 
+
+The random variable $X_{N_\delta}$ satisfies the I-cosiness criterion 
+with respect to $\FF$. Thus, one has two jointly immersed copies 
+${(\FF'_n)}_{n \leq N_\delta}$ and ${(\FF''_n)}_{n \leq N_\delta}$ 
+of the filtration ${(\FF_n)}_{n \leq N_\delta}$, independent up to 
+an integer $n_0 \leq N_\delta$ and  
+ such that $\Pr(X'_{N_\delta} \neq X''_{N_\delta}) < \delta$. 
+
+
+
+Thanks to the Markov property,  
+$\left\{\begin{smallmatrix} {(X'_n)}_{n_0 \leq n \leq N_\delta} \\ 
+{(X''_n)}_{n_0 \leq n \leq N_\delta}
+\end{smallmatrix}\right.$ 
+is a synchronous joining 
+of two copies of ${(X_n)}_{n_0 \leq n \leq N_\delta}$. 
+
+Now, one has the joining 
+ $\left\{\begin{smallmatrix} {(X_n)}_{n_0 \leq n \leq N_\delta} \\ 
+{(Y_n)}_{n_0 \leq n \leq N_\delta}
+\end{smallmatrix}\right.$ provided by the joinability assumption. 
+
+%One has to do a modification in case if $M < N_\delta$. 
+%The integer $n_0$ can be taken as small as desired, and one takes $n_0 \leq M$ 
+%(one can take $n_0=M$ if $M < N_\delta$). 
+%One has the joining 
+% $\left\{\begin{smallmatrix} {(X_n)}_{n_0 \leq n \leq N_\delta} \\ 
+%{(Y_n)}_{n_0 \leq n \leq N_\delta}
+%\end{smallmatrix}\right.$  provided by the joinability assumption. 
+%Setting $M_\delta = M \wedge N_\delta$, the 
+%synchronous joining 
+%the joining 
+% $\left\{\begin{smallmatrix} {(X_n)}_{n_0 \leq n \leq M_\delta} \\ 
+%{(Y_n)}_{n_0 \leq n \leq M_\delta}
+%\end{smallmatrix}\right.$ 
+%satisfies the same closeness property. 
+
+By Lemma~\ref{lemma:quadricoimm}, 
+one has, on an enlargement of the probability space of 
+$\left\{\begin{smallmatrix} {(X'_n)}_{n_0 \leq n \leq N_\delta} \\ 
+{(X''_n)}_{n_0 \leq n \leq N_\delta}
+\end{smallmatrix}\right.$, two copies 
+$\left\{\begin{smallmatrix} {(X'_n)}_{n_0 \leq n \leq N_\delta} \\ 
+{(Y'_n)}_{n_0 \leq n \leq N_\delta}
+\end{smallmatrix}\right.$ and 
+$\left\{\begin{smallmatrix} {(X''_n)}_{n_0 \leq n \leq N_\delta} \\ 
+{(Y''_n)}_{n_0 \leq n \leq N_\delta}
+\end{smallmatrix}\right.$
+of 
+$\left\{\begin{smallmatrix} {(X_n)}_{n_0 \leq n \leq N_\delta} \\ 
+{(Y_n)}_{n_0 \leq n \leq N_\delta}
+\end{smallmatrix}\right.$ 
+such that 
+$\left\{\begin{smallmatrix} {(Y'_n)}_{n_0 \leq n \leq N_\delta} \\ 
+{(Y''_n)}_{n_0 \leq n \leq N_\delta}
+\end{smallmatrix}\right.$ is a synchronous joining of 
+${(Y_n)}_{n_0 \leq n \leq N_\delta}$ and 
+$Y'_{n_0} \indep Y''_{n_0}$. 
+Clearly,  $\Pr(Y'_{N_\delta} \neq Y''_{N_\delta}) < 3\delta$. 
+The result follows from Lemma~\ref{lemma:markovcosy}.
+\end{proof}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Example 1: Markov chains on the golden graph} 
+
+We use the following notations.
+
+\begin{itemize}
+\item  ${(f_n)}_{n \leq 0}$ is the reversed Fibonnaci sequence:
+$$
+f_0=f_{-1}=1, f_{-2}=2, f_{-3}=3, f_{-4}=5, \ldots,
+$$
+and we also set $f_1=0$. 
+
+\item $\theta=\frac{1}{1+\phi}=\frac{1}{\phi^2}=1-\frac{1}{\phi}=\frac{2}{3+\sqrt{5}}$ is the irrational 
+number with continued fraction expansion $[0,2,1,1,\ldots]$
+\end{itemize}
+
+
+\subsection{The Markov chain ${(V_n)}_{n \leq 0}$}
+
+We consider the Markov chain ${(V_n)}_{n \leq 0}$ walking on the graph shown on Figure~\ref{fig:GoldenGraph}, whose law is given by:
+
+\begin{itemize}
+\item $V_n$ takes the value $0$ or $1$ and $\Pr(V_n=1) = \frac{f_n}{f_n + \phi f_{n-1}} =: p_n$ 
+(in particular $\Pr(V_0=1)=\theta$)
+%  {(-1)}^{n+1} f_n\bigl(f_{n+1} - f_{n-1} \theta\bigr)
+
+\item The transition matrix from $V_{n}$ to $V_{n+1}$ is 
+\begin{center}
+\begin{tabular}{|c||c|c|}\hline
+\diagbox{$V_{n}$}{$V_{n+1}$}
+&\makebox[3em]{$0$}&\makebox[3em]{$1$}\\ \hline\hline
+$0$ & $f_n/f_{n-1}$ & $f_{n+1}/f_{n-1}$\\ \hline
+$1$ & $1$ & $0$\\ \hline
+\end{tabular}
+\end{center}
+\end{itemize}
+
+
+\begin{figure}[!h]
+   \centering
+\scalebox{0.95}{
+   \begin{subfigure}[t]{0.47\textwidth}
+   \centering
+   	\includegraphics[scale=0.6]{figures/GoldenGraph2}
+ 		\caption{\footnotesize GoldenGraph}\label{fig:GoldenGraph}
+    \end{subfigure}              
+   \quad
+    \begin{subfigure}[t]{0.47\textwidth}
+    \centering
+   	\includegraphics[scale=0.6]{figures/GoldenGraph2_probs}
+ 		\caption{\footnotesize Probability transitions}\label{fig:GoldenGraph_probs}
+ 	\end{subfigure}      
+}
+   \caption{Random walk on the golden graph}
+   \label{fig:Golden}
+ \end{figure}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{The limit Markov chain ${(\tildV_n)}_{n \leq 0}$}
+
+It is easy to see that 
+$$
+p_n \to p_\infty := \frac{1}{1+\phi^2}= \frac{\theta}{1+\theta} = \frac{\sqrt{5}-1}{2\sqrt{5}}.
+$$
+and 
+$$
+\begin{pmatrix}
+f_n/f_{n-1} & f_{n+1}/f_{n-1} \\
+1 & 0
+\end{pmatrix} 
+\to \begin{pmatrix}
+\phi^{-1} & \phi^{-2} \\
+1 & 0
+\end{pmatrix}. 
+$$
+
+The other Markov chain ${(\tildV_n)}_{n \leq 0}$ walking on the golden graph has law given by:
+
+\begin{itemize}
+\item $\tildV_n$ takes the value $0$ or $1$ and $\Pr(\tildV_n=1) = p_\infty$;
+
+\item The transition matrix from $\tildV_{n}$ to $\tildV_{n+1}$ is 
+$$
+\begin{pmatrix}
+\phi^{-1} & \phi^{-2} \\
+1 & 0
+\end{pmatrix}
+$$
+\end{itemize}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Joining the two Markov chains}\label{sec:joiningVn}
+
+
+Let $n_0 \leq 0$. We are going to define a joining of $(V_{n_0}, \ldots, V_0)$ and 
+$(\tildV_{n_0}, \ldots, \tildV_0)$.
+
+We consider the joint law of $V_{n_0}$ and $\tildV_{n_0}$ given by
+$$
+\begin{cases}
+\begin{pmatrix} 
+1-p_\infty &  p_\infty - p_{n_0} \\
+0 & p_{n_0}
+\end{pmatrix} & \text{if $n$ is odd} \\
+\begin{pmatrix} 
+1-p_{n_0}  &  0 \\
+p_{n_0} - p_\infty  & p_\infty
+\end{pmatrix} & \text{if $n$ is even}
+\end{cases}
+$$
+Hence $\Pr(V_{n_0} \neq \tildV_{n_0}) = |p_{n_0}-p_\infty|$.
+
+The transition matrix from $(V_n, \tildV_n)$ to $(V_{n+1}, \tildV_{n+1})$ 
+necessarily has the following form:
+$$
+\begin{array}{r|cccc}
+%\diagbox{$V_{n}$}{$V_{n+1}$}
+ & (0,0) & (0,1) & (1,0) & (1,1) \\ 
+  \hline
+(0,0) & ?  &  ? & ?  & ? \\ 
+  (0,1) & f_{n}/f_{n-1} & 0 & f_{n+1}/f_{n-1} & 0 \\ 
+  (1,0) & \phi^{-1}  & \phi^{-2}  & 0 & 0 \\ 
+  (1,1) & 1 & 0 & 0 & 0 \\ 
+\end{array} 
+$$
+One just needs to fill the first line. One takes 
+$$
+\begin{cases}
+\begin{array}{r|cccc}
+%\diagbox{$V_{n}$}{$V_{n+1}$}
+ & (0,0) & (0,1) & (1,0) & (1,1) \\ 
+  \hline
+(0,0) & \phi^{-1}  &  \frac{f_n}{f_{n-1}} - \phi^{-1} & 0  & \frac{f_{n+1}}{f_{n-1}}\\ 
+  (0,1) & f_{n}/f_{n-1} & 0 & f_{n+1}/f_{n-1} & 0 \\ 
+  (1,0) & \phi^{-1}  & \phi^{-2}  & 0 & 0 \\ 
+  (1,1) & 1 & 0 & 0 & 0 \\ 
+\end{array} 
+& \text{if $n$ is even}
+\\ \\
+\begin{array}{r|cccc}
+ & (0,0) & (0,1) & (1,0) & (1,1) \\ 
+  \hline
+(0,0) & \frac{f_n}{f_{n-1}} &  0 & \phi^{-1} - \frac{f_n}{f_{n-1}}  & \phi^{-1}\\ 
+  (0,1) & f_{n}/f_{n-1} & 0 & f_{n+1}/f_{n-1} & 0 \\ 
+  (1,0) & \phi^{-1}  & \phi^{-2}  & 0 & 0 \\ 
+  (1,1) & 1 & 0 & 0 & 0 \\ 
+\end{array}
+& \text{if $n$ is odd}
+\end{cases}
+$$
+There is a constructive way to get this joining. 
+Consider a vector $(U_{n_0+1}, \ldots, U_0)$ of independent random variables having the 
+uniform distribution on $(0,1)$ and which is independent of $(V_{n_0}, \tildV_{n_0})$. 
+Then, for each $n$ recursively going from $n_0$ to $-1$, set 
+$$
+V_{n+1} = \begin{cases}
+0 & \text{if $V_n=1$} \\
+0 & \text{if $V_n=0$ and $U_{n+1} < \frac{f_n}{f_{n-1}}$} \\
+1 & \text{if $V_n=0$ and $U_{n+1} \geq \frac{f_n}{f_{n-1}}$}
+\end{cases}, \quad 
+\tildV_{n+1} = \begin{cases}
+0 & \text{if $\tildV_n=1$} \\
+0 & \text{if $\tildV_n=0$ and $U_{n+1} < \phi^{-1}$} \\
+1 & \text{if $\tildV_n=0$ and $U_{n+1} \geq \phi^{-1}$}
+\end{cases}.
+$$
+In this way it is clear that this joining of 
+$(V_{n_0}, \ldots, V_0)$ and 
+$(\tildV_{n_0}, \ldots, \tildV_0)$ is synchronous. 
+
+The probability 
+$$
+\beta_n:=\Pr(V_{n+1} = \tildV_{n+1} \mid V_{n}=\tildV_{n})
+$$
+is an average of 
+$\Pr(V_{n+1} = \tildV_{n+1} \given V_{n}=\tildV_{n}=1)  = 1$ and 
+$$
+\Pr(V_{n+1} = \tildV_{n+1} \given V_{n}=\tildV_{n}=0) 
+= 1 - \left|\frac{f_n}{f_{n-1}} - \phi^{-1}\right| =: \alpha_n, 
+$$
+hence it lies between $\alpha_n$ and $1$. 
+Thus, when $n_0 \leq N \leq 0$, 
+$$
+\Pr(V_{n_0} = \tildV_{n_0}, V_{n_0+1} = \tildV_{n_0+1}, \ldots, V_{N} = \tildV_{N}) = 
+\Pr(V_{n_0} = \tildV_{n_0}) \prod_{k={n_0}}^N \beta_k 
+\geq \Pr(V_{n_0} = \tildV_{n_0}) \prod_{k={n_0}}^N \alpha_k.
+$$
+The rational numbers $\frac{f_n}{f_{n-1}}$ are the convergent of the continued fraction 
+expansion of $\phi^{-1}$, hence $1 - \alpha_n \leq {(f_{n-1}f_{n-2})}^{-1}$. 
+Therefore $\prod \alpha_k$ is a divergent product.
+
+Consequently, the two processes ${(V_n)}_{n \leq 0}$ and ${(\tildV_n)}_{n \leq 0}$ 
+are joinable. Indeed, given $\delta>0$, if one takes $N$ such that 
+$\prod_{k={-\infty}}^N \alpha_k > 1 - \delta$ and such that 
+$\Pr(V_{n_0} = \tildV_{n_0}) > 1-\delta$ when the construction starts at 
+$n_0 \leq N$, one gets 
+$$
+\Pr(V_{n_0} = \tildV_{n_0}, V_{n_0+1} = \tildV_{n_0+1}, \ldots, V_{N} = \tildV_{N}) > 1-2\delta.
+$$
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Example 2: Fibonacci split-words processes} 
+
+
+\subsection{The Markov chain ${(X_n, V_n)}_{n \leq 0}$}
+
+For a given alphabet $A$, we consider here 
+a Markov process ${(X_n, V_n)}_{n \leq 0}$ whose law satisifies:
+
+\begin{itemize}
+\item ${(V_n)}_{n \leq 0}$ is the Markov chain of the previous section; 
+
+\item given $V_n = v \in \{0,1\}$, the random variable $X_n$ is a word of length 
+$f_{n-1+v}$ on $A$ 
+
+\item conditionally to $(X_n,V_n)$ (see Figure~\ref{fig:GoldenGraph_probs}):
+\begin{itemize}
+\item if $V_n=1$, $X_{n+1}=X_n$;
+
+\item if $V_n=0$, the word $X_{n+1}$ is the first piece of $X_n$ 
+if $V_{n+1}=0$, and the second piece of $X_n$ if $V_{n+1}=1$, 
+where $X_n$ is seen as the concatenantion of two pieces, the 
+first one made up of the first $f_n$ letters of $X_n$, the second 
+one made up of the last $f_{n+1}$ letters. 
+\end{itemize}
+\end{itemize}
+
+
+\begin{figure}[!h]
+\centering
+	\includegraphics[scale=0.8]{figures/GoldenWalk_WordsProbs}
+\caption{Fibonnaci split-word}\label{fig:fibosw}
+\end{figure}
+
+We have not imposed the law of $X_n$ given $V_n$ (which determines 
+the length of $X_n$). 
+For example one can assume that $X_n$ is a piece of length $f_{n-1+V_n}$ of 
+a stationary process on $A$. 
+
+We denote by $\GG$ the filtration generated by ${(X_n, V_n)}_{n \leq 0}$. 
+It is locally isomorphic to the filtration $\FF$ generated by ${(V_n)}_{n \leq 0}$.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{The limit Markov chain ${(\tildX_n, \tildV_n)}_{n \leq 0}$}
+
+The law of the limit Markov chain ${(\tildX_n, \tildV_n)}_{n \leq 0}$ 
+is given exactly as the law of ${(X_n, V_n)}_{n \leq 0}$, 
+with ${(V_n)}_{n \leq 0}$ replaced with ${(\tildV_n)}_{n \leq 0}$
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Joining the two Markov chains}
+
+The conditional laws $\LL(X_{n_0} \given V_{n_0}=v)$ and 
+$\LL(\tildX_{n_0} \given \tildV_{n_0}=v)$ are the same. 
+Therefore, given a joining $(V_{n_0}, \tildV_{n_0})$ of $V_{n_0}$ and $\tildV_{n_0}$, 
+one can construct a joining 
+$\bigl((X_{n_0}, V_{n_0}), (\tildX_{n_0}, \tildV_{n_0})\bigr)$ 
+of $(X_{n_0}, V_{n_0})$ and $(\tildX_{n_0}, \tildV_{n_0})$ such that 
+$V_{n_0} = \tildV_{n_0}$ $\implies$ $X_{n_0}=\tildX_{n_0}$. 
+
+Thus we can use the joining of Section~\ref{sec:joiningVn} to show 
+that ${(X_n, V_n)}_{n \leq 0}$ and ${(\tildX_n, \tildV_n)}_{n \leq 0}$ 
+are closely joinable. 
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Example 3: Markov chain on the Chacon graph}
+
+Let ${(\tildeps_n)}_{n \leq -1}$ be a sequence of independent random 
+variables having the uniform law on $\{0, 1, 3\}$. 
+In addition, for every $n \leq -1$, we denote by $\tildV_n$ a constant 
+random variable equal to $1$.
+
+\begin{lemma}
+The processes ${(V_n, \epsilon_n)}_{n \leq -1}$ and 
+${(\tildV_n, \tildeps_n)}_{n \leq -1}$ are closely joinable.
+\end{lemma}
+
+\begin{proof}
+For $i \in \{0, 1, 3\}$, 
+$$
+\Pr(V_n=1, \epsilon_n=i) = \frac{3^{|n|}-1}{3^{|n|+1}} < \frac{1}{3}.
+$$
+Therefore, one can construct a joining of 
+$(V_{n_0}, \epsilon_{n_0})$ and $(\tildV_{n_0},\tildeps_{n_0})$ such that  
+$$
+\{V_{n_0}=1, \epsilon_{n_0}=i\} \subset \{\tildV_{n_0}=1,\tildeps_{n_0} = i\} 
+$$
+for $i \in \{0,1,3\}$. 
+
+
+Now, take some independent random variables $U_{n_0+1}$, $\ldots$, $U_{-1}$ 
+having the $\UU(0,1)$ distribution, and such that the vector $(U_{n_0+1}, \ldots, U_{-1})$ 
+is independent of $(V_{n_0}, \epsilon_{n_0})$ and $(\tildV_{n_0},\tildeps_{n_0})$. 
+
+We recursively construct $(V_{n_0+1}, \epsilon_{n_0+1})$, $\ldots$, $(V_{-1}, \epsilon_{-1})$ 
+and $(\tildV_{n_0+1}, \tildeps_{n_0+1})$, $\ldots$, $(\tildV_{-1}, \tildeps_{-1})$ 
+as follows.
+
+Once the construction is done up to time $n$, we set 
+$\epsilon_{n+1} = f_n(V_n, U_{n+1})$ and $\tildeps_{n+1} = g_n(U_{n+1})$ 
+where the functions $f_n$ and $g_n$ are defined as follows. 
+We simply set $f_n(2, u)=0$
+For $i \in \{0,1,3\}$, the function $f_n(1, \cdot)$ is such that  
+$f_n(1, u) = i$ for $u \in J_i$ 
+where $J_i$ is the set having Lebesgue measure 
+$|J_i| = \frac{h_{n+1}}{h_{n}} < \frac{1}{3}$. 
+We take a set $J'_i \supset J_i$ such that $|J'_i|=\frac{1}{3}$ 
+and set $g_n(u)=i$ for $u \in J'_i$. 
+Thus, on the event $\{V_n=1\}$, one has $\tildeps_{n+1}=i$ if $\epsilon_{n+1}=i$. 
+
+With this joining, 
+$$
+\Pr\bigl((V_{n_0+1}, \epsilon_{n_0+1})=(\widetilde{V}_{n_0+1}, \widetilde{\epsilon}_{n_0+1}), 
+\ldots, (V_N, \epsilon_{N})=(\widetilde{V}_{N},\widetilde{\epsilon}_{N}) 
+\given V_{n_0}=1 \bigr) \geq \prod_{n=n_0}^{N-1} \frac{h_{n+1}}{h_{n}}.  
+$$
+The lemma follows because the product $\prod_{n=n_0}^{N-1} \frac{h_{n+1}}{h_{n}}$ 
+is divergent as  $n_0 \to -\infty$ and $\Pr(V_{n_0}=1) \to 1$. 
+\end{proof}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Example 4: Chacon split-words processes}
+
+
+\begin{figure}[!h]
+\centering
+	\includegraphics[scale=0.8]{figures/ChaconWalk_powers_N2_hand2}
+\caption{$(X_n, V_n, \epsilon_n)$}
+\label{fig:ChaconPowers}
+\end{figure}
+
+
+\begin{figure}[!h]
+\centering
+	\includegraphics[scale=0.8]{figures/ChaconWalk_words_hand2}
+\caption{$(W_n, V_n, \epsilon_n)$}
+\label{fig:Wn}
+\end{figure}
+
+
+
+\begin{figure}[!h]
+\centering
+	\includegraphics[scale=0.8]{figures/ChaconWalk_words_tilde2}
+\caption{$(\widetilde{W}_n, \widetilde{\epsilon}_n)$}
+\label{fig:tildeWn}
+\end{figure}
+
+
+\end{document}
