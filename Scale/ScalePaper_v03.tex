@@ -16,7 +16,7 @@
 \usepackage{wrapfig}
 
 \usepackage[normalem]{ulem}
-
+\usepackage{enumerate}
 
 \author{Stéphane Laurent}
 \title{xxx}
@@ -35,13 +35,18 @@
 \newtheorem{ppsition}{Proposition}
 \newtheorem{lemma}{Lemma}
 
+\newcommand{\BB}{\mathcal{B}}
+\newcommand{\CC}{\mathcal{C}}
+\newcommand{\EEE}{\mathcal{E}}
 \newcommand{\FF}{\mathcal{F}}
 \newcommand{\GG}{\mathcal{G}}
 \newcommand{\tildGG}{\widetilde{\GG}}
+\newcommand{\HH}{\mathcal{H}}
 \newcommand{\EE}{\mathbb{E}}
 \newcommand{\II}{\mathcal{I}}
 \newcommand{\LL}{\mathcal{L}}
 \newcommand{\OO}{\mathcal{O}}
+\newcommand{\UU}{\mathcal{U}}
 \newcommand{\XX}{\mathcal{X}}
 \newcommand{\given}{\mid}
 \newcommand{\eps}{\epsilon}
@@ -1044,6 +1049,471 @@ This filtration is immersed in $\tildGG$, therefore $\tildGG$ is not standard.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Closely joinable processes}\label{sec:joinable}
+
+
+When two random vectors 
+${(X_n)}_{0 \leq n \leq n_0}$ and ${(Y_n)}_{0 \leq n \leq n_0}$ are defined 
+on the same probability space and the filtrations they generate are 
+jointly immersed (see below), we will write and say that 
+$\left\{\begin{smallmatrix} {(X_n)}_{0 \leq n \leq n_0} \\ 
+{(Y_n)}_{0 \leq n \leq n_0}
+\end{smallmatrix}\right.$  is a \emph{synchronous joining}. 
+That means, after introducing the $\sigma$-fields 
+$\BB_n = \sigma(X_{0}, \ldots, X_n)$ and  
+$\CC_n = \sigma(Y_{0}, \ldots, Y_n)$, that 
+$\BB_{n+1} \indep_{\BB_n} \BB_n \vee \CC_n$ 
+and $\CC_{n+1} \indep_{\CC_n} \BB_n \vee \CC_n$.  
+
+When $\left\{\begin{smallmatrix} {(X'_n)}_{0 \leq n \leq n_0} \\ 
+{(Y'_n)}_{0 \leq n \leq n_0}
+\end{smallmatrix}\right.$  is a \emph{synchronous joining} in the situation when 
+${(X'_n)}_{0 \leq n \leq n_0}$ is a copy of a random vector 
+${(X_n)}_{0 \leq n \leq n_0}$  and ${(Y'_n)}_{0 \leq n \leq n_0}$ 
+is a copy of a random vector ${(Y_n)}_{0 \leq n \leq n_0}$, we also say that 
+$\left\{\begin{smallmatrix} {(X'_n)}_{0 \leq n \leq n_0} \\ 
+{(Y'_n)}_{0 \leq n \leq n_0}
+\end{smallmatrix}\right.$  is a \emph{synchronous joining of 
+${(X_n)}_{0 \leq n \leq n_0}$ and ${(Y_n)}_{0 \leq n \leq n_0}$}. 
+
+%\begin{definition}
+%Let ${(X_n)}_{n \leq 0}$ and ${(Y_n)}_{n \leq 0}$ be two stochastic processes. 
+%We say that they are \emph{closely joinable of type I} if for every $\delta >0$ there exists 
+%$N_\delta \leq 0$ such that for every $n_0 \leq N_\delta$ there exists a 
+%synchronous joining $\left\{\begin{smallmatrix} {(X'_n)}_{n_0 \leq n \leq N_\delta} \\ 
+%{(Y'_n)}_{n_0 \leq n \leq N_\delta}
+%\end{smallmatrix}\right.$ 
+%of ${(X_n)}_{n_0 \leq n \leq N_\delta}$ and ${(Y_n)}_{n_0 \leq n \leq N_\delta}$ 
+%such that 
+%$$
+%\Pr(X'_{n_0}=Y'_{n_0}, \ldots, X'_{N_\delta}=Y'_{N_\delta}) > 1-\delta. 
+%$$ 
+%\end{definition}
+
+\begin{definition}\label{def:joinable}
+Let ${(X_n)}_{n \leq 0}$ and ${(Y_n)}_{n \leq 0}$ be two stochastic processes. 
+We say that they are \emph{closely joinable} if for every $\delta >0$ 
+\uline{and for every $M\leq 0$}, there exists 
+$\uline{N_\delta \leq M}$ such that for every $n_0 \leq N_\delta$ there exists a 
+synchronous joining $\left\{\begin{smallmatrix} {(X'_n)}_{n_0 \leq n \leq N_\delta} \\ 
+{(Y'_n)}_{n_0 \leq n \leq N_\delta}
+\end{smallmatrix}\right.$ 
+of ${(X_n)}_{n_0 \leq n \leq N_\delta}$ and ${(Y_n)}_{n_0 \leq n \leq N_\delta}$ 
+such that 
+$$
+\Pr(X'_{N_\delta}=Y'_{N_\delta}) > 1-\delta. 
+$$ 
+\end{definition}
+
+\begin{thm}\label{thm:joinable}
+Let ${(X_n)}_{n \leq 0}$ and ${(Y_n)}_{n \leq 0}$ be two Markovian stochastic processes, and 
+denote by $\FF$ and $\GG$ the filtrations they respectively generate. 
+Assume ${(X_n)}_{n \leq 0}$ and ${(Y_n)}_{n \leq 0}$ are closely joinable. 
+\begin{enumerate}
+\item The $\sigma$-fields $\FF_{-\infty}$  and $\GG_{-\infty}$ are equal. 
+
+\item The filtration $\FF$ is I-cosy if and only if the filtration $\GG$ is I-cosy.
+\end{enumerate}
+\end{thm}
+
+We firstly prove the first point of this theorem. 
+
+\begin{proof}[Proof of 1 in Theorem~\ref{thm:joinable}]
+To establish the claim, it suffices to show that 
+the conditional law $\LL(X_M \given \FF_{-\infty})$ is 
+$\GG_{-\infty}$-measurable random variable for every integer $M \leq 0$. 
+To do so, we will prove that the conditional expectation 
+$\EE\bigl[f(X_{M}) \given \FF_{-\infty}\bigr]$ can be made as $L^1$-close as desired to a 
+$\GG_{-\infty}$-measurable random variable for any Borelian function $f$ 
+taking its values in $[0,1]$. 
+
+We set $F_M=f(X_M)$. Let $\delta>0$ and $N = N_\delta \leq M$ 
+the integer provided by the joinability assumption. 
+One has 
+$\EE[F_M \given \FF_{N}\bigr] = g(X_{N})$ 
+for a certain Borelian function $g$ taking its values in $[0,1]$. 
+Take $n_0 \leq N$ small enough in order that 
+$$
+\EE\left[ \Bigr| 
+\EE[F_M \given \FF_{n_0}] - \EE[F_M \given \FF_{-\infty}] 
+\Bigl| \right] 
+\leq \delta
+\quad \text{and }\; 
+\EE\left[ \Bigr| 
+\EE\bigl[g(Y_N) \given \GG_{n_0}\bigr] - \EE\bigl[g(Y_N) \given \GG_{-\infty}\bigr]
+\Bigl| \right] 
+\leq \delta,
+$$
+which is possibly by virtue of the theorem on reverse martingale convergence. 
+
+Now, take the joining provided by the joinability assumption and set $F'_M=f(X'_M)$. 
+One has $\EE\bigl[\bigl|g(X'_N) - g(Y'_N)\bigr|\Bigr] \leq \delta$. Therefore 
+$$
+\EE\left[ \Bigr|\EE\bigl[g(X'_N) \given \sigma(X'_{n_0}, Y'_{n_0})\bigr] 
+ - \EE\bigl[g(Y'_N) \given \sigma(X'_{n_0}, Y'_{n_0}) \bigr] \Bigl| \right] \leq \delta
+$$
+because of the contractivity of the conditional expectation. 
+By immersion, 
+$$
+\EE\bigl[g(X'_N) \given \sigma(X'_{n_0}, Y'_{n_0})\bigr] 
+= \EE\bigl[g(X'_N) \given \sigma(X'_{n_0})\bigr] = \EE\bigl[F'_M \given \sigma(X'_{n_0})\bigr]
+$$
+and 
+$$
+\EE\bigl[g(Y'_N) \given \sigma(X'_{n_0}, Y'_{n_0})\bigr] 
+= \EE\bigl[g(Y'_N) \given \sigma(Y'_{n_0})\bigr]. 
+$$
+On the other hand, 
+\begin{align*}
+\EE\left[ \Bigr| 
+\EE\bigl[F'_M \given \sigma(X'_{n_0})\bigr] 
+ - \EE\bigl[g(Y'_N) \given \sigma(Y'_{n_0})\bigr] 
+\Bigl| \right] 
+& = \EE\left[ \Bigr| 
+\EE\bigl[F_M \given \sigma(X_{n_0})\bigr] 
+ - \EE\bigl[g(Y_N) \given \sigma(Y_{n_0})\bigr] 
+\Bigl| \right] \\
+& = \EE\left[ \Bigr| 
+\EE\bigl[X_M \given \FF_{n_0}\bigr] 
+ - \EE\bigl[g(Y_N) \given \GG_{n_0}\bigr] 
+\Bigl| \right]
+\end{align*}
+By combining the previous equalities and inequalities, 
+$$
+\EE\left[ \Bigr| 
+\EE[F_M \given \FF_{-\infty}\bigr]  -  \EE\bigl[g(Y_N) \given \GG_{-\infty}\bigr]
+\Bigl| \right] 
+\leq 3\delta,
+$$
+and the proof is over.
+\end{proof}
+
+The second point of the theorem will be proved with the help of the following lemma. 
+
+\begin{lemma}\label{lemma:quadricoimm}
+Let 
+$\left\{\begin{smallmatrix} {(X_n)}_{0 \leq n \leq n_0} \\ 
+{(Y_n)}_{0 \leq n \leq n_0}
+\end{smallmatrix}\right.$  
+be a synchronous joining of two random vectors 
+${(X_n)}_{0 \leq n \leq n_0}$ and ${(Y_n)}_{0 \leq n \leq n_0}$. 
+One assumes that a synchronous joining 
+$\left\{\begin{smallmatrix} {(X'_n)}_{0 \leq n \leq n_0} \\ 
+{(X''_n)}_{0 \leq n \leq n_0}
+\end{smallmatrix}\right.$
+ of two copies of ${(X_n)}_{0 \leq n \leq n_0}$ 
+is given on some probability space.  
+Then, on an enlargement of this probability space, there 
+exists a synchronous joining 
+$\left\{\begin{smallmatrix} {(Y'_n)}_{0 \leq n \leq n_0} \\ 
+{(Y''_n)}_{0 \leq n \leq n_0}
+\end{smallmatrix}\right.$
+of two copies of ${(Y_n)}_{0 \leq n \leq n_0}$ 
+such that  
+$\left\{\begin{smallmatrix} {(X'_n)}_{0 \leq n \leq n_0} \\ 
+{(Y'_n)}_{0 \leq n \leq n_0}
+\end{smallmatrix}\right.$ and 
+$\left\{\begin{smallmatrix} {(X''_n)}_{0 \leq n \leq n_0} \\ 
+{(Y''_n)}_{0 \leq n \leq n_0}
+\end{smallmatrix}\right.$
+are two copies of 
+$\left\{\begin{smallmatrix} {(X_n)}_{0 \leq n \leq n_0} \\ 
+{(Y_n)}_{0 \leq n \leq n_0}
+\end{smallmatrix}\right.$.
+
+Moreover, if $X'_0 \indep_{\sigma(X'_0)\cap\sigma(X''_0)} X''_0$, then 
+ $Y'_0 \indep_{\sigma(X'_0)\cap\sigma(X''_0)} Y''_0$.
+\end{lemma}
+
+\begin{proof}
+In the proof, we will use the three following elementary facts about 
+conditional independence:
+\begin{enumerate}[{\it(i)}]
+\item If $U \indep {\cal A} \supset {\cal B}$, 
+then $X \indep_\BB {\cal A}$ for any $\sigma({\cal B}, U)$-measurable r.v.\ $X$.
+
+\item If $U \indep \sigma({\cal B}, X)$ then $X \indep_\BB U$ (hence $X \indep_\BB \sigma({\cal B}, U)$).
+
+\item If $\BB \subset {\cal A}$, then 
+the two conditional independences $Y \indep_{\BB \vee \sigma(X)} {\cal A}$
+and $X \indep_{\BB} {\cal A}$ imply $Y \indep_{\BB} {\cal A}$.
+\end{enumerate}
+
+On the probability space of $\left\{\begin{smallmatrix} {(X_n)}_{0 \leq n \leq n_0} \\ 
+{(Y_n)}_{0 \leq n \leq n_0}
+\end{smallmatrix}\right.$, one can assume there exist some random variables 
+$U_0$, $\ldots$, $U_{n_0}$ such that 
+\begin{itemize}
+\item[$\bullet$] $U_n \indep \bigl((X_0,U_0), \ldots, (X_{n-1}, U_{n-1}), X_n\bigr)$;
+
+\item[$\bullet$] $Y_n = f_n\bigl((X_0,Y_0), \ldots, (X_{n-1}, Y_{n-1}), X_n, U_n\bigr)$   
+for some Borelian functions $f_n$. 
+\end{itemize}
+
+We denote by $(\EEE'_0, \ldots, \EEE'_{n_0})$ the filtration generated by 
+${(X'_n)}_{0 \leq n \leq n_0}$ and by $(\EEE''_0, \ldots, \EEE''_{n_0})$ 
+the filtration generated by ${(X''_n)}_{0 \leq n \leq n_0}$. 
+
+On the probability space of $\left\{\begin{smallmatrix} {(X'_n)}_{0 \leq n \leq n_0} \\ 
+{(X''_n)}_{0 \leq n \leq n_0}
+\end{smallmatrix}\right.$, one can assume there are two copies 
+$\mathbf{U}'=(U'_0, \ldots, U'_{n_0})$ and $\mathbf{U}''=(U''_0, \ldots, U''_{n_0})$ of 
+$(U_0, \ldots, U_{n_0})$ such that $\mathbf{U}' \indep \mathbf{U}''$ and 
+$(\mathbf{U}',\mathbf{U}'') \indep \EEE'_{n_0} \vee \EEE''_{n_0}$. 
+
+We set $Y'_0 = f_0(X'_0, U'_0)$ and $Y''_0 = f_0(X''_0, U''_0)$. 
+Then it is not difficult to check 
+the last point of the lemma:  
+ $Y'_0 \indep_{\sigma(X'_0)\cap\sigma(X''_0)} Y''_0$
+if  $X'_0 \indep_{\sigma(X'_0)\cap\sigma(X''_0)} X''_0$.  
+
+
+Now we recursively set 
+$$
+Y'_n = f_n\bigl((X'_0,Y'_0), \ldots, (X'_{n-1}, Y'_{n-1}), X'_n, U'_n\bigr)
+$$
+and 
+$$
+Y''_n = f_n\bigl((X''_0,Y''_0), \ldots, (X''_{n-1}, Y''_{n-1}), X''_n, U''_n\bigr).
+$$
+In this way, it is clear that $\left\{\begin{smallmatrix} {(X'_n)}_{0 \leq n \leq n_0} \\ 
+{(Y'_n)}_{0 \leq n \leq n_0}
+\end{smallmatrix}\right.$ and 
+$\left\{\begin{smallmatrix} {(X''_n)}_{0 \leq n \leq n_0} \\ 
+{(Y''_n)}_{0 \leq n \leq n_0}
+\end{smallmatrix}\right.$
+are two copies of 
+$\left\{\begin{smallmatrix} {(X_n)}_{0 \leq n \leq n_0} \\ 
+{(Y_n)}_{0 \leq n \leq n_0}
+\end{smallmatrix}\right.$.
+
+We define the filtrations  $(\GG'_0, \ldots, \GG'_{n_0})$ 
+and  $(\GG''_0, \ldots, \GG''_{n_0})$ by setting 
+$$
+\GG'_n = \sigma\bigl((X'_0,Y'_0), \ldots, (X'_n, Y'_n)\bigr) 
+\quad \text{and }\;
+\GG''_n = \sigma\bigl((X''_0,Y''_0), \ldots, (X''_n, Y''_n)\bigr), 
+$$
+and  the filtration $(\HH_0, \ldots, \HH_{n_0})$ by setting 
+$$
+\HH_n = (\EEE'_n \vee \EEE''_n) \vee \sigma\bigl((U'_0,U''_0), \ldots, (U'_n, U''_n) \bigr) 
+\supset  \GG'_n \vee \GG''_n.
+$$
+
+By property {\it(ii)}, 
+$$
+X'_{n+1} \indep_{\EEE'_n\vee\EEE''_n} \HH_n 
+\quad \text{and }\;
+X''_{n+1} \indep_{\EEE'_n\vee\EEE''_n} \HH_n 
+$$
+and by the immersion property, 
+\begin{equation}\label{eq:immX}
+X'_{n+1} \indep_{\EEE'_n} \HH_n 
+\quad \text{and }\;
+X''_{n+1} \indep_{\EEE''_n} \HH_n 
+\end{equation}
+Therefore
+\begin{equation}\label{eq:immXX}
+X'_{n+1} \indep_{\GG'_n} \HH_n 
+\quad \text{and }\;
+X''_{n+1} \indep_{\GG''_n} \HH_n 
+\end{equation}
+because $\EEE'_n \subset \GG'_n \subset \HH_n$ and 
+$\EEE''_n \subset \GG''_n \subset \HH_n$.
+
+By property {\it(i)}, 
+$$
+Y'_{n+1} \indep_{\GG'_n \vee \sigma(X'_{n+1})} \HH_n 
+\quad \text{and }\;
+Y''_{n+1} \indep_{\GG''_n \vee \sigma(X''_{n+1})} \HH_n, 
+$$
+and by \eqref{eq:immXX} and property {\it(iii)},
+$$
+Y'_{n+1} \indep_{\GG'_n} \HH_n 
+\quad \text{and }\;
+Y''_{n+1} \indep_{\GG''_n} \HH_n
+$$
+and  by the immersion property 
+$$
+Y'_{n+1} \indep_{\sigma(Y'_0, \ldots, Y'_n)} \HH_n 
+\quad \text{and }\;
+Y''_{n+1} \indep_{\sigma(Y''_0, \ldots, Y''_n)} \HH_n.
+$$
+
+Thus, we have proved that the four filtrations generated by 
+${(X'_n)}_{0 \leq n \leq n_0}$, ${(X''_n)}_{0 \leq n \leq n_0}$, 
+${(Y'_n)}_{0 \leq n \leq n_0}$, and ${(Y''_n)}_{0 \leq n \leq n_0}$ 
+are jointly immersed in the filtration ${(\HH_n)}_{0 \leq n \leq n_0}$.
+\end{proof}
+
+\begin{lemma}\label{lemma:extendjoining}
+Let ${(Y_n)}_{n \leq 0}$ be a Markov process. 
+For two integers $n_0 \leq N < 0$, let 
+$\left\{\begin{smallmatrix} {(Y'_n)}_{n_0 \leq n \leq N} \\ 
+{(Y''_n)}_{n_0 \leq n \leq N}
+\end{smallmatrix}\right.$ be a synchronous joining of two copies of  
+${(Y_n)}_{n_0 \leq n \leq N}$ such that 
+$\Pr(Y'_N \neq Y''_N) < \delta$. 
+Then it is possible to extend this joining to 
+a synchronous joining 
+$\left\{\begin{smallmatrix} {(Y'_n)}_{n_0 \leq n \leq 0} \\ 
+{(Y''_n)}_{n_0 \leq n \leq 0}
+\end{smallmatrix}\right.$ 
+of ${(Y_n)}_{n_0 \leq n \leq 0}$ such that 
+$\Pr(Y'_N \neq Y''_N, \ldots, Y'_0 \neq Y''_0) < \delta$.
+\end{lemma}
+
+\begin{proof}
+One can assume that $Y_{n+1} = f_n(Y_n, U_{n+1})$ where 
+$(U_{N+1}, \ldots, U_0)$ is a vector of independent $\UU(0,1)$ random variables 
+such that 
+$U_{n+1} \indep (Y_{N}, U_{N+1}, \ldots, U_n)$. 
+On the other hand, on the probability space of 
+$\left\{\begin{smallmatrix} {(Y'_n)}_{n_0 \leq n \leq N} \\ 
+{(Y''_n)}_{n_0 \leq n \leq N}
+\end{smallmatrix}\right.$, one can assume there is a vector  
+$(\bar U_{N+1}, \ldots, \bar U_0)$ of independent $\UU(0,1)$ random variables 
+which is 
+independent of ${(Y'_n, Y''_n)}_{n_0 \leq n \leq N}$. 
+Then we extend the joining by recursively setting 
+$Y'_{n+1} = f_n(Y'_n, \bar U_{n+1})$ and $Y''_{n+1} = f_n(Y''_n, \bar U_{n+1})$.
+\end{proof}
+
+\begin{lemma}\label{lemma:markovcosy}
+Let $\GG$ be the filtration generated by a Markov process ${(Y_n)}_{n \leq 0}$. 
+Assume that for any integer $M \leq 0$ and any real number $\delta >0$, 
+there exists two integers $n_0 \leq N_\delta \leq M$ and a synchronous joining 
+$\left\{\begin{smallmatrix} {(Y'_n)}_{n_0 \leq n \leq N_\delta} \\ 
+{(Y''_n)}_{n_0 \leq n \leq N_\delta}
+\end{smallmatrix}\right.$  of two copies of  
+${(Y_n)}_{n_0 \leq n \leq N_\delta}$ such that 
+$Y'_{n_0} \indep Y''_{n_0}$ and $\Pr(Y'_{N_\delta} \neq Y''_{N_\delta}) < \delta$.  
+Then $\GG$ is I-cosy.
+\end{lemma}
+
+\begin{proof}
+In order for $\GG$ to be I-cosy, it suffices that 
+$(Y_M, \ldots, Y_0)$ satisfies the I-cosiness criterion 
+for every $M \leq 0$  (see~\cite{LauXLIII}). 
+By Lemma~\ref{lemma:extendjoining}, 
+the synchronous joining $\left\{\begin{smallmatrix} {(Y'_n)}_{n_0 \leq n \leq N_\delta} \\ 
+{(Y''_n)}_{n_0 \leq n \leq N_\delta}
+\end{smallmatrix}\right.$ given by the assumption can be extended 
+to a synchronous joining 
+$\left\{\begin{smallmatrix} {(Y'_n)}_{n_0 \leq n \leq 0} \\ 
+{(Y''_n)}_{n_0 \leq n \leq 0}
+\end{smallmatrix}\right.$ of two copies of ${(Y_n)}_{n_0 \leq n \leq 0}$ 
+satisfying 
+$\Pr(Y'_{N_\delta} \neq Y''_{N_\delta}, \ldots, Y'_0 \neq Y''_0) < \delta$. 
+
+Now, we will construct two copies ${(Y^*_n)}_{n \leq 0}$ and ${(Y^{**}_n)}_{n \leq 0}$ 
+of ${(Y_n)}_{n \leq 0}$, independent up to $n_0$ and 
+such that 
+$\left\{\begin{smallmatrix} {(Y^*_n)}_{n_0 \leq n \leq 0} \\ 
+{(Y^{**}_n)}_{n_0 \leq n \leq 0}
+\end{smallmatrix}\right.$ is a copy of 
+$\left\{\begin{smallmatrix} {(Y'_n)}_{n_0 \leq n \leq 0} \\ 
+{(Y''_n)}_{n_0 \leq n \leq 0}
+\end{smallmatrix}\right.$
+One can assume that $(Y'_{n+1}, Y''_{n+1}) = f_n(Y'_n, Y''_n, U_{n+1})$ 
+where $U_{n+1} \indep (Y'_{n_0}, Y''_{n_0}, U_{n_0}, \ldots, Y'_n, Y''_n, U_n)$ 
+is $\UU(0,1)$. 
+Then, given two independent copies 
+${(Y^*_n)}_{n \leq n_0}$ and ${(Y^{**}_n)}_{n \leq n_0}$ 
+of ${(Y_n)}_{n \leq n_0}$, we recursively set  
+$(Y^*_{n+1}, Y^{**}_{n+1}) = f_n(Y^*_n, Y^{**}_n, \bar U_{n+1})$ where 
+$(\bar U_{n_0+1}, \ldots, \bar U_{0}) \indep {(Y^*_n, Y^{**}_n)}_{n \leq n_0}$ 
+is a vector of independent $\UU(0,1)$ random variables.   
+In this way, 
+for $n \geq n_0$, one has 
+$$
+\LL(Y^*_{n+1} \given Y^*_m, Y^{**}_m ; m \leq n) = 
+\LL(Y^*_{n+1} \given Y^*_n, Y^{**}_n),
+$$
+and $\LL(Y^*_{n+1} \given Y^*_n, Y^{**}_n)=\LL(Y^*_{n+1} \given Y^*_n)$ 
+because $\left\{\begin{smallmatrix} {(Y^*_n)}_{n_0 \leq n \leq 0} \\ 
+{(Y^{**}_n)}_{n_0 \leq n \leq 0}
+\end{smallmatrix}\right.$ is a copy of 
+$\left\{\begin{smallmatrix} {(Y'_n)}_{n_0 \leq n \leq 0} \\ 
+{(Y''_n)}_{n_0 \leq n \leq 0}
+\end{smallmatrix}\right.$. 
+Thus the two filtrations generated by ${(Y^*_n)}_{n \leq 0}$ and ${(Y^{**}_n)}_{n \leq 0}$ 
+are jointly immersed, and that shows that $(Y_M, \ldots, Y_0)$ 
+satisfies the I-cosiness criterion. 
+\end{proof}
+
+
+Now we  prove the second point of Theorem~\ref{thm:joinable}.
+
+\begin{proof}[Proof of 2 in Theorem~\ref{thm:joinable}]
+
+Assume $\FF$ is I-cosy. Take an integer $M \leq 0$. 
+To prove the claim, it suffices to show that $(Y_M, \ldots, Y_0)$ 
+satisfies the I-cosiness criterion with respect to $\GG$ 
+(see~\cite{LauXLIII}). 
+
+Let $\delta>0$ and take the integer $N_\delta \leq M$ provided by the 
+joinability assumption (Definition~\ref{def:joinable}).  
+
+The random variable $X_{N_\delta}$ satisfies the I-cosiness criterion 
+with respect to $\FF$. Thus, one has two jointly immersed copies 
+${(\FF'_n)}_{n \leq N_\delta}$ and ${(\FF''_n)}_{n \leq N_\delta}$ 
+of the filtration ${(\FF_n)}_{n \leq N_\delta}$, independent up to 
+an integer $n_0 \leq N_\delta$ and  
+ such that $\Pr(X'_{N_\delta} \neq X''_{N_\delta}) < \delta$. 
+
+
+
+Thanks to the Markov property,  
+$\left\{\begin{smallmatrix} {(X'_n)}_{n_0 \leq n \leq N_\delta} \\ 
+{(X''_n)}_{n_0 \leq n \leq N_\delta}
+\end{smallmatrix}\right.$ 
+is a synchronous joining 
+of two copies of ${(X_n)}_{n_0 \leq n \leq N_\delta}$. 
+
+Now, one has the joining 
+ $\left\{\begin{smallmatrix} {(X_n)}_{n_0 \leq n \leq N_\delta} \\ 
+{(Y_n)}_{n_0 \leq n \leq N_\delta}
+\end{smallmatrix}\right.$ provided by the joinability assumption. 
+
+%One has to do a modification in case if $M < N_\delta$. 
+%The integer $n_0$ can be taken as small as desired, and one takes $n_0 \leq M$ 
+%(one can take $n_0=M$ if $M < N_\delta$). 
+%One has the joining 
+% $\left\{\begin{smallmatrix} {(X_n)}_{n_0 \leq n \leq N_\delta} \\ 
+%{(Y_n)}_{n_0 \leq n \leq N_\delta}
+%\end{smallmatrix}\right.$  provided by the joinability assumption. 
+%Setting $M_\delta = M \wedge N_\delta$, the 
+%synchronous joining 
+%the joining 
+% $\left\{\begin{smallmatrix} {(X_n)}_{n_0 \leq n \leq M_\delta} \\ 
+%{(Y_n)}_{n_0 \leq n \leq M_\delta}
+%\end{smallmatrix}\right.$ 
+%satisfies the same closeness property. 
+
+By Lemma~\ref{lemma:quadricoimm}, 
+one has, on an enlargement of the probability space of 
+$\left\{\begin{smallmatrix} {(X'_n)}_{n_0 \leq n \leq N_\delta} \\ 
+{(X''_n)}_{n_0 \leq n \leq N_\delta}
+\end{smallmatrix}\right.$, two copies 
+$\left\{\begin{smallmatrix} {(X'_n)}_{n_0 \leq n \leq N_\delta} \\ 
+{(Y'_n)}_{n_0 \leq n \leq N_\delta}
+\end{smallmatrix}\right.$ and 
+$\left\{\begin{smallmatrix} {(X''_n)}_{n_0 \leq n \leq N_\delta} \\ 
+{(Y''_n)}_{n_0 \leq n \leq N_\delta}
+\end{smallmatrix}\right.$
+of 
+$\left\{\begin{smallmatrix} {(X_n)}_{n_0 \leq n \leq N_\delta} \\ 
+{(Y_n)}_{n_0 \leq n \leq N_\delta}
+\end{smallmatrix}\right.$ 
+such that 
+$\left\{\begin{smallmatrix} {(Y'_n)}_{n_0 \leq n \leq N_\delta} \\ 
+{(Y''_n)}_{n_0 \leq n \leq N_\delta}
+\end{smallmatrix}\right.$ is a synchronous joining of 
+${(Y_n)}_{n_0 \leq n \leq N_\delta}$ and 
+$Y'_{n_0} \indep Y''_{n_0}$. 
+Clearly,  $\Pr(Y'_{N_\delta} \neq Y''_{N_\delta}) < 3\delta$. 
+The result follows from Lemma~\ref{lemma:markovcosy}.
+\end{proof}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
