@@ -146,18 +146,22 @@ We firstly prove the first point of this theorem.
 
 \begin{proof}[Proof of 1 in Theorem~\ref{thm:joinable}]
 To establish the claim, it suffices to show that 
-$\EE[X_{M} \given \FF_{-\infty}]$ can be made as $L^1$-close as desired to a 
+the conditional law $\LL(X_M \given \FF_{-\infty})$ is 
 $\GG_{-\infty}$-measurable random variable for every integer $M \leq 0$. 
-Without loss of generality, we assume that $X_M$ takes its values in $[0,1]$. 
+To do so, we will prove that the conditional expectation 
+$\EE\bigl[f(X_{M}) \given \FF_{-\infty}\bigr]$ can be made as $L^1$-close as desired to a 
+$\GG_{-\infty}$-measurable random variable for any Borelian function $f$ 
+taking its values in $[0,1]$. 
 
-Let $\delta>0$ and $N = N_\delta$ the integer provided by the joinability assumption. 
+We set $F_M=f(X_M)$. Let $\delta>0$ and $N = N_\delta \leq M$ 
+the integer provided by the joinability assumption. 
 One has 
-$\EE[X_M \given \FF_{N}\bigr] = g(X_{N})$ 
+$\EE[F_M \given \FF_{N}\bigr] = g(X_{N})$ 
 for a certain Borelian function $g$ taking its values in $[0,1]$. 
 Take $n_0 \leq N$ small enough in order that 
 $$
 \EE\left[ \Bigr| 
-\EE[X_M \given \FF_{n_0}] - \EE[X_M \given \FF_{-\infty}] 
+\EE[F_M \given \FF_{n_0}] - \EE[F_M \given \FF_{-\infty}] 
 \Bigl| \right] 
 \leq \delta
 \quad \text{and }\; 
@@ -168,7 +172,7 @@ $$
 $$
 which is possibly by virtue of the theorem on reverse martingale convergence. 
 
-Now, take the joining provided by the joinability assumption. 
+Now, take the joining provided by the joinability assumption and set $F'_M=f(X'_M)$. 
 One has $\EE\bigl[\bigl|g(X'_N) - g(Y'_N)\bigr|\Bigr] \leq \delta$. Therefore 
 $$
 \EE\left[ \Bigr|\EE\bigl[g(X'_N) \given \sigma(X'_{n_0}, Y'_{n_0})\bigr] 
@@ -178,7 +182,7 @@ because of the contractivity of the conditional expectation.
 By immersion, 
 $$
 \EE\bigl[g(X'_N) \given \sigma(X'_{n_0}, Y'_{n_0})\bigr] 
-= \EE\bigl[g(X'_N) \given \sigma(X'_{n_0})\bigr] = \EE\bigl[X'_M \given \sigma(X'_{n_0})\bigr]
+= \EE\bigl[g(X'_N) \given \sigma(X'_{n_0})\bigr] = \EE\bigl[F'_M \given \sigma(X'_{n_0})\bigr]
 $$
 and 
 $$
@@ -188,11 +192,11 @@ $$
 On the other hand, 
 \begin{align*}
 \EE\left[ \Bigr| 
-\EE\bigl[X'_M \given \sigma(X'_{n_0})\bigr] 
+\EE\bigl[F'_M \given \sigma(X'_{n_0})\bigr] 
  - \EE\bigl[g(Y'_N) \given \sigma(Y'_{n_0})\bigr] 
 \Bigl| \right] 
 & = \EE\left[ \Bigr| 
-\EE\bigl[X_M \given \sigma(X_{n_0})\bigr] 
+\EE\bigl[F_M \given \sigma(X_{n_0})\bigr] 
  - \EE\bigl[g(Y_N) \given \sigma(Y_{n_0})\bigr] 
 \Bigl| \right] \\
 & = \EE\left[ \Bigr| 
@@ -203,7 +207,7 @@ On the other hand,
 By combining the previous equalities and inequalities, 
 $$
 \EE\left[ \Bigr| 
-\EE[X_M \given \FF_{-\infty}\bigr]  -  \EE\bigl[g(Y_N) \given \GG_{-\infty}\bigr]
+\EE[F_M \given \FF_{-\infty}\bigr]  -  \EE\bigl[g(Y_N) \given \GG_{-\infty}\bigr]
 \Bigl| \right] 
 \leq 3\delta,
 $$
@@ -380,7 +384,7 @@ $(U_0, \ldots, U_{n_0})$ such that $\mathbf{U}' \indep \mathbf{U}''$ and
 $(\mathbf{U}',\mathbf{U}'') \indep \EEE'_{n_0} \vee \EEE''_{n_0}$. 
 
 We set $Y'_0 = f_0(X'_0, U'_0)$ and $Y''_0 = f_0(X''_0, U''_0)$. 
-Then it is not difficult to check that 
+Then it is not difficult to check 
 the last point of the lemma:  
  $Y'_0 \indep_{\sigma(X'_0)\cap\sigma(X''_0)} Y''_0$
 if  $X'_0 \indep_{\sigma(X'_0)\cap\sigma(X''_0)} X''_0$.  
@@ -436,7 +440,8 @@ X'_{n+1} \indep_{\GG'_n} \HH_n
 \quad \text{and }\;
 X''_{n+1} \indep_{\GG''_n} \HH_n 
 \end{equation}
-
+because $\EEE'_n \subset \GG'_n \subset \HH_n$ and 
+$\EEE''_n \subset \GG''_n \subset \HH_n$.
 
 By property {\it(i)}, 
 $$
@@ -489,7 +494,8 @@ On the other hand, on the probability space of
 $\left\{\begin{smallmatrix} {(Y'_n)}_{n_0 \leq n \leq N} \\ 
 {(Y''_n)}_{n_0 \leq n \leq N}
 \end{smallmatrix}\right.$, one can assume there is a vector  
-$(\bar U_{N+1}, \ldots, \bar U_0)$ of $\UU(0,1)$ random variables 
+$(\bar U_{N+1}, \ldots, \bar U_0)$ of independent $\UU(0,1)$ random variables 
+which is 
 independent of ${(Y'_n, Y''_n)}_{n_0 \leq n \leq N}$. 
 Then we extend the joining by recursively setting 
 $Y'_{n+1} = f_n(Y'_n, \bar U_{n+1})$ and $Y''_{n+1} = f_n(Y''_n, \bar U_{n+1})$.
@@ -523,7 +529,7 @@ satisfying
 $\Pr(Y'_{N_\delta} \neq Y''_{N_\delta}, \ldots, Y'_0 \neq Y''_0) < \delta$. 
 
 Now, this joining can be extended 
-to two copies ${(Y^*_n)}_{n \leq N_\delta}$ and ${(Y^{**}_n)}_{n \leq N_\delta}$ 
+to two copies ${(Y^*_n)}_{n \leq 0}$ and ${(Y^{**}_n)}_{n \leq 0}$ 
 of ${(Y_n)}_{n \leq N_\delta}$ independent up to $n_0$ as follows. 
 One can assume that $(Y'_{n+1}, Y''_{n+1}) = f_n(Y'_n, Y''_n, U_{n+1})$ 
 where $U_{n+1} \indep (Y'_{n_0}, Y''_{n_0}, U_{n_0}, \ldots, Y'_n, Y''_n, U_n)$ 
@@ -534,7 +540,14 @@ of ${(Y_n)}_{n \leq n_0}$, one  recursively set
 $(Y^*_{n+1}, Y^{**}_{n+1}) = f_n(Y^*_n, Y^{**}_n, \bar U_{n+1})$ where 
 $(\bar U_{n_0+1}, \ldots, \bar U_{0}) \indep {(Y^*_n, Y^{**}_n)}_{n \leq n_0}$ 
 is a vector of independent $\UU(0,1)$ random variables.   
-In this way one has 
+In this way, 
+$\left\{\begin{smallmatrix} {(Y^*_n)}_{n_0 \leq n \leq 0} \\ 
+{(Y^{**}_n)}_{n_0 \leq n \leq 0}
+\end{smallmatrix}\right.$ is a copy of 
+$\left\{\begin{smallmatrix} {(Y'_n)}_{n_0 \leq n \leq 0} \\ 
+{(Y''_n)}_{n_0 \leq n \leq 0}
+\end{smallmatrix}\right.$ and 
+for $n \geq n_0$, one has 
 $$
 \LL(Y^*_{n+1} \given Y^*_m, Y^{**}_m ; m \leq n) = 
 \LL(Y^*_{n+1} \given Y^*_n, Y^{**}_n),
