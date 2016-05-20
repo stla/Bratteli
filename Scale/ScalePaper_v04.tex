@@ -1,0 +1,1709 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage{amsmath, amsthm}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{lmodern}
+\usepackage[left=2cm,right=2cm,top=2cm,bottom=2cm]{geometry}
+
+\usepackage[labelformat=simple]{subcaption}
+\renewcommand\thesubfigure{(\alph{subfigure})}
+
+\usepackage{diagbox}
+
+\usepackage{wrapfig}
+
+\usepackage[normalem]{ulem}
+\usepackage{enumerate}
+
+\author{Stéphane Laurent}
+\title{A generalized definition of the scale of an automorphism}
+\begin{document}
+
+
+\newtheoremstyle{thmstyle}{3pt}{3pt}{\itshape}{}{\bf}{.}{.5em}{}      
+\newtheoremstyle{defstyle}{3pt}{3pt}{\sffamily}{}{\bf}{.}{.5em}{} 
+\theoremstyle{defstyle}
+\newtheorem{definition}{Definition}
+\newtheorem{remark}{Remark}
+\newtheorem{question}{Question}
+\newtheorem{clarify}{To clarify}
+\theoremstyle{thmstyle}
+\newtheorem{thm}{Theorem}[section]
+\newtheorem{ppsition}{Proposition}
+\newtheorem{lemma}{Lemma}
+
+\newcommand{\BB}{\mathcal{B}}
+\newcommand{\CC}{\mathcal{C}}
+\newcommand{\EEE}{\mathcal{E}}
+\newcommand{\FF}{\mathcal{F}}
+\newcommand{\GG}{\mathcal{G}}
+\newcommand{\tildGG}{\widetilde{\GG}}
+\newcommand{\HH}{\mathcal{H}}
+\newcommand{\EE}{\mathbb{E}}
+\newcommand{\II}{\mathcal{I}}
+\newcommand{\LL}{\mathcal{L}}
+\newcommand{\OO}{\mathcal{O}}
+\newcommand{\UU}{\mathcal{U}}
+\newcommand{\XX}{\mathcal{X}}
+\newcommand{\given}{\mid}
+\newcommand{\eps}{\epsilon}
+\newcommand{\indic}{\boldsymbol 1}
+\newcommand{\Vb}{\boldsymbol V}
+\newcommand{\tildV}{\widetilde{V}}
+\newcommand{\tildW}{\widetilde{W}}
+\newcommand{\tildX}{\widetilde{X}}
+\newcommand{\tildeps}{\widetilde{\epsilon}}
+
+
+\newcommand{\indvee}{\dot{\vee}}
+\newcommand{\indep}{\mathrel{\text{\scalebox{1.07}{$\perp\mkern-10mu\perp$}}}}
+
+\maketitle
+
+\begin{abstract}
+Given an adic transformation $S$ on the path space of a Bratteli graph and 
+an automorphism $T$ of a Lebesgue, we define a filtration whose 
+tail $\sigma$-field is the $(T \times S)$-invariant $\sigma$-field. 
+Considering the standardness property of this filtration provides 
+a generalization of the scale of an automorphism as defined in 
+\cite{LauXLV}.
+\end{abstract}
+
+{\scriptsize 
+\tableofcontents
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Introduction} 
+
+For a given adic transformation $S$ acting on the set of infinite paths $\Gamma$ of a 
+Bratteli graph, one can straightforwardly associate a filtration on $\Gamma$ whose 
+tail $\sigma$-field is the $S$-invariant $\sigma$-field. 
+When, in addition, an invertible measure-preserving transformation $T$ 
+is given, we show how to define a filtration whose tail $\sigma$-field 
+is the $(T\times S)$-invariant $\sigma$-field. 
+This construction was done in~\cite{LauXLV} in the case when $S$ 
+is an ordinary odometer, and considering the standardness property 
+of this filtration yields  
+a generalization of the scale of an automorphism as defined in 
+\cite{LauXLV}.
+ 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Filtration associated to an adic transformation} 
+
+Consider an adic transformation $S$ acting on the set of infinite paths $\Gamma$ of a 
+Bratteli graph, preserving a probability measure $\mu$ on $\Gamma$. 
+In this section we introduce the sequence of measurable partitions 
+and the corresponding filtration on the probability space $\Gamma$.
+
+We consider that the root level of the graph is graded by the index 
+$n=0$ and the subsequent levels are graded by $n=-1$, $n=-2$, $\ldots$. 
+The example of the golden graph is shown on Figure~\ref{fig:goldengraph}. 
+
+The usual labels on the arcs of a Bratteli graph, such as the one 
+shown on Figure~\ref{fig:GoldenGraph}, provide, for each vertex $v_n$ 
+at a level $n$, an ordering of the arcs between $v_n$ and the vertices connected 
+to $v_n$ at level $n-1$.  
+The labels shown on Figure~\ref{fig:GoldenGraph_newlabs}  
+are obtained by considering the other direction: they provide, 
+for each vertex $v_{n-1}$ at a level $n-1$, 
+an ordering of the arcs between $v_{n-1}$ and the vertices at level $n$ connected 
+to $v_{n-1}$. 
+After a choice of such labels, we denote 
+by $\boxed{\epsilon_n(\gamma)}$ the label of the edge connecting $v_{n-1}(\gamma)$ to 
+$v_n(\gamma)$. 
+
+
+
+A path $\gamma \in \Gamma$ is a sequence of arcs 
+$\gamma=(\gamma_0, \gamma_{-1}, \ldots)$, where $\gamma_n$ connects 
+a vertex at level $n$ to a vertex at level $n-1$. 
+Note that $\gamma$ is determined by $(\gamma_{-1}, \gamma_{-2}, \ldots)$ 
+when there is a unique arc between each vertex at level $n=-1$ and the root vertex 
+at level $n=0$.  
+
+We denote by $v_n(\gamma)$ the vertex at level $n$ through which passes a path $\gamma$. 
+The dimension of a vertex $v$, that is to say the number of paths connecting $v$ 
+to the root vertex, is denoted by $\dim(v)$, and we denote by 
+$\boxed{d_n(\gamma)=\dim\bigl(v_n(\gamma)\bigr)}$ the dimension of the vertex at level $n$ 
+through which passes the path $\gamma$. 
+
+
+\begin{figure}[!h]
+   \centering
+   \begin{subfigure}[t]{0.37\textwidth}
+   \centering
+   	\includegraphics[scale=0.6]{figures/GoldenGraph_redpath_usual2}
+ 		\caption{\footnotesize Usual labels on the arcs}\label{fig:GoldenGraph}
+    \end{subfigure}              
+   \quad
+    \begin{subfigure}[t]{0.37\textwidth}
+    \centering
+   	\includegraphics[scale=0.6]{figures/GoldenGraph_redpath_newlabels2}
+ 		\caption{\footnotesize Order labels $\epsilon_n$ on the arcs}\label{fig:GoldenGraph_newlabs}
+ 	\end{subfigure}      
+   \caption{Golden graph}
+   \label{fig:goldengraph}
+ \end{figure}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{The sequence of measurable partitions $\zeta$}
+
+There is an increasing sequence of measurable partitions ${(\zeta_n)}_{n \leq 0}$ 
+on $(\Gamma, \mu)$, defined by 
+$$
+\boxed{\gamma \overset{\zeta_n}{\sim} \gamma' 
+\iff \gamma_k=\gamma'_k \quad\text{for every $k \leq n$}}.
+$$ 
+% if $v_n(\gamma)=v_n(\gamma')$. 
+
+The partition $\zeta_0$ is the partition into singletons. 
+The partition $\zeta_{-1}$ is also the partition into singletons 
+when there is a unique arc between each vertex at level $n=-1$ and the root vertex 
+at level $n=0$.  
+
+The $\zeta_n$-equivalence class $\zeta_n(\gamma)$ consists of $d_n(\gamma)$ elements. 
+These elements are ordered: there is one element in $\zeta_n(\gamma)$, denoted by 
+$\bar\gamma_n$, such that 
+$$
+\boxed{\zeta_n(\gamma)= \{\bar\gamma_n, S\bar\gamma_n, \ldots, S^{d_n(\gamma)-1}\bar\gamma_n\}}.
+$$
+We consider $\bar\gamma_n$ as the $\zeta_n$-representative of $\gamma$.
+
+\begin{figure}[!h]
+\centering
+	\includegraphics[scale=0.7, clip=true]{figures/GoldenOrbits2}
+\caption{A $\zeta_{-5}$-equivalence class}
+\label{fig:GoldenOrbits}
+\end{figure}
+
+
+The increasing property of ${(\zeta_n)}_{n \leq 1}$ provides a structure 
+on the $\zeta_{n}$-equivalence classes: a $\zeta_n$-equivalence class 
+is a union of $\zeta_{n+1}$-equivalences classes. 
+This is illustrated on Figure~\ref{fig:GoldenOrbits} for the case of the golden graph. 
+The labels on the edges of the tree shown on this figure are the labels $\epsilon_n$ 
+also shown on Figure~\ref{fig:GoldenGraph_newlabs}. 
+The label $\epsilon_n(\gamma)$ between level $n$ and level $n+1$ indicates the location of 
+$\zeta_{n+1}(\gamma)$ as a block of $\zeta_n(\gamma)$. 
+
+
+Thus, $\boxed{\bar\gamma_n = S^{-k_n(\gamma)}\gamma}$ where the nonnegative integer $k_n(\gamma)$ 
+is a function of $(\gamma_{0}, \gamma_{-1}, \ldots, \gamma_n)$, and 
+$$
+\zeta_n(\gamma) = \{S^{-k_n(\gamma)}\gamma, S^{-k_n(\gamma)+1}\gamma, 
+\ldots, S^{-k_n(\gamma)+d_n(\gamma)-1}\gamma \}.
+$$ 
+More precisely, knowing the vertex $v_n(\gamma)$, the integer $k_n(\gamma)$ is 
+a one-to-one function of $\bigl(\epsilon_{n+1}(\gamma), \ldots, \epsilon_0(\gamma)\bigr)$. 
+
+
+\begin{wrapfigure}{r}{48mm}
+   \centering
+   	\includegraphics[scale=0.88]{figures/Golden_towers2}
+   \caption{Golden towers}
+   \label{fig:GoldenTowers}
+\end{wrapfigure}
+The adic transformation on the path space of a Bratteli graph is 
+a representation of a cutting-and-stacking construction. 
+The cutting-and-stacking construction corresponding to 
+the adic transformation on the golden graph is shown on
+Figure~\ref{fig:GoldenTowers}. 
+The $\zeta_n$-equivalence class $\zeta_n(\gamma)$ of 
+$\gamma$ is shown by the blue points on this figure. 
+The $\zeta_n$-representative $\bar\gamma_n$ of $\gamma$ 
+corresponds to the point in the base of the tower. 
+For the example shown on Figure~\ref{fig:GoldenTowers}, 
+one has $k_0(\gamma)=k_{-1}(\gamma)=k_{-2}(\gamma)=0$ 
+and $k_{-3}(\gamma)=1$. 
+
+
+
+
+\begin{lemma}\label{lemma:infinitelimits}
+For almost $\gamma \in \Gamma$, 
+$k_n(\gamma) \to \infty$ and $-k_n(\gamma)+d_n(\gamma) \to \infty$.
+\end{lemma}
+
+\begin{proof}
+The integer $k_n(\gamma)$ increases as $n$ decreases to $-\infty$. 
+If $k_n(\gamma) \to j < \infty$, that is to say $k_n(\gamma)=j$ for $n$ small 
+enough, then $S^{-j}\gamma$ belongs to the set of minimal paths 
+of $\Gamma$, and this set has measure $0$. 
+Thus the set where $k_n(\gamma) \to j$ has measure $0$ for every $j$, 
+therefore the set where $k_n(\gamma) \not\to \infty$ has measure $0$ 
+by countable additivity. 
+In the same way, the set where $-k_n(\gamma)+d_n(\gamma) \not\to \infty$ 
+has measure $0$ because the set of maximal paths of $\Gamma$ has measure $0$.
+\end{proof}
+
+ 
+Note that the sequence $\bigl(v_n(\gamma), \epsilon_n(\gamma)\bigr)_{n \leq n_0}$  
+ determines the path $\gamma$ truncated at level $n_0$. 
+In other words it determines the $\zeta_{n}$-equivalence class  
+$\zeta_n(\gamma)$. 
+We will come back to the above points in the next section, in the 
+language of $\sigma$-fields. 
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{The filtration $\FF$}
+
+One gets a filtration ${(\FF_n)}_{n \leq 0}$ by defining the $\sigma$-field 
+$\FF_n$ as the one generated by the measurable partition $\zeta_n$. 
+Here, a path $\gamma \in \Gamma$ is considered as the actual point taken at random 
+in the probability space. 
+Thus the $\sigma$-field $\FF_n$ is 
+$\boxed{\FF_n = \sigma(R_n)}$ where we denote by $R_n$ the random variable whose 
+value at $\gamma$ is the $\zeta_n$-representative 
+$\bar\gamma_n$ of $\gamma$. 
+The random variable  $R_0$ is a path taken at random according to $\mu$. 
+Note that $\sigma(R_{n}) \supset \sigma(R_{n-1})$ because 
+$\bar\gamma_n$ determines the path 
+$\gamma$ truncated at $n$. 
+
+In the previous section, we introduced the integer $k_n(\gamma)$ such that 
+$\bar\gamma_n = S^{-k_n(\gamma)}\gamma$. 
+Here we consider $k_n$ as random variable but 
+we use the notation $K_n$ instead of $k_n$. 
+Thus $\boxed{R_n = S^{-K_n} R_0}$. 
+
+
+We also introduced the notations $v_n$ and $\epsilon_n$ in the previous section. 
+Here $v_n$ and $\epsilon_n$ are random variables, 
+and we use the notation $V_n$ instead of $v_n$. 
+
+Thus the filtration $\FF$ is  generated by the stochastic process 
+${(V_n, \epsilon_n)}_{n \leq 0}$:
+$$
+\boxed{\FF_n = \sigma(V_m, \epsilon_m; m \leq n)}.
+$$
+
+The random variable $\epsilon_{n+1}$ is a "novation" from $\FF_n$ to $\FF_{n+1}$, that is 
+to say $\FF_{n+1} = \FF_n \vee \sigma(\epsilon_{n+1})$, since 
+$V_{n+1}$ is a function of $V_n$ and $\epsilon_{n+1}$. 
+
+
+\begin{lemma}
+The random variable $\epsilon_{n+1}$ is conditionally independent of $\FF_n$ 
+given $V_n$. 
+\end{lemma} 
+
+\begin{proof}
+Given $\FF_n$, the random variable $\epsilon_{n+1}$ is the label of an 
+arc connecting the vertex $V_n$ to a vertex at level $n+1$. 
+\end{proof}
+
+ Conditionally to $V_n$, the random integer $K_n$ is a one-to-one function of 
+$(\epsilon_{n+1}, \ldots, \epsilon_0)$, and it has the 
+uniform distribution on $\{0, \ldots, \dim(V_n)-1\}$. 
+This is the \emph{centrality} property of $\mu$. 
+Because of this property, the conditional law of $V_{n+1}$ given $V_n$ 
+is given by 
+$$
+\Pr(V_{n+1}=v_{n+1} \given V_n=v_n) = 
+m(v_n, v_{n+1})\frac{\dim(v_{n+1})}{\dim(v_n)}
+$$
+where $m(v_n, v_{n+1})$ is the number of edges connecting $v_n$ and $v_{n+1}$. 
+
+
+Observe that $R_{n+1} = S^{K_n - K_{n+1}}R_n$ and, 
+conditionally to $V_n$, the nonnegative integer $K_n - K_{n+1}$ 
+is a one-one function of $\epsilon_{n+1}$. 
+Thus, conditionally to $V_n$, the random integer $K_n$ has always 
+an expression of the form $K_n = \sum_{k=0}^{n+1}f_k(\epsilon_k)$. 
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Example: the golden graph}\label{sec:goldengraph}
+
+The random integer $K_n$ has a very convenient expression for the case of the adic 
+transformation on the golden graph with our choice of the labels shown on 
+Figure~\ref{fig:GoldenGraph_newlabs}:
+$$
+K_n = \epsilon_{n+1}f_{n+1} + \ldots + \epsilon_{-1}f_{-1} (+ \epsilon_0f_{0}).   
+$$
+where $f_0=0$, $f_{-1}=f_{-2}=1$, $f_{-3}=2$,  $\ldots$ are the Fibonacci numbers.  
+Here its expression does not depend on $V_n$, but its distribution does. 
+
+There is no multiple edges in this graph, therefore the filtration $\FF$ 
+is generated by the stochastic process ${(V_n)}_{n \leq 0}$. 
+Denoting by $\phi$ the golden number, the law of 
+${(V_n)}_{n \leq 0}$ is given by:
+
+\begin{itemize}
+\item $V_0 = \varnothing$;
+
+\item for $n \leq -1$, $V_n$ takes the value $1$ or $2$ and $\Pr(V_n=2) = \frac{f_n}{f_n + \phi f_{n-1}} =: p_n$; 
+%  {(-1)}^{n+1} f_n\bigl(f_{n+1} - f_{n-1} \theta\bigr)
+
+\item The transition matrix from $V_{n}$ to $V_{n+1}$ is 
+\begin{center}
+\begin{tabular}{|c||c|c|}\hline
+\diagbox{$V_{n}$}{$V_{n+1}$}
+&\makebox[3em]{$1$}&\makebox[3em]{$2$}\\ \hline\hline
+$1$ & $f_n/f_{n-1}$ & $f_{n+1}/f_{n-1}$\\ \hline
+$2$ & $1$ & $0$\\ \hline
+\end{tabular}
+\end{center}
+\end{itemize}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Example: the Chacon graph}\label{sec:chacongraph}
+
+As another example, consider the Chacon graph shown on Figure~\ref{fig:ChaconGraph} 
+which also shows our choice of the labels on the arcs. 
+For this example, 
+$K_n=\sum_{k=0}^{n+1}f_k(\epsilon_k)$, with  
+$$
+\begin{cases}
+f_n(0) = 0 \\ 
+f_n(1) = h_{n} \\ 
+f_n(2) = 2h_{n} \\
+f_n(3) = 2 h_{n} + 1
+\end{cases}.
+$$
+where $h_n=\frac{3^{|n|}-1}{2}$ is the dimension of the vertex $1$ at level $n$. 
+
+
+The law of the process ${(V_n, \epsilon_n)}_{n \leq 0}$ is given by:
+
+\begin{itemize}
+\item[$\bullet$] $V_0=\varnothing$; 
+
+\item[$\bullet$] for $n \leq -1$, $V_n$ takes the value $1$ or $2$, and 
+ $\Pr(V_n = 2) = 1/3^{|n|}$;
+
+\item[$\bullet$] $\epsilon_n=0$ and $V_n=2$ if $V_{n-1}=2$;
+
+\item[$\bullet$] conditionally to $V_{n-1}=1$, the label $\epsilon_n$ 
+of the edge between $V_{n-1}$ and $V_n$ equals 
+ $2$ with probability $1/h_{n-1}$, or equals a value in 
+$\{0,1,3\}$ with probability $h_{n}/h_{n-1}$. 
+\end{itemize}
+
+
+%\begin{figure}[!h]
+%   \centering
+%   \begin{subfigure}[t]{0.47\textwidth}
+%   \centering
+%   	\includegraphics[scale=0.6]{figures/ChaconGraph_SimpleEdges}
+% 		\caption{\footnotesize Usual labels on the arcs}\label{fig:ChaconGraph_simpleedges}
+%    \end{subfigure}              
+%   \quad
+%    \begin{subfigure}[t]{0.47\textwidth}
+%    \centering
+%   	\includegraphics[scale=0.6]{figures/Chacon_Labels_hand}
+% 		\caption{\footnotesize New labels on the arc}\label{fig:ChaconGraph_newlabs}
+% 	\end{subfigure}      
+%
+%   \caption{Chacon graph}
+%   \label{fig:ChaconGraph}
+% \end{figure}
+
+
+\begin{figure}[!h]
+   \centering
+   \begin{subfigure}[t]{0.47\textwidth}
+   \centering
+   	\includegraphics[scale=0.6]{figures/Chacon_Labels_hand2}
+ 		\caption{\footnotesize Chacon graph}\label{fig:ChaconLabels}
+    \end{subfigure}              
+   \quad
+    \begin{subfigure}[t]{0.47\textwidth}
+    \centering
+   	\includegraphics[scale=0.6]{figures/Chacon_DimsProbs_hand2}
+ 		\caption{\footnotesize Dimensions and transition probabilities}\label{fig:ChaconDimsProbs}
+ 	\end{subfigure}      
+
+   \caption{Chacon graph}\label{fig:ChaconGraph}
+ \end{figure}
+
+\begin{figure}[!h]
+\centering
+	\includegraphics[scale=0.8]{figures/ChaconTree2}
+\caption{The process $(V_n, \epsilon_n)$ for the Chacon graph}
+\label{fig:ChaconProcess}
+\end{figure}
+
+Later, in order to prove Proposition~\ref{ppsition:chaconweights}, 
+we will use the following property of the Chacon transformation, which is 
+easy to see with the help of Figure~\ref{fig:ChaconProcess}. 
+Let $I = \{\gamma \mid v_{-1}(\gamma)=2\}$ be the set of infinite paths 
+which pass through the vertex $2$ at level $n=-1$. 
+If $V_n=1$, then 
+\begin{equation}\label{eq:ChaconWord}
+(\indic_{R_n \in I}, \indic_{SR_n \in I}, \ldots, \indic_{S^{h_n-1}R_n \in I}) 
+= c_0c_1\ldots c_{h_n-1}
+\end{equation}
+where $c = (0, 0, 1, 0, 0, 0, 1, 0, 1, 0, 0, 1, 0 \ldots)$ is the limit of 
+the words $w_k$ obtained by initially setting $w_0=0$ and 
+recursively setting $w_{k+1} = w_kw_k1w_k$. 
+We call $c$ the \emph{Chacon word}. 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Filtration associated to an adic transformation and an automorphism}
+
+
+Now, in addition to the adic transformation $S$, let $T$ be an invertible 
+ measure-preserving transformation on a Lebesgue space $(\XX, \nu)$. 
+
+We will define a filtration $\GG$ locally isomorphic to $\FF$, whose 
+tail $\sigma$-field $\GG_{-\infty}$ is the invariant $\sigma$-field of 
+the product transformation $T \times S$. 
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{The sequence of measurable partitions $\xi$}
+
+Here one defines an increasing sequence of measurable partitions ${(\xi_n)}_{n \leq 0}$ 
+locally isomorphic to the elementary sequence ${(\zeta_n)}_{n \leq 0}$ associated to $S$. 
+
+For two paths $\gamma$, $\gamma'$ in the same $S$-orbit, denote by $k(\gamma,\gamma')$ 
+the integer such that $\gamma'=S^{k(\gamma,\gamma')}\gamma$. 
+Thus $k(\gamma,\gamma') = k_n(\gamma)-k_n(\gamma')$ when $\gamma \overset{\zeta_n}{\sim} \gamma'$. 
+Then define the measurable partition $\xi_n$ by 
+$$
+\boxed{(x, \gamma) \overset{\xi_n}{\sim} (x', \gamma') \iff 
+\gamma \overset{\zeta_n}{\sim} \gamma' \quad 
+\text{and $x'=T^{k(\gamma,\gamma')}x$}}. 
+$$
+That is, the $\xi_n$-equivalence class of $(x,\gamma)$ is 
+$$
+\boxed{\xi_n(x,\gamma) = \bigl\{(\bar x_n, \bar\gamma_n), (T\bar x_n, S\bar\gamma_n), 
+\ldots, (T^{d_n(\gamma)-1}\bar x_n, S^{d_n(\gamma)-1}\bar\gamma_n) \bigr\}}
+$$
+where $\bar x_n = T^{-k_n(\gamma)}x$ and, as already seen, 
+$\bar\gamma_n = S^{-k_n(\gamma)}\gamma$ is the $\zeta_n$-representative of 
+$\gamma$. 
+It is clear that $\xi_n \preceq \xi_{n+1}$. 
+We  consider $(\bar x_n, \bar\gamma_n)$ as the $\xi_n$-representative of
+$(x,\gamma)$. 
+
+\begin{remark}
+It is known that the set-theoretic intersection 
+$\cap_{n \leq 0} \zeta_n$ is the orbital partition of $S$. 
+As we will see (Proposition~\ref{ppsition:tailfield}), 
+the measurable hull of the tail partition $\cap \xi_n$ is 
+the invariant $\sigma$-field of $T \times S$. 
+But I do not know whether $\cap \xi_n$ 
+is the orbital partition of $T \times S$.
+\end{remark}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{The filtration $\GG$} 
+
+
+
+We take a random variable $X_0$ distributed on $\XX$ according to $\nu$ 
+and we set $\boxed{X_n = T^{-K_n} X_0}$, similarly to $R_n = S^{-K_n} R_0$. 
+
+Thus $(X_n,R_n)(x,\gamma) = (\bar x_n, \bar\gamma_n)$, 
+and setting $\boxed{\GG_n = \sigma(X_n, R_n)}$ then 
+$\GG_n = \sigma(\xi_n)$ is the $\sigma$-field corresponding to 
+the measurable partition $\xi_n$. 
+
+Note that $X_n \sim \nu$ for every $n \leq 0$ because $K_n$ is independent of $X_0$.
+
+The filtration $\GG={(\GG_n)}_{n \leq 0}$ is  generated by the stochastic process 
+${(X_n, V_n, \epsilon_n)}_{n \leq 0}$:
+$$
+\boxed{\GG_n = \sigma(X_m, V_m, \epsilon_m; m \leq n)}. 
+$$
+
+\begin{figure}[!h]
+\centering
+	\includegraphics[scale=0.8]{figures/GoldenWalk_PowersProbs2}
+\caption{The process $(X_n, V_n)$ for the golden graph}
+\end{figure}
+
+
+\begin{lemma}\label{lemma:novation}
+The following properties hold:
+\begin{enumerate}
+\item The random integer $K_n$ is conditionally independent of $\GG_n$ 
+given $V_n$ (equivalently, $(\epsilon_{n+1}, \ldots, \epsilon_0)$ 
+is conditionally independent of $\GG_n$ 
+given $V_n$ because $K_n$ is a one-to-one function of 
+$(\epsilon_{n+1}, \ldots, \epsilon_0)$ given $V_n$).
+
+\item $\epsilon_{n+1}$ is 
+a "novation" from $\GG_n$ to $\GG_{n+1}$, that is 
+to say $\GG_{n+1} = \GG_n \vee \sigma(\epsilon_{n+1})$, and  
+the filtration $\FF$ is immersed in $\GG$.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+Given $\GG_n$, the random integer $K_n$ corresponds to a path  
+connecting the vertex $V_n$ to the root vertex. 
+That shows the conditional independence. 
+As seen before, $K_{n}-K_{n+1}$ is, conditionally to $V_n$, 
+a one-to-one function of $\epsilon_{n+1}$. Since 
+$X_{n+1} = T^{K_{n}-K_{n+1}}X_n$, that shows the equality 
+$\GG_{n+1} = \GG_n \vee \sigma(\epsilon_{n+1})$. 
+The immersion stems from the fact that 
+ $\epsilon_{n+1}$ is also a novation from $\FF_n$ to $\FF_{n+1}$.  
+\end{proof}
+
+As a consequence, the process ${(X_n, V_n, \epsilon_n)}_{n \leq 0}$ is Markovian. 
+
+
+\begin{lemma}\label{lemma:independence}
+$X_n \indep \FF_n$ for every $n \leq 0$.
+\end{lemma}
+
+\begin{proof}
+Take $f \in L^1$. Then
+$$
+\EE\bigl[ f(X_n) \given \FF_n\bigr] 
+= \EE\bigl[ f(T^{-K_n}X_0) \given \FF_n\bigr]. 
+$$
+Since $K_n$ is $\FF_0$-measurable and $X_0 \indep \FF_0$, 
+$$
+\EE\bigl[ f(T^{-K_n}X_0) \given \FF_n\bigr] = 
+\EE\bigl[ h(K_n) \given \FF_n\bigr]
+$$
+where $h(k) = \EE\bigl[ f(T^{-k}X_0)\bigr]$. 
+But $h(k) =   \EE\bigl[ f(X_0)\bigr]=  \EE\bigl[ f(X_n)\bigr]$ 
+since $T$ preserves the law of $X_0$. 
+\end{proof}
+
+Therefore the law of the process ${(X_n,V_n,\epsilon_n)}_{n \leq 0}$ can 
+be described as follows:
+\begin{itemize}
+\item ${(V_n,\epsilon_n)}_{n \leq 0}$ is a path taken at random in $\Gamma$ 
+according to $\mu$;
+
+\item $X_n \indep (V_n,\epsilon_n)$;
+
+\item $\epsilon_{n+1}$ is conditionally independent of $\GG_n$ given $V_n$;
+
+\item $X_{n+1} = T^{K_n-K_{n+1}}X_n$.
+\end{itemize}
+
+
+\begin{ppsition}\label{ppsition:tailfield}
+The tail $\sigma$-field $\GG_{-\infty}$ is degenerate if and only if $T \times S$ is ergodic. 
+More precisely, $\GG_{-\infty}$ equals  the $(T\times S)$-invariant $\sigma$-field. 
+\end{ppsition}
+ 
+\begin{proof}
+Denote by $\II$ the $(T\times S)$-invariant $\sigma$-field. 
+Since the pair $(X_0, R_0)$ generates $\GG_0$, the degeneracy of $\GG_{-\infty}$ 
+is equivalent to the $L^1$-convergence of 
+$\EE\bigl[f(X_0, R_0) \given \GG_n\bigr]$ to $\EE\bigl[f(X_0, R_0) \given \II\bigr]$   
+for every bounded measurabe function $f$. 
+
+Recall that $X_{0} = T^{K_n}X_n$ and $R_{0} = S^{K_n}R_n$. 
+Conditionally to $\GG_n$, the random integer $K_n$ 
+has the uniform distribution on $\bigl\{0, \ldots, \dim(V_n)-1\bigr\}$, 
+therefore 
+\begin{align*}
+\EE\bigl[f(X_0, R_0) \given \GG_n\bigr]
+& =\frac{1}{\dim(V_n)}\sum_{k=0}^{\dim(V_n)-1} f\bigl(T^kX_n, S^kR_n \bigr) \\
+& = \frac{1}{\dim(V_n)}\sum_{k=0}^{\dim(V_n)-1} f\bigl(T^{k}T^{-K_n}X_0, S^{k}S^{-K_n}R_0 \bigr).
+\end{align*}
+Now, write 
+$$
+\sum_{k=0}^{\dim(V_n)-1} f\bigl(T^{k}T^{-K_n}X_0, S^{k}S^{-K_n}R_0 \bigr) = 
+\sum_{M=1}^{\dim(V_n)} \left(\sum_{k=0}^{\dim(V_n)-1} f\bigl(T^kT^{-M}X_0, S^kS^{-M}R_0 \bigr) \right)\indic_{K_n=M}.
+$$
+and denote by $E(f\given\II)$ the conditional expectation of $f$ given $\II$.
+
+Let $\epsilon>0$. By the ergodic theorem, for every integer $N$ large enough and 
+for every pair of random variables $(U,V) \sim \nu \otimes \mu$, the average 
+$\frac{1}{N} \left(\sum_{k=0}^{N-1} f\bigl(T^k U, S^kV\bigr) \right)$ 
+is $\epsilon$-close in $L^2(\nu \otimes \mu)$ to 
+$E(f\given\II)(U,V)$. 
+For $n$ large enough, one can apply this fact to $U=T^{-M}X_0$ and $V=S^{-M}R_0$ and 
+$N=\dim(V_n)$, and one gets that the average 
+$$
+\frac{1}{\dim(V_n)}\sum_{k=0}^{\dim(V_n)-1} f\bigl(T^kT^{-M}X_0, S^kS^{-M}R_0 \bigr)
+$$
+is $\epsilon$-close in $L^2(\nu \otimes \mu)$ to 
+$E(f\given\II)(T^{-M}X_0,S^{-M}R_0)=E(f\given\II)(X_0,R_0)$. 
+
+Finally, using the Cauchy-Schwarz inequality,
+$$
+\EE\Bigl[ \left| \EE\bigl[f(X_0, R_0) \given \GG_n\bigr] - E(f\given\II)(X_0,R_0) \right| \Bigr] 
+\leq \epsilon,
+$$
+and the proof is over.
+\end{proof}
+
+\begin{remark}
+For people who deal with the filtration $\GG$ on an abstract probability space, 
+the equality is $\GG_{-\infty} = {(X_0, R_0)}^{-1}(\II)$, where $\II$ is 
+the $(T\times S)$-invariant $\sigma$-field.
+\end{remark}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{An application of the tail $\sigma$-field}
+
+As an application of Proposition~\ref{ppsition:tailfield}, 
+we provide in Proposition~\ref{ppsition:chaconweights} a 
+weighted ergodic average.
+We will use the following equality, seen in the proof of Proposition~\ref{ppsition:tailfield}: 
+\begin{equation}\label{eq:conditionalexpectation}
+\EE\bigl[f(X_0, R_0) \given \GG_n\bigr]
+ =\frac{1}{\dim(V_n)}\sum_{k=0}^{\dim(V_n)-1} f\bigl(T^kX_n, S^kR_n \bigr).
+\end{equation}
+
+\begin{ppsition}\label{ppsition:chaconweights}
+Let $c$ be the Chacon word defined below equality \eqref{eq:ChaconWord}. 
+Define the weights 
+$$
+a_{n,k} = \begin{cases}
+\frac{3}{h_n} c_k & \text{if $0 \leq k \leq h_n-1$} \\
+0 & \text{if $k \geq h_n$}
+\end{cases}
+$$
+Let $T$ be an invertible measure-preserving transformation of a Lebesgue space 
+$(\XX, \nu)$. 
+For $g \in L^1(\nu)$, define the weighted average
+$$
+S_n(g)(x) = \frac{3}{h_n}\sum_{k=0}^{h_n-1} c_k g(T^kx) 
+= \sum_{k=0}^\infty a_{n,k} g(T^kx).  
+$$ 
+Then $S_n(g) \to E(g \given {\cal I})$ in probability, 
+where ${\cal I}$ is the $T$-invariant $\sigma$-field.
+\end{ppsition}
+
+We give two lemmas before proving the previous proposition.
+
+\begin{lemma}\label{lemme:convergence}
+On the same probability space, let $(A_n)$ and $(B_n)$ be two 
+sequences of random variables and $(E_n)$ be a sequence of events. 
+Set $Y_n = A_n \indic_{E_n} + B_n \indic_{E_n^c}$. 
+Assume that 
+\begin{itemize}
+\item $A_n \indep E_n$;
+
+\item $\Pr(E_n) \to p>0$;
+
+\item $Y_n \to Y >0$ in probability.
+\end{itemize}
+Then $A_n \to Y$ in probability.
+\end{lemma}
+
+\begin{proof}
+This follows from
+$$
+\Pr\bigl(|A_n - Y|> \epsilon\bigr) = 
+\frac{\Pr\bigl(|A_n - Y|> \epsilon, E_n\bigr)}{\Pr(E_n)} 
+= \frac{\Pr\bigl(|Y_n - Y|> \epsilon, E_n\bigr)}{\Pr(E_n)} 
+\leq \frac{\Pr\bigl(|Y_n - Y|> \epsilon)}{\Pr(E_n)}.  
+$$
+\end{proof}
+
+\begin{lemma}\label{lemma:weakmixing}
+Let $S$ and $T$ be two invertible measure-preserving transformations. 
+If $S$ is weakly mixing, then the $(T\times S)$-invariant $\sigma$-field is 
+the product of the $T$-invariant $\sigma$-field times the trivial $\sigma$-field.
+\end{lemma}
+
+\begin{proof}
+It is well known that the product of an ergodic transformation times a weakly mixing 
+transformation is ergodic. 
+The lemma, which generalizes this result,  can be proved by 
+looking at the space of ergodic components. 
+\end{proof}
+
+\begin{proof}[Proof of Proposition~\ref{ppsition:chaconweights}]
+Let $S$ be the Chacon adic transformation, which is known to be weakly mixing. 
+Apply equality~\eqref{eq:conditionalexpectation} to the function
+$f(x,\gamma) = g(x)\indic_{x \in I}$ where $I = \{\gamma \mid v_{-1}(\gamma)=2\}$ 
+was introduced before equality~\eqref{eq:ChaconWord}. 
+This gives
+\begin{align*}
+\EE\bigl[g(X_0) \indic_{R_0 \in I} \given \GG_n\bigr]
+&  = \frac{1}{\dim(V_n)}\sum_{k=0}^{\dim(V_n)-1} g(T^kX_n) \indic_{S^k R_n \in I} \\
+& = \left(\frac{1}{h_n}\sum_{k=0}^{h_n-1} g(T^kX_n) \indic_{S^k R_n \in I}\right)\indic_{V_n=1} 
++ \left(g(X_n) \indic_{R_n \in I}\right)\indic_{V_n=2} \\
+& = \underset{=:A_n}{\underbrace{\left(\frac{1}{h_n}\sum_{k=0}^{h_n-1} c_k g(T^kX_n) \right)}}\indic_{V_n=1} 
++ \underset{=:B_n}{\underbrace{\left(g(X_n) \indic_{R_n \in I}\right)}}\indic_{V_n=2},
+\end{align*}
+where the last equality comes from equality~\eqref{eq:ChaconWord}. 
+
+By Proposition~\ref{ppsition:tailfield}, 
+$\EE\bigl[g(X_0) \indic_{R_0 \in I} \given \GG_n\bigr] 
+\to \EE\bigl[g(X_0) \indic_{R_0 \in I} \given \GG_{-\infty}\bigr]$. 
+We know that $\GG_{-\infty} = {\cal I} \otimes \{\varnothing, \Gamma\}$ 
+by Lemma~\ref{lemma:weakmixing}, therefore 
+$$
+\EE\bigl[g(X_0) \indic_{R_0 \in I} \given \GG_{-\infty}\bigr] = 
+\Pr(R_0 \in I) \EE\bigl[g(X_0) \given {\cal I} \otimes \{\varnothing, \Gamma\}\bigr] =
+\frac{1}{3} E(g \given {\cal I}). 
+$$
+Since $X_n \indep V_n$ (Lemma~\ref{lemma:independence})  and $\Pr(V_n=1) \to 1$, 
+one gets $A_n \to \frac{1}{3} E(g \given {\cal I})$ by virtue of 
+Lemma~\ref{lemme:convergence}. 
+\end{proof}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{The scale of an automorphism}
+
+In the case when $S$ is the usual adic transformation isomorphic to 
+the $(r_n)$-ary odometer, 
+the filtration $\GG$ is the one introduced by Laurent in \cite{LauXLV}, 
+whose standardness provides an equivalent definition of the first 
+definition of the scale of an automorphism originally introduced by Vershik in \cite{thescale}. 
+This definition is the following one. 
+
+\begin{figure}[!h]
+\centering
+	\includegraphics[scale=0.7]{figures/OdometerGraphDoubleEdges_hand}
+\caption{The Bratteli graph of the dyadic odometer}
+\label{fig:graphodometer}
+\end{figure}
+
+\begin{definition}
+Let $\GG$ be the filtration of the previous section in the case when 
+$S$ is the $(r_n)$-ary odometer. 
+The sequence $(r_n)$ belongs to the scale of $T$ if $\GG$ is standard. 
+\end{definition}
+
+In this case, it is shown in \cite{LauXLV} that the tail $\sigma$-field $\GG_{-\infty}$ 
+is degenerate if and only if $T^{\prod_{k=n+1}^{0}r_k}$ is ergodic for every $n \leq 0$. 
+This is equivalent to the ergodicity of the product of $T$ 
+with the $(r_n)$-ary odometer, as expected in view of Proposition~\ref{ppsition:tailfield}. 
+
+The filtration $\GG$ cannot be standard when $\GG_{-\infty}$ is not degenerate. 
+A more general definition is proposed in~\cite{LauXLV} to deal with this situation: 
+say that  $(r_n)$ belongs to the scale of $T$ if $\GG$ is 
+\uline{\emph{conditionally standard given $\GG_{-\infty}$}}. 
+But this generalization of standardness has not been studied yet in the literature. 
+
+Therefore, the definition of the scale can be generalized as follows. 
+
+\begin{definition}
+Let $\GG$ be the filtration of the previous section associated to an adic 
+transformation $S$ and an automorphism $T$. Say that $S$ is in the scale 
+of $T$ if $\GG$ is standard, or, more generally, if $\GG$ is conditionally standard 
+given $\GG_{-\infty}$. 
+\end{definition}
+
+In the case when $S$ is the $(r_n)$-ary odometer and 
+$T$ is a Bernoulli automorphism, standardness of $\GG$ 
+has been characterized in terms of the asymptotic behavior or the 
+sequence $(r_n)$ (see~\cite{Ceil, LauXLIII, LauXLV}).
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Adic split-words processes}\label{sec:adicsplitwords}
+
+We use the notations of the previous section. 
+Let $P$ be a finite or countable partition of $\XX$. 
+The elements of $P$ are labelled by the letters of an alphabet $A$. 
+For $x \in \XX$ we denote by $P(x) \in A$ the label of the block to which $x$ belongs.
+
+Define the random word $W_n$ by 
+$$
+W_n = P(X_n)P(TX_n)\ldots P(T^{\dim(V_n)-1}X_n).
+$$
+
+\begin{figure}[!h]
+\centering
+	\includegraphics[scale=0.8]{figures/GoldenWalk_WordsProbs2}
+\caption{The process $(W_n, V_n)$ for the golden graph}
+\end{figure}
+
+\begin{lemma}
+The filtration generated by ${(W_n,V_n,\epsilon_n)}_{n \leq 0}$  
+is immersed in $\GG$. 
+It equals $\GG$ when $P$ is a generating partition of $T$.
+\end{lemma}
+
+\begin{proof}
+Denote by $\GG'$ this filtration. The immersion follows from the fact 
+that the random variable $\epsilon_{n+1}$ is 
+a novation of $\GG'_n$ to $\GG'_{n+1}$ and its conditional law given 
+$\GG'_n$ is the same as given $\GG_n$ (Lemma~\ref{lemma:novation}).
+
+To show that $\GG'=\GG$ when $P$ is generating, it suffices to show 
+that $X_0$ is measurable with respect to $\GG'_0$. 
+Since $X_n=T^{-K_n}X_0$, this follows from Lemma~\ref{lemma:infinitelimits}. 
+\end{proof}
+
+The filtration generated by ${(W_n,V_n,\epsilon_n)}_{n \leq 0}$ 
+is also generated by ${(W_n,\epsilon_n)}_{n \leq 0}$ when 
+two different vertices at each level $n$ have different dimensions, 
+because the length of $W_n$ is $\dim(V_n)$. 
+
+The space of trajectories of a split-word process can be displayed on 
+a Bratteli graph. 
+Figure~\ref{fig:SW} shows the case when $S$ is the dyadic odometer, 
+$T$ is the Bernoulli shift on $\{a,b\}^{\mathbb{Z}}$ and $P$ is the 
+usual generating partition according to the central coordiinate. 
+This graph is called the \emph{graph of ordered pairs} by Vershik. 
+
+\begin{figure}[!h]
+\centering
+	\includegraphics[scale=0.8]{figures/graph_OP}
+\caption{$(W_n,\epsilon_n)$ when $S$ is the dyadic odometer and $T$ is the Bernoulli $2$-shift}
+\label{fig:SW}
+\end{figure}
+
+
+
+Note that $W_{-1}=W_0$ when there is a unique edge between the root vertex and each vertex at 
+level $-1$ (that is to say when $\epsilon_0$ takes only one value). 
+In the general situation,  $W_0$ is a function of $W_{-1}$ and $\epsilon_0$. 
+Therefore one can set $W_0=\varnothing$ without changing the filtration. 
+An example is shown on Figure~\ref{fig:GoldenChacon} for the case when 
+$S$ is the golden adic transformation, $T$ is the Chacon transformation, 
+and $P$ is the generating partition $\{[0,2/3[, [2/3, 1[\}$.  
+
+\begin{figure}[!h]
+\centering
+	\includegraphics[scale=0.8]{figures/GoldenChaconSW_hand2}
+\caption{$(W_n,\epsilon_n)$ when $S$ is the golden adic transformation and $T$ is the Chacon transformation}
+\label{fig:GoldenChacon}
+\end{figure}
+
+\begin{question}
+What is the adic transformation on these graphs? 
+Since the tail $\sigma$-field is the $(T\times S)$-invariant $\sigma$-field, 
+one could expect that the adic transformation is isomorphic to $T \times S$. 
+But I am not able to check whether it is true.  
+\end{question}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Example: the golden graph and the golden rotation}
+
+The filtration $\FF$ was introduced in Section~\ref{sec:goldengraph}
+in the case when $S$ is the adic transformation on the golden graph. 
+
+This adic transformation  
+is isomorphic to the golden rotation on $S^1$, 
+with angle $\theta=\frac{1}{1+\phi}=\frac{2}{3+\sqrt{5}}$. 
+
+For a given transformation $T$, the law of the stochastic process 
+${(X_n, V_n, \epsilon_n)}_{n \leq 0}$ generating the filtration $\GG$ 
+is given by 
+$$
+X_{n+1} = T^{\epsilon_{n+1}f_{n+1}}X_n.
+$$
+
+The product of a rotation with itself is not ergodic. 
+Hence, in the case when $T$ is the golden rotation, the tail $\sigma$-field 
+$\GG_{-\infty}$ is not degenerate. 
+For this case, one can see that $X_n$ almost surely goes to a random variable $X_{-\infty}$ 
+as $n \to -\infty$.  
+Indeed, first observe that
+$$
+X_{n+1} = X_n \, \text{ or\, $X_{n+1} = X_n + \theta f_{n+1}$}. 
+$$
+But the distance between $\theta f_n$ and $0$ in $S^1$ is less than 
+$1/f_{n-1}$, because of the inequality
+$$
+|\theta f_n - f_{n+2}| \leq \frac{1}{f_{n-1}},
+$$
+coming from the well-known results about continued fraction 
+(the continued fraction expansion of $\theta$ is $[0, 2, 1, 1, \ldots]$). 
+Therefore $|X_{n+1} - X_n| \leq 1/f_{n}$, and $X_n \to X_{-\infty}$ because 
+$1/f_{n}$ is the general term of a convergent series. 
+Of course $X_{-\infty}$ has the uniform distribution on $S^1$, like each $X_n$.
+
+\begin{question}
+Does $\GG_{-\infty} = \sigma(X_{-\infty})$ ? 
+\end{question}
+
+\begin{question}
+Conditionally to $X_{-\infty}$, is the filtration $\GG$ isomorphic to $\FF$ ?  
+\end{question}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Example: the Chacon graph and Bernoulli automorphisms}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{The filtration $\GG$}
+
+In the case when $S$ is the Chacon adic transformation, the 
+filtration $\FF$ was introduced in Section~\ref{sec:chacongraph}. 
+
+The law of the process ${(X_n, V_n, \epsilon_n)}_{n \leq 0}$ generating the 
+filtration $\GG$ is given by (see Figure~\ref{fig:ChaconPowers}, where a red box 
+indicates $V_n=2$):
+
+\begin{itemize}
+\item ${(V_n, \epsilon_n)}_{n \leq 0}$ has the law given in Section~\ref{sec:chacongraph};
+
+\item $X_n \sim \nu$ is independent of $(V_n, \epsilon_n)$;
+
+\item $X_{n+1} = T^{f_{n+1}(\epsilon_{n+1})}X_n$ (the $f_n$ are given in Section~\ref{sec:chacongraph}).
+\end{itemize}
+
+\begin{figure}[!h]
+\centering
+	\includegraphics[scale=0.8]{figures/ChaconWalk_powers_N2_hand2}
+\caption{$(X_n, V_n, \epsilon_n)$}
+\label{fig:ChaconPowers}
+\end{figure}
+
+
+In this case, a split-word process ${(W_n, V_n, \epsilon_n)}_{n \leq 0}$ 
+(Section~\ref{sec:adicsplitwords})  
+has the following dynamics (see Figure~\ref{fig:ChaconSplitWord}). 
+The length of the word $W_n$ is $h_n$ if $V_n=1$, and length $1$ if $V_n=2$. 
+When $V_n=1$, we consider $W_n$ as the concatenation of four subwords 
+with respective lengths $h_{n+1}$, $h_{n+1}$, $1$ and $h_{n+1}$. 
+Then $W_{n+1}$ is the subword of $W_n$ selected by the value of $\epsilon_{n+1}$. 
+
+\begin{figure}[!h]
+\centering
+	\includegraphics[scale=0.8]{figures/ChaconWalk_words_hand2}
+\caption{$(W_n, V_n, \epsilon_n)$}
+\label{fig:ChaconSplitWord}
+\end{figure}
+
+The Chacon transformation $S$ is known to be weakly mixing. 
+This implies that $T \times S$ is ergodic whenever $T$ is ergodic, 
+therefore the filtration $\GG$ has a degenerate tail $\sigma$-field 
+$\GG_{-\infty}$ whenever $T$ is ergodic (Proposition~\ref{ppsition:tailfield}). 
+
+We will prove the following result.
+
+\begin{ppsition}\label{ppsition:ChaconNonStandard}
+When $T$ is a Bernoulli automorphism, the filtration $\GG$ is not standard.
+\end{ppsition}
+
+Hereafter we consider that $T$ is a Bernoulli shift on a 
+a countable alphabet $A$ and that  ${(W_n, V_n, \epsilon_n)}_{n \leq 0}$ 
+is the split-word process obtained with the partition of 
+$A^{\mathbb{Z}}$ according to the central coordinate. 
+Thus $W_n$ is a word made of i.i.d.\ letters on $A$. 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{The process $(\tildW_n, \tildV_n, \tildeps_n)$}
+
+
+Proposition~\ref{ppsition:ChaconNonStandard} will be derived from the 
+non-standardness of the filtration $\widetilde{\GG}$ generated by 
+the following process ${(\tildW_n, \tildV_n, \tildeps_n)}_{n \leq 0}$ 
+(see Figure~\ref{fig:tildeWn}), 
+which is asymptotically the same as the process $(W_n, V_n, \epsilon_n)$, 
+in a sense that will be made precise in Section~\ref{sec:joinable}.
+
+
+For every $n \leq -1$, $\tildV_n$ is a constant random variable equal to $1$, 
+and $\tildV_0=\varnothing$. 
+The process ${(\tildeps_n)}_{n \leq -1}$ is a sequence of independent random 
+variables having the uniform law on $\{0,1,3\}$, and $\tildeps_0$ is a 
+constant random variable equal to $0$. 
+The random variable $\tildW_n$ is a random word of length $h_n$ on $A$, 
+made of i.i.d.\ letters, and  it is 
+independent of $\tildeps_n$. 
+The random variable $\tildeps_{n+1}$ is independent of $\widetilde{GG}_n$, and 
+$\tildW_{n+1}$ is the subword of $\tildW_n$ selected by the value of $\tildeps_{n+1}$, 
+in the same way that $W_{n+1}$ is the subword of $W_n$ selected by the value of $\epsilon_{n+1}$.
+
+Thus, ${(\tildGG_n)}_{n \leq -1}$ is a $3$-adic filtration: 
+$\tildGG_{n+1} = \tildGG_n \vee \sigma(\tildeps_{n+1})$ and 
+$\tildeps_{n+1}$ is independent of $\tildGG_n$ and has a uniform distribution 
+on a set with three elements. 
+
+
+\begin{figure}[!h]
+\centering
+	\includegraphics[scale=0.8]{figures/ChaconWalk_words_tilde2_dashed}
+\caption{$(\widetilde{W}_n, \tildV_n, \widetilde{\epsilon}_n)$}
+\label{fig:tildeWn}
+\end{figure}
+
+We will see in Section~\ref{sec:joinable} that the tail $\sigma$-field 
+$\tildGG_{-\infty}$ is degenerate as a consequence of the first point of Theorem~\ref{thm:joinable}.
+
+\begin{ppsition}\label{ppsition:tildGnonstandard}
+The filtration $\tildGG$ is not standard. 
+\end{ppsition}
+
+\begin{proof}
+Let $\widetilde{Y}_n$ be the word obtained by deleting the letters of $\tildW_n$ 
+shown in color on Figure~\ref{fig:tildeWn}. 
+These are the letters of $\tildW_n$ which have a zero probability to be selected 
+by the conditional law ${\cal L}(\tildW_{-1} \given \tildW_n)$. 
+The positions of these letters are given by the $1$'s in the Chacon word 
+introduced after equality~\eqref{eq:ChaconWord}. 
+The process ${(\widetilde{Y}_n, \tildeps_n)}_{n \leq -1}$ is a $3$-adic 
+split-word process with i.i.d.\ letters on $A$. 
+It is known that the filtration it generates is not standard 
+(see~\cite{Ceil, LauXLIII, LauXLV}). 
+This filtration is immersed in $\tildGG$, therefore $\tildGG$ is not standard.
+\end{proof}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Closely joinable processes}\label{sec:joinable}
+
+In this section we provide Theorem~\ref{thm:joinable} which is the tool 
+with the help of which we will derive Proposition~\ref{ppsition:ChaconNonStandard} 
+(non-standardness of $\GG$) from Proposition~\ref{ppsition:tildGnonstandard} 
+(non-standardness of $\tildGG$).
+
+
+When two random vectors 
+${(X_n)}_{0 \leq n \leq n_0}$ and ${(Y_n)}_{0 \leq n \leq n_0}$ are defined 
+on the same probability space and the filtrations they generate are 
+jointly immersed, we will write and say that 
+$\left\{\begin{smallmatrix} {(X_n)}_{0 \leq n \leq n_0} \\ 
+{(Y_n)}_{0 \leq n \leq n_0}
+\end{smallmatrix}\right.$  is a \emph{synchronous joining}. 
+That means, after introducing the $\sigma$-fields 
+$\BB_n = \sigma(X_{0}, \ldots, X_n)$ and  
+$\CC_n = \sigma(Y_{0}, \ldots, Y_n)$, that 
+$\BB_{n+1} \indep_{\BB_n} \BB_n \vee \CC_n$ 
+and $\CC_{n+1} \indep_{\CC_n} \BB_n \vee \CC_n$.  
+
+When $\left\{\begin{smallmatrix} {(X'_n)}_{0 \leq n \leq n_0} \\ 
+{(Y'_n)}_{0 \leq n \leq n_0}
+\end{smallmatrix}\right.$  is a \emph{synchronous joining} in the situation when 
+${(X'_n)}_{0 \leq n \leq n_0}$ is a copy of a random vector 
+${(X_n)}_{0 \leq n \leq n_0}$  and ${(Y'_n)}_{0 \leq n \leq n_0}$ 
+is a copy of a random vector ${(Y_n)}_{0 \leq n \leq n_0}$, we also say that 
+$\left\{\begin{smallmatrix} {(X'_n)}_{0 \leq n \leq n_0} \\ 
+{(Y'_n)}_{0 \leq n \leq n_0}
+\end{smallmatrix}\right.$  is a \emph{synchronous joining of 
+${(X_n)}_{0 \leq n \leq n_0}$ and ${(Y_n)}_{0 \leq n \leq n_0}$}. 
+
+%\begin{definition}
+%Let ${(X_n)}_{n \leq 0}$ and ${(Y_n)}_{n \leq 0}$ be two stochastic processes. 
+%We say that they are \emph{closely joinable of type I} if for every $\delta >0$ there exists 
+%$N_\delta \leq 0$ such that for every $n_0 \leq N_\delta$ there exists a 
+%synchronous joining $\left\{\begin{smallmatrix} {(X'_n)}_{n_0 \leq n \leq N_\delta} \\ 
+%{(Y'_n)}_{n_0 \leq n \leq N_\delta}
+%\end{smallmatrix}\right.$ 
+%of ${(X_n)}_{n_0 \leq n \leq N_\delta}$ and ${(Y_n)}_{n_0 \leq n \leq N_\delta}$ 
+%such that 
+%$$
+%\Pr(X'_{n_0}=Y'_{n_0}, \ldots, X'_{N_\delta}=Y'_{N_\delta}) > 1-\delta. 
+%$$ 
+%\end{definition}
+
+\begin{definition}\label{def:joinable}
+Let ${(X_n)}_{n \leq 0}$ and ${(Y_n)}_{n \leq 0}$ be two stochastic processes. 
+We say that they are \emph{closely joinable} if for every $\delta >0$ 
+\uline{and for every $M\leq 0$}, there exists 
+$\uline{N_\delta \leq M}$ such that for every $n_0 \leq N_\delta$ there exists a 
+synchronous joining $\left\{\begin{smallmatrix} {(X'_n)}_{n_0 \leq n \leq N_\delta} \\ 
+{(Y'_n)}_{n_0 \leq n \leq N_\delta}
+\end{smallmatrix}\right.$ 
+of ${(X_n)}_{n_0 \leq n \leq N_\delta}$ and ${(Y_n)}_{n_0 \leq n \leq N_\delta}$ 
+such that 
+$$
+\Pr(X'_{N_\delta}=Y'_{N_\delta}) > 1-\delta. 
+$$ 
+\end{definition}
+
+\begin{thm}\label{thm:joinable}
+Let ${(X_n)}_{n \leq 0}$ and ${(Y_n)}_{n \leq 0}$ be two Markovian stochastic processes, and 
+denote by $\FF$ and $\GG$ the filtrations they respectively generate. 
+Assume ${(X_n)}_{n \leq 0}$ and ${(Y_n)}_{n \leq 0}$ are closely joinable. 
+\begin{enumerate}
+\item The $\sigma$-fields $\FF_{-\infty}$  and $\GG_{-\infty}$ are equal. 
+
+\item The filtration $\FF$ is I-cosy if and only if the filtration $\GG$ is I-cosy.
+\end{enumerate}
+\end{thm}
+
+We firstly prove the first point of this theorem. 
+
+\begin{proof}[Proof of 1 in Theorem~\ref{thm:joinable}]
+To establish the claim, it suffices to show that 
+the conditional law $\LL(X_M \given \FF_{-\infty})$ is 
+$\GG_{-\infty}$-measurable random variable for every integer $M \leq 0$. 
+To do so, we will prove that the conditional expectation 
+$\EE\bigl[f(X_{M}) \given \FF_{-\infty}\bigr]$ can be made as $L^1$-close as desired to a 
+$\GG_{-\infty}$-measurable random variable for any Borelian function $f$ 
+taking its values in $[0,1]$. 
+
+We set $F_M=f(X_M)$. Let $\delta>0$ and $N = N_\delta \leq M$ 
+the integer provided by the joinability assumption. 
+One has 
+$\EE[F_M \given \FF_{N}\bigr] = g(X_{N})$ 
+for a certain Borelian function $g$ taking its values in $[0,1]$. 
+Take $n_0 \leq N$ small enough in order that 
+$$
+\EE\left[ \Bigr| 
+\EE[F_M \given \FF_{n_0}] - \EE[F_M \given \FF_{-\infty}] 
+\Bigl| \right] 
+\leq \delta
+\quad \text{and }\; 
+\EE\left[ \Bigr| 
+\EE\bigl[g(Y_N) \given \GG_{n_0}\bigr] - \EE\bigl[g(Y_N) \given \GG_{-\infty}\bigr]
+\Bigl| \right] 
+\leq \delta,
+$$
+which is possibly by virtue of the theorem on reverse martingale convergence. 
+
+Now, take the joining provided by the joinability assumption and set $F'_M=f(X'_M)$. 
+One has $\EE\bigl[\bigl|g(X'_N) - g(Y'_N)\bigr|\Bigr] \leq \delta$. Therefore 
+$$
+\EE\left[ \Bigr|\EE\bigl[g(X'_N) \given \sigma(X'_{n_0}, Y'_{n_0})\bigr] 
+ - \EE\bigl[g(Y'_N) \given \sigma(X'_{n_0}, Y'_{n_0}) \bigr] \Bigl| \right] \leq \delta
+$$
+because of the contractivity of the conditional expectation. 
+By immersion, 
+$$
+\EE\bigl[g(X'_N) \given \sigma(X'_{n_0}, Y'_{n_0})\bigr] 
+= \EE\bigl[g(X'_N) \given \sigma(X'_{n_0})\bigr] = \EE\bigl[F'_M \given \sigma(X'_{n_0})\bigr]
+$$
+and 
+$$
+\EE\bigl[g(Y'_N) \given \sigma(X'_{n_0}, Y'_{n_0})\bigr] 
+= \EE\bigl[g(Y'_N) \given \sigma(Y'_{n_0})\bigr]. 
+$$
+On the other hand, 
+\begin{align*}
+\EE\left[ \Bigr| 
+\EE\bigl[F'_M \given \sigma(X'_{n_0})\bigr] 
+ - \EE\bigl[g(Y'_N) \given \sigma(Y'_{n_0})\bigr] 
+\Bigl| \right] 
+& = \EE\left[ \Bigr| 
+\EE\bigl[F_M \given \sigma(X_{n_0})\bigr] 
+ - \EE\bigl[g(Y_N) \given \sigma(Y_{n_0})\bigr] 
+\Bigl| \right] \\
+& = \EE\left[ \Bigr| 
+\EE\bigl[F_M \given \FF_{n_0}\bigr] 
+ - \EE\bigl[g(Y_N) \given \GG_{n_0}\bigr] 
+\Bigl| \right]
+\end{align*}
+By combining the previous equalities and inequalities, 
+$$
+\EE\left[ \Bigr| 
+\EE[F_M \given \FF_{-\infty}\bigr]  -  \EE\bigl[g(Y_N) \given \GG_{-\infty}\bigr]
+\Bigl| \right] 
+\leq 3\delta,
+$$
+and the proof is over.
+\end{proof}
+
+The second point of the theorem will be proved with the help of the following lemma. 
+
+\begin{lemma}\label{lemma:quadricoimm}
+Let 
+$\left\{\begin{smallmatrix} {(X_n)}_{0 \leq n \leq n_0} \\ 
+{(Y_n)}_{0 \leq n \leq n_0}
+\end{smallmatrix}\right.$  
+be a synchronous joining of two random vectors 
+${(X_n)}_{0 \leq n \leq n_0}$ and ${(Y_n)}_{0 \leq n \leq n_0}$. 
+One assumes that a synchronous joining 
+$\left\{\begin{smallmatrix} {(X'_n)}_{0 \leq n \leq n_0} \\ 
+{(X''_n)}_{0 \leq n \leq n_0}
+\end{smallmatrix}\right.$
+ of two copies of ${(X_n)}_{0 \leq n \leq n_0}$ 
+is given on some probability space.  
+Then, on an enlargement of this probability space, there 
+exists a synchronous joining 
+$\left\{\begin{smallmatrix} {(Y'_n)}_{0 \leq n \leq n_0} \\ 
+{(Y''_n)}_{0 \leq n \leq n_0}
+\end{smallmatrix}\right.$
+of two copies of ${(Y_n)}_{0 \leq n \leq n_0}$ 
+such that  
+$\left\{\begin{smallmatrix} {(X'_n)}_{0 \leq n \leq n_0} \\ 
+{(Y'_n)}_{0 \leq n \leq n_0}
+\end{smallmatrix}\right.$ and 
+$\left\{\begin{smallmatrix} {(X''_n)}_{0 \leq n \leq n_0} \\ 
+{(Y''_n)}_{0 \leq n \leq n_0}
+\end{smallmatrix}\right.$
+are two copies of 
+$\left\{\begin{smallmatrix} {(X_n)}_{0 \leq n \leq n_0} \\ 
+{(Y_n)}_{0 \leq n \leq n_0}
+\end{smallmatrix}\right.$.
+
+Moreover, if $X'_0 \indep_{\sigma(X'_0)\cap\sigma(X''_0)} X''_0$, then 
+ $Y'_0 \indep_{\sigma(X'_0)\cap\sigma(X''_0)} Y''_0$.
+\end{lemma}
+
+\begin{proof}
+In the proof, we will use the three following elementary facts about 
+conditional independence:
+\begin{enumerate}[{\it(i)}]
+\item If $U \indep {\cal A} \supset {\cal B}$, 
+then $X \indep_\BB {\cal A}$ for any $\sigma({\cal B}, U)$-measurable r.v.\ $X$.
+
+\item If $U \indep \sigma({\cal B}, X)$ then $X \indep_\BB U$ (hence $X \indep_\BB \sigma({\cal B}, U)$).
+
+\item If $\BB \subset {\cal A}$, then 
+the two conditional independences $Y \indep_{\BB \vee \sigma(X)} {\cal A}$
+and $X \indep_{\BB} {\cal A}$ imply $Y \indep_{\BB} {\cal A}$.
+\end{enumerate}
+
+On the probability space of $\left\{\begin{smallmatrix} {(X_n)}_{0 \leq n \leq n_0} \\ 
+{(Y_n)}_{0 \leq n \leq n_0}
+\end{smallmatrix}\right.$, one can assume there exist some random variables 
+$U_0$, $\ldots$, $U_{n_0}$ such that 
+\begin{itemize}
+\item[$\bullet$] $U_n \indep \bigl((X_0,U_0), \ldots, (X_{n-1}, U_{n-1}), X_n\bigr)$;
+
+\item[$\bullet$] $Y_n = f_n\bigl((X_0,Y_0), \ldots, (X_{n-1}, Y_{n-1}), X_n, U_n\bigr)$   
+for some Borelian functions $f_n$. 
+\end{itemize}
+
+We denote by $(\EEE'_0, \ldots, \EEE'_{n_0})$ the filtration generated by 
+${(X'_n)}_{0 \leq n \leq n_0}$ and by $(\EEE''_0, \ldots, \EEE''_{n_0})$ 
+the filtration generated by ${(X''_n)}_{0 \leq n \leq n_0}$. 
+
+On the probability space of $\left\{\begin{smallmatrix} {(X'_n)}_{0 \leq n \leq n_0} \\ 
+{(X''_n)}_{0 \leq n \leq n_0}
+\end{smallmatrix}\right.$, one can assume there are two copies 
+$\mathbf{U}'=(U'_0, \ldots, U'_{n_0})$ and $\mathbf{U}''=(U''_0, \ldots, U''_{n_0})$ of 
+$(U_0, \ldots, U_{n_0})$ such that $\mathbf{U}' \indep \mathbf{U}''$ and 
+$(\mathbf{U}',\mathbf{U}'') \indep \EEE'_{n_0} \vee \EEE''_{n_0}$. 
+
+We set $Y'_0 = f_0(X'_0, U'_0)$ and $Y''_0 = f_0(X''_0, U''_0)$. 
+Then it is not difficult to check 
+the last point of the lemma:  
+ $Y'_0 \indep_{\sigma(X'_0)\cap\sigma(X''_0)} Y''_0$
+if  $X'_0 \indep_{\sigma(X'_0)\cap\sigma(X''_0)} X''_0$.  
+
+
+Now we recursively set 
+$$
+Y'_n = f_n\bigl((X'_0,Y'_0), \ldots, (X'_{n-1}, Y'_{n-1}), X'_n, U'_n\bigr)
+$$
+and 
+$$
+Y''_n = f_n\bigl((X''_0,Y''_0), \ldots, (X''_{n-1}, Y''_{n-1}), X''_n, U''_n\bigr).
+$$
+In this way, it is clear that $\left\{\begin{smallmatrix} {(X'_n)}_{0 \leq n \leq n_0} \\ 
+{(Y'_n)}_{0 \leq n \leq n_0}
+\end{smallmatrix}\right.$ and 
+$\left\{\begin{smallmatrix} {(X''_n)}_{0 \leq n \leq n_0} \\ 
+{(Y''_n)}_{0 \leq n \leq n_0}
+\end{smallmatrix}\right.$
+are two copies of 
+$\left\{\begin{smallmatrix} {(X_n)}_{0 \leq n \leq n_0} \\ 
+{(Y_n)}_{0 \leq n \leq n_0}
+\end{smallmatrix}\right.$.
+
+We define the filtrations  $(\GG'_0, \ldots, \GG'_{n_0})$ 
+and  $(\GG''_0, \ldots, \GG''_{n_0})$ by setting 
+$$
+\GG'_n = \sigma\bigl((X'_0,Y'_0), \ldots, (X'_n, Y'_n)\bigr) 
+\quad \text{and }\;
+\GG''_n = \sigma\bigl((X''_0,Y''_0), \ldots, (X''_n, Y''_n)\bigr), 
+$$
+and  the filtration $(\HH_0, \ldots, \HH_{n_0})$ by setting 
+$$
+\HH_n = (\EEE'_n \vee \EEE''_n) \vee \sigma\bigl((U'_0,U''_0), \ldots, (U'_n, U''_n) \bigr) 
+\supset  \GG'_n \vee \GG''_n.
+$$
+
+By property {\it(ii)}, 
+$$
+X'_{n+1} \indep_{\EEE'_n\vee\EEE''_n} \HH_n 
+\quad \text{and }\;
+X''_{n+1} \indep_{\EEE'_n\vee\EEE''_n} \HH_n 
+$$
+and by the immersion property, 
+\begin{equation}\label{eq:immX}
+X'_{n+1} \indep_{\EEE'_n} \HH_n 
+\quad \text{and }\;
+X''_{n+1} \indep_{\EEE''_n} \HH_n 
+\end{equation}
+Therefore
+\begin{equation}\label{eq:immXX}
+X'_{n+1} \indep_{\GG'_n} \HH_n 
+\quad \text{and }\;
+X''_{n+1} \indep_{\GG''_n} \HH_n 
+\end{equation}
+because $\EEE'_n \subset \GG'_n \subset \HH_n$ and 
+$\EEE''_n \subset \GG''_n \subset \HH_n$.
+
+By property {\it(i)}, 
+$$
+Y'_{n+1} \indep_{\GG'_n \vee \sigma(X'_{n+1})} \HH_n 
+\quad \text{and }\;
+Y''_{n+1} \indep_{\GG''_n \vee \sigma(X''_{n+1})} \HH_n, 
+$$
+and by \eqref{eq:immXX} and property {\it(iii)},
+$$
+Y'_{n+1} \indep_{\GG'_n} \HH_n 
+\quad \text{and }\;
+Y''_{n+1} \indep_{\GG''_n} \HH_n
+$$
+and  by the immersion property 
+$$
+Y'_{n+1} \indep_{\sigma(Y'_0, \ldots, Y'_n)} \HH_n 
+\quad \text{and }\;
+Y''_{n+1} \indep_{\sigma(Y''_0, \ldots, Y''_n)} \HH_n.
+$$
+
+Thus, we have proved that the four filtrations generated by 
+${(X'_n)}_{0 \leq n \leq n_0}$, ${(X''_n)}_{0 \leq n \leq n_0}$, 
+${(Y'_n)}_{0 \leq n \leq n_0}$, and ${(Y''_n)}_{0 \leq n \leq n_0}$ 
+are jointly immersed in the filtration ${(\HH_n)}_{0 \leq n \leq n_0}$.
+\end{proof}
+
+\begin{lemma}\label{lemma:extendjoining}
+Let ${(Y_n)}_{n \leq 0}$ be a Markov process. 
+For two integers $n_0 \leq N < 0$, let 
+$\left\{\begin{smallmatrix} {(Y'_n)}_{n_0 \leq n \leq N} \\ 
+{(Y''_n)}_{n_0 \leq n \leq N}
+\end{smallmatrix}\right.$ be a synchronous joining of two copies of  
+${(Y_n)}_{n_0 \leq n \leq N}$ such that 
+$\Pr(Y'_N \neq Y''_N) < \delta$. 
+Then it is possible to extend this joining to 
+a synchronous joining 
+$\left\{\begin{smallmatrix} {(Y'_n)}_{n_0 \leq n \leq 0} \\ 
+{(Y''_n)}_{n_0 \leq n \leq 0}
+\end{smallmatrix}\right.$ 
+of ${(Y_n)}_{n_0 \leq n \leq 0}$ such that 
+$\Pr(Y'_N \neq Y''_N, \ldots, Y'_0 \neq Y''_0) < \delta$.
+\end{lemma}
+
+\begin{proof}
+One can assume that $Y_{n+1} = f_n(Y_n, U_{n+1})$ where 
+$(U_{N+1}, \ldots, U_0)$ is a vector of independent $\UU(0,1)$ random variables 
+such that 
+$U_{n+1} \indep (Y_{N}, U_{N+1}, \ldots, U_n)$. 
+On the other hand, on the probability space of 
+$\left\{\begin{smallmatrix} {(Y'_n)}_{n_0 \leq n \leq N} \\ 
+{(Y''_n)}_{n_0 \leq n \leq N}
+\end{smallmatrix}\right.$, one can assume there is a vector  
+$(\bar U_{N+1}, \ldots, \bar U_0)$ of independent $\UU(0,1)$ random variables 
+which is 
+independent of ${(Y'_n, Y''_n)}_{n_0 \leq n \leq N}$. 
+Then we extend the joining by recursively setting 
+$Y'_{n+1} = f_n(Y'_n, \bar U_{n+1})$ and $Y''_{n+1} = f_n(Y''_n, \bar U_{n+1})$.
+\end{proof}
+
+\begin{lemma}\label{lemma:markovcosy}
+Let $\GG$ be the filtration generated by a Markov process ${(Y_n)}_{n \leq 0}$. 
+Assume that for any integer $M \leq 0$ and any real number $\delta >0$, 
+there exists two integers $n_0 \leq N_\delta \leq M$ and a synchronous joining 
+$\left\{\begin{smallmatrix} {(Y'_n)}_{n_0 \leq n \leq N_\delta} \\ 
+{(Y''_n)}_{n_0 \leq n \leq N_\delta}
+\end{smallmatrix}\right.$  of two copies of  
+${(Y_n)}_{n_0 \leq n \leq N_\delta}$ such that 
+$Y'_{n_0} \indep Y''_{n_0}$ and $\Pr(Y'_{N_\delta} \neq Y''_{N_\delta}) < \delta$.  
+Then $\GG$ is I-cosy.
+\end{lemma}
+
+\begin{proof}
+In order for $\GG$ to be I-cosy, it suffices that 
+$(Y_M, \ldots, Y_0)$ satisfies the I-cosiness criterion 
+for every $M \leq 0$  (see~\cite{LauXLIII}). 
+By Lemma~\ref{lemma:extendjoining}, 
+the synchronous joining $\left\{\begin{smallmatrix} {(Y'_n)}_{n_0 \leq n \leq N_\delta} \\ 
+{(Y''_n)}_{n_0 \leq n \leq N_\delta}
+\end{smallmatrix}\right.$ given by the assumption can be extended 
+to a synchronous joining 
+$\left\{\begin{smallmatrix} {(Y'_n)}_{n_0 \leq n \leq 0} \\ 
+{(Y''_n)}_{n_0 \leq n \leq 0}
+\end{smallmatrix}\right.$ of two copies of ${(Y_n)}_{n_0 \leq n \leq 0}$ 
+satisfying 
+$\Pr(Y'_{N_\delta} \neq Y''_{N_\delta}, \ldots, Y'_0 \neq Y''_0) < \delta$. 
+
+Now, we will construct two copies ${(Y^*_n)}_{n \leq 0}$ and ${(Y^{**}_n)}_{n \leq 0}$ 
+of ${(Y_n)}_{n \leq 0}$, independent up to $n_0$ and 
+such that 
+$\left\{\begin{smallmatrix} {(Y^*_n)}_{n_0 \leq n \leq 0} \\ 
+{(Y^{**}_n)}_{n_0 \leq n \leq 0}
+\end{smallmatrix}\right.$ is a copy of 
+$\left\{\begin{smallmatrix} {(Y'_n)}_{n_0 \leq n \leq 0} \\ 
+{(Y''_n)}_{n_0 \leq n \leq 0}
+\end{smallmatrix}\right.$
+One can assume that 
+$$
+(Y'_{n+1}, Y''_{n+1}) = f_n(Y'_{n_0}, Y''_{n_0}, \ldots, Y'_n, Y''_n, U_{n+1})
+$$ 
+where $U_{n+1} \indep (Y'_{n_0}, Y''_{n_0}, U_{n_0}, \ldots, Y'_n, Y''_n, U_n)$ 
+is $\UU(0,1)$. 
+Then, given two independent copies 
+${(Y^*_n)}_{n \leq n_0}$ and ${(Y^{**}_n)}_{n \leq n_0}$ 
+of ${(Y_n)}_{n \leq n_0}$, we recursively set  
+$$
+(Y^*_{n+1}, Y^{**}_{n+1}) = f_n(Y^*_{n_0}, Y^{**}_{n_0}, \ldots, Y^*_n, Y^{**}_n, \bar U_{n+1})
+$$ 
+where 
+$(\bar U_{n_0+1}, \ldots, \bar U_{0}) \indep {(Y^*_n, Y^{**}_n)}_{n \leq n_0}$ 
+is a vector of independent $\UU(0,1)$ random variables.   
+In this way, 
+for $n \geq n_0$, one has 
+$$
+\LL(Y^*_{n+1} \given Y^*_m, Y^{**}_m ; m \leq n) = 
+\LL(Y^*_{n+1} \given Y^*_{n_0}, Y^{**}_{n_0}, \ldots, Y^*_n, Y^{**}_n),
+$$
+and $\LL(Y^*_{n+1} \given Y^*_{n_0}, Y^{**}_{n_0}, \ldots, Y^*_n, Y^{**}_n)=\LL(Y^*_{n+1} \given Y^*_n)$ 
+because $\left\{\begin{smallmatrix} {(Y^*_n)}_{n_0 \leq n \leq 0} \\ 
+{(Y^{**}_n)}_{n_0 \leq n \leq 0}
+\end{smallmatrix}\right.$ is a copy of 
+$\left\{\begin{smallmatrix} {(Y'_n)}_{n_0 \leq n \leq 0} \\ 
+{(Y''_n)}_{n_0 \leq n \leq 0}
+\end{smallmatrix}\right.$. 
+Thus the two filtrations generated by ${(Y^*_n)}_{n \leq 0}$ and ${(Y^{**}_n)}_{n \leq 0}$ 
+are jointly immersed, and that shows that $(Y_M, \ldots, Y_0)$ 
+satisfies the I-cosiness criterion. 
+\end{proof}
+
+
+Now we  prove the second point of Theorem~\ref{thm:joinable}.
+
+\begin{proof}[Proof of 2 in Theorem~\ref{thm:joinable}]
+
+Assume $\FF$ is I-cosy. Take an integer $M \leq 0$. 
+To prove the claim, it suffices to show that $(Y_M, \ldots, Y_0)$ 
+satisfies the I-cosiness criterion with respect to $\GG$ 
+(see~\cite{LauXLIII}). 
+
+Let $\delta>0$ and take the integer $N_\delta \leq M$ provided by the 
+joinability assumption (Definition~\ref{def:joinable}).  
+
+The random variable $X_{N_\delta}$ satisfies the I-cosiness criterion 
+with respect to $\FF$. Thus, one has two jointly immersed copies 
+${(\FF'_n)}_{n \leq N_\delta}$ and ${(\FF''_n)}_{n \leq N_\delta}$ 
+of the filtration ${(\FF_n)}_{n \leq N_\delta}$, independent up to 
+an integer $n_0 \leq N_\delta$ and  
+ such that $\Pr(X'_{N_\delta} \neq X''_{N_\delta}) < \delta$. 
+
+
+
+Thanks to the Markov property,  
+$\left\{\begin{smallmatrix} {(X'_n)}_{n_0 \leq n \leq N_\delta} \\ 
+{(X''_n)}_{n_0 \leq n \leq N_\delta}
+\end{smallmatrix}\right.$ 
+is a synchronous joining 
+of two copies of ${(X_n)}_{n_0 \leq n \leq N_\delta}$. 
+
+Now, one has the joining 
+ $\left\{\begin{smallmatrix} {(X_n)}_{n_0 \leq n \leq N_\delta} \\ 
+{(Y_n)}_{n_0 \leq n \leq N_\delta}
+\end{smallmatrix}\right.$ provided by the joinability assumption. 
+
+%One has to do a modification in case if $M < N_\delta$. 
+%The integer $n_0$ can be taken as small as desired, and one takes $n_0 \leq M$ 
+%(one can take $n_0=M$ if $M < N_\delta$). 
+%One has the joining 
+% $\left\{\begin{smallmatrix} {(X_n)}_{n_0 \leq n \leq N_\delta} \\ 
+%{(Y_n)}_{n_0 \leq n \leq N_\delta}
+%\end{smallmatrix}\right.$  provided by the joinability assumption. 
+%Setting $M_\delta = M \wedge N_\delta$, the 
+%synchronous joining 
+%the joining 
+% $\left\{\begin{smallmatrix} {(X_n)}_{n_0 \leq n \leq M_\delta} \\ 
+%{(Y_n)}_{n_0 \leq n \leq M_\delta}
+%\end{smallmatrix}\right.$ 
+%satisfies the same closeness property. 
+
+By Lemma~\ref{lemma:quadricoimm}, 
+one has, on an enlargement of the probability space of 
+$\left\{\begin{smallmatrix} {(X'_n)}_{n_0 \leq n \leq N_\delta} \\ 
+{(X''_n)}_{n_0 \leq n \leq N_\delta}
+\end{smallmatrix}\right.$, two copies 
+$\left\{\begin{smallmatrix} {(X'_n)}_{n_0 \leq n \leq N_\delta} \\ 
+{(Y'_n)}_{n_0 \leq n \leq N_\delta}
+\end{smallmatrix}\right.$ and 
+$\left\{\begin{smallmatrix} {(X''_n)}_{n_0 \leq n \leq N_\delta} \\ 
+{(Y''_n)}_{n_0 \leq n \leq N_\delta}
+\end{smallmatrix}\right.$
+of 
+$\left\{\begin{smallmatrix} {(X_n)}_{n_0 \leq n \leq N_\delta} \\ 
+{(Y_n)}_{n_0 \leq n \leq N_\delta}
+\end{smallmatrix}\right.$ 
+such that 
+$\left\{\begin{smallmatrix} {(Y'_n)}_{n_0 \leq n \leq N_\delta} \\ 
+{(Y''_n)}_{n_0 \leq n \leq N_\delta}
+\end{smallmatrix}\right.$ is a synchronous joining of 
+${(Y_n)}_{n_0 \leq n \leq N_\delta}$ and 
+$Y'_{n_0} \indep Y''_{n_0}$. 
+Clearly,  $\Pr(Y'_{N_\delta} \neq Y''_{N_\delta}) < 3\delta$. 
+The result follows from Lemma~\ref{lemma:markovcosy}.
+\end{proof}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Proof of Proposition~\ref{ppsition:ChaconNonStandard}}
+
+Proposition~\ref{ppsition:ChaconNonStandard} follows from 
+Proposition~\ref{ppsition:tildGnonstandard}, Theorem~\ref{thm:joinable} and 
+the following lemma. 
+
+\begin{lemma}\label{lemma:joinable}
+The Markov processes ${(W_n, V_n, \epsilon_n)}_{n \leq 0}$ 
+and ${(\tildW_n, \tildV_n, \tildeps_n)}_{n \leq 0}$ are closely joinable.
+\end{lemma}
+
+\begin{proof}
+We firstly construct a joining of 
+${(V_n, \epsilon_n)}_{n_0 \leq n \leq 0}$ and 
+${(\tildV_n, \tildeps_n)}_{n_0 \leq n \leq 0}$.
+
+For $i \in \{0, 1, 3\}$, 
+$$
+\Pr(V_n=1, \epsilon_n=i) = \frac{3^{|n|}-1}{3^{|n|+1}} < \frac{1}{3}.
+$$
+Therefore, one can construct a joining of 
+$(V_{n_0}, \epsilon_{n_0})$ and $(\tildV_{n_0},\tildeps_{n_0})$ such that  
+$$
+\{V_{n_0}=1, \epsilon_{n_0}=i\} \subset \{\tildV_{n_0}=1,\tildeps_{n_0} = i\} 
+$$
+for $i \in \{0,1,3\}$. 
+
+
+Now, take some independent random variables $U_{n_0+1}$, $\ldots$, $U_{-1}$ 
+having the $\UU(0,1)$ distribution, and such that the vector $(U_{n_0+1}, \ldots, U_{-1})$ 
+is independent of $(V_{n_0}, \epsilon_{n_0})$ and $(\tildV_{n_0},\tildeps_{n_0})$. 
+
+We recursively construct $(V_{n_0+1}, \epsilon_{n_0+1})$, $\ldots$, $(V_{-1}, \epsilon_{-1})$ 
+and $(\tildV_{n_0+1}, \tildeps_{n_0+1})$, $\ldots$, $(\tildV_{-1}, \tildeps_{-1})$ 
+as follows.
+
+Once the construction is done up to time $n$, we set 
+$\epsilon_{n+1} = f_n(V_n, U_{n+1})$ and $\tildeps_{n+1} = g_n(U_{n+1})$ 
+where the functions $f_n$ and $g_n$ are defined as follows. 
+We simply set $f_n(2, u)=0$. 
+For $i \in \{0,1,3\}$, the function $f_n(1, \cdot)$ is such that  
+$f_n(1, u) = i$ for $u \in J_i$ 
+where $J_i$ is the set having Lebesgue measure 
+$|J_i| = \frac{h_{n+1}}{h_{n}} < \frac{1}{3}$. 
+We take a set $J'_i \supset J_i$ such that $|J'_i|=\frac{1}{3}$ 
+and set $g_n(u)=i$ for $u \in J'_i$. 
+Thus, on the event $\{V_n=1\}$, one has $\tildeps_{n+1}=i$ if $\epsilon_{n+1}=i$. 
+
+With this joining, 
+$$
+\Pr\bigl((V_{n_0+1}, \epsilon_{n_0+1})=(\widetilde{V}_{n_0+1}, \widetilde{\epsilon}_{n_0+1}), 
+\ldots, (V_N, \epsilon_{N})=(\widetilde{V}_{N},\widetilde{\epsilon}_{N}) 
+\given V_{n_0}=1 \bigr) \geq \prod_{n=n_0}^{N-1} \frac{h_{n+1}}{h_{n}}.  
+$$
+
+Now, we construct a synchronous joining 
+$\left\{\begin{smallmatrix} {(W_n, V_n, \epsilon_n)}_{n_0+1 \leq n \leq N} \\ 
+{(\tildW_n, \tildV_n, \tildeps_n)}_{n_0+1 \leq n \leq N}
+\end{smallmatrix}\right.$
+as follows. 
+To initialize the joining, we write $W_{n_0} = f(V_{n_0}, U)$ where $U$ is a 
+$\UU(0,1)$ random variable independent of $V_{n_0}$, and 
+we set $\tildW_{n_0}=f(\tildV_{n_0}, U)=f(1,U)$. 
+Then we construct 
+$\left\{\begin{smallmatrix} {(W_n, V_n, \epsilon_n)}_{n_0+1 \leq n \leq N} \\ 
+{(\tildW_n, \tildV_n, \tildeps_n)}_{n_0+1 \leq n \leq N}
+\end{smallmatrix}\right.$ 
+with the joining 
+$\left\{\begin{smallmatrix} {(V_n, \epsilon_n)}_{n_0+1 \leq n \leq N} \\ 
+{(\tildV_n, \tildeps_n)}_{n_0+1 \leq n \leq N}
+\end{smallmatrix}\right.$ 
+we previously constructed. 
+In this way,
+\begin{align*}
+& \Pr\bigl((W_{n_0+1}, V_{n_0+1}, \epsilon_{n_0+1})=(\tildW_{n_0+1}, \widetilde{V}_{n_0+1}, \widetilde{\epsilon}_{n_0+1}), 
+\ldots, (W_N, V_N, \epsilon_{N})=(\tildW_N, \widetilde{V}_{N},\widetilde{\epsilon}_{N}) 
+\given V_{n_0}=1 \bigr) \\
+& = 
+\Pr\bigl((V_{n_0+1}, \epsilon_{n_0+1})=(\widetilde{V}_{n_0+1}, \widetilde{\epsilon}_{n_0+1}), 
+\ldots, (V_N, \epsilon_{N})=(\widetilde{V}_{N},\widetilde{\epsilon}_{N}) 
+\given V_{n_0}=1 \bigr)  
+\end{align*}
+The lemma follows because the product $\prod_{n=n_0}^{N-1} \frac{h_{n+1}}{h_{n}}$ 
+is divergent as  $n_0 \to -\infty$ and $\Pr(V_{n_0}=1) \to 1$. 
+\end{proof}
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{thebibliography}{99.}
+
+\bibitem{Ceil}
+Ceillier, G.:
+The filtration of the split-words process. 
+Probability Theory and Related Fields 153, Issue 1--2, 
+ 269--292 (2012).
+
+\bibitem{ES}
+ \'{E}mery, M.,  Schachermayer, W.: 
+On Vershik's standardness criterion and Tsirelson's  notion of cosiness. 
+ S\'eminaire de Probabilit\'es XXXV,  
+Springer Lectures Notes in Math. 1755 (2001), 
+265--305.
+
+\bibitem{JLR}
+Janvresse, E., Laurent, S., de la Rue, T.:
+Standardness of monotonic Markov filtrations. 
+
+
+\bibitem{LauXLIII}
+ Laurent, S.: 
+On standardness and I-cosiness. S\'eminaire de Probabilit\'es XLIII, 
+Springer Lecture Notes in Mathematics 2006, 
+127--186 (2010).
+
+\bibitem{LauTeoriya}  
+ Laurent, S.: 
+On Vershikian and I-cosy random variables and filtrations.
+Teoriya Veroyatnostei i ee Primeneniya 55 (2010), 104--132. 
+Also published in: Theory Probab. Appl. 55 (2011), 54--76.
+
+\bibitem{LauSPL} 
+Laurent, S.: 
+Further comments on the representation problem for stationary processes. 
+Statist. Probab. Lett. 80 (2010),  592--596. 
+
+\bibitem{LauXLV}
+Laurent, S.: 
+Vershik's Intermediate Level Standardness Criterion and the Scale of an Automorphism. 
+S\'eminaire de Probabilit\'es XLV,
+Springer Lecture Notes in Mathematics 2078,
+123--139 (2013).
+
+\bibitem{LauEntropy}
+Laurent, S.: 
+Uniform entropy scalings of filtrations. 
+\verb+https://hal.archives-ouvertes.fr/hal-01006337+ 
+
+\bibitem{thescale} 
+Vershik, A.M.: 
+Four definitions of the scale of an automorphism. 
+Funktsional'nyi Analiz i Ego Prilozheniya, 7:3, 
+1--17 (1973). 
+English translation:    
+Functional Analysis and Its Applications, 7:3, 169--181 (1973)
+
+\bibitem{Ver95}
+Vershik, A.M.: 
+The theory of decreasing sequences of measurable partitions (in Russian). 
+ Algebra i Analiz,  6:4, 1--68 (1994). 
+English translation:  St. Petersburg Mathematical Journal, 6:4, 705--761 (1995)
+
+
+\end{thebibliography}
+
+
+
+
+\end{document}
