@@ -1,0 +1,74 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage{amsmath, amsthm}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{lmodern}
+\usepackage[left=2cm,right=2cm,top=2cm,bottom=2cm]{geometry}
+
+\usepackage[labelformat=simple]{subcaption}
+\renewcommand\thesubfigure{(\alph{subfigure})}
+
+\usepackage{diagbox}
+
+\usepackage{wrapfig}
+
+\usepackage[normalem]{ulem}
+\usepackage{enumerate}
+
+\usepackage{color}
+%\author{Stéphane Laurent}
+\title{Graph of ordered pairs}
+\begin{document}
+
+The graph of ordered pairs (Figure~\ref{fig:OPgraph}) is a representation of 
+the set $\{a,b\}^{\mathbb{Z}} \times \{0,1\}^{\mathbb{N}}$. 
+
+For example, the path shown in red on Figure~\ref{fig:OPgraph} corresponds 
+to $\ldots ba{\color{green}a}baaaa\ldots \in \{a,b\}^{\mathbb{Z}}$ 
+(the green letter is the central position) and 
+$(0, 1, 0, \ldots) \in \{0,1\}^{\mathbb{N}}$.
+
+Figure~\ref{fig:tree} helps to see the action of the adic transformation on this 
+graph. 
+The adic transformation sends 
+$\ldots ba{\color{green}a}baaaa\ldots$ to $\ldots baa{\color{green}b}aaaa\ldots$ 
+and $(0, 1, 0, \ldots)$ to $(1, 1, 0, \ldots)$. 
+Hence it is the product of the shift and the dyadic odometer. 
+
+\begin{figure}[!h]
+   \centering
+   \begin{subfigure}[b]{0.57\textwidth}
+   \centering
+   	\includegraphics[scale=0.6]{figures/graph_OP}
+ 		\caption{\footnotesize graph of ordered pairs}\label{fig:OPgraph}
+    \end{subfigure}              
+   \quad
+    \begin{subfigure}[b]{0.37\textwidth}
+    \centering
+   	\includegraphics[scale=0.6]{figures/OdometerGraphWalk_hand}
+ 		\caption{\footnotesize paths from the vertex $ba{\color{green}a}baaaa$}\label{fig:tree}
+ 	\end{subfigure}      
+   \caption{graph of ordered pairs}
+   \label{fig:}
+ \end{figure}
+
+
+%\begin{figure}[!h]
+%\centering
+%\includegraphics[scale=0.7]{figures/graph_OP}
+%\caption{graph of ordered pairs}
+%\label{fig:OPgraph}
+%\end{figure}
+%
+%\begin{figure}[!h]
+%\centering
+%\includegraphics[scale=0.7]{figures/OdometerGraphWalk_hand}
+%\caption{paths from the vertex $ba{\color{green}a}baaaa$}
+%\label{fig:tree}
+%\end{figure}
+
+
+\end{document}
