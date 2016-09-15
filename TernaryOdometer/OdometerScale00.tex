@@ -1,0 +1,204 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath, amsthm}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{lmodern}
+\usepackage[left=2cm,right=2cm,top=2cm,bottom=2cm]{geometry}
+
+\usepackage[labelformat=simple]{subcaption}
+\renewcommand\thesubfigure{(\alph{subfigure})}
+
+\usepackage[normalem]{ulem}
+
+\author{Stéphane Laurent}
+\title{Sur l'échelle des odomètres}
+\begin{document}
+
+
+\newtheoremstyle{thmstyle}{3pt}{3pt}{\itshape}{}{\bf}{.}{.5em}{}      
+\newtheoremstyle{defstyle}{3pt}{3pt}{\sffamily}{}{\bf}{.}{.5em}{} 
+\theoremstyle{defstyle}
+\newtheorem{definition}{Definition}
+\newtheorem{remark}{Remark}
+\newtheorem{question}{Question}
+\newtheorem{clarify}{To clarify}
+\theoremstyle{thmstyle}
+\newtheorem{thm}{Theorem}[section]
+\newtheorem{ppsition}{Proposition}
+\newtheorem{lemme}{Lemme}
+
+\newcommand{\BB}{\mathcal{B}}
+\newcommand{\FF}{\mathcal{F}}
+\newcommand{\GG}{\mathcal{G}}
+\newcommand{\EE}{\mathbb{E}}
+\newcommand{\II}{\mathcal{I}}
+\newcommand{\LL}{\mathcal{L}}
+\newcommand{\OO}{\mathcal{O}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\XX}{\mathcal{X}}
+\newcommand{\T}{\mathbb{T}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\given}{\mid}
+\newcommand{\eps}{\epsilon}
+\newcommand{\indic}{\boldsymbol 1}
+\newcommand{\Vb}{\boldsymbol V}
+
+\newcommand{\indvee}{\dot{\vee}}
+\newcommand{\indep}{\mathrel{\text{\scalebox{1.07}{$\perp\mkern-10mu\perp$}}}}
+
+\newcommand{\disp}{\textrm{disp}\,}
+\newcommand{\dd}{\mathrm{d}}
+
+
+\maketitle
+
+\begin{abstract}
+Je démontre que la suite $(\ldots, 2, 2)$ est dans l'échelle de l'odomètre $3$-adique. 
+On peut démontrer exactement de la même façon que la suite 
+$(\ldots, p, p)$ est dans l'échelle de l'odomètre $q$-adique lorsque $p,q \geq 2$ sont 
+premiers entre eux.
+\end{abstract}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Filtration associée à un automorphisme}
+
+Nous allons démontrer que la suite $(\ldots, 2, 2)$ est dans l'échelle 
+de l'odomètre triadique. 
+Rappelons ce que ça signifie (suivant~\cite{LauXLV}).
+
+Soit $T$ un automorphisme d'un espace de Lebesgue $(\XX,\nu)$. 
+Sur un espace probabilisé, soit ${(\epsilon_n)}_{n \geq 0}$ 
+une suite i.i.d.\ de v.a. de Bernoulli symétriques sur $\{0,1\}$ 
+et soit $X_0$ une v.a.\ de loi $\nu$ 
+ indépendante de ${(\epsilon_n)}_{n \leq 0}$. 
+
+Pour tout $n \geq 1$, on pose $K_n = \sum_{i=0}^{n-1} \epsilon_i2^{i}$ 
+et $X_n = T^{K_n}X_0$. 
+Pour $n \leq 0$, on définit la tribu $\FF_n = \sigma(X_{-n}, X_{-n+1}, \ldots)$. 
+Par définition, la suite $(\ldots, 2, 2)$ est dans l'échelle 
+de $T$ si la filtration ${(\FF_n)}_{n \leq 0}$ 
+est standard (voir~\cite{LauXLV}). 
+
+On sait (voir~\cite{LauXLV}) que $\FF$ est kolmogorovienne si et seulement si 
+$T^{2^k}$ est ergodique pour tout $k \geq 0$.
+Ceci équivaut à l'ergodicité du produit de $T$ par l'odomètre dyadique. 
+
+
+Nous utiliserons le lemme suivant.
+
+\begin{lemme}\label{lemm:cosy}
+Soit $E$ un espace de Lebesgue muni d'une métrique, et soit $T$ une transformation 
+de $E$ qui préserve la mesure et qui est une isométrie. 
+Pour tout entier $k \geq 1$, soit $I_k$ un sous-ensemble de $E$ dont le diamètre 
+tend vers $0$ quand $k \to \infty$. 
+Soient ${(X^\ast_n)}_{n \geq 0}$ et ${(X^{\ast\ast}_n)}_{n \geq 0}$ deux copies indépendantes 
+de ${(X_n)}_{n \geq 0}$. 
+Si pour tout $k \geq 1$, les événements $\{X^\ast_n \in I_k, X^{\ast\ast}_n \in I_k\}$ 
+se réalisent presque sûrement pour une infinité de $n$, alors $\FF$ est standard. 
+\end{lemme}
+
+\begin{proof}
+Il n'est pas très difficile de vérifier le critère de I-confort sous ces conditions.
+\end{proof}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{L'odomètre triadique}
+
+On considère maintenant que $T$ est l'odomètre triadique. 
+C'est latransformation qui agit sur le groupe des entiers triadiques 
+$\Z_3 \simeq {\{0,1,2\}}^\mathbb{N}$ par
+$$
+T x = x + (1, 0, 0, \ldots)
+$$
+où "$+$" est l'addition avec une retenue. 
+La probabilité préservée par $T$ sur l'espace ${\{0,1,2\}}^\mathbb{N}$ est 
+le produit de la probabilité uniforme. 
+De plus, $T$ est une isométrie de $\Z_3$, lorsqu'on considère la métrique
+$$
+d(x,y) = \sum_{k=0}^\infty \frac{\indic_{x_k \neq y_k}}{2^{k+1}}.
+$$
+
+\begin{lemme}\label{lemme:Ik}
+Pour tout entier $k \geq 1$, on note
+$$
+I_k = \{x \in \Z_3 \mid x_0=\ldots=x_{k-1}=0\}.
+$$
+Alors $T^{3^k}I_k=I_k$ et pour tout $x \in \Z_3$, 
+l'ensemble $\{T^m x \mid 0 \leq m \leq 3^k-1\}$  
+contient un élément de $I_k$.
+\end{lemme}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Standardité}
+
+La standardité de $\FF$ résulte des deux lemmes précédents et du lemme suivant.
+
+\begin{lemme}
+Pour tout entier $k \geq 1$, on note
+$$
+I_k = \{x \in \Z_3 \mid x_0=\ldots=x_{k-1}=0\}.
+$$
+Soient ${(X^\ast_n)}_{n \geq 0}$ et ${(X^{\ast\ast}_n)}_{n \geq 0}$ deux copies indépendantes 
+de ${(X_n)}_{n \geq 0}$. 
+Pour tout $k \geq 1$, les événements $\{X^\ast_n \in I_k, X^{\ast\ast}_n \in I_k\}$ 
+se réalisent presque sûrement pour une infinité de $n$.
+\end{lemme}
+
+\begin{proof}
+Soit $p$ le plus petit entier tel que $2^p \geq 3^k$. 
+Soit $j \geq 0$ un entier. 
+Conditionnellement à $(X_0, X_p, \ldots, X_{(j-1)p})$, 
+la v.a.\ $X_{jp}$ est uniformément distribuée sur 
+$\{T^{2^{(j-1)p}m}X_{(j-1)p}, 0 \leq m \leq 2^p-1\}$, 
+puisque
+$$
+K_{jp} = \sum_{i=0}^{jp-1} \epsilon_i2^{i} 
+ = K_{(j-1)p} + 2^{(j-1)p}\sum_{i=0}^{p-1}\epsilon_{(j-1)p+i}2^i
+$$
+L'ensemble $\{2^{(j-1)p}m, 0 \leq m \leq 2^p-1\}$ contient l'ensemble 
+$\{2^{(j-1)p}m, 0 \leq m \leq 3^k-1\}$ et celui-ci modulo $3^k$ est égal à $\mathbb{Z}/3^k\mathbb{Z}$. 
+Donc, d'après le lemme~\ref{lemme:Ik}, 
+l'ensemble $\{T^{2^{(j-1)p}m}X_{(j-1)p}, 0 \leq m \leq 2^p-1\}$ 
+contient au moins un élément de $I_k$. 
+Ainsi, 
+$$
+\Pr(X_{jp} \in I_k \given X_0, X_p, \ldots, X_{(j-1)p}) 
+\geq \frac{1}{2^p}.
+$$
+On a alors 
+$$
+\Pr(X^\ast_{jp} \in I_k, X^{\ast\ast}_{jp} \in I_k \given 
+X^\ast_0, X^{\ast\ast}_0, X^\ast_p, X^{\ast\ast}_p, \ldots, X^\ast_{(j-1)p}, X^{\ast\ast}_{(j-1)p}) 
+\geq \frac{1}{2^{2p}}.
+$$
+Le lemme s'ensuit par le lemme de Borel-Cantelli conditionnel.
+\end{proof}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{thebibliography}{99.}
+
+
+\bibitem{LauXLV}
+Laurent, S.: 
+Vershik's Intermediate Level Standardness Criterion and the Scale of an Automorphism. 
+S\'eminaire de Probabilit\'es XLV,
+Springer Lecture Notes in Mathematics 2078,
+123--139 (2013).
+
+
+\end{thebibliography}
+
+ 
+
+\end{document}

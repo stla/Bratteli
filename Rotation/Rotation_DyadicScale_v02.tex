@@ -1,0 +1,393 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage{amsmath, amsthm}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{lmodern}
+\usepackage[left=2cm,right=2cm,top=2cm,bottom=2cm]{geometry}
+
+\usepackage[labelformat=simple]{subcaption}
+\renewcommand\thesubfigure{(\alph{subfigure})}
+
+\usepackage[normalem]{ulem}
+
+\author{Stéphane Laurent}
+\title{Sur l'échelle des rotations}
+\begin{document}
+
+
+\newtheoremstyle{thmstyle}{3pt}{3pt}{\itshape}{}{\bf}{.}{.5em}{}      
+\newtheoremstyle{defstyle}{3pt}{3pt}{\sffamily}{}{\bf}{.}{.5em}{} 
+\theoremstyle{defstyle}
+\newtheorem{definition}{Definition}
+\newtheorem{remark}{Remark}
+\newtheorem{question}{Question}
+\newtheorem{clarify}{To clarify}
+\theoremstyle{thmstyle}
+\newtheorem{thm}{Theorem}[section]
+\newtheorem{ppsition}{Proposition}
+\newtheorem{lemme}{Lemme}
+
+\newcommand{\BB}{\mathcal{B}}
+\newcommand{\FF}{\mathcal{F}}
+\newcommand{\GG}{\mathcal{G}}
+\newcommand{\EE}{\mathbb{E}}
+\newcommand{\II}{\mathcal{I}}
+\newcommand{\LL}{\mathcal{L}}
+\newcommand{\OO}{\mathcal{O}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\XX}{\mathcal{X}}
+\newcommand{\T}{\mathbb{T}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\given}{\mid}
+\newcommand{\eps}{\epsilon}
+\newcommand{\indic}{\boldsymbol 1}
+\newcommand{\Vb}{\boldsymbol V}
+
+\newcommand{\indvee}{\dot{\vee}}
+\newcommand{\indep}{\mathrel{\text{\scalebox{1.07}{$\perp\mkern-10mu\perp$}}}}
+
+\newcommand{\disp}{\textrm{disp}\,}
+\newcommand{\dd}{\mathrm{d}}
+
+
+\maketitle
+
+\begin{abstract}
+Dans ces notes, je m'intéresse à savoir si la suite $(\ldots, 2, 2)$ est dans l'échelle des rotations ergodiques, ce qui signifie la standardité d'une certaine filtration (je rappelle ça dans la section 1). 
+Je donne deux résultats :
+\begin{itemize}
+\item Je montre, avec le I-confort, que c'est le cas lorsque la suite des $2^{|n|}\theta$ est dense dans $S^1$, où $\theta$ est l'angle de la rotation. 
+\item J'applique le critère de Vershik au problème pour obtenir un problème équivalent, à savoir la convergence vers $0$ d'une suite d'intégrales $\int_0^1 f_n$. 
+\end{itemize}
+Le problème n'est donc pas complétement résolu : lorsque $\theta$ est irrationnel mais que la suite des $2^{|n|}\theta$ n'est dense dans $S^1$, je ne sais pas si la filtration est standard ou pas. 
+\end{abstract}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Filtration associée à un automorphisme}
+
+On s'intéresse à savoir si la suite $(\ldots, 2, 2)$ est dans l'échelle 
+des rotations ergodiques. 
+Rappelons ce que ça signifie (suivant~\cite{LauXLV}).
+
+Soit $T$ un automorphisme d'un espace de Lebesgue $(\XX,\nu)$. 
+Sur un espace probabilisé, soit ${(\epsilon_n)}_{n \leq 0}$ 
+une suite i.i.d.\ de v.a. de Bernoulli symétriques sur $\{0,1\}$ 
+et soit $X_0$ une v.a.\ de loi $\nu$ 
+ indépendante de ${(\epsilon_n)}_{n \leq 0}$. 
+
+Pour tout $n \leq -1$, on pose $K_n = \sum_{i=0}^{n+1} \epsilon_i2^{|i|}$ 
+et $X_n = T^{K_n}X_0$. 
+On note $\FF$ la filtration engendrée par le processus de Markov 
+${(X_n)}_{n \leq 0}$. 
+La standardité de $\FF$ signifie que la suite $(\ldots, 2, 2)$ est dans l'échelle 
+de $T$ (voir~\cite{LauXLV}). 
+
+On sait (voir~\cite{LauXLV}) que $\FF$ est kolmogorovienne si et seulement si 
+$T^{2^k}$ est ergodique pour tout $k \geq 0$ 
+(ceci équivaut à l'ergodicité du produit de $T$ par l'odomètre dyadique). 
+
+
+On considère maintenant que 
+$T$ est la rotation d'angle $\theta$ sur $\T:=\R/\Z$. 
+Dans ce cas $\FF$ est kolmogorovienne si et seulement si $\theta$ est irrationnel. 
+Pour tout $n$, la v.a.\ $X_n$ est uniforme sur $\T$, et 
+la transition de $n-1$ à $n$ est :
+$$
+\LL(X_n \given X_{n-1}=x) = \frac12 \delta_{x} + \frac12 \delta_{x_{-1} + 2^{|n|}\theta \bmod 1}.  
+$$
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Une condition suffisante}
+
+
+Le $I$-confort de $\FF$ sous les hypothèses du lemme suivant 
+se déduit facilement de ce lemme.  
+
+\begin{lemme}
+Soient ${(X'_n)}_{n \leq 0}$ et ${(X^*_n)}_{n \leq 0}$ deux copies indépendantes 
+de ${(X_{n})}_{n \leq 0}$. Si l'ensemble $\{2^m\theta\bmod 1 \mid m \geq 0\}$ est dense 
+dans $\T$, alors pour tout arc $I \subset \T$, l'événement $\{X'_n \in I, X^*_n \in I\}$ 
+a lieu pour une infinité de $n$ presque sûrement.
+\end{lemme}
+
+
+\begin{proof}
+Je préfère démontrer ce lemme avec des $n$ positifs, je pose donc 
+$Y'_n = X'_{-n}$, $Y^*_n=X^*_{-n}$ et 
+$A_n = \{Y'_n \in I, Y^*_n \in I\}$.
+
+Notons $\delta = |I|$. 
+On prend un arc $J$ pour lequel il existe un entier $p$ tel que 
+pour tout $\alpha \in J$, l'ensemble $\{0, \alpha, \ldots, p\alpha\}$ 
+intersecte tout arc de longueur $\delta$. 
+On peut prendre $J = (\delta/4, \delta/2)$ et $p=\lfloor 4/\delta \rfloor +1$. 
+
+On prend maintenant une suite ${(m_j)}_{j \geq 0}$ strictement croissante 
+telle que $2^{m_j}\theta \in J$ pour tout $j$. 
+Soit $k$ tel que $2^k-1 \geq p$. 
+On prend une sous-suite ${(n_j)}_{j \geq 0}$ de ${(m_j)}_{j \geq 0}$ 
+telle que $n_{j+1} - n_j > k$. 
+
+Nous allons montrer que presque sûrement il y a parmi les événements $A_{n_1}$, $A_{n_1+k}$, $A_{n_2}$, 
+$A_{n_2+k}$, $\ldots$, une infinité d'entre eux qui se réalisent. 
+
+Il suffit pour cela de montrer que 
+$\prod_j \Pr(\bar A_{n_j+k} \given \BB_{n_j}) = 0$, où 
+$\BB_n = \sigma(Y'_0, Y^*_0, \ldots, Y'_n, Y^*_n)$.   
+
+Du fait que $K_{n-k} = K_n + 2^{|n|}\sum_{i=0}^{k-1}\epsilon_{n-i}2^i$ pour tout 
+$n \leq 0$, on a 
+$$
+Y'_{n_j+k} = Y'_{n_j} + N 2^{n_j}\theta
+$$
+où $N$ est une variable aléatoire indépendante de $\BB_{n_j}$ et qui suit la  
+loi uniforme sur $\{0, \ldots, 2^k-1\}$. 
+Les choses sont faites de sorte qu'il y ait au moins une valeur possible de $N$ 
+pour laquelle $Y'_{n_j+k} \in I$, quelle que soit la valeur prise par 
+$Y'_{n_j}$, et $N$ prend cette valeur avec probabilité $q:=2^{-k}$. 
+Ceci avec le raisonnement identique pour $Y^*$ montre que 
+$\Pr(\bar A_{n_j+k} \given \BB_{n_j}) \leq 1-q^2$. 
+\end{proof}
+
+
+\bigskip
+\noindent
+{\bf \large Remarques.}
+
+\begin{enumerate}
+\item La mesure de Lebesgue de l'ensemble des $\theta$ qui vérifient les hypothèses du lemme 
+est $1$ : du fait que la transformation $\theta \mapsto \{2\theta\}$ est ergodique,  
+la suite 
+$\{2^m\theta\bmod 1 \mid m \geq 0\}$ est dense dans $\T$ pour presque tout $\theta$.
+
+\item L'ensemble des $\theta$ qui vérifient les hypothèses du lemme est dense dans $(0,1)$, 
+puisque $2^m\theta$ vérifie ces hypothèses si $\theta$ les vérifie. 
+J'ai bêtement cru un instant qu'on pouvait en déduire que la filtration est 
+standard pour tout $\theta$, mais c'est faux puisqu'elle n'est pas kolmogorovienne 
+lorsque $\theta$ est rationnel. 
+
+\item La preuve marche sous une hypothèse plus faible. Il suffit que $\theta$ 
+vérifie la condition suivante : pour tout $\delta>0$, il existe un arc $J$ tel que:
+\begin{itemize}
+\item il existe un entier $p$ tel que 
+pour tout $\alpha \in J$, l'ensemble $\{0, \alpha, \ldots, p\alpha\}$ 
+intersecte tout arc de longueur $\delta$ ;
+
+\item la suite $\{2^m\theta\}$ rencontre $J$ une infinité de fois.
+\end{itemize}
+Je ne sais pas si cette hypothèse est vérifiée pour tout $\theta$ irrationnel ou non.
+\end{enumerate}
+ 
+ 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Une condition nécessaire et suffisante}
+
+La filtration $\FF$ est engendrée par le processus ${(\pi_n X_0)}_{n \leq 0}$ 
+et elle donc standard si et seulement si $X_0$ satisfait le critère de 
+Vershik (voir~\cite{LauXLV}). 
+Ici nous allons voir que le critère de Vershik pour $X_0$ est équivalent à 
+$$
+\boxed{\int_0^1 f_n \to 0}
+$$
+où les fonctions $f_n \colon [0,1] \to [0,\frac12]$ sont définies par récurrence :  $f_0(u)=\min\bigl\{u,1-u\bigr\}$ et $$f_{n-1}(u) = \min\bigl\{f_{n}(u), \frac{1}{2}\left(f_{n}(u+2^{|n|}\theta \bmod 1) + f_{n}(u-2^{|n|}\theta \bmod1)\right) \bigr\}.$$ 
+
+Pour rappel, le critère de Vershik pour $X_0$ est $\boxed{\disp \pi_n X_0 \to 0}$, 
+après avoir choisi une distance $\rho_0$ sur $\T$ 
+(si vous ne comprenez rien à cette phrase, ce n'est pas grave ; il suffit de suivre 
+le raisonnement ci-dessous). 
+Ce que nous allons montrer c'est que 
+
+\begin{equation}\label{eq:disp}
+\disp \pi_n X_0 = \int_0^1 f_n. 
+\end{equation}
+
+Munissons $\T$ de la distance $\rho_0(u,v) = \min\bigl\{|u-v|, 1-|u-v|\}$ 
+(la longueur du petit arc reliant $u$ et $v$).  
+Notons $f_0(u) = \rho_0(u,0) = \min\{u, 1-u\}$. 
+Considérant deux copies indépendantes $X'_0$ et $X''_0$ de $X_0$ on a
+$$
+\disp(X_0) := \EE\bigl[\rho_0(X'_0, X''_0)\bigr] 
+= \int_0^1 \EE\bigl[\rho_0(X'_0, v)\bigr] \dd v,
+$$
+et la loi de $\rho_0(X'_0, v)$ ne dépendant clairement pas de $v$, on a 
+$$
+\disp(X_0) = \int_0^1 f_0.
+$$
+
+Penchons-nous maintenant sur la distance $\rho_{-1}$
+$$
+\rho_{-1}(x'_{-1}, x''_{-1}) := \inf_{\Lambda} \int\int\rho_0(u, v) \dd\Lambda(u,v)
+$$
+où la borne inférieure est prise sur les couplages $\Lambda$ des lois conditionnelles 
+$\LL(X_0 \given X_{-1}=x'_{-1})$ et $\LL(X_0 \given X_{-1}=x''_{-1})$.  
+On a 
+$$
+\LL(X_0 \given X_{-1}=x_{-1}) = \frac12 \delta_{x_{-1}} + \frac12 \delta_{x_{-1} + \theta \bmod 1}.  
+$$
+Il y a deux couplages extrémaux :
+
+\begin{tabular}{c|c|c}
+ & $x''_{-1}$ & $x''_{-1} + \theta \bmod 1$ \\
+ \hline 
+$x'_{-1}$ & $\frac12$ & $0$ \\
+\hline 
+$x'_{-1} + \theta \bmod 1$ & $0$ & $\frac12$ 
+\end{tabular}
+\quad \text{et }\,
+\begin{tabular}{c|c|c}
+ & $x''_{-1}$ & $x''_{-1} + \theta \bmod 1$ \\
+ \hline 
+$x'_{-1}$ & $0$ & $\frac12$ \\
+\hline 
+$x'_{-1} + \theta \bmod 1$ & $\frac12$ & $0$ 
+\end{tabular}.
+
+\medskip
+De ce fait, la distance de Kantorovich est :
+\begin{align*}
+\rho_{-1}(x'_{-1}, x''_{-1}) & = \min\bigl\{ 
+\rho_0(x'_{-1}, x''_{-1}), 
+\frac12 \rho_0(x'_{-1}, x''_{-1} + \theta \bmod 1) + \frac12 \rho_0(x'_{-1}+ \theta \bmod 1, x''_{-1})
+\bigr\} \\ 
+& = f_{-1}\bigl(\rho_0(x'_{-1}, x''_{-1})\bigr)
+\end{align*}
+où 
+$$
+\boxed{
+f_{-1}(\ell) = \min\bigl\{f_0(\ell), 
+\frac12 f_0(\ell-\theta\bmod 1) +\frac12 f_0(\ell+\theta \bmod1)\bigr\}
+},
+$$
+ce qui résulte du fait que 
+\begin{equation}\label{eq:propertyrho0}
+\bigl\{ 
+\rho_0(u, v + \alpha \bmod 1), \rho_0(u + \alpha \bmod 1, v)
+\bigr\} = 
+\bigl\{f_0(\ell-\alpha\bmod 1), f_0(\ell+\alpha \bmod1)\bigr\}
+\end{equation}
+où $\ell=\rho_0(u,v)$.
+
+Par conséquent 
+$$
+\disp(\pi_{-1}X_0) := \EE\bigl[\rho_{-1}(X'_{-1}, X''_{-1})\bigr] 
+ = \EE\bigl[f_{-1}\bigl(\rho_0(X'_{-1}, X''_{-1})\bigr)\bigr] 
+ = 2\int_0^{1/2} f_{-1}(u) \dd u = \int_0^1 f_{-1}(u) \dd u.
+$$
+Ceci démontre \eqref{eq:disp} pour $n=-1$.
+
+
+Poursuivons. 
+\begin{align*}
+\rho_{-2}(x'_{-2}, x''_{-2}) & := \inf_{\Lambda} \int\int\rho_{-1}(u, v) \dd\Lambda(u,v) \\
+& = \inf_{\Lambda} \int\int f_{-1}\bigl(\rho_0(u, v)\bigr) \dd\Lambda(u,v)
+\end{align*}
+où la borne inférieure est prise sur les couplages $\Lambda$ des lois conditionnelles 
+$\LL(X_{-1} \given X_{-2}=x'_{-2})$ et $\LL(X_{-1} \given X_{-2}=x''_{-2})$.  
+
+On a, de même que précédemment, 
+\begin{multline*}
+\inf_{\Lambda} \int\int f_{-1}\bigl(\rho_0(u, v)\bigr) \dd\Lambda(u,v)  \\ = 
+\min\Bigl\{ 
+f_{-1}\bigl(\rho_0(x'_{-2}, x''_{-2})\bigr), 
+\frac12 f_{-1}\bigl(\rho_0(x'_{-2}, x''_{-2} + 2\theta \bmod 1)\bigr) 
++ \frac12 f_{-1}\bigl(\rho_0(x'_{-2}+ 2\theta \bmod 1, x''_{-2})\bigr)
+\Bigr\},
+\end{multline*}
+et en utilisant~\eqref{eq:propertyrho0}, 
+$$
+\rho_{-2}(x'_{-2}, x''_{-2}) = 
+f_{-2}\bigl(\rho_0(x'_{-2}, x''_{-2})\bigr)
+$$
+où 
+$$
+\boxed{
+f_{-2}(\ell) = \min\bigl\{f_{-1}(\ell), 
+\frac12 f_{-1}(\ell-2\theta\bmod 1) +\frac12 f_{-1}(\ell+2\theta \bmod1)\bigr\}
+}.
+$$
+D'où 
+$$
+\disp(\pi_{-2}X_0)  = 2\int_0^{1/2} f_{-2}(u) \dd u = \int_0^1 f_{-2}(u) \dd u.
+$$
+Ceci démontre \eqref{eq:disp} pour $n=-2$. 
+Et ainsi de suite, on a bien établi \eqref{eq:disp}.
+
+
+\bigskip
+\noindent
+{\bf \large Remarque.} 
+Dans le cas où $\theta$ est rationnel, $\FF$ n'est pas kolmogorovienne, donc pas standard, et on devrait donc avoir 
+$\int f_n \not\to 0$. 
+Vérifions-le. 
+On a $f_n \geq g_n$ où les fonctions $g_n$ sont récursivement définies par $g_0=f_0$ et $$g_{n-1}(u) = \min\bigl\{g_{n}(u), g_{n}(u+2^{|n|}\theta \bmod 1), g_{n}(u-2^{|n|}\theta \bmod1) \bigr\}.$$ Quand $\theta$ est rationnel, cette construction s'arrête : $g_{n-1}=g_n$ à partir d'un certain $n$. Je ne l'ai pas démontré mais je l'ai observé, il semble que ça s'arrête à partir de $-n = \lfloor\log_2 q\rfloor$ lorsque $\theta=p/q$. Voir la figure ci-dessous où $\theta=2/5$. Quand la construction s'arrête, la fonction $g_n$ est "la fonction $1/q$-périodique en dents de scie".
+
+\begin{figure}[!h]
+\centering
+\includegraphics[scale=1]{Rotation_DyadicScale_lesmathsnet_files/figure-html/dentsdescie-1.png} 
+\caption{$g_0$ (noir), $g_{-1}$ (bleu), $g_n$ pour $n \leq -2$ (rouge)}
+\end{figure}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Les mots découpés qui engendrent $\FF$} 
+
+Dans~\cite{LauXLV}, il est démontré que 
+la filtration $\FF$ est engendrée par un processus de mots 
+découpés dyadique $(W_n, \epsilon_n)$. 
+
+Rappelons ceci. 
+Le mot $W_n$ a $2^{|n|}$ lettres et le mot $W_{n+1}$ est une des deux 
+moitiés de $W_{n+1}$, choisie selon la valeur de $\epsilon_{n+1}$. 
+La loi du mot $W_n$ est la suivante. 
+On prend une partition $P$ génératrice de $T$, 
+donc les blocs sont étiquetés par les lettres d'un alphabet $A$. 
+De ceci on définit une distribution stationnaire sur $A^{\mathbb{Z}}$ : 
+c'est la loi de la suite qu'on obtient en piochant $u$ au hasard dans $\T$ 
+selon la loi uniforme et en codant chaque élément de la suite 
+$(T^mu)_{m \in \mathbb{Z}}$ par la lettre de $A$ correspondant au bloc de 
+$P$ dans lequel est cet élément. 
+La loi de $W_n$ est alors la loi d'un $2^{|n|}$-morceau de cette distribution sur $A^{\mathbb{Z}}$.
+
+Le choix de la partition $P = \bigl\{[0,\theta), [\theta,1)\bigr\}$ est 
+sympathique. 
+Avec cette partition, le mot $W_n$ est un $2^{|n|}$-morceau du mot sturmien 
+associé à $\theta$. 
+Il y a $k+1$ sous-mots de longueur $k$ d'un mot sturmien. 
+Ainsi, $W_n$ ne prend que $2^{|n|}+1$ valeurs possibles.
+
+Avec ce choix de $P$, il me semble que $W_0$ satisfait toujours le 
+critère de Vershik, quel que soit $\theta$ irrationnel. 
+Le problème se complique pour $W_{-1}$. 
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{thebibliography}{99.}
+
+
+\bibitem{LauXLV}
+Laurent, S.: 
+Vershik's Intermediate Level Standardness Criterion and the Scale of an Automorphism. 
+S\'eminaire de Probabilit\'es XLV,
+Springer Lecture Notes in Mathematics 2078,
+123--139 (2013).
+
+
+\end{thebibliography}
+
+ 
+
+\end{document}
