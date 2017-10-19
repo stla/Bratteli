@@ -137,13 +137,13 @@ through which passes the path $\gamma$.
    \centering
    \begin{subfigure}[t]{0.37\textwidth}
    \centering
-   	\includegraphics[scale=0.6]{figures/GoldenGraph_redpath_usual2}
+   	\includegraphics[scale=0.6]{figures/GoldenGraph3_redpath}
  		\caption{\footnotesize Usual labels on the arcs}\label{fig:GoldenGraph}
     \end{subfigure}              
    \quad
     \begin{subfigure}[t]{0.37\textwidth}
     \centering
-   	\includegraphics[scale=0.6]{figures/GoldenGraph_redpath_newlabels2}
+   	\includegraphics[scale=0.6]{figures/GoldenGraph3_orderlabels}
  		\caption{\footnotesize Order labels $\epsilon_n$ on the arcs}\label{fig:GoldenGraph_newlabs}
  	\end{subfigure}      
    \caption{Golden graph}
@@ -177,7 +177,7 @@ We consider $\bar\gamma_n$ as the $\zeta_n$-representative of $\gamma$.
 
 \begin{figure}[!h]
 \centering
-	\includegraphics[scale=0.7, clip=true]{figures/GoldenOrbits2}
+	\includegraphics[scale=0.7, clip=true]{figures/GoldenWalk2_zeta}
 \caption{A $\zeta_{-5}$-equivalence class}
 \label{fig:GoldenOrbits}
 \end{figure}
@@ -199,7 +199,7 @@ $$
 \zeta_n(\gamma) = \{S^{-k_n(\gamma)}\gamma, S^{-k_n(\gamma)+1}\gamma, 
 \ldots, S^{-k_n(\gamma)+d_n(\gamma)-1}\gamma \}.
 $$ 
-More precisely, knowing the vertex $v_n(\gamma)$, the integer $k_n(\gamma)$ is 
+More precisely, knowing the vertex $v_n(\gamma)$ at level $n$, the integer $k_n(\gamma)$ is 
 a one-to-one function of $\bigl(\epsilon_{n+1}(\gamma), \ldots, \epsilon_0(\gamma)\bigr)$. 
 
 
@@ -327,9 +327,9 @@ The random integer $K_n$ has a very convenient expression for the case of the ad
 transformation on the golden graph with our choice of the labels shown on 
 Figure~\ref{fig:GoldenGraph_newlabs}:
 $$
-K_n = \epsilon_{n+1}f_{n+1} + \ldots + \epsilon_{-1}f_{-1} (+ \epsilon_0f_{0}).   
+K_n = f_n - 1 - (\epsilon_{n+1}f_{n+1} + \ldots + \epsilon_{-1}f_{-1}) .   
 $$
-where $f_0=0$, $f_{-1}=f_{-2}=1$, $f_{-3}=2$,  $\ldots$ are the Fibonacci numbers.  
+where $f_0=f_{-1}=1$, $f_{-2}=2$, $f_{-3}=3$,  $\ldots$ are the Fibonacci numbers.  
 Here its expression does not depend on $V_n$, but its distribution does. 
 
 There is no multiple edges in this graph, therefore the filtration $\FF$ 
@@ -522,7 +522,7 @@ $$
 
 \begin{figure}[!h]
 \centering
-	\includegraphics[scale=0.8]{figures/GoldenWalk_PowersProbs2}
+	\includegraphics[scale=0.8]{figures/GoldenWalk2_powers}
 \caption{The process $(X_n, V_n)$ for the golden graph}
 \end{figure}
 
@@ -821,7 +821,7 @@ $$
 
 \begin{figure}[!h]
 \centering
-	\includegraphics[scale=0.8]{figures/GoldenWalk_WordsProbs2}
+	\includegraphics[scale=0.8]{figures/GoldenWalk2_probs}
 \caption{The process $(W_n, V_n)$ for the golden graph}
 \end{figure}
 
